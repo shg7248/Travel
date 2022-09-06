@@ -54,8 +54,9 @@
 		
 		1km = 0.008993216059187306도
 		
-		
-		
+		https://www.sqler.com/board_SQLQA/546533
+		https://shiningknowledge.tistory.com/135
+		https://pnot.tistory.com/8
 	*/
 </script>
 </html>
