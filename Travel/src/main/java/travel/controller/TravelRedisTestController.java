@@ -25,7 +25,7 @@ public class TravelRedisTestController {
 		
 		ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
 		valueOperations.set(key, value);
-		redisTemplate.expire(key, 2, TimeUnit.SECONDS);
+		redisTemplate.expire(key, 300, TimeUnit.SECONDS);
 		
 		System.out.println(valueOperations.get(key));
 		
