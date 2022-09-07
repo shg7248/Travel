@@ -10,6 +10,8 @@ public class TravelTestController {
 	@RequestMapping(value = "*.tra", method = RequestMethod.GET)
 	public String testMethod() {
 		
+		
+		
 		System.out.println("잘 뜬다");
 		
 		return null;
