@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+}
+.wrap {
+    position: relative;
+    margin: 0 auto;
+    width: 960px;
+    padding-left: 200px;
+    height: inherit;
+}
+
+.header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: inherit;
+    background: black;
+    color: white;
+}
+.nav__inner {
+    margin-top: 20px;
+}
+.nav__list {
+    
+}
+.nav__item {
+    text-align: center;
+}
+.nav__link {
+    display: inline-block;
+    font-weight: bold;
+    width: 95%;
+    height: 60px;
+    line-height: 60px;
+    color: white;
+}
+.nav__link:hover {
+    background: white;
+    color: red;
+}
+.nav__link.on {
+    background: white;
+    color: red;	
+}
