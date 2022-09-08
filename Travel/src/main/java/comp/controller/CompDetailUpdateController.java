@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CompDetailUpdateController {
 	
-	private final String command = "/compDetailUpdate.comp";
+	private final String command = "/1/compDetailUpdate.comp";
 	private String getPage = "compDetailUpdate";
 	private String gotoPage = "redirect:compDetail.comp";
 	
