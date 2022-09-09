@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +16,14 @@
             width: calc(var(--s) * 7);
             display: grid;
             grid-template-columns: repeat(7, 1fr);
+            border-left: 1px solid black;
+            border-top: 1px solid black;
         }
         .calendar__view div {
             width: var(--s);
             height: var(--s);
-            border: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
         }
         .calendar__date--disabled {
             color: rgb(209, 209, 209);
@@ -46,105 +47,101 @@
     
     var Calendar = (function() {
 
-        function makeButton() {
+        let init = {
+            start: '20220911',
+            end: '20221016'
+        }
 
-        };
+        function changeNum(num) {
+            return String(num).padStart(2, '0');
+        }
 
-        const cal = function() {
+        const App = function(obj) {
+
+            init = {...init, ...obj};
             this.init();
         };
 
-        cal.prototype.init = function(month) {
-            this.startend = [];
-            this.currDate = function() {
-                if(month === undefined) {
-                    return new Date();
-                }
-                else {
-                    const date = new Date();
-                    date.setMonth(month);
-                    return date;
-                }
-            }();
+        App.prototype.init = function(month) {
 
-            this.startDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth(), 1);
-            this.endDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth() + 1 , 1);
-            this.endDate.setDate(0);
-            this.prevMonthDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth());
-            this.prevMonthDate.setDate(0);
-            this.nextMonthDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth() + 1);
+            this.currDate = new Date();
+            this.changeMonthDate = new Date();
+            this.changeMonthDate.setMonth(month || this.currDate.getMonth());
+            this.currEnd = new Date(this.changeMonthDate.getFullYear(), this.changeMonthDate.getMonth() + 1 , 0);
+            this.prevEnd = new Date(this.changeMonthDate.getFullYear(), this.changeMonthDate.getMonth(), 0);
 
             this.draw();
         };
 
-        cal.prototype.draw = function() {
+        App.prototype.draw = function() {
 
             const calendar__view = document.querySelector('.calendar__view');
             const calendar__title = document.querySelector('.calendar__title');
-            const prevBlack = this.startDate.getDay() - 1;
 
-            const year = this.currDate.getFullYear();
-            const month = this.currDate.getMonth();
+            this.prevDates = [];
+            this.currDates = [...Array(this.currEnd.getDate() + 1).keys()].slice(1);
+            this.nextDates = [];
 
-            calendar__title.innerHTML = "";
-
-            const prev = document.createElement('button');
-            prev.innerHTML = "<<";
-            prev.addEventListener('click', this.setMonth.bind(this, this.currDate.getMonth() - 1));
-            calendar__title.appendChild(prev);
-
-            const next = document.createElement('button');
-            next.innerHTML = ">>";
-            next.addEventListener('click', this.setMonth.bind(this, this.currDate.getMonth() + 1));
-            calendar__title.appendChild(next);
-
-            let divs = "";
-            for(let i = this.prevMonthDate.getDate() - prevBlack; i <= this.prevMonthDate.getDate(); i++) {
-                divs += `<div class="calendar__date calendar__date--disabled">${i }</div>`;
-            }
-            for(let i = 1; i <= this.endDate.getDate(); i++) {
-                if(i < this.currDate.getDate()) {
-                    divs += `<div class="calendar__date calendar__date--disabled" data-date = "${this.currDate.getFullYear() }${month + 1}${String(i).padStart(2, '0') }">${i }</div>`;
+            if(this.prevEnd.getDay() < 6) {
+                for(let i = 0; i <= this.prevEnd.getDay(); i++) {
+                    this.prevDates.unshift(this.prevEnd.getDate() - i);
                 }
+            }
+
+            for(let i = 1; i < 7 - this.currEnd.getDay(); i++) {
+                this.nextDates.push(i);
+            }
+
+            const dates = [...this.prevDates, ...this.currDates, ...this.nextDates];
+            
+            const a = this.prevDates.length;
+            const b = this.prevDates.length + this.currDates.length - 1;
+
+            const c = dates.map((e, i) => {
+                if ((i >= a && i <= b)) {
+                    return `<div class="calendar__date" data-date = "${this.changeMonthDate.getFullYear() }${changeNum(this.changeMonthDate.getMonth() + 1)}${changeNum(e) }">${e }</div>`;
+                } 
                 else {
-                    divs += `<div class="calendar__date" data-date = "${this.currDate.getFullYear() }${month + 1}${String(i).padStart(2, '0') }">${i }</div>`;
+                    return `<div class="calendar__date calendar__date--disabled">${e }</div>`;
                 }
-            }
-            for(let i = this.nextMonthDate.getDay(); i < 7; i++) {
-                divs += `<div class="calendar__date calendar__date--disabled">${i - this.nextMonthDate.getDay() + 1}</div>`;
-            }
+            });
+            calendar__view.innerHTML = c.join().replaceAll(',', '');
 
-            calendar__view.innerHTML = divs;
-
-            const that = this;
-
-            this.dates = Array.from(document.querySelectorAll('.calendar__date')).filter((ele) => {
-                return !ele.classList.contains('calendar__date--disabled');
+            this.clickableDate = Array.from(document.querySelectorAll('.calendar__date')).filter(ele => {
+                return ! ele.classList.contains('calendar__date--disabled');
             });
 
-            this.dates.forEach((ele, idx) => {
-                ele.addEventListener('click', (event) => {
-                    that.startend.push(ele.dataset.date);
-                    that.drawColor();
+            this.clickableDate.forEach((ele, i) => {
+                ele.addEventListener('click', function(e) {
+                    console.log(ele);
                 });
             });
+
+            this.drawColor(init);
         }
 
-        cal.prototype.setMonth = function(month) {
-            this.init(month);
+        App.prototype.prevMonth = function() {
+            this.init(this.changeMonthDate.getMonth() - 1);
         }
 
-        cal.prototype.drawColor = function(data) {
-            if(this.startend.length === 2) {
-                this.dates.forEach(ele => {
-                    if(ele.dataset.date >= this.startend[0] && ele.dataset.date <= this.startend[1]) {
-                        ele.classList.add('calendar__date--red');
-                    }
-                });
-            }
+        App.prototype.nextMonth = function() {
+            this.init(this.changeMonthDate.getMonth() + 1);
         }
 
-        return cal;
+        App.prototype.drawColor = function(obj) {
+            this.clickableDate.forEach((ele, i) => {
+                if(ele.dataset.date >= obj.start && ele.dataset.date <= obj.end) {
+                    ele.classList.add('calendar__date--red');
+                }
+            })
+        }
+
+        App.prototype.getResDate = function(obj) {
+            return init;
+        }
+
+        return App;
+
     }());
 </script>
 </body>
