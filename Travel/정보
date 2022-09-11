@@ -64,13 +64,16 @@ INSERT INTO REGION VALUES ('32', '경기');
 COMMIT;
 
 -------------------------------------------
+
 DROP SEQUENCE ACCOM_SEQ;
+
 CREATE SEQUENCE ACCOM_SEQ
 START WITH 1
 INCREMENT BY 1
 MINVALUE 1;
 
 DROP TABLE ACCOM;
+
 CREATE TABLE ACCOM (
 	ANUM 		 NUMBER PRIMARY KEY,	-- 
 	CNUM 		 VARCHAR2(10),			-- 사업자 등록번호
@@ -88,32 +91,25 @@ CREATE TABLE ACCOM (
 	REG_DATE	 DATE
 );
 
-
 -------------------------------------------
 
-create or replace function replaceFac(vcolumn varchar2, cnum varchar2)
-return varchar2
-is
-vfac varchar2(100);
-begin
-	with a as (
-    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac1
-    from(
-      select fac1 
-      from accom 
-      where cnum = cnum
-	)
-	connect by level <= length(regexp_substr(fac1, '[^,]+', 1, level)) + 1
-	),
-	b as (
-    select fnum, name, fgroup 
-    from FACILITY f
-    inner join a
-    on f.fnum = a.fac1
-	)
-	select listagg(name, ',') within group(order by name) into vfac
-	from b
-	group by fgroup;
-	
-	return vfac;
-end;
+DROP SEQUENCE ROOM_SEQ;
+
+CREATE SEQUENCE ROOM_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
+DROP TABLE ROOM
+
+CREATE TABLE ROOM (
+	RNUM	 NUMBER PRIMARY KEY,
+	ANUM	 NUMBER,
+	NAME	 VARCHAR2(50),
+	INFO	 VARCHAR2(2000),
+	PRICE	 NUMBER,
+	SALE	 NUMBER,
+	IMAGE	 VARCHAR2(50),
+	MAX		 NUMBER,
+	REG_DATE DATE DEFAULT SYSDATE
+);

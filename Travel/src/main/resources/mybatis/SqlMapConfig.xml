@@ -7,6 +7,8 @@
 		<typeAlias type="comp.model.ResionBean" alias="ResionBean"/>
 		<typeAlias type="comp.model.FacBean" alias="FacBean"/>
 		<typeAlias type="comp.model.AccomBean" alias="AccomBean"/>
+		<typeAlias type="comp.model.RoomBean" alias="RoomBean"/>
+		<typeAlias type="shop.model.SearchBean" alias="SearchBean"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/admin.xml"/>

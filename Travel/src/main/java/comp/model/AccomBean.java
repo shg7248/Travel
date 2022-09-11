@@ -7,6 +7,7 @@ public class AccomBean {
 	private int anum;
 	private String cnum;
 	private String rnum;
+	private String rname;
 	private String name;
 	private String addr;
 	private String info;
@@ -37,6 +38,12 @@ public class AccomBean {
 	}
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
+	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
 	}
 	public String getName() {
 		return name;

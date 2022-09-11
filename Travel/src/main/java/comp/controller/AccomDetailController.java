@@ -1,5 +1,6 @@
 package comp.controller;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import comp.model.CompDao;
 public class AccomDetailController {
 	
 	@Autowired
+	private ServletContext servletContext;
+	
+	@Autowired
 	private CompDao compDao;
 	
 	private final String command = "/1/accomDetail.comp";
@@ -23,7 +27,7 @@ public class AccomDetailController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doGetAction(HttpServletRequest request, Model model) {
 		
-		int cnum = 1234567890;
+		String cnum = servletContext.getInitParameter("cnum");
 		
 		AccomBean accom = compDao.getAccomByCnum(cnum);
 		model.addAttribute("accom", accom);

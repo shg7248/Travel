@@ -3,5 +3,42 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.model.Shop">
-
+	<select id="Search" resultType="SearchBean">
+		select a.name, a.addr, r.price, a.image from accom a
+		left outer join room r
+		on a.anum = r.anum
+		where 1 = 1
+		<if test="fac2 != null">
+		and a.anum in(
+			select anum from(
+				select anum, cnum, regexp_substr(fac2, '[^,]+', 1, level) fac2
+				from accom a
+				<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
+				and prior a.cnum = a.cnum
+				and prior dbms_random.value is not null
+			) 
+			where fac2 in (select regexp_substr(#{fac2}, '[^,]+', 1, level)
+			from dual
+			<![CDATA[connect by level <= (select regexp_count(#{fac2}, '[^,]+') from dual))]]>
+			group by anum
+			having count(anum) = (select regexp_count(#{fac2}, '[^,]+') from dual)
+		)
+		</if>
+		<if test="fac1 != null">
+		and a.anum in(
+			select anum from(
+				select anum, cnum, regexp_substr(fac1, '[^,]+', 1, level) fac2
+				from accom a
+				<![CDATA[connect by level <= regexp_count(fac1, '[^,]+')]]>
+				and prior a.cnum = a.cnum
+				and prior dbms_random.value is not null
+			) 
+			where fac2 in (select regexp_substr(#{fac1}, '[^,]+', 1, level)
+			from dual
+			<![CDATA[connect by level <= (select regexp_count(#{fac1}, '[^,]+') from dual))]]>
+			group by anum
+			having count(anum) = (select regexp_count(#{fac1}, '[^,]+') from dual)
+		)
+		</if>
+	</select>
 </mapper>
