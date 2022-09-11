@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<typeAliases>
+		<typeAlias type="comp.model.ResionBean" alias="ResionBean"/>
+		<typeAlias type="comp.model.FacBean" alias="FacBean"/>
+		<typeAlias type="comp.model.AccomBean" alias="AccomBean"/>
+	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/admin.xml"/>
 		<mapper resource="mybatis/board.xml"/>

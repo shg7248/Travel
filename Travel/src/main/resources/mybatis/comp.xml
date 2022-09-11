@@ -4,4 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comp.model.Comp">
 
+	<select id="GetResionList" resultType="ResionBean">
+		select * from region order by 1
+	</select>
+	
+	<select id="GetFacList" resultType="FacBean">
+		select * from facility
+	</select>
+	
+	<insert id="InsertAccom">
+		insert into accom (anum, cnum, rnum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+		values (ACCOM_SEQ.nextval, #{cnum}, #{rnum}, #{name}, #{addr}, #{info}, #{fac1}, #{fac2}, #{startTime}, #{endTime}, null, null, #{image}, sysdate)
+	</insert>
+	
+	<select id="GetAccomByCnum" resultType="AccomBean">
+		select * from accom a
+		inner join region r
+		on a.rnum = r.rnum
+		where cnum = #{cnum}
+	</select>
 </mapper>

@@ -1,0 +1,118 @@
+erd cloud : https://www.erdcloud.com/d/zrNsp8TXaZwth7znr
+
+웹서버주소 : http://localhost:8080
+카카오 로그인 클라이언트 키 : eef86418370a5e2c2a0e972cd708b587
+시크릿키 : 
+카카오 로그인요청 콜백 주소 : http://localhost:8080/travel/kakaoLogin.log
+카카오 로그아웃요청 콜백 주소 : http://localhost:8080/travel/kakao/logout
+
+OAuth -> Open Auth : 인증 처리를 대신 해준다.
+1. 인증하기 완료 - code
+2. 권한 부여 - Access Token
+
+로그인 요청
+GET /oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code HTTP/1.1
+Host: kauth.kakao.com
+kauth.kakao.com/oauth/authorize?client_id=eef86418370a5e2c2a0e972cd708b587&redirect_uri=http://localhost:8080/travel/kakao/callback&response_type=code
+
+토큰발급 요청 주소 (POST) - http body에 데이터를 전달 (5가지 데이터를 담아라) 
+POST /oauth/token
+kauth.kakao.com
+MIME : application/x-www-form-urlencoded;charset=utf-8
+http://kauth.kakao.com/oauth/token
+
+grant_type=authorization_code
+client_id=eef86418370a5e2c2a0e972cd708b587
+redirect_uri=http://localhost:8080/travel/kakaoLogin.log
+code={동적임}
+client_secret=
+
+-------------------------------------------
+
+-- 1. 공용시설
+-- 2. 객실 내 시설
+
+DROP TABLE FACILITY;
+ 
+CREATE TABLE FACILITY(
+	FNUM	 VARCHAR2(10) PRIMARY KEY,
+	NAME	 VARCHAR2(50),
+	FGROUP	  VARCHAR2(10)
+); 
+
+INSERT INTO FACILITY VALUES ('F1', '공용시설', NULL);
+INSERT INTO FACILITY VALUES ('F2', '객실 내 시설', NULL);
+INSERT INTO FACILITY VALUES ('F101', '노래방', 'F1');
+INSERT INTO FACILITY VALUES ('F102', '편의점', 'F1');
+INSERT INTO FACILITY VALUES ('F201', '와이파이', 'F2');
+INSERT INTO FACILITY VALUES ('F202', '전기밥솥', 'F2');
+
+COMMIT; 
+SELECT * FROM FACILITY; 
+
+-------------------------------------------
+
+DROP TABLE REGION;
+CREATE TABLE REGION(
+	RNUM	 NUMBER PRIMARY KEY,
+	NAME	 VARCHAR2(50)
+);
+
+INSERT INTO REGION VALUES ('11', '서울');
+INSERT INTO REGION VALUES ('32', '경기');
+
+COMMIT;
+
+-------------------------------------------
+DROP SEQUENCE ACCOM_SEQ;
+CREATE SEQUENCE ACCOM_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
+DROP TABLE ACCOM;
+CREATE TABLE ACCOM (
+	ANUM 		 NUMBER PRIMARY KEY,	-- 
+	CNUM 		 VARCHAR2(10),			-- 사업자 등록번호
+	RNUM 		 VARCHAR2(10),
+	NAME		 VARCHAR2(50),
+	ADDR		 VARCHAR2(100),
+	INFO		 VARCHAR2(2000),
+	FAC1		 VARCHAR2(100),
+	FAC2		 VARCHAR2(100),
+	STARTTIME	 VARCHAR2(10),
+	ENDTIME		 VARCHAR2(10),
+	LATITUDE	 NUMBER,
+	LONGITUDE	 NUMBER,
+	IMAGE		 VARCHAR2(50),
+	REG_DATE	 DATE
+);
+
+
+-------------------------------------------
+
+create or replace function replaceFac(vcolumn varchar2, vanum number)
+return varchar2
+is
+vfac varchar2(100);
+begin
+	with a as (
+	select regexp_substr(fac1, '[^,]+', 1, level) as fac1
+	from(
+	select fac1 
+	from accom 
+	where anum = number
+	)
+	connect by level <= length(regexp_substr(fac1, '[^,]+', 1, level)) + 1
+	),
+	b as (
+	select fnum, name, fgroup from FACILITY f
+	inner join a
+	on f.fnum = a.fac1
+	)
+	select listagg(name, ',') within group(order by name) into vfac
+	from b
+	group by fgroup;
+	
+	return vfac;
+end;

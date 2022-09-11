@@ -43,3 +43,7 @@ html, body {
     background: white;
     color: red;	
 }
+
+.main {
+	padding-top: 200px;
+}
