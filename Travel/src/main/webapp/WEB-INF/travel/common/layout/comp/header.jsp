@@ -8,10 +8,12 @@
 	    <nav class="nav">
 	        <div class="nav__inner">
 	            <ul class="nav__list">
-	                <li class="nav__item"><a href="${contextPath }/1/compDetail.comp" class='nav__link <c:if test="${page eq '1' }">on</c:if>'>숙박지 정보</a></li>
+	                <li class="nav__item"><a href="${contextPath }/1/accomDetail.comp" class='nav__link <c:if test="${page eq '1' }">on</c:if>'>숙박지 정보</a></li>
 	                <li class="nav__item"><a href="#" class="nav__link">객실 관리</a></li>
 	                <li class="nav__item"><a href="#" class="nav__link">객실이용 후기</a></li>
 	            </ul>
 	        </div>
 	    </nav>
 	</header>
+	<main class="main">
+		<section class="section">
