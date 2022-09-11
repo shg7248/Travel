@@ -18,9 +18,51 @@
 	</insert>
 	
 	<select id="GetAccomByCnum" resultType="AccomBean">
-		select * from accom a
+		select anum, cnum, r.rnum, r.name as rname, a.name as name, addr, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, reg_date
+		from accom a
 		inner join region r
 		on a.rnum = r.rnum
 		where cnum = #{cnum}
+	</select>
+	
+	<insert id="InsertRoom">
+		insert into room (rnum, anum, name, info, price, sale, image, max, reg_date)
+		values (room_seq.nextval, #{anum}, #{name}, #{info}, #{price}, #{sale}, #{image}, #{max}, sysdate)
+	</insert>
+	
+	<select id="GetRoomTotalCountByAnum" parameterType="hashmap" resultType="int">
+		select count(*) from room
+		where anum = #{anum}
+		<if test="whatColumn == 'name'">
+			 and name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetRoomTotalCountByCnum" parameterType="hashmap" resultType="int">
+		select count(*) from room
+		where cnum = #{cnum}
+		<if test="whatColumn == 'name'">
+			 and name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetRoomListByAnum" parameterType="hashmap" resultType="RoomBean">
+		select * from room 
+		where anum = #{anum}
+		<if test="whatColumn == 'name'">
+			 and name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetRoomListByCnum" parameterType="hashmap" resultType="RoomBean">
+		select * from room 
+		where cnum = #{cnum}
+		<if test="whatColumn == 'name'">
+			 and name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetRoomByRnum" resultType="RoomBean">
+		select * from room where rnum = #{rnum}
 	</select>
 </mapper>

@@ -15,8 +15,42 @@
         	</tr>
         	<tr>
         		<td>숙박지역</td>
-        		<td>${requestScope.accom.rnum }</td>
+        		<td>${requestScope.accom.rname }</td>
         	</tr>
+        	<tr>
+        		<td>숙박지 이름</td>
+        		<td>${requestScope.accom.name }</td>
+        	</tr>
+        	<tr>
+        		<td>숙박지 주소</td>
+        		<td>${requestScope.accom.addr }</td>
+        	</tr>
+        	<tr>
+        		<td>숙박지 주변 편의시설</td>
+        		<td>${requestScope.accom.fac1 }</td>
+        	</tr>
+        	<tr>
+        		<td>객실 편의시설</td>
+        		<td>${requestScope.accom.fac2 }</td>
+        	</tr>
+        	<tr>
+        		<td>입실시간</td>
+        		<td>${requestScope.accom.startTime }</td>
+        	</tr> 
+        	<tr>
+        		<td>퇴실시간</td>
+        		<td>${requestScope.accom.endTime }</td>
+        	</tr> 
+        	<tr>
+        		<td>숙박지 이미지</td>
+        		<td>
+        			<img alt="이미지" src="${context }/resources/uploadImage/${requestScope.accom.image }">
+        		</td>
+        	</tr> 
+        	<tr>
+        		<td>숙박지 기본정보</td>
+        		<td>${requestScope.accom.info }</td>
+        	</tr> 
         </table>
     </div>
 </div>

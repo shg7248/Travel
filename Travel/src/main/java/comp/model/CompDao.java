@@ -1,10 +1,14 @@
 package comp.model;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import Util.Paging;
 
 @Component
 public class CompDao {
@@ -26,8 +30,35 @@ public class CompDao {
 		return sqlSessionTemplate.insert(namespace + ".InsertAccom", accomBean);
 	}
 
-	public AccomBean getAccomByCnum(int cnum) {
+	public AccomBean getAccomByCnum(String cnum) {
 		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByCnum", cnum);
+	}
+
+	public int insertRoom(RoomBean roomBean) {
+		return sqlSessionTemplate.insert(namespace + ".InsertRoom", roomBean);
+	}
+
+	public int getRoomTotalCountByAnum(Map<String, String> map) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetRoomTotalCountByAnum", map);
+	}
+	
+	public int getRoomTotalCountByCnum(Map<String, String> map) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetRoomTotalCountByCnum", map);
+	}
+
+	public List<RoomBean> getRoomListByAnum(Paging pageInfo, Map<String, String> map) {
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByAnum", map, rowBounds);
+	}
+	
+	// 임시
+	public List<RoomBean> getRoomListByCnum(Paging pageInfo, Map<String, String> map) {
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByCnum", map, rowBounds);
+	}
+
+	public RoomBean getRoomByRnum(String rnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetRoomByRnum", rnum);
 	}
 
 }
