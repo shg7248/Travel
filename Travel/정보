@@ -91,24 +91,25 @@ CREATE TABLE ACCOM (
 
 -------------------------------------------
 
-create or replace function replaceFac(vcolumn varchar2, vanum number)
+create or replace function replaceFac(vcolumn varchar2, cnum varchar2)
 return varchar2
 is
 vfac varchar2(100);
 begin
 	with a as (
-	select regexp_substr(fac1, '[^,]+', 1, level) as fac1
-	from(
-	select fac1 
-	from accom 
-	where anum = number
+    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac1
+    from(
+      select fac1 
+      from accom 
+      where cnum = cnum
 	)
 	connect by level <= length(regexp_substr(fac1, '[^,]+', 1, level)) + 1
 	),
 	b as (
-	select fnum, name, fgroup from FACILITY f
-	inner join a
-	on f.fnum = a.fac1
+    select fnum, name, fgroup 
+    from FACILITY f
+    inner join a
+    on f.fnum = a.fac1
 	)
 	select listagg(name, ',') within group(order by name) into vfac
 	from b
