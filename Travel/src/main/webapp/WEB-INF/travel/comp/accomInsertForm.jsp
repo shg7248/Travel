@@ -22,6 +22,17 @@
 				</td>
 			</tr>
 			<tr>
+				<th>숙박지 종류</th>
+				<td>
+					<select name="canum">
+						<option>종류를 선택하세요</option>
+						<c:forEach var="cate" items="${caLists }">
+							<option value="${cate.canum }">${cate.caname }</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<th>숙박지 이름</th>
 				<td>
 					<input type="text" name="name">

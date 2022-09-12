@@ -1,12 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --s: 30px;
+    z-index: 999;
+}
 .calendar {
-	position: absolute;
-	left: 100px;
-	--s: 30px;
     width: calc(var(--s) * 7);
+    background: white;
+    display: none;
+}
+.calendar.on {
+	display: block;
 }
 .calendar__title {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .calendar__view {
     display: grid;
@@ -36,4 +45,7 @@
 .calendar__date--red {
     background: rgb(255, 173, 173);
     color: white;
+}
+.calendar__btn {
+    width: 100%;
 }

@@ -1,11 +1,14 @@
 package shop.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import comp.model.CompDao;
 import comp.model.FacBean;
@@ -26,7 +29,13 @@ public class ShopSearchContoller {
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
-	public String doGetAction(Model model, SearchBean searchBean) {
+	public String doGetAction(Model model, @ModelAttribute("searchBean") SearchBean searchBean, @RequestParam(required = false) String start, @RequestParam(required = false) String end) {
+			
+		LocalDate date = LocalDate.now();
+		model.addAttribute("start", start == null? formatDate(date) : start);
+		LocalDate date2 = date.plusDays(1);
+		model.addAttribute("end", end == null? formatDate(date2) : end);
+		
 		
 		List<FacBean> facLists = compDao.getFacList();
 		model.addAttribute("facLists", facLists);
@@ -37,8 +46,13 @@ public class ShopSearchContoller {
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
 		
-		System.out.println(sLists.size());
-		
 		return getPage;
+	}
+	
+	public String formatDate(LocalDate date) {
+		int year = date.getYear();
+		String month = String.format("%02d", date.getMonthValue());
+		String day = String.format("%02d", date.getDayOfMonth());
+		return year + month + day;
 	}
 }

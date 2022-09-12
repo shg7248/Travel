@@ -7,6 +7,7 @@ public class AccomBean {
 	private int anum;
 	private String cnum;
 	private String rnum;
+	private String canum;
 	private String rname;
 	private String name;
 	private String addr;
@@ -38,6 +39,12 @@ public class AccomBean {
 	}
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
+	}
+	public String getCanum() {
+		return canum;
+	}
+	public void setCanum(String canum) {
+		this.canum = canum;
 	}
 	public String getRname() {
 		return rname;

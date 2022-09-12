@@ -24,12 +24,10 @@ public class TravelPhoneAuthController {
 	@RequestMapping(value = command, method=RequestMethod.POST)
 	public String doPostAction(@RequestParam String phone) throws Exception {
 		
-		System.out.println(phone);
-		
 		String api_key = "NCSWLQNCGD42Q5DB";
 		String api_secret = "KYXPY42RJNJQXYPBUC6ELRIX8YXHAK3F";
 		
-		// 랜던번호 생성 (6자리)
+		// 랜덤번호 생성 (6자리)
 		int rannum = (int)(Math.random() * 900000) + 100000;
 		String rannum2 = String.valueOf(rannum);
 		
