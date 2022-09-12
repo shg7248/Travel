@@ -29,6 +29,32 @@ client_secret=
 
 -------------------------------------------
 
+drop table company;
+
+create table company(
+	cnum		 varchar2(12) primary key,
+	image		 varchar2(50),
+	email		 varchar2(40),
+	pwd			 varchar2(15),
+	phone		 varchar2(13),
+	approyn		 number,
+	reg_date	 date default sysdate
+);
+
+insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
+values('111-11-11111', '1.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
+
+insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
+values('111-11-11112', '1.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);\
+
+insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
+values('111-11-11113', '2.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
+
+insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
+values('111-11-11114', '3.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
+
+-------------------------------------------
+
 -- 1. 공용시설
 -- 2. 객실 내 시설
 
@@ -46,6 +72,8 @@ INSERT INTO FACILITY VALUES ('F101', '노래방', 'F1');
 INSERT INTO FACILITY VALUES ('F102', '편의점', 'F1');
 INSERT INTO FACILITY VALUES ('F201', '와이파이', 'F2');
 INSERT INTO FACILITY VALUES ('F202', '전기밥솥', 'F2');
+INSERT INTO FACILITY VALUES ('F203', '냉장고', 'F2');
+INSERT INTO FACILITY VALUES ('F204', '청소기', 'F2');
 
 COMMIT; 
 SELECT * FROM FACILITY; 
@@ -65,6 +93,30 @@ COMMIT;
 
 -------------------------------------------
 
+DROP SEQUENCE CATEGORY_SEQ;
+
+CREATE SEQUENCE CATEGORY_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
+DROP TABLE CATEGORY;
+
+CREATE TABLE CATEGORY (
+	CANUM	 VARCHAR2(20) PRIMARY KEY,
+	CANAME	 VARCHAR2(50),
+	URL		 VARCHAR2(20),
+	CAGROUP	 VARCHAR2(20)
+);
+
+INSERT INTO CATEGORY (CANUM, CANAME, URL) VALUES (CATEGORY_SEQ.NEXTVAL, '모텔', 'NULL');
+INSERT INTO CATEGORY (CANUM, CANAME, URL) VALUES (CATEGORY_SEQ.NEXTVAL, '호텔', 'NULL');
+INSERT INTO CATEGORY (CANUM, CANAME, URL) VALUES (CATEGORY_SEQ.NEXTVAL, '펜션', 'NULL');
+
+COMMIT;
+
+-------------------------------------------
+
 DROP SEQUENCE ACCOM_SEQ;
 
 CREATE SEQUENCE ACCOM_SEQ
@@ -75,9 +127,10 @@ MINVALUE 1;
 DROP TABLE ACCOM;
 
 CREATE TABLE ACCOM (
-	ANUM 		 NUMBER PRIMARY KEY,	-- 
-	CNUM 		 VARCHAR2(10),			-- 사업자 등록번호
-	RNUM 		 VARCHAR2(10),
+	ANUM 		 NUMBER PRIMARY KEY,	 
+	CNUM 		 VARCHAR2(12),			-- 사업자 등록번호
+	CANUM		 VARCHAR2(20),			-- 카테고리 번호
+	RNUM 		 VARCHAR2(10),			-- 지역
 	NAME		 VARCHAR2(50),
 	ADDR		 VARCHAR2(100),
 	INFO		 VARCHAR2(2000),
@@ -90,6 +143,22 @@ CREATE TABLE ACCOM (
 	IMAGE		 VARCHAR2(50),
 	REG_DATE	 DATE
 );
+
+
+
+insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+values (6, '111-11-11111', '11', '2', '우리집휴양', '서울시 구로구', '조은곳', 'F101', 'F202,F203,F204', '10', '21', null, null, 'dfdf.jpg', sysdate);
+
+insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+values (5, '111-11-11112', '11', '3', '서울휴양', '서울시 강남구', '조은곳', 'F101,F102', 'F202', '10', '21', null, null, 'dfdf.jpg', sysdate);
+
+insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+values (3, '111-11-11113', '11', '2', '너의쉽터', '서울시 강북구', '조은곳1313', 'F102', 'F202,F204', '10', '21', null, null, 'dfdf.jpg', sysdate);
+
+insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+values (4, '111-11-11114', '11', '3', '서울휴양', '서울시 강북구', '조은곳1414', 'F102', 'F201,F202,F204', '10', '21', null, null, 'dfdf222.jpg', sysdate);
+
+commit;
 
 -------------------------------------------
 

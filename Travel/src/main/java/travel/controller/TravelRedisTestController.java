@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ public class TravelRedisTestController {
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doGetMethod() throws InterruptedException {
+		
+		
 		
 		final String key = "a";
 		final String value = "b";

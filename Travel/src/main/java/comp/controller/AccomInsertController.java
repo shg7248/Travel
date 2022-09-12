@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import comp.model.AccomBean;
+import comp.model.CategoryBean;
 import comp.model.CompDao;
 import comp.model.FacBean;
 import comp.model.ResionBean;
@@ -38,6 +39,10 @@ public class AccomInsertController {
 		// 지역
 		List<ResionBean> rLists = compDao.getResionList();
 		model.addAttribute("rLists", rLists);
+		
+		// 카테고리 (숙박지 종류)
+		List<CategoryBean> caLists = compDao.getCategoryList();
+		model.addAttribute("caLists", caLists);
 		
 		// 숙박지 주변 편의시설, 객실 편의시설
 		List<FacBean> fLists = compDao.getFacList();

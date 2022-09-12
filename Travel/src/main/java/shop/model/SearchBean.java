@@ -2,10 +2,13 @@ package shop.model;
 
 public class SearchBean {
 
+	private int anum;
 	private int rating;
 	private String name;
 	private String addr;
 	private int price;
+	private String start;
+	private String end;
 	private String image;
 	
 	private String fac1;
@@ -13,6 +16,12 @@ public class SearchBean {
 	private String count;
 	private String resion;
 	
+	public int getAnum() {
+		return anum;
+	}
+	public void setAnum(int anum) {
+		this.anum = anum;
+	}
 	public int getRating() {
 		return rating;
 	}
@@ -36,6 +45,18 @@ public class SearchBean {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
 	}
 	public String getImage() {
 		return image;

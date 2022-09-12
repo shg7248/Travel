@@ -30,6 +30,10 @@ public class CompDao {
 		return sqlSessionTemplate.insert(namespace + ".InsertAccom", accomBean);
 	}
 
+	public AccomBean getAccomByAnum(String anum) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByAnum", anum);
+	}
+	
 	public AccomBean getAccomByCnum(String cnum) {
 		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByCnum", cnum);
 	}
@@ -46,6 +50,10 @@ public class CompDao {
 		return sqlSessionTemplate.selectOne(namespace + ".GetRoomTotalCountByCnum", map);
 	}
 
+	public List<RoomBean> getRoomListByAnum(String anum) {
+		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByAnumOne", anum);
+	}
+	
 	public List<RoomBean> getRoomListByAnum(Paging pageInfo, Map<String, String> map) {
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByAnum", map, rowBounds);
@@ -59,6 +67,11 @@ public class CompDao {
 
 	public RoomBean getRoomByRnum(String rnum) {
 		return sqlSessionTemplate.selectOne(namespace + ".GetRoomByRnum", rnum);
+	}
+
+	// 카테고리
+	public List<CategoryBean> getCategoryList() {
+		return sqlSessionTemplate.selectList(namespace + ".GetCategoryList"); 
 	}
 
 }

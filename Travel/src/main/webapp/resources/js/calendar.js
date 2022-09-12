@@ -1,30 +1,36 @@
-/* jshint esversion: 6 */
-
 var Calendar = (function() {
 
-    let options = {
-        start: '',
-        end: '',
-        clickable: false
-    }
-
-    let flag = false;
-
-    function changeNum(num) {
-        return String(num).padStart(2, '0');
-    }
-
-    function makeInputElement(type, value, event) {
-        const ele = document.createElement('input');
-        ele.setAttribute('type', type);
-        ele.setAttribute('value', value);
-        ele.setAttribute('class', `calendar__btn--${value }`)
-        ele.addEventListener('click', event);
-        return ele;
-    }
+    let pluginName = 'calendar',
+        flag = false
+        date = new Date(),
+        changeNum = function(num) {
+            return String(num).padStart(2, '0');
+        },
+        getDateToString = {
+            yearMonth: function(d) {
+                return String(d.getFullYear()) + changeNum(d.getMonth() + 1);
+            },
+            yearMonthDate: function(d) {
+                return String(d.getFullYear()) + changeNum(d.getMonth() + 1) + changeNum(d.getDate());
+            }
+        },
+        defaults = {
+            start: getDateToString.yearMonthDate(date),
+            end: getDateToString.yearMonthDate(new Date(date.getTime() + 86400000)),
+            clickable: true
+        },
+        makeElement = function(ele, attr, eventType, event) {
+            const e = document.createElement(ele);
+            Object.keys(attr).forEach((a, i)=>{
+                e.setAttribute(a, attr[a]);
+            });
+            if(eventType !== undefined) 
+                e.addEventListener(eventType, event);
+            return e;
+        }
 
     const App = function(obj) {
-        options = {...options, ...obj};
+        defaults = {...defaults, ...obj};
         this.plusMonth = 0;
         this.init();
     };
@@ -40,23 +46,33 @@ var Calendar = (function() {
 
     App.prototype.draw = function() {
 
-        const calendar__title = document.querySelector('.calendar__title');
-        const calendar__view = document.querySelector('.calendar__view');
+        const cal = document.querySelector('.calendar');
 
-        calendar__title.innerHTML = "";
-        const prev = makeInputElement('button', 'prev', ()=>{
+        cal.innerHTML = "";
+        const calendar__title = makeElement('div', {class: 'calendar__title'});
+        const calendar__view = makeElement('div', {class: 'calendar__view'});
+        const calendar__buttom = makeElement('div', {class: 'calendar__buttom'});
+
+        cal.append(calendar__title);
+        cal.append(calendar__view);
+        cal.append(calendar__buttom);
+
+        const prev = makeElement('input', {type: 'button', value: '이전', class: `calendar__btn--prev`}, 'click', () => {
             this.prevMonth();
         });
-        const next = makeInputElement('button', 'next', ()=>{
+        const next = makeElement('input', {type: 'button', value: '다음', class: `calendar__btn--next`}, 'click', () => {
             this.nextMonth();
         });
 
         calendar__title.append(prev);
         calendar__title.append(`${this.changeMonthDate.getFullYear() }년 ${changeNum(this.changeMonthDate.getMonth() + 1) }월`);
         calendar__title.append(next);
+
+        const submitBtn = makeElement('input', {type: 'button', class: 'calendar__btn', value: '선택'}, 'click', () => {
+            location.href=`search.shop?start=${this.getResDate().start}&end=${this.getResDate().end}`;
+        });
+        calendar__buttom.append(submitBtn);
             
-
-
         this.prevDates = [];
         this.currDates = [...Array(this.currEnd.getDate() + 1).keys()].slice(1);
         this.nextDates = [];
@@ -78,14 +94,9 @@ var Calendar = (function() {
 
         const c = dates.map((e, i) => {
 
-        	// 다른월의 일
-            const f = i < a || i > b;
-            
-         	// 이번달에서 현재일보다 낮은 일
-            const g = this.getYearMonth(this.currDate) === this.getYearMonth(this.changeMonthDate) && e < this.currDate.getDate();
-         	
-         	// 이번달보다 낮은 달
-            const h = this.getYearMonth(this.changeMonthDate) < this.getYearMonth(this.currDate);
+            const f = i < a || i > b; // 다른월의 일
+            const g = getDateToString.yearMonth(this.currDate) === getDateToString.yearMonth(this.changeMonthDate) && e < this.currDate.getDate(); // 이번달에서 현재일보다 낮은 일
+            const h = getDateToString.yearMonth(this.changeMonthDate) < getDateToString.yearMonth(this.currDate); // 이번달보다 낮은 달
 
             // 위 조건중에 하나라도 해당되면 선택 못하게 막음
             if (f || g || h) {
@@ -105,65 +116,57 @@ var Calendar = (function() {
         });
 
         // 클릭 이벤트
-        if(options.clickable) {
+        if(defaults.clickable) {
             let that = this;
             this.clickableDate.forEach((ele, i) => {
                 ele.addEventListener('click', function(e) {
                     if(flag) {
                         flag = !flag;
-                        options.end = ele.dataset.date;
+                        defaults.end = ele.dataset.date;
                         that.init(that.changeMonthDate.getMonth());
                     }
                     else {
                         flag = !flag;
                         that.clear();
                         ele.classList.add('calendar__date--red');
-                        options.start = ele.dataset.date;
+                        defaults.start = ele.dataset.date;
                     }
                 });
             });
         }
 
-        this.drawColor(options);
+        this.drawColor(defaults);
     }
 
     App.prototype.prevMonth = function() {
         this.plusMonth -= 1;
         this.init();
     }
-
     App.prototype.nextMonth = function() {
         this.plusMonth += 1;
         this.init();
     }
-
     App.prototype.clear = function() {
         this.clickableDate.forEach((ele, i) => {
              ele.classList.remove('calendar__date--red');
         });
     }
-
     App.prototype.drawColor = function(obj) {
         if(obj.start === '' && obj.end === '')
             return;
         if(obj.start > obj.end) {
-            obj = {...obj, start:obj.end, end:obj.start}
+            defaults = {...obj, start:obj.end, end:obj.start}
         }
         this.clickableDate.forEach((ele, i) => {
-            if(ele.dataset.date >= obj.start && ele.dataset.date <= obj.end) {
+            if(ele.dataset.date >= defaults.start && ele.dataset.date <= defaults.end) {
                 ele.classList.add('calendar__date--red');
             }
         });
     }
-
-    App.prototype.getYearMonth = function(date) {
-        return String(date.getFullYear()).concat(changeNum(date.getMonth())) ;
-    }
-
     App.prototype.getResDate = function(obj) {
         return {
-            start: options.start,
-            end: options.end
+            start: defaults.start,
+            end: defaults.end
         };
     }
     return App;
