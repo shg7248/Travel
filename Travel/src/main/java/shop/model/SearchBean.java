@@ -13,8 +13,16 @@ public class SearchBean {
 	
 	private String fac1;
 	private String fac2;
-	private String count;
-	private String resion;
+	private int count;
+	private int resion;
+	private String sort;
+	
+	SearchBean() {
+		this.price = 300000;
+		this.count = 2;
+		this.resion = 11;
+		this.sort = "LOWPRICE";
+	}
 	
 	public int getAnum() {
 		return anum;
@@ -76,16 +84,22 @@ public class SearchBean {
 	public void setFac2(String fac2) {
 		this.fac2 = fac2;
 	}
-	public String getCount() {
+	public int getCount() {
 		return count;
 	}
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getResion() {
+	public int getResion() {
 		return resion;
 	}
-	public void setResion(String resion) {
+	public void setResion(int resion) {
 		this.resion = resion;
+	}
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 }

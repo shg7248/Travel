@@ -4,42 +4,70 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.model.Shop">
 	<select id="Search" resultType="SearchBean">
-		select a.anum, a.name, a.addr, r.price, a.image from accom a
-		left outer join room r
-		on a.anum = r.anum
-		where 1 = 1
-		<if test="fac2 != null">
-		and a.anum in(
-			select anum from(
-				select anum, cnum, regexp_substr(fac2, '[^,]+', 1, level) fac2
-				from accom a
-				<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
-				and prior a.cnum = a.cnum
-				and prior dbms_random.value is not null
-			) 
-			where fac2 in (select regexp_substr(#{fac2}, '[^,]+', 1, level)
-			from dual
-			<![CDATA[connect by level <= (select regexp_count(#{fac2}, '[^,]+') from dual))]]>
-			group by anum
-			having count(anum) = (select regexp_count(#{fac2}, '[^,]+') from dual)
-		)
-		</if>
-		<if test="fac1 != null">
-		and a.anum in(
-			select anum from(
-				select anum, cnum, regexp_substr(fac1, '[^,]+', 1, level) fac2
-				from accom a
-				<![CDATA[connect by level <= regexp_count(fac1, '[^,]+')]]>
-				and prior a.cnum = a.cnum
-				and prior dbms_random.value is not null
-			) 
-			where fac2 in (select regexp_substr(#{fac1}, '[^,]+', 1, level)
-			from dual
-			<![CDATA[connect by level <= (select regexp_count(#{fac1}, '[^,]+') from dual))]]>
-			group by anum
-			having count(anum) = (select regexp_count(#{fac1}, '[^,]+') from dual)
-		)
-		</if>
+		select a.anum, a.name, a.addr, r.price, a.image from(
+			select r.rnum, min(r.price) 
+			from accom a
+			inner join room r
+			on a.anum = r.anum
+			where 1 = 1
+			<if test="fac2 != null">
+			and a.anum in(
+				select anum from(
+					select anum, cnum, regexp_substr(fac2, '[^,]+', 1, level) fac2
+					from accom a
+					<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
+					and prior a.cnum = a.cnum
+					and prior dbms_random.value is not null
+				) 
+				where fac2 in (
+					select regexp_substr(#{fac2}, '[^,]+', 1, level)
+					from dual
+					<![CDATA[connect by level <= (select regexp_count(#{fac2}, '[^,]+') from dual)]]>
+				)
+				group by anum
+				having count(anum) = (select regexp_count(#{fac2}, '[^,]+') from dual)
+			)
+			</if>
+			<if test="fac1 != null">
+			and a.anum in(
+				select anum from(
+					select anum, cnum, regexp_substr(fac1, '[^,]+', 1, level) fac1
+					from accom a
+					<![CDATA[connect by level <= regexp_count(fac1, '[^,]+')]]>
+					and prior a.cnum = a.cnum
+					and prior dbms_random.value is not null
+				) 
+				where fac1 in (
+					select regexp_substr(#{fac1}, '[^,]+', 1, level)
+					from dual
+					<![CDATA[connect by level <= (select regexp_count(#{fac1}, '[^,]+') from dual)]]>
+				)
+				group by anum
+				having count(anum) = (select regexp_count(#{fac1}, '[^,]+') from dual)
+			)
+			</if>
+			and r.rnum not in (
+				select rnum
+				from orders
+				<![CDATA[where to_date(startDate, 'yyyyMMdd') <= to_date(#{end}, 'yyyyMMdd')]]>
+				and
+				to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')
+			)
+			<if test="count != 0">
+			<![CDATA[and r.max >= #{count}]]>
+			</if>
+			<if test="price != 0">
+			<![CDATA[and r.price <= #{price}]]>
+			</if>
+			<if test="resion != null">
+			and a.rnum = #{resion}
+			</if>
+			group by r.rnum
+		) z
+		inner join room r
+		on z.rnum = r.rnum
+		inner join accom a
+		on r.anum = a.anum
 	</select>
 	
 	<select id="GetReserveInfoByRnum" parameterType="hashmap" resultType="ReserveBean">
@@ -47,12 +75,17 @@
 		r.name as rname, 
 		a.addr, 
 		r.price,
-		<![CDATA[to_char(to_date(#{start}, 'yyyyMMdd'), 'MM"월"dd"일"') as startDate,]]>
-		<![CDATA[to_char(to_date(#{end}, 'yyyyMMdd'), 'MM"월"dd"일"') as endDate,]]>
-		to_date(#{end}, 'yyyyMMdd') - to_date(#{start}, 'yyyyMMdd') as totalDate
+		<![CDATA[to_char(to_date(#{startDate}, 'yyyyMMdd'), 'MM"월"dd"일"') as startDate,]]>
+		<![CDATA[to_char(to_date(#{endDate}, 'yyyyMMdd'), 'MM"월"dd"일"') as endDate,]]>
+		to_date(#{endDate}, 'yyyyMMdd') - to_date(#{startDate}, 'yyyyMMdd') as totalDate
 		from room r
 		inner join accom a
 		on r.anum = a.anum
 		where r.rnum = #{rnum}
 	</select>
+	
+	<insert id="InsertOrders">
+		insert into orders (onum, rnum, mnum, resname, resphone, resnum, accnum, bank, startdate, enddate, odate)
+		values (orders_seq.nextval, #{rnum}, 1, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
+	</insert>
 </mapper>

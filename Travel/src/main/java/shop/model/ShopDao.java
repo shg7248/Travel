@@ -19,7 +19,11 @@ public class ShopDao {
 		return sqlSessionTemplate.selectList(namespace + ".Search", searchBean);
 	}
 
-	public ReserveBean getReserveInfoByRnum(Map<String, String> map) {
-		return sqlSessionTemplate.selectOne(namespace + ".GetReserveInfoByRnum", map);
+	public ReserveBean getReserveInfoByRnum(ReserveBean reserveBean) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetReserveInfoByRnum", reserveBean);
+	}
+
+	public int insertOrders(OrdersBean ordersBean) {
+		return sqlSessionTemplate.insert(namespace + ".InsertOrders", ordersBean);
 	}
 }

@@ -1,6 +1,7 @@
 package shop.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,19 +14,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import comp.model.AccomBean;
 import comp.model.CompDao;
 import comp.model.RoomBean;
+import shop.model.ReserveBean;
+import shop.model.ShopOrderDao;
 
 @Controller
 public class AcoomDetailController {
 	
 	@Autowired
+	private ShopOrderDao shopOrderDao;
+	
+	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/accomDetail.shop";
+	private final String command = "/shop/detail.shop";
 	private String getPage = "accomDetail";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doGetAction(@RequestParam String anum, Model model, @ModelAttribute("start") String start, @ModelAttribute("end") String end) {
-		
+			
 		AccomBean accom = compDao.getAccomByAnum(anum);
 		model.addAttribute("accom", accom);
 		

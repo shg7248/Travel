@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <form method="post" action="reserve.shop">
 	<input type="hidden" name="rnum" value="${rnum }">
-	<input type="hidden" name="start" value="${start }">
-	<input type="hidden" name="end" value="${end }">
+	<input type="hidden" name="startDate" value="${startDate }">
+	<input type="hidden" name="endDate" value="${endDate }">
 	예약자 이름
-	<input type="text" name="resname"/><br>
+	<input type="text" name="resName"/><br>
 	휴대폰 번호
-	<input type="text" name="resphone"/>
+	<input type="text" name="resPhone"/>
 	<br>
 	계좌번호
 	<select>

@@ -12,6 +12,9 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 	p:connection-factory-ref="connectionFactory" />
 	
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+	p:connection-factory-ref="connectionFactory" />
+	
 	<!-- oracle -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
