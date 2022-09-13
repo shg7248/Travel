@@ -5,7 +5,7 @@
 <mapper namespace="shop.model.Shop">
 	<select id="Search" resultType="SearchBean">
 		select a.anum, a.name, a.addr, r.price, a.image from(
-			select r.rnum, min(r.price) 
+			select a.anum, min(r.price) as price
 			from accom a
 			inner join room r
 			on a.anum = r.anum
@@ -62,12 +62,13 @@
 			<if test="resion != null">
 			and a.rnum = #{resion}
 			</if>
-			group by r.rnum
+			group by a.anum
 		) z
 		inner join room r
-		on z.rnum = r.rnum
+		on z.anum = r.anum
+		and z.price = r.price
 		inner join accom a
-		on r.anum = a.anum
+		on z.anum = a.anum
 	</select>
 	
 	<select id="GetOrderInfoByRnum" parameterType="hashmap" resultType="DetailBean">
