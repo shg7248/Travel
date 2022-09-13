@@ -70,7 +70,7 @@
 		on r.anum = a.anum
 	</select>
 	
-	<select id="GetReserveInfoByRnum" parameterType="hashmap" resultType="ReserveBean">
+	<select id="GetOrderInfoByRnum" parameterType="hashmap" resultType="DetailBean">
 		select a.name as aname, 
 		r.name as rname, 
 		a.addr, 

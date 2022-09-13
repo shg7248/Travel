@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,12 +27,18 @@ public class ShopSearchContoller {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/shop/search.shop";
+	private final String command = "/shop/search/{category}.shop";
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
-	public String doGetAction(Model model, @ModelAttribute("searchBean") SearchBean searchBean, @RequestParam(required = false) String start, @RequestParam(required = false) String end) {
+	public String doGetAction(Model model, 
+								@ModelAttribute("searchBean") SearchBean searchBean, 
+								@RequestParam(required = false) String start, 
+								@RequestParam(required = false) String end,
+								@PathVariable(value = "category") String category) {
 	
+		
+		System.out.println("category : " + category);
 		
 		LocalDate date = LocalDate.now();
 		model.addAttribute("start", start = start == null? formatDate(date) : start);
@@ -48,8 +55,6 @@ public class ShopSearchContoller {
 		searchBean.setEnd(end);
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
-		
-		System.out.println(searchBean.getSort());
 		
 		return getPage;
 	}
