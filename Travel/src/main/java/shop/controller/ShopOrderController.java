@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import shop.model.OrdersBean;
-import shop.model.ReserveBean;
+import shop.model.DetailBean;
 import shop.model.ShopDao;
 import shop.model.ShopOrderDao;
 
 @Controller
-public class ShopReservationController {
+public class ShopOrderController {
 
 	@Autowired
 	private ShopOrderDao shopOrderDao;
@@ -21,24 +21,20 @@ public class ShopReservationController {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/reserve.shop";
-	private String getPage = "reservationForm";
+	private final String command = "/shop/order.shop";
+	private String getPage = "orderForm";
 	private String gotoPage = "";
 	
 	@RequestMapping(value = command, method=RequestMethod.GET)
 	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model) {
 		
-		ReserveBean reserveBean = new ReserveBean();
-		reserveBean.setRnum(rnum);
-		reserveBean.setStartDate(startDate);
-		reserveBean.setEndDate(endDate);
+		DetailBean orderBean = new DetailBean();
+		orderBean.setRnum(rnum);
+		orderBean.setStartDate(startDate);
+		orderBean.setEndDate(endDate);
 		
-		ReserveBean rb = shopDao.getReserveInfoByRnum(reserveBean);
+		DetailBean rb = shopDao.getOrderInfoByRnum(orderBean);
 		model.addAttribute("rb", rb);
-		
-		// 없어도 될듯
-		String hashKey = shopOrderDao.setOrder(reserveBean);
-		model.addAttribute("hashKey", hashKey);
 		
 		return getPage;
 	}

@@ -10,7 +10,7 @@
 		<typeAlias type="comp.model.RoomBean" alias="RoomBean"/>
 		<typeAlias type="comp.model.CategoryBean" alias="CategoryBean"/>
 		<typeAlias type="shop.model.SearchBean" alias="SearchBean"/>
-		<typeAlias type="shop.model.ReserveBean" alias="ReserveBean"/>
+		<typeAlias type="shop.model.DetailBean" alias="DetailBean"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/admin.xml"/>

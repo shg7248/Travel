@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form method="post" action="reserve.shop">
+<%@ include file="/WEB-INF/travel/common/common.jsp" %>  
+<form method="post" action="${contextPath }/shop/order.shop">
 	<input type="hidden" name="rnum" value="${rnum }">
 	<input type="hidden" name="startDate" value="${startDate }">
 	<input type="hidden" name="endDate" value="${endDate }">

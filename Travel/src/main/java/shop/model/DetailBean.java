@@ -2,7 +2,7 @@ package shop.model;
 
 import java.io.Serializable;
 
-public class ReserveBean implements Serializable {
+public class DetailBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

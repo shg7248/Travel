@@ -46,9 +46,9 @@
 		</c:forEach>
 	</select>
 </form>
-<a href="javascript:sort()">추천 높은순</a>
-<a href="javascript:sort()" class="order">가격 높은순</a>
-<a href="javascript:sort()">가격 낮은순</a>
+<a href="javascript:sort('HIT')">추천 높은순</a>
+<a href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
+<a href="javascript:sort('LOWPRICE')">가격 낮은순</a>
 <c:forEach var="search" items="${sLists }">
 	<div class="testDiv">
 		<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
@@ -68,7 +68,9 @@
 	const end = ${end};
 	const cal = new Calendar({start: start, end: end});
 	
-	function sort() {
-		alert("fsdfsdsfdfs");
+	function sort(sort) {
+		const ele = document.querySelector('input[name="sort"]');
+		ele.value = sort;
+		ele.parentElement.submit();
 	}
 </script>
