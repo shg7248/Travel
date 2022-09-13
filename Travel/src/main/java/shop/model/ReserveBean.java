@@ -1,8 +1,13 @@
 package shop.model;
 
-public class ReserveBean {
+import java.io.Serializable;
+
+public class ReserveBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String aname;
+	private String rnum;
 	private String rname;
 	private String addr;
 	private String startDate;
@@ -15,6 +20,12 @@ public class ReserveBean {
 	}
 	public void setAname(String aname) {
 		this.aname = aname;
+	}
+	public String getRnum() {
+		return rnum;
+	}
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
 	}
 	public String getRname() {
 		return rname;

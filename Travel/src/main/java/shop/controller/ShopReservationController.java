@@ -1,22 +1,23 @@
 package shop.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import shop.model.OrdersBean;
 import shop.model.ReserveBean;
 import shop.model.ShopDao;
+import shop.model.ShopOrderDao;
 
 @Controller
 public class ShopReservationController {
 
+	@Autowired
+	private ShopOrderDao shopOrderDao;
+	
 	@Autowired
 	private ShopDao shopDao;
 	
@@ -25,22 +26,27 @@ public class ShopReservationController {
 	private String gotoPage = "";
 	
 	@RequestMapping(value = command, method=RequestMethod.GET)
-	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("start") String start, @ModelAttribute("end") String end, Model model) {
+	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model) {
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("rnum", rnum);
-		map.put("start", start);
-		map.put("end", end);
+		ReserveBean reserveBean = new ReserveBean();
+		reserveBean.setRnum(rnum);
+		reserveBean.setStartDate(startDate);
+		reserveBean.setEndDate(endDate);
 		
-		ReserveBean rb = shopDao.getReserveInfoByRnum(map);
+		ReserveBean rb = shopDao.getReserveInfoByRnum(reserveBean);
 		model.addAttribute("rb", rb);
+		
+		// 없어도 될듯
+		String hashKey = shopOrderDao.setOrder(reserveBean);
+		model.addAttribute("hashKey", hashKey);
 		
 		return getPage;
 	}
 	
 	@RequestMapping(value = command, method=RequestMethod.POST)
-	public String doPostAction() {
+	public String doPostAction(OrdersBean ordersBean) {
 		
+		int cnt = shopDao.insertOrders(ordersBean);
 		
 		return gotoPage;
 	}

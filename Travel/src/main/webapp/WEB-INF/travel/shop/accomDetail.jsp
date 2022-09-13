@@ -10,7 +10,7 @@ ${accom.name }
 <c:forEach var="room" items="${lists }">
 	<div>
 		${room.name }
-		<a href="reserve.shop?rnum=${room.rnum }&start=${start }&end=${end }">예약하기</a>
+		<a href="reserve.shop?rnum=${room.rnum }&startDate=${start }&endDate=${end }">예약하기</a>
 	</div>
 </c:forEach>
 <br><br><br>

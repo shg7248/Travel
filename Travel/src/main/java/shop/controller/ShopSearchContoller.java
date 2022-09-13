@@ -14,6 +14,7 @@ import comp.model.CompDao;
 import comp.model.FacBean;
 import comp.model.ResionBean;
 import shop.model.SearchBean;
+import shop.model.SearchSort;
 import shop.model.ShopDao;
 
 @Controller
@@ -25,17 +26,17 @@ public class ShopSearchContoller {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/search.shop";
+	private final String command = "/shop/search.shop";
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
 	public String doGetAction(Model model, @ModelAttribute("searchBean") SearchBean searchBean, @RequestParam(required = false) String start, @RequestParam(required = false) String end) {
-			
-		LocalDate date = LocalDate.now();
-		model.addAttribute("start", start == null? formatDate(date) : start);
-		LocalDate date2 = date.plusDays(1);
-		model.addAttribute("end", end == null? formatDate(date2) : end);
+	
 		
+		LocalDate date = LocalDate.now();
+		model.addAttribute("start", start = start == null? formatDate(date) : start);
+		LocalDate date2 = date.plusDays(1);
+		model.addAttribute("end", end = end == null? formatDate(date2) : end);
 		
 		List<FacBean> facLists = compDao.getFacList();
 		model.addAttribute("facLists", facLists);
@@ -43,8 +44,12 @@ public class ShopSearchContoller {
 		List<ResionBean> rLists = compDao.getResionList();
 		model.addAttribute("rLists", rLists);
 		
+		searchBean.setStart(start);
+		searchBean.setEnd(end);
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
+		
+		System.out.println(searchBean.getSort());
 		
 		return getPage;
 	}
