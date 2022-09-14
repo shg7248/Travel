@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import comp.model.AccomBean;
 import comp.model.CompDao;
 import comp.model.RoomBean;
-import shop.model.ReserveBean;
+import shop.model.DetailBean;
 import shop.model.ShopOrderDao;
 
 @Controller
