@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.model.Shop">
 	<select id="Search" resultType="SearchBean">
-		select a.anum, a.name, a.addr, r.price, a.image from(
+		select a.anum, a.name, r.price, a.image from(
 			select a.anum, min(r.price) as price
 			from accom a
 			inner join room r
@@ -59,8 +59,8 @@
 			<if test="price != 0">
 			<![CDATA[and r.price <= #{price}]]>
 			</if>
-			<if test="resion != null">
-			and a.rnum = #{resion}
+			<if test="canum != null">
+			<![CDATA[and a.canum = #{canum}]]>
 			</if>
 			group by a.anum
 		) z

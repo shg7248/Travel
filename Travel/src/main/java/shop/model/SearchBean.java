@@ -4,6 +4,7 @@ public class SearchBean {
 
 	private int anum;
 	private int rating;
+	private String canum;
 	private String name;
 	private String addr;
 	private int price;
@@ -36,6 +37,13 @@ public class SearchBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	public String getCanum() {
+		return canum;
+	}
+	public void setCanum(String canum) {
+		this.canum = canum;
+	}
+
 	public String getName() {
 		return name;
 	}
