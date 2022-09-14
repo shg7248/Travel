@@ -19,8 +19,8 @@ public class ShopDao {
 		return sqlSessionTemplate.selectList(namespace + ".Search", searchBean);
 	}
 
-	public ReserveBean getReserveInfoByRnum(ReserveBean reserveBean) {
-		return sqlSessionTemplate.selectOne(namespace + ".GetReserveInfoByRnum", reserveBean);
+	public DetailBean getOrderInfoByRnum(DetailBean detailBean) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetOrderInfoByRnum", detailBean);
 	}
 
 	public int insertOrders(OrdersBean ordersBean) {

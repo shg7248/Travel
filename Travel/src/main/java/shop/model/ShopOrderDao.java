@@ -14,15 +14,15 @@ public class ShopOrderDao {
 	@Autowired 
 	private RedisTemplate<String, Object> redisTemplate;
 	
-	public String setOrder(ReserveBean reserveBean) {
+	public String setOrder(DetailBean reserveBean) {
 		String hashKey = getRandomStr();
 		redisTemplate.opsForHash()
 			.put(PREFIX + hashKey, hashKey, reserveBean);
 		return hashKey;
 	}
 	
-	public ReserveBean getOrder(String hashKey) {
-		return (ReserveBean) redisTemplate.opsForHash()
+	public DetailBean getOrder(String hashKey) {
+		return (DetailBean) redisTemplate.opsForHash()
 			.get(PREFIX + hashKey, hashKey);
 	}
 	
