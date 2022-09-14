@@ -13,23 +13,23 @@
 	</select>
 	
 	<insert id="InsertAccom">
-		insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-		values (ACCOM_SEQ.nextval, #{cnum}, #{rnum}, #{canum}, #{name}, #{addr}, #{info}, #{fac1}, #{fac2}, #{startTime}, #{endTime}, null, null, #{image}, sysdate)
+		insert into accom (anum, cnum, canum, rcode, etcaddr, zip, name, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+		values (ACCOM_SEQ.nextval, #{cnum}, #{canum}, #{rcode}, #{etcAddr}, #{zip}, #{name}, #{info}, #{fac1}, #{fac2}, #{startTime}, #{endTime}, #{latitude}, #{longitude}, #{image}, sysdate)
 	</insert>
 	
 	<select id="GetAccomByAnum" resultType="AccomBean">
-		select anum, cnum, r.rnum, r.name as rname, a.name as name, addr, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, reg_date
+		select anum, cnum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
 		from accom a
-		inner join region r
-		on a.rnum = r.rnum
+	    inner join region r
+	    on a.rcode = r.rcode
 		where anum = #{anum}
 	</select>
 	
 	<select id="GetAccomByCnum" resultType="AccomBean">
-		select anum, cnum, r.rnum, r.name as rname, a.name as name, addr, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, reg_date
+		select anum, cnum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
 		from accom a
-		inner join region r
-		on a.rnum = r.rnum
+	    inner join region r
+	    on a.rcode = r.rcode
 		where cnum = #{cnum}
 	</select>
 	

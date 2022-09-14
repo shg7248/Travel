@@ -130,7 +130,7 @@ CREATE TABLE ACCOM (
 	ANUM 		 NUMBER PRIMARY KEY,	 
 	CNUM 		 VARCHAR2(12),			-- 사업자 등록번호
 	CANUM		 VARCHAR2(20),			-- 카테고리 번호
-	RCDOE 		 VARCHAR2(10),			-- 지역 코드
+	RCODE 		 VARCHAR2(10),			-- 지역 코드
 	ETCADDR		 VARCHAR2(100),
 	ZIP			 VARCHAR2(5),
 	NAME		 VARCHAR2(50),
@@ -147,7 +147,7 @@ CREATE TABLE ACCOM (
 
 
 
-insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
+insert into accom (anum, cnum, canum, rcode, etcaddr, zip, name, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
 values (6, '111-11-11111', '11', '2', '우리집휴양', '서울시 구로구', '조은곳', 'F101', 'F202,F203,F204', '10', '21', null, null, 'dfdf.jpg', sysdate);
 
 insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)

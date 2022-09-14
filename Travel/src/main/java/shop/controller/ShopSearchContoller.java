@@ -27,7 +27,7 @@ public class ShopSearchContoller {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/shop/search/{category}.shop";
+	private final String command = "/shop/search/{canum}/{region}.shop";
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
@@ -35,10 +35,11 @@ public class ShopSearchContoller {
 								@ModelAttribute("searchBean") SearchBean searchBean, 
 								@RequestParam(required = false) String start, 
 								@RequestParam(required = false) String end,
-								@PathVariable(value = "category") String category) {
+								@PathVariable(value = "canum") String canum,
+								@PathVariable(value = "region") String region) {
 	
-		
-		System.out.println("category : " + category);
+		searchBean.setCanum(canum);
+		System.out.println(region);
 		
 		LocalDate date = LocalDate.now();
 		model.addAttribute("start", start = start == null? formatDate(date) : start);

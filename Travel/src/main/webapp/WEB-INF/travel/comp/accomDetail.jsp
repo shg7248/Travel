@@ -14,16 +14,16 @@
         		<td>${requestScope.accom.cnum }</td>
         	</tr>
         	<tr>
-        		<td>숙박지역</td>
-        		<td>${requestScope.accom.rname }</td>
+        		<td>숙박 지역</td>
+        		<td>${requestScope.accom.sido } ${requestScope.accom.sigungu }</td>
+        	</tr>
+        	<tr>
+        		<td>숙박지 상세주소</td>
+        		<td>${requestScope.accom.etcAddr }</td>
         	</tr>
         	<tr>
         		<td>숙박지 이름</td>
         		<td>${requestScope.accom.name }</td>
-        	</tr>
-        	<tr>
-        		<td>숙박지 주소</td>
-        		<td>${requestScope.accom.addr }</td>
         	</tr>
         	<tr>
         		<td>숙박지 주변 편의시설</td>

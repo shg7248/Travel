@@ -7,6 +7,7 @@
 		<form method="post" action="insertAccom.comp" enctype="multipart/form-data" name="accomForm">
 		<input type="hidden" name="latitude" value="">
 		<input type="hidden" name="longitude" value="">
+		<input type="hidden" name="rcode" value="">
 		<table>
 			<tr>
 				<th>사업자 등록번호</th>
@@ -118,6 +119,7 @@
 		        	accomForm.sido.value = data.sido;
 		        	accomForm.sigungu.value = data.sigungu;
 		        	accomForm.etcAddr.value = data.roadAddress.substr(data.sido.concat(data.sigungu).length + 2);
+		        	accomForm.rcode.value = data.bcode;
 		        	
 		        	var ps = new kakao.maps.services.Places();
 		        	ps.keywordSearch(data.address, (data, status, pagination) => {
