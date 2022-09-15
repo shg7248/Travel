@@ -21,7 +21,7 @@ public class InquiryListController {
 	InquiryDao idao;
 	
 	@RequestMapping(value=command)
-	public String noticelist(Model model,HttpSession session) {
+	public String inquirylist(Model model,HttpSession session) {
 		String email =String.valueOf(session.getAttribute("email"));
 		if(email.equals("admin")) {
 			List<InquiryBean> lists = idao.getAllInquiryList();

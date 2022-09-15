@@ -51,4 +51,9 @@ public class InquiryDao {
 		InquiryBean ib = sqlSessionTemplate.selectOne(namespace+".SelectMemberEmailByInum",inum);
 		return ib;
 	}
+
+
+	public void deleteInquiryByInum(String inum) {
+		sqlSessionTemplate.delete(namespace+".DeleteInquiryByInum",inum);
+	}
 }
