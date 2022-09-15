@@ -1,0 +1,110 @@
+--board1은 공지사항과 이벤트 board 처리
+drop table board1;
+
+create table board1( 
+	nnum number not null primary key,	--일련번호
+	subject varchar2(100) not null,		--제목
+	content varchar2(2000) not null,	--내용/이미지파일
+	reg_date date default sysdate,		--공지사항작성일
+	type varchar2(20) not null			--공지사항/이벤트구분
+	--type은 String타입의 notice와event로 구분
+);
+
+drop sequence board1_seq;
+create sequence board1_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+-------------------------------------------------------
+  
+--inquiry은 1대1문의 처리
+drop table inquiry;
+
+create table inquiry( 
+	inum number not null primary key,				--문의일련번호
+	mnum number not null,							--작성자일련번호
+	subject varchar2(100) not null,					--제목
+	question varchar2(2000) not null,				--문의사항
+	answer varchar2(2000) default '답변 대기중입니다.',	--답변사항
+	reg_date1 date default sysdate,					--문의작성일
+	reg_date2 date default sysdate,					--답변작성일
+	progress varchar2(20) default '답변대기'			--답변상황 대기/완료
+	--progress는 '답변대기'과 '답변완료'로 구분
+);
+
+drop sequence inquiry_seq;
+create sequence inquiry_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+  
+  --하단은테스트중인 더미
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '1', '제목', '문의합니다', '2022-09-12');
+
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '2', '제목', '문의합니다', '2022-09-13');
+
+--테스트중
+
+commit;
+
+
+---------------------------------------------------------------------------
+--member 테이블
+drop sequence seq_member;
+create sequence seq_member start with 1 increment by 1 nocache ;
+
+drop table member CASCADE CONSTRAINTS;
+create table member(
+   mnum number primary key,
+   email varchar2(40),
+   name varchar2(12),
+   pwd varchar2(15),
+   phone varchar2(11),
+   flatform varchar2(10),
+   reg_date date,
+   point number default 200
+) ;
+
+insert into member 
+values(seq_member.nextval,'qrzv123@naver.com','test','1234','01012345678','kakao',sysdate,200);
+
+insert into member 
+values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao',sysdate,200);
+
+insert into member 
+values(seq_member.nextval,'admin','test','1234','01012345678','kakao',sysdate,200);
+
+select * from member;
+commit;
+---------------------------테스트공간----------
+
+select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and email = 'qrzv123@naver.com'
+		order by inum;
+		
+		select count(*)
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and inquiry.mnum = 1
+		order by inum;
+select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum
+		where inum = 1
+
+
+
+
+----------------------------------------------quiry.mnum = member.mnum
+		where inum = 1
+
+
+
+
+----------------------------------------------

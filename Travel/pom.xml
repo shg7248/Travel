@@ -200,6 +200,27 @@
 			<version>1.9.13</version>
 		</dependency>
 	
+	<!-- 메일 발송 기능을 위한 dependency 추가 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<!-- 메일 발송 기능을 위한 dependency 추가 END -->
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
