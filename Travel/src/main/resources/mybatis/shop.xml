@@ -53,8 +53,9 @@
 				from orders
 				<![CDATA[where to_date(startDate, 'yyyyMMdd') <= to_date(#{end}, 'yyyyMMdd')]]>
 				and
-				to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')
+				<![CDATA[to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')]]>
 			)
+
 			<if test="count != 0">
 			<![CDATA[and r.max >= #{count}]]>
 			</if>
@@ -64,11 +65,8 @@
 			<if test="canum != null">
 			<![CDATA[and a.canum = #{canum}]]>
 			</if>
-			<if test="canum != null">
-			<![CDATA[and a.canum = #{canum}]]>
-			</if>
 			<if test="region != null">
-				and substr(re.rcode, 0, 4) = #{region}
+				and substr(re.rcode, 0, 5) = #{region}
 			</if>
 			group by a.anum
 		) z

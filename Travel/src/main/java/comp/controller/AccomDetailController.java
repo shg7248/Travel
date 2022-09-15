@@ -2,6 +2,7 @@ package comp.controller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import comp.model.AccomBean;
 import comp.model.CompDao;
+import login.model.TravelCompanyBean;
 
 @Controller
 public class AccomDetailController {
@@ -25,9 +27,10 @@ public class AccomDetailController {
 	private String getPage = "accomDetail";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doGetAction(HttpServletRequest request, Model model) {
+	public String doGetAction(HttpServletRequest request, HttpSession session, Model model) {
 		
-		String cnum = servletContext.getInitParameter("cnum");
+		TravelCompanyBean tcb = (TravelCompanyBean) session.getAttribute("loginInfo");
+		String cnum = tcb.getCnum();
 		
 		AccomBean accom = compDao.getAccomByCnum(cnum);
 		model.addAttribute("accom", accom);
