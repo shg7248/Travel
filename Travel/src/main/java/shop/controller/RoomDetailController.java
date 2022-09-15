@@ -1,4 +1,4 @@
-package comp.controller;
+package shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
