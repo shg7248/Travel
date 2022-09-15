@@ -9,6 +9,8 @@
 			from accom a
 			inner join room r
 			on a.anum = r.anum
+			inner join region re
+			on a.rcode = re.rcode
 			where 1 = 1
 			<if test="fac2 != null">
 			and a.anum in(
@@ -61,6 +63,12 @@
 			</if>
 			<if test="canum != null">
 			<![CDATA[and a.canum = #{canum}]]>
+			</if>
+			<if test="canum != null">
+			<![CDATA[and a.canum = #{canum}]]>
+			</if>
+			<if test="region != null">
+				and substr(re.rcode, 0, 4) = #{region}
 			</if>
 			group by a.anum
 		) z

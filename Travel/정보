@@ -29,6 +29,29 @@ client_secret=
 
 -------------------------------------------
 
+// "https://hianna.tistory.com/325?category=764998"
+window.location.href 
+
+// "https:"
+window.location.protocol 
+
+// "hianna.tistory.com"
+window.location.host 
+
+// "hianna.tistory.com"
+window.location.hostname 
+
+// ""
+window.location.port 
+
+// "/325"
+window.location.pathname 
+
+// ?category=764998"
+window.location.search
+
+-------------------------------------------
+
 drop table company;
 
 create table company(
