@@ -1,7 +1,5 @@
 package login.model;
 
-import java.sql.Date;
-
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;

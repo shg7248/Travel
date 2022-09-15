@@ -52,7 +52,8 @@ $('input[name="email"]').keydown(function(){
 	checkEmail = false;
 });
 
-$('input[name="pwd2"]').keyup(function(){
+$('input[name="pwd2"]').on({
+	keyup: function(){
 	if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
 		$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
 		$("#pwdMsg").css("color","red");
@@ -61,9 +62,21 @@ $('input[name="pwd2"]').keyup(function(){
 		$("#pwdMsg").text("비밀번호가 일치합니다.");
 		$("#pwdMsg").css("color","green");
 		checkPwd = true;
-	}
+		}
+	},
+	click: function(){
+		if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
+			$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
+			$("#pwdMsg").css("color","red");
+			checkPwd = false;
+		}else{
+			$("#pwdMsg").text("비밀번호가 일치합니다.");
+			$("#pwdMsg").css("color","green");
+			checkPwd = true;
+			}
+		}
+	});
 	
-});
 });//ready
 
 function allCk(){
