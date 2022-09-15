@@ -27,7 +27,8 @@ public class ShopSearchContoller {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/shop/search/{canum}/{region}.shop";
+	private final String command = "/shop/search/{canum}.shop";
+	private final String command2 = "/shop/search/{canum}/{region}.shop";
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
@@ -36,7 +37,7 @@ public class ShopSearchContoller {
 								@RequestParam(required = false) String start, 
 								@RequestParam(required = false) String end,
 								@PathVariable(value = "canum") String canum,
-								@PathVariable(value = "region") String region) {
+								@RequestParam(required = false) @PathVariable(value = "region") String region) {
 	
 		searchBean.setCanum(canum);
 		System.out.println(region);
@@ -58,6 +59,18 @@ public class ShopSearchContoller {
 		model.addAttribute("sLists", sLists);
 		
 		return getPage;
+	}
+	
+	@RequestMapping(value = command2)
+	public String doGetAction2(Model model, 
+			@ModelAttribute("searchBean") SearchBean searchBean, 
+			@RequestParam(required = false) String start, 
+			@RequestParam(required = false) String end,
+			@PathVariable(value = "canum") String canum,
+			@PathVariable(value = "region") String region) {
+		
+			doGetAction(model, searchBean, start, end, canum, region);
+			return getPage;
 	}
 	
 	public String formatDate(LocalDate date) {
