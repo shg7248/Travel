@@ -15,7 +15,7 @@ create sequence board1_seq
   increment by 1
   start with 1
   minvalue 1
-  maxvalue 10000
+  maxvalue 10000 
   nocache;
 -------------------------------------------------------
   
