@@ -17,8 +17,8 @@ MemberInfo.jsp
 
 
 <div class="div">
-<label for="pwd">비밀번호</label>  
-<input type="text" name="pwd" id="pwd" value="${loginInfo.pwd }" disabled="disabled">
+<label for="point">포인트</label>  
+<input type="text" name="point" id="point" value="${loginInfo.point }" disabled="disabled">
 </div>
 
 <input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.mem'">
