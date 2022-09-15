@@ -91,6 +91,12 @@
 	
 	<select id="GetAllFaqList" resultType="FaqBean">
 		select * from faq
+		<if test="whatColumn =='question'">
+		where question like #{keyword}
+		</if>
+		<if test="whatColumn =='answer'">
+		where answer like #{keyword}
+		</if>
 		order by fnum
 	</select>
 	
