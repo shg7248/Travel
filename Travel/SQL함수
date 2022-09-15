@@ -87,3 +87,24 @@ end;
 		
 		select substr(rcode, 0, 4) from accom;
 		select * from accom;
+		
+		
+		
+		
+--------------------------------------
+
+ 			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
+				
+				Array.from(searchForm.sido.children, (e)=> {
+					
+					if(e.value === rcode) {
+						e.selected = true;
+					}
+				});
+				
+				Array.from(searchForm.sigungu.children, (e)=> {
+					const sigungu = pathname.match(/\d{2}(?=\.shop)/)[0];
+					if(e.value === sigungu)
+						e.selected = true;
+				});
+			}

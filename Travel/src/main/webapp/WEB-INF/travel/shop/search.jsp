@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/common.jsp" %>  
-<%@ include file="/resources/js/calendar.jsp" %>
+<script src="${contextPath }/resources/js/calendar.js"></script>
 <link rel="stylesheet" href="${contextPath }/resources/css/calendar.css">
 <style>
 	.testDiv {
@@ -18,8 +18,7 @@
 
 ${path }
 <form method="post" name="searchForm">
-	<input type="submit" value="검색" />
-	<br>
+
 	지역 
 	<select name="sido" onchange="changeSido()">
 		<c:forEach var="resion" items="${rLists }">
@@ -27,8 +26,12 @@ ${path }
 		</c:forEach>
 	</select>
 	<select name="sigungu" onchange="addrDeps2Changed()"></select>
+	<br><br><br><br><br><br>
+
+	<input type="submit" value="검색" />
 	<br>
 	기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
+	${start } ~ ${end }
 	<br>
 	<div class="calendar"></div>
 	<input type="hidden" name="start" value="${start }">
@@ -77,26 +80,46 @@ ${path }
 		
 		// sido에 맞는 sigungu를 출력한다.
 		changeSido();
+		
+		const start = ${start};
+		const end = ${end};
+		const cal = new Calendar({start: start, end: end});
+		
+		
+		
+		const rcode = searchForm.sido.value;
+		const sigungu = searchForm.sigungu;
+		
+		// 지역 체크박스
+		if(/\d+\/\d+(?=.shop)/.test(pathname)) {
+			const si = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
+			Array.from(searchForm.sido.children, (e)=> {
+				if(e.value === si) {
+					e.selected = true;
+				}
+			});
+			changeSido();
+		}
 	}
 
 	function displayCal() {
 		const cal = document.querySelector('.calendar');
 		cal.classList.toggle('on');
 	}
-
-	const start = ${start};
-	const end = ${end};
-	const cal = new Calendar({start: start, end: end});
 	
+	// 
 	function sort(sort) {
 		const ele = document.querySelector('input[name="sort"]');
 		ele.value = sort;
 		ele.parentElement.submit();
 	}
 	
+	// 주소 2deps 업데이트
 	function changeSido() {
 		const rcode = searchForm.sido.value;
 		const sigungu = searchForm.sigungu;
+		
+		const pathname = window.location.pathname;
 		
 		const obj = {rcode : rcode};
 		
@@ -115,21 +138,31 @@ ${path }
 			result.forEach((e, i) => {
 				sigungu.options[i] = new Option(e.sigungu, e.rcode);
 			});
+		}).then(()=> {
+			
+			// fetch의 비동기 방식으로 인해서 2dept가 만들어진 이후 선택되야 한다.
+			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
+				
+				Array.from(searchForm.sigungu.children, (e)=> {
+					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];			
+					if(e.value === sigungu) {
+						e.selected = true;
+					}
+				});	
+			}
 		});
-		
 	}
 	
 	function addrDeps2Changed() {
 		
 		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu.value;
+		const pathname = window.location.pathname;
 		
+		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
+		const fac = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
 		
-		
-		const url = '${path}'.match(/\/\w+\/\w+/)[0];
-		const fac = "${path}".match(/\/\w+\/\w+\/(\d+)/)[1];
-		
-		searchForm.action = '${contextPath}' + url + "/" + fac + "/" + sido.concat(sigungu) + ".shop";
+		searchForm.action = url + fac + "/" + sido.concat(sigungu) + ".shop";
 		searchForm.submit();
 	}
 </script>
