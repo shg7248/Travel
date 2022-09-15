@@ -2,20 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 faqList.jsp<br>
-<%-- 
+
 <center>
-	<form action="list.brd" method="post">
+	<form action="faqlist.brd" method="post">
 		<select name="whatColumn">
 			<option value="">전체 검색</option>
-			<option value="subject" <c:if test="${pageInfo.whatColumn eq 'subject' }">selected</c:if>>제목</option>
-			<option value="writer" <c:if test="${pageInfo.whatColumn eq 'writer' }">selected</c:if>>작성자</option>
+			<option value="question" <c:if test="${whatColumn eq 'question' }">selected</c:if>>제목</option>
+			<option value="answer" <c:if test="${whatColumn eq 'answer' }">selected</c:if>>내용</option>
 		</select>
-		<input type="text" name="keyword" value="${pageInfo.keyword }">
+		<input type="text" name="keyword" value="${keyword }">
 		<input type="submit" value="검색">
 	</form>
-</center>
- --%>
-<center>
+	
 	<h2>자주 묻는 질문 FAQ</h2>
 	<table border="1">
 		<tr>
