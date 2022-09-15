@@ -12,7 +12,7 @@
 			<tr>
 				<th>사업자 등록번호</th>
 				<td>
-					<input type="text" name="cnum" value="1234567890">
+					<input type="text" name="cnum" value="${sessionScope.loginInfo.cnum }" readonly="readonly">
 				</td>
 			</tr>
 			<tr>

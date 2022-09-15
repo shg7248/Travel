@@ -8,7 +8,7 @@
 		select substr(rcode, 0, 2) as rcode, sido
 		from region
 		where
-		substr(rcode, 0, 2) not in ('41', '42')
+		sido not in ('북부출장소', '동해출장소')
 		group by substr(rcode, 0, 2), sido
 		order by 1
 	</select>
@@ -70,8 +70,10 @@
 	</select>
 	
 	<select id="GetRoomTotalCountByCnum" parameterType="hashmap" resultType="int">
-		select count(*) from room
-		where cnum = #{cnum}
+		select count(*) from accom a
+		inner join room r
+		on a.anum = a.anum
+        and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
 			 and name like #{keyword}
 		</if>
@@ -91,8 +93,10 @@
 	</select>
 	
 	<select id="GetRoomListByCnum" parameterType="hashmap" resultType="RoomBean">
-		select * from room 
-		where cnum = #{cnum}
+		select r.rnum, r.anum, r.name, r.info, r.price, r.sale,r.image, r.max, r.reg_date from accom a
+		inner join room r
+		on a.anum = a.anum
+        and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
 			 and name like #{keyword}
 		</if>

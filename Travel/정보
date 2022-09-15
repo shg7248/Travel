@@ -52,32 +52,6 @@ window.location.search
 
 -------------------------------------------
 
-drop table company;
-
-create table company(
-	cnum		 varchar2(12) primary key,
-	image		 varchar2(50),
-	email		 varchar2(40),
-	pwd			 varchar2(15),
-	phone		 varchar2(13),
-	approyn		 number,
-	reg_date	 date default sysdate
-);
-
-insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
-values('111-11-11111', '1.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
-
-insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
-values('111-11-11112', '1.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);\
-
-insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
-values('111-11-11113', '2.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
-
-insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
-values('111-11-11114', '3.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
-
--------------------------------------------
-
 -- 1. 공용시설
 -- 2. 객실 내 시설
 
@@ -205,8 +179,6 @@ CREATE TABLE ORDERS (
 	ODATE		 DATE DEFAULT SYSDATE
 );
 
-INSERT INTO ORDERS VALUES(ORDERS_SEQ.NEXTVAL,1,1,'전진환','01012345678',1,'12345678','국민',sysdate,sysdate,sysdate);
-
 --------------------------------------------
 
 -- 사업자 테이블
@@ -263,5 +235,4 @@ CREATE TABLE ACCOUNT (
 	CONSTRAINT MNUM FOREIGN KEY(MNUM)
     REFERENCES MEMBER(MNUM)
 );
-
 -------------------------------------------
