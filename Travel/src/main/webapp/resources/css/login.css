@@ -33,7 +33,7 @@ a:link, a:visited {
 .email input{
   padding-left: 30px;
   background: white;
-  background-image: url(../image/email.PNG);
+  background-image: url(../images/email.PNG);
   background-position: 5px center;
   background-repeat: no-repeat;
 }
@@ -45,7 +45,7 @@ a:link, a:visited {
 .password input{
   padding-left: 30px;
   background: white;
-  background-image: url(../image/password.PNG);
+  background-image: url(../images/password.PNG);
   background-position: 5px center;
   background-repeat: no-repeat;
 }
