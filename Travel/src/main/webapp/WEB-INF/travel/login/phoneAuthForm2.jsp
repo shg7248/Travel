@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
-<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -38,9 +37,9 @@ function subNum(){
 	//location.href='phoneAuth.tra';
 }
 </script>
- phoneAuthForm.jsp
+    phoneAuthForm2.jsp
 <div class="all">
-<form method="post" action="phoneAuthForm.log">
+<form method="post" action="phoneAuthForm2.log">
 	<div class="div">
 	<label for="phone">휴대폰번호</label> 
 	<input type="text" id="phone" name="phone" placeholder="-없이 입력해주세요.">
