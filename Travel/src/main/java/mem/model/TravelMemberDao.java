@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import shop.model.OrdersBean;
+
 
 @Component
 public class TravelMemberDao {
@@ -29,6 +31,11 @@ public class TravelMemberDao {
 
 	public List<TravelAccountBean> accountList(int mnum) {
 		List<TravelAccountBean> lists = sst.selectList(namespace+".SelectAccountList",mnum);
+		return lists;
+	}
+
+	public List<TravelBookBean> orderList(int mnum) {
+		List<TravelBookBean> lists = sst.selectList(namespace+".selectOrder", mnum);
 		return lists;
 	}
 	

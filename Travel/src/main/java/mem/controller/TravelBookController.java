@@ -1,13 +1,18 @@
 package mem.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import mem.model.TravelBookBean;
 import mem.model.TravelMemberDao;
+import shop.model.OrdersBean;
 
 @Controller
 public class TravelBookController {
@@ -20,11 +25,15 @@ public class TravelBookController {
 	
 	
 	@RequestMapping(value = command,method = RequestMethod.GET)
-	public String book(HttpSession session) {
+	public ModelAndView book(HttpSession session) {
 		int mnum = (Integer) session.getAttribute("mnum");
+		List<TravelBookBean> lists = tmdao.orderList(mnum);
 		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(getPage);
+		mav.addObject("lists", lists);
 		
-		return getPage;
+		return mav;
 	}
 	
 	@RequestMapping(value = command,method = RequestMethod.POST)
