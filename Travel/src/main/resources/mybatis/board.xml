@@ -3,5 +3,78 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.model.Board">
-
+	<insert id="Insert">
+		insert into board1(nnum,subject,content,type)
+		values(board1_seq.nextval, #{subject}, #{content}, #{type})
+	</insert>
+	
+	<select id="GetBoard1NoticeList" resultType="board.board1.model.Board1Bean">
+		select * from board1
+		where type = 'notice'
+		order by nnum
+	</select>
+	
+	<select id="GetBoard1EventList" resultType="board.board1.model.Board1Bean">
+		select * from board1
+		where type = 'event'
+		order by nnum
+	</select>
+	
+	<delete id="DeleteBoard1ByNnum">
+		delete board1
+		where nnum = #{nnum}
+	</delete>
+	
+	<select id="GetBoard1ByNnum" resultType="board.board1.model.Board1Bean">
+		select * from board1
+		where nnum = #{nnum}
+	</select>
+	
+	<update id="UpdateBoard1ByNnum">
+		update board1 set subject = #{subject}, content = #{content}
+		where nnum = #{nnum}
+	</update>
+	
+	
+	
+	<insert id="InsertInquiry">
+		insert into inquiry(inum, mnum, subject, question)
+		values(inquiry_seq.nextval, #{mnum}, #{subject}, #{question})
+	</insert>
+	
+	<select id="GetAllInquiryList" resultType="board.inquiry.model.InquiryBean">
+		<!-- select * from inquiry -->
+		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum
+		order by inum
+	</select>
+	
+	
+	<select id="GetAllInquiryListByEmail" resultType="board.inquiry.model.InquiryBean">
+		<!-- select * from inquiry -->
+		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and email = #{email}
+		order by inum
+	</select>
+	
+	<select id="GetInquiryByInum" resultType="board.inquiry.model.InquiryBean">
+		<!-- select * from inquiry -->
+		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum
+		where inum = #{inum}
+	</select>
+	
+	<update id="Answer">
+		update inquiry set answer = #{answer}, reg_date2 = #{reg_date2}, progress = '답변완료'
+		where inum = #{inum}
+	</update>
+	
+	<select id="SelectMemberEmailByInum" resultType="board.inquiry.model.InquiryBean">
+		select inum, subject, question, answer, reg_date1, reg_date2, email
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and inum = #{inum} 
+	</select>
 </mapper>
