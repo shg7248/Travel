@@ -33,9 +33,7 @@ public class ShopSearchContoller {
 	
 	@RequestMapping(value = command)
 	public String doGetAction(Model model, 
-								@ModelAttribute("searchBean") SearchBean searchBean, 
-								@RequestParam(required = false) String start, 
-								@RequestParam(required = false) String end,
+								@ModelAttribute("searchBean") SearchBean searchBean,
 								@PathVariable(value = "canum") String canum,
 								@RequestParam(required = false) @PathVariable(value = "rcode") String rcode) {
 	
@@ -43,6 +41,9 @@ public class ShopSearchContoller {
 		if(rcode != null) {
 			searchBean.setRegion(rcode);
 		}
+		
+		String start = searchBean.getStart();
+		String end = searchBean.getEnd();
 		
 		LocalDate date = LocalDate.now();
 		model.addAttribute("start", start = start == null? formatDate(date) : start);
@@ -71,7 +72,7 @@ public class ShopSearchContoller {
 			@PathVariable(value = "canum") String canum,
 			@PathVariable(value = "region") String region) {
 		
-			doGetAction(model, searchBean, start, end, canum, region);
+			doGetAction(model, searchBean, canum, region);
 			return getPage;
 	}
 	

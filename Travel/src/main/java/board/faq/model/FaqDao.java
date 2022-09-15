@@ -2,6 +2,7 @@ package board.faq.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class FaqDao {
 		sqlSessionTemplate.insert(namespace+".InsertFaq",fb);
 	}
 
-	public List<FaqBean> getAllFaqList() {
+	public List<FaqBean> getAllFaqList(Map<String, String> map) {
 		List<FaqBean> lists = new ArrayList<FaqBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllFaqList");
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllFaqList",map);
 		return lists;
 	}
 
