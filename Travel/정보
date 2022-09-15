@@ -80,19 +80,6 @@ SELECT * FROM FACILITY;
 
 -------------------------------------------
 
-DROP TABLE REGION;
-CREATE TABLE REGION(
-	RNUM	 NUMBER PRIMARY KEY,
-	NAME	 VARCHAR2(50)
-);
-
-INSERT INTO REGION VALUES ('11', '서울');
-INSERT INTO REGION VALUES ('32', '경기');
-
-COMMIT;
-
--------------------------------------------
-
 DROP SEQUENCE CATEGORY_SEQ;
 
 CREATE SEQUENCE CATEGORY_SEQ
