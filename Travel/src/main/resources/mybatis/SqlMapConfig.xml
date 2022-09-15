@@ -15,6 +15,9 @@
 		<typeAlias type="login.model.TravelUserBean" alias="MyMember"/>
 		<typeAlias type="login.model.TravelCompanyBean" alias="MyCompany"/>
 		<typeAlias type="mem.model.TravelAccountBean" alias="MyAccount"/>
+		
+		<typeAlias type="board.faq.model.FaqBean" alias="FaqBean"/>
+
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/admin.xml"/>

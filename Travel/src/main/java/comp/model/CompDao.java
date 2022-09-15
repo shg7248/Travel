@@ -76,7 +76,7 @@ public class CompDao {
 
 	// rcode에 관련된 시/군/구 리스트
 	public List<ResionBean> GetResionSIGUNGUList(String rcode) {
-		return sqlSessionTemplate.selectList(namespace + ".GetResionSIGUNGUList"); 
+		return sqlSessionTemplate.selectList(namespace + ".GetResionSIGUNGUList", rcode); 
 	}
 
 }

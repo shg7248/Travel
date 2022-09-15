@@ -19,14 +19,14 @@ public class RegionSIGUNGUController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "getSIGUNGU.shop";
+	private final String command = "/getSIGUNGU.shop";
 	
 	@ResponseBody
-	@RequestMapping(value = command, method = RequestMethod.GET)
+	@RequestMapping(value = command, method = RequestMethod.POST)
 	public List<ResionBean> doGetAction(@RequestBody Map<String, Object> param) {
 		
-		System.out.println("rcode : " + rcode);
-		
+		String rcode = String.valueOf(param.get("rcode"));
+		System.out.println(rcode);
 		List<ResionBean> roomBean = compDao.GetResionSIGUNGUList(rcode);
 		
 		return roomBean;
