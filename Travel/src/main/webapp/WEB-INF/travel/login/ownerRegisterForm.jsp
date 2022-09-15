@@ -9,7 +9,7 @@ $(document).ready(function(){
 	checkEmail = false;
 	checkPwd = false;
 	checkCnum = false;
-	//정규표현식
+	//정규표현식(숫자만)
 	var rex = /^\d+$/;
 
 $("input[name='confirm']").click(function(){

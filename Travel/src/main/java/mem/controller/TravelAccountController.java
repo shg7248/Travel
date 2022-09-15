@@ -17,7 +17,7 @@ import mem.model.TravelMemberDao;
 
 @Controller
 public class TravelAccountController {
-	private final String command = "memberAccount.mem"; 
+	private final String command = "/memberAccount.mem"; 
 	private String getPage = "memberAccount";
 	
 	@Autowired
@@ -49,11 +49,11 @@ public class TravelAccountController {
 		
 		TravelAccountBean tabean = new TravelAccountBean();
 		tabean.setBank(bank);
-		tabean.setAccnum(Integer.parseInt(accnum));
+		tabean.setAccnum(accnum);
 		tabean.setMnum(mnum);
 		
 		tmdao.insertAccount(tabean);
 		
-		return getPage;
+		return "redirect:"+command;
 	}
 }

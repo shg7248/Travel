@@ -1,14 +1,14 @@
 package mem.model;
 
 public class TravelAccountBean {
-	private int accnum;
+	private String accnum;
 	private int mnum;
 	private String bank;
 	
-	public int getAccnum() {
+	public String getAccnum() {
 		return accnum;
 	}
-	public void setAccnum(int accnum) {
+	public void setAccnum(String accnum) {
 		this.accnum = accnum;
 	}
 	public int getMnum() {
