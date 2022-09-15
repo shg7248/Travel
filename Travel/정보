@@ -155,20 +155,6 @@ CREATE TABLE ACCOM (
 	REG_DATE	 DATE
 );
 
-
-
-insert into accom (anum, cnum, canum, rcode, etcaddr, zip, name, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-values (6, '111-11-11111', '11', '2', '우리집휴양', '서울시 구로구', '조은곳', 'F101', 'F202,F203,F204', '10', '21', null, null, 'dfdf.jpg', sysdate);
-
-insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-values (5, '111-11-11112', '11', '3', '서울휴양', '서울시 강남구', '조은곳', 'F101,F102', 'F202', '10', '21', null, null, 'dfdf.jpg', sysdate);
-
-insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-values (3, '111-11-11113', '11', '2', '너의쉽터', '서울시 강북구', '조은곳1313', 'F102', 'F202,F204', '10', '21', null, null, 'dfdf.jpg', sysdate);
-
-insert into accom (anum, cnum, rnum, canum, name, addr, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-values (4, '111-11-11114', '11', '3', '서울휴양', '서울시 강북구', '조은곳1414', 'F102', 'F201,F202,F204', '10', '21', null, null, 'dfdf222.jpg', sysdate);
-
 commit;
 
 -------------------------------------------
@@ -221,6 +207,52 @@ CREATE TABLE ORDERS (
 
 INSERT INTO ORDERS VALUES(ORDERS_SEQ.NEXTVAL,1,1,'전진환','01012345678',1,'12345678','국민',sysdate,sysdate,sysdate);
 
+--------------------------------------------
+
+-- 사업자 테이블
+drop table company CASCADE CONSTRAINTS;
+create table company (
+   cnum varchar2(12) primary key,
+   image varchar2(50),
+   email varchar2(40),
+   pwd varchar2(15),
+   phone varchar2(11),
+   approyn number,
+   reg_date date
+) ;
+
+insert into company 
+values('123456789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+
+select * from company;
+commit;
+
+-----------------------------------------------
+
+-- member 테이블
+drop sequence seq_member;
+create sequence seq_member start with 1 increment by 1 nocache ;
+
+drop table member CASCADE CONSTRAINTS;
+create table member(
+   mnum number primary key,
+   email varchar2(40),
+   name varchar2(12),
+   pwd varchar2(15),
+   phone varchar2(11),
+   flatform varchar2(10),
+   reg_date date,
+   point number default 200
+) ;
+
+insert into member 
+values(seq_member.nextval,'abc@naver.com','test','1234','01012345678','kakao',sysdate,200);
+
+select * from member;
+commit;
+
+-----------------------------------------------
+
 -------------------------------------------
 DROP TABLE ACCOUNT CASCADE CONSTRAINTS;
 
@@ -229,5 +261,7 @@ CREATE TABLE ACCOUNT (
 	MNUM	 	 NUMBER,
 	BANK	 	 VARCHAR2(20),
 	CONSTRAINT MNUM FOREIGN KEY(MNUM)
-        REFERENCES MEMBER(MNUM)
+    REFERENCES MEMBER(MNUM)
 );
+
+-------------------------------------------
