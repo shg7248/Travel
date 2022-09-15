@@ -10,7 +10,8 @@
 		border: 1px solid black;
 	}
 </style>
-<form method="post" action="${contextPath }/shop/search.shop">
+${path }
+<form method="post" action="${contextPath }${path }">
 	<input type="submit" value="검색" /><br>
 	기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
 	<div class="calendar"></div>
@@ -42,7 +43,7 @@
 	
 	<select name="resion">
 		<c:forEach var="resion" items="${rLists }">
-			<option value="${resion.rnum }"<c:if test="${searchBean.resion eq resion.rnum}">selected</c:if>>${resion.name }</option>
+			<option value="${resion.rcode }">${resion.sido }</option>
 		</c:forEach>
 	</select>
 </form>
