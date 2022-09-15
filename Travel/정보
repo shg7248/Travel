@@ -179,8 +179,6 @@ CREATE TABLE ORDERS (
 	ODATE		 DATE DEFAULT SYSDATE
 );
 
-INSERT INTO ORDERS VALUES(ORDERS_SEQ.NEXTVAL,1,1,'전진환','01012345678',1,'12345678','국민',sysdate,sysdate,sysdate);
-
 --------------------------------------------
 
 -- 사업자 테이블
