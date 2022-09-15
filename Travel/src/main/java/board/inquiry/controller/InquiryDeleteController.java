@@ -14,21 +14,14 @@ import board.inquiry.model.InquiryDao;
 @Controller
 public class InquiryDeleteController {
 	private final String command="inqdelete.brd";
-	private String getPage="inquiry/inquiryList";
+	private String gotoPage="redirect:/inqlist.brd";
 	
 	@Autowired
 	InquiryDao idao;
 	
 	@RequestMapping(value=command)
-	public String noticelist(Model model,HttpSession session,@RequestParam("inum") String inum) {
-		String email =String.valueOf(session.getAttribute("email"));
-		
-		InquiryBean ib = idao.selectMemberEmailByInum(inum);
-		String email1 = ib.getEmail();
-		
-		if(email.equals("admin") || email.equals(email1)) {
-			//idao.deleteInquiryByInum(inum);
-		}
-		return getPage;
+	public String inquirydelete(Model model,HttpSession session,@RequestParam("inum") String inum) {
+		idao.deleteInquiryByInum(inum);
+		return gotoPage;
 	}
 }

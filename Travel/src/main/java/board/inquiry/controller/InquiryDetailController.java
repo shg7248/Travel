@@ -18,7 +18,7 @@ public class InquiryDetailController {
 	InquiryDao idao;
 	
 	@RequestMapping(value=command)
-	public String eventdetail(Model model,@RequestParam("inum") String inum) {
+	public String inquirydetail(Model model,@RequestParam("inum") String inum) {
 		InquiryBean ib = idao.getInquiryByInum(inum);
 		model.addAttribute("ib",ib);
 		return getPage;

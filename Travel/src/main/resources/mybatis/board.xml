@@ -50,7 +50,6 @@
 		order by inum
 	</select>
 	
-	
 	<select id="GetAllInquiryListByEmail" resultType="board.inquiry.model.InquiryBean">
 		<!-- select * from inquiry -->
 		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
@@ -77,4 +76,37 @@
 		from inquiry inner join member
 		on inquiry.mnum = member.mnum and inum = #{inum} 
 	</select>
+	
+	<delete id="DeleteInquiryByInum">
+		delete inquiry
+		where inum = #{inum}
+	</delete>
+	
+	
+	
+	<insert id="InsertFaq">
+		insert into faq(fnum,question,answer)
+		values(faq_seq.nextval,#{question},#{answer})
+	</insert>
+	
+	<select id="GetAllFaqList" resultType="FaqBean">
+		select * from faq
+		order by fnum
+	</select>
+	
+	<delete id="DeleteFaqByInum">
+		delete faq
+		where fnum = #{fnum}
+	</delete>
+	
+	<select id="GetFaqByFnum" resultType="FaqBean">
+		select * from faq
+		where fnum = #{fnum}
+	</select>
+	
+	<update id="UpdateFaqByFnum">
+		update faq set question = #{question}, answer = #{answer}
+		where fnum = #{fnum}
+	</update>
+	
 </mapper>

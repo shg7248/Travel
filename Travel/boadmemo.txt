@@ -15,7 +15,7 @@ create sequence board1_seq
   increment by 1
   start with 1
   minvalue 1
-  maxvalue 10000
+  maxvalue 10000 
   nocache;
 -------------------------------------------------------
   
@@ -52,6 +52,33 @@ values(inquiry_seq.nextval, '2', '제목', '문의합니다', '2022-09-13');
 --테스트중
 
 commit;
+---------------------------------------------------------------------------
+
+--faqs는 자주 묻는 질문
+drop table faq;
+
+create table faq( 
+	fnum number not null primary key,		--faq일련번호
+	question varchar2(100) not null,		--faq질문
+	answer varchar2(2000) not null,			--faq답변
+	reg_date date default sysdate			--faq작성일
+);
+
+drop sequence faq_seq;
+create sequence faq_seq
+  increment by 1
+  start with 1
+  nocache;
+  
+  commit;
+  
+insert into faq(fnum, question, answer)
+values(faq_seq.nextval,'예약을 취소하고 싶어요.',
+'예약취소는  앱/웹 > 내정보 > 예약/구매내역에서 직접 가능합니다.
+예약/결제 진행 당시 안내된 취소/환불 규정에 따라 처리되며, 취소수수료가 발생할 경우 취소수수료를 차감한 금액으로 환불 처리됩니다.
+일부 숙소에 한해 취소가 가능한 시점이나 앱/웹에서 취소가 불가할 수 있으니 이 경우에는 고객행복센터로 요청해 주시길 바랍니다.'
+);
+commit;
 
 
 ---------------------------------------------------------------------------
@@ -72,13 +99,14 @@ create table member(
 ) ;
 
 insert into member 
+values(0,'admin','test','1234','01012345678','kakao',sysdate,200);
+
+insert into member 
 values(seq_member.nextval,'qrzv123@naver.com','test','1234','01012345678','kakao',sysdate,200);
 
 insert into member 
 values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao',sysdate,200);
 
-insert into member 
-values(seq_member.nextval,'admin','test','1234','01012345678','kakao',sysdate,200);
 
 select * from member;
 commit;
@@ -97,14 +125,8 @@ select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,em
 		from inquiry inner join member
 		on inquiry.mnum = member.mnum
 		where inum = 1
-
-
-
-
-----------------------------------------------quiry.mnum = member.mnum
-		where inum = 1
-
-
-
-
 ----------------------------------------------
+
+
+
+
