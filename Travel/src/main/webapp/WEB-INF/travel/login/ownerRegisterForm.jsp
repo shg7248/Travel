@@ -49,7 +49,7 @@ $("input[name='confirm']").click(function(){
 
 $("input[name='confirm2']").click(function(){
 	if(!rex.test($("input[name='cnum']").val())){
-		$("#checkCnum").text("사업자 번호를 입력해주세요.");
+		$("#checkCnum").text("숫자만 입력가능합니다.");
 		$("#checkCnum").css("color","red");
 		$("#checkCnum").show();
 		$("input[name='cnum']").focus();
