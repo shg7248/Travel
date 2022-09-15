@@ -37,10 +37,12 @@ public class ShopSearchContoller {
 								@RequestParam(required = false) String start, 
 								@RequestParam(required = false) String end,
 								@PathVariable(value = "canum") String canum,
-								@RequestParam(required = false) @PathVariable(value = "region") String region) {
+								@RequestParam(required = false) @PathVariable(value = "rcode") String rcode) {
 	
 		searchBean.setCanum(canum);
-		System.out.println(region);
+		if(rcode != null) {
+			searchBean.setRegion(rcode);
+		}
 		
 		LocalDate date = LocalDate.now();
 		model.addAttribute("start", start = start == null? formatDate(date) : start);

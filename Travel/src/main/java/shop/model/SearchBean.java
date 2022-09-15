@@ -15,13 +15,12 @@ public class SearchBean {
 	private String fac1;
 	private String fac2;
 	private int count;
-	private int resion;
+	private String region;
 	private String sort;
 	
 	SearchBean() {
 		this.price = 300000;
 		this.count = 2;
-		this.resion = 11;
 		this.sort = "LOWPRICE";
 	}
 	
@@ -98,11 +97,11 @@ public class SearchBean {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getResion() {
-		return resion;
+	public String getRegion() {
+		return region;
 	}
-	public void setResion(int resion) {
-		this.resion = resion;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 	public String getSort() {
 		return sort;
