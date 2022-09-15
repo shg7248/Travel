@@ -71,6 +71,7 @@ public class TravelLoginController {
 			if(tubean.getPwd().equals(login.getPwd())) {
 				System.out.println("가입한 회원");
 				session.setAttribute("loginInfo", login);
+				session.setAttribute("mnum", login.getMnum());
 			
 				//로그인성공시 이동할 위치
 			return "redirect:/main.log";
