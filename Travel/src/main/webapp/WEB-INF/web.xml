@@ -8,14 +8,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	<context-param>
-		<param-name>anum</param-name>
-		<param-value>4</param-value>
-	</context-param>
-	<context-param>
-		<param-name>cnum</param-name>
-		<param-value>1234567890</param-value>
-	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>

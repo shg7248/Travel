@@ -122,7 +122,8 @@ public class TravelLoginController {
 				System.out.println("login.getPwd(): " + login.getPwd());
 				if(tcbean.getPwd().equals(login.getPwd())) {
 					//가입승인이 안낫을때.
-					if(tcbean.getApproyn()==0) {
+					
+					if(tcbean.getApproyn()==10) {
 						System.out.println("가입승인이 안난 회원");
 
 						writer.println("<script type='text/javascript'>");
@@ -131,10 +132,11 @@ public class TravelLoginController {
 						writer.flush();
 					}else {
 						System.out.println("가입한 회원");
+						System.out.println("cnum : " + login.getCnum());
 						session.setAttribute("loginInfo", login);
-					
+						
 						//로그인성공시 이동할 위치
-					return "redirect:/main.log";
+					return "redirect:/compMain.comp";
 					}
 					
 				}
