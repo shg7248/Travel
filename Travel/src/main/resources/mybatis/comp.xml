@@ -5,7 +5,30 @@
 <mapper namespace="comp.model.Comp">
 
 	<select id="GetResionList" resultType="ResionBean">
-		select * from region order by 1
+		select substr(rcode, 0, 2), sido
+		from region
+		where
+		substr(rcode, 0, 2) not in ('41', '42')
+		group by substr(rcode, 0, 2), sido
+		order by 1
+	</select>
+	
+	<select id="GetResionSIGUNGUList" resultType="ResionBean">
+		with a as (
+		select substr(rcode, 0, 2) as rcode, sido, null as sigungu, null as parent
+		from region
+		where substr(rcode, 0, 2) not in ('41', '42')
+		group by substr(rcode, 0, 2), sido
+		union all
+		select substr(rcode, 3, 2), sido, sigungu, substr(rcode, 0, 2)
+		from region
+		group by substr(rcode, 3, 2), sido, sigungu, substr(rcode, 0, 2)
+		order by 3 desc
+		)
+		select *
+		from a
+		where parent = #{rcode}
+		and sigungu is not null;
 	</select>
 	
 	<select id="GetFacList" resultType="FacBean">

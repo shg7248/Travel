@@ -1,7 +1,6 @@
-package shop.controller;
+package comp.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import comp.model.AccomBean;
 import comp.model.CompDao;
 import comp.model.RoomBean;
-import shop.model.DetailBean;
 import shop.model.ShopOrderDao;
 
 @Controller
