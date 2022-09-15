@@ -20,9 +20,9 @@
 		where substr(rcode, 0, 2) not in ('41', '42')
 		group by substr(rcode, 0, 2), sido
 		union all
-		select substr(rcode, 3, 2), sido, sigungu, substr(rcode, 0, 2)
+		select substr(rcode, 3, 3), sido, sigungu, substr(rcode, 0, 2)
 		from region
-		group by substr(rcode, 3, 2), sido, sigungu, substr(rcode, 0, 2)
+		group by substr(rcode, 3, 3), sido, sigungu, substr(rcode, 0, 2)
 		order by 3 desc
 		)
 		select *
