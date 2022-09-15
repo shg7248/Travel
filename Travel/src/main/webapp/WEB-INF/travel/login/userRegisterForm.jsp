@@ -42,7 +42,7 @@ $("input[name='confirm']").click(function(){
             console.log(jqxhr);
             console.log(textStatus);
             console.log(errorThrown);
-        }
+        } 
   	});
 });
 	
