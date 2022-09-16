@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <a href="noticelist.brd">공지사항</a>
 <a href="eventlist.brd">이벤트</a>
-<a href="insert.brd">이벤트/공지사항 삽입</a>
+<a href="insertnotice.brd">공지사항 삽입</a>
+<a href="insertevent.brd">이벤트 삽입</a>
 <a href="faqlist.brd">자주묻는 질문</a>
 <a href="inqlist.brd">1대1문의</a>
 

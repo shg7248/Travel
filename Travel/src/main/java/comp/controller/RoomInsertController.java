@@ -1,6 +1,7 @@
 package comp.controller;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import comp.model.CompDao;
 import comp.model.RoomBean;
+import login.model.TravelCompanyBean;
 
 @Controller
 public class RoomInsertController {
@@ -31,10 +33,11 @@ public class RoomInsertController {
 	}
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doPostAction(RoomBean roomBean) {
+	public String doPostAction(HttpSession session, RoomBean roomBean) {
 		
-		String anum = servletContext.getInitParameter("anum");
-		roomBean.setAnum(Integer.parseInt(anum));
+		TravelCompanyBean tcb = (TravelCompanyBean) session.getAttribute("loginInfo");
+		String cnum = tcb.getCnum();
+		roomBean.setCnum(cnum);
 		
 		MultipartFile mf = roomBean.getUpload();
 		roomBean.setImage(mf.getOriginalFilename());

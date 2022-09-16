@@ -1,6 +1,5 @@
 package board.board1.model;
 
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,11 +10,10 @@ public class Board1Bean {
 	@NotEmpty(message = "제목을 입력하세요")
 	private String subject;
 
-	@NotEmpty(message = "내용과 이미지파일 둘중 하나를 입력하세요")
+	@NotEmpty(message = "내용/파일을 입력하세요")
 	private String content;
 	private String reg_date;
 
-	@NotEmpty(message = "항목을 선택하세요")
 	private String type;
 	private MultipartFile upload;
 
@@ -24,9 +22,9 @@ public class Board1Bean {
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
-		if(content.equals(null) || content.equals("")) {
+//		if(content.equals(null)) {
 			this.content = upload.getOriginalFilename();
-		}
+//		}
 	}
 
 	public int getNnum() {
