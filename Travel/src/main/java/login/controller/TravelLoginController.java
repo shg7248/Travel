@@ -70,11 +70,12 @@ public class TravelLoginController {
 			System.out.println("login.getPwd(): " + login.getPwd());
 			if(tubean.getPwd().equals(login.getPwd())) {
 				System.out.println("가입한 회원");
-				session.setAttribute("loginInfo", login);
+				session.setAttribute("userInfo", login);
 				session.setAttribute("mnum", login.getMnum());
+				session.setAttribute("email", login.getEmail());
 			
 				//로그인성공시 이동할 위치
-			return "redirect:/main.log";
+			return "redirect:/";
 				
 			}
 			else { // 비번이 일치하지 않을 때
@@ -134,6 +135,8 @@ public class TravelLoginController {
 						System.out.println("가입한 회원");
 						System.out.println("cnum : " + login.getCnum());
 						session.setAttribute("loginInfo", login);
+						session.setAttribute("cnum", login.getCnum());
+						session.setAttribute("email", login.getEmail());
 						
 						//로그인성공시 이동할 위치
 					return "redirect:/compMain.comp";

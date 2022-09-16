@@ -14,10 +14,10 @@ import board.board1.model.Board1Dao;
 
 @Controller
 public class Board1DeleteController {
-	private final String command1="board1/deletenotice.brd";
-	private final String command2="board1/deleteevent.brd";
-	private String getPage1="redirect:/noticelist.brd";
-	private String getPage2="redirect:/eventlist.brd";
+	private final String command1="noticedelete.brd";
+	private final String command2="eventdelete.brd";
+	private String gotoPage1="redirect:/noticelist.brd";
+	private String gotoPage2="redirect:/eventlist.brd";
 	
 	@Autowired
 	Board1Dao bdao;
@@ -28,7 +28,7 @@ public class Board1DeleteController {
 	@RequestMapping(value=command1)
 	public String noticedelete(@RequestParam("nnum") String nnum) {
 		bdao.deleteBoard1ByNnum(nnum);
-		return getPage1;
+		return gotoPage1;
 	}
 	@RequestMapping(value=command2)
 	public String eventdelete(@RequestParam("nnum") String nnum) {
@@ -39,6 +39,6 @@ public class Board1DeleteController {
 		delFile.delete();
 		
 		bdao.deleteBoard1ByNnum(nnum);
-		return getPage2;
+		return gotoPage2;
 	}
 }
