@@ -1,31 +1,34 @@
 @charset "UTF-8";
 
 .header {
-	width: inherit;
-	height: 176px;
+	width: inherit;	
 	background: red;
 }
 
 .header__inner {
 	position: relative;
 	width: 940px;
+	height: 176px;
 	margin: 0 auto;
 }
 .header__sub-menu {
-	position: absolute;
-	right: 0;
-	top: 0;
+	
 }
 .sub-menu__list {
 	display: flex;
+	position: absolute;
+	right: 0;
+	top: 10px;
 }
 .sub-menu__item:not(.sub-menu__item:nth-child(3))::after {
 	content: '|';
+	color: white;
 }
 
 .sub-menu__item a {
 	padding: 0 10px;
 	font-size: 11px;
+	color: white;
 }
 
 .sub-menu__item {
@@ -37,8 +40,26 @@
 } 
 
 .temp {
-	width: 300px;
+	width: 100px;
 	position: absolute;
 	display: none;
 }
 
+.main-nav {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}
+
+.main-nav__list {
+	display: flex;
+	justify-content: center;
+}
+
+.main-nav__link {
+	display: inline-block;
+	padding: 10px 20px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+}
