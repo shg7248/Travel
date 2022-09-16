@@ -69,7 +69,13 @@ var Calendar = (function() {
         calendar__title.append(next);
 
         const submitBtn = makeElement('input', {type: 'button', class: 'calendar__btn', value: '선택'}, 'click', () => {
-            location.href=`search.shop?start=${this.getResDate().start}&end=${this.getResDate().end}`;
+            const path = window.location.pathname;
+			const form = window.document.forms[0];
+			
+			form.start.value = this.getResDate().start;
+			form.end.value = this.getResDate().end;
+			form.action = path;
+			form.submit();
         });
         calendar__buttom.append(submitBtn);
             

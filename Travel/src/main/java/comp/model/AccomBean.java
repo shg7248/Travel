@@ -10,7 +10,11 @@ public class AccomBean {
 	private String canum;
 	private String rname;
 	private String name;
-	private String addr;
+	private String zip;
+	private String sido;
+	private String sigungu;
+	private String rcode;
+	private String etcAddr;
 	private String info;
 	private String fac1;
 	private String fac2;
@@ -58,11 +62,35 @@ public class AccomBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddr() {
-		return addr;
+	public String getZip() {
+		return zip;
 	}
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	public String getSido() {
+		return sido;
+	}
+	public void setSido(String sido) {
+		this.sido = sido;
+	}
+	public String getSigungu() {
+		return sigungu;
+	}
+	public void setSigungu(String sigungu) {
+		this.sigungu = sigungu;
+	}
+	public String getRcode() {
+		return rcode;
+	}
+	public void setRcode(String rcode) {
+		this.rcode = rcode;
+	}
+	public String getEtcAddr() {
+		return etcAddr;
+	}
+	public void setEtcAddr(String etcAddr) {
+		this.etcAddr = etcAddr;
 	}
 	public String getInfo() {
 		return info;

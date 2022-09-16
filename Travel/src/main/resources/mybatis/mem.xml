@@ -3,5 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mem.model.Mem">
-
+	<update id="UpdateMemberPwd">
+		update member 
+		set pwd = #{pwd}
+		where mnum = #{mnum}
+	</update>
+	
+	<insert id="InsertAccountMember">
+		insert into account 
+		values(#{accnum},#{mnum},#{bank})
+	</insert>
+	
+	<select id="SelectAccountList" resultType="MyAccount">
+		select * from account 
+		where mnum = #{mnum}
+	</select>
+	
+	<select id="selectOrder" resultType="MyBook">
+		select  a.name, r.name, o.startdate, o.enddate, r.price, o.odate 
+		from orders o, room r, accom a
+		where r.rnum = o.rnum and r.anum = a.anum and o.mnum = #{mnum};
+	</select>
 </mapper>

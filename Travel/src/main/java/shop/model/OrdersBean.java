@@ -2,14 +2,42 @@ package shop.model;
 
 public class OrdersBean {
 
+	private int onum;
 	private int rnum;
-	private String startDate;
-	private String endDate;
+	private int mnum;
 	private String resName;
 	private String resPhone;
-	private String bank;
+	private int resNum;
 	private String accnum;
+	private String bank;
+	private String startDate;
+	private String endDate;
+	private String oDate;
 	
+	public int getOnum() {
+		return onum;
+	}
+	public void setOnum(int onum) {
+		this.onum = onum;
+	}
+	public int getMnum() {
+		return mnum;
+	}
+	public void setMnum(int mnum) {
+		this.mnum = mnum;
+	}
+	public int getResNum() {
+		return resNum;
+	}
+	public void setResNum(int resNum) {
+		this.resNum = resNum;
+	}
+	public String getoDate() {
+		return oDate;
+	}
+	public void setoDate(String oDate) {
+		this.oDate = oDate;
+	}
 	public int getRnum() {
 		return rnum;
 	}
