@@ -38,7 +38,7 @@ public class TravelPwdUpdateController {
 			HttpSession session,
 			HttpServletResponse response
 			) throws IOException {
-		TravelUserBean tubean = (TravelUserBean) session.getAttribute("loginInfo");
+		TravelUserBean tubean = (TravelUserBean) session.getAttribute("userInfo");
 		System.out.println("tmbean"+ tubean);
 		System.out.println("pwd"+ pwd);
 		System.out.println("pwd_update"+ pwd_update);

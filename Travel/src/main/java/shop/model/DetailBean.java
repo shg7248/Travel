@@ -7,6 +7,7 @@ public class DetailBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String aname;
+	private int mnum;
 	private String rnum;
 	private String rname;
 	private String addr;
@@ -20,6 +21,12 @@ public class DetailBean implements Serializable {
 	}
 	public void setAname(String aname) {
 		this.aname = aname;
+	}
+	public int getMnum() {
+		return mnum;
+	}
+	public void setMnum(int mnum) {
+		this.mnum = mnum;
 	}
 	public String getRnum() {
 		return rnum;
