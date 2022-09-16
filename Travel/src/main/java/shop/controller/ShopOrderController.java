@@ -23,7 +23,7 @@ public class ShopOrderController {
 	
 	private final String command = "/shop/order.shop";
 	private String getPage = "orderForm";
-	private String gotoPage = "";
+	private String gotoPage = "completeOrder";
 	
 	@RequestMapping(value = command, method=RequestMethod.GET)
 	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model) {
