@@ -30,6 +30,7 @@ public class InquiryAnswerController {
 	public String inquiryanswer(Model model,InquiryBean ib,@RequestParam("inum") String inum) {
 		//답변을 하단서 달고
 		idao.answer(ib);
+		
 		//inum을 메일발송페이지로 넘긴다
 		return gotoPage+"?inum="+ib.getInum();
 	}
