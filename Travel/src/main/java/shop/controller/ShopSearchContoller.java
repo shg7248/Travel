@@ -35,9 +35,8 @@ public class ShopSearchContoller {
 	public String doGetAction(Model model, 
 								@ModelAttribute("searchBean") SearchBean searchBean,
 								@PathVariable(value = "canum") String canum,
-								@RequestParam(required = false) 
-								@PathVariable(value = "rcode") String rcode) {
-	
+								@RequestParam(required = false) @PathVariable(value = "rcode") String rcode) {
+		
 		searchBean.setCanum(canum);
 		if(rcode != null) {
 			searchBean.setRegion(rcode);
@@ -61,6 +60,7 @@ public class ShopSearchContoller {
 		searchBean.setEnd(end);
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
+		
 		
 		return getPage;
 	}

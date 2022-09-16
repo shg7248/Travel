@@ -29,11 +29,13 @@ public class TravelMemberDao {
 		System.out.println("cnt: "+cnt);
 	}
 
+	//맴버 계좌 리스트
 	public List<TravelAccountBean> accountList(int mnum) {
 		List<TravelAccountBean> lists = sst.selectList(namespace+".SelectAccountList",mnum);
 		return lists;
 	}
 
+	//
 	public List<TravelBookBean> orderList(int mnum) {
 		List<TravelBookBean> lists = sst.selectList(namespace+".selectOrder", mnum);
 		return lists;

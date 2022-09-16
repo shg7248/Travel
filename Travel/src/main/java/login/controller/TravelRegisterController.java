@@ -110,6 +110,11 @@ public class TravelRegisterController {
 		String uploadPath = servletContext.getRealPath("/resources/company");
 		System.out.println("uploadPath:"+uploadPath);
 		
+		File existsFile = new File(uploadPath);
+		if(!existsFile.exists()) {
+			existsFile.mkdir();
+		}
+		
 		//파일객체
 		File file = new File(uploadPath+"/"+ tcbean.getImage());
 		

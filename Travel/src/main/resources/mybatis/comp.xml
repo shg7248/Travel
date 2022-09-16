@@ -58,7 +58,7 @@
 	
 	<insert id="InsertRoom">
 		insert into room (rnum, anum, name, info, price, sale, image, max, reg_date)
-		values (room_seq.nextval, #{anum}, #{name}, #{info}, #{price}, #{sale}, #{image}, #{max}, sysdate)
+		values (room_seq.nextval, (select anum from accom where cnum = #{cnum}) , #{name}, #{info}, #{price}, #{sale}, #{image}, #{max}, sysdate)
 	</insert>
 	
 	<select id="GetRoomTotalCountByAnum" parameterType="hashmap" resultType="int">
@@ -72,7 +72,7 @@
 	<select id="GetRoomTotalCountByCnum" parameterType="hashmap" resultType="int">
 		select count(*) from accom a
 		inner join room r
-		on a.anum = a.anum
+		on a.anum = r.anum
         and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
 			 and name like #{keyword}
@@ -95,7 +95,7 @@
 	<select id="GetRoomListByCnum" parameterType="hashmap" resultType="RoomBean">
 		select r.rnum, r.anum, r.name, r.info, r.price, r.sale,r.image, r.max, r.reg_date from accom a
 		inner join room r
-		on a.anum = a.anum
+		on a.anum = r.anum
         and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
 			 and name like #{keyword}

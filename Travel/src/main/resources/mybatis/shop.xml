@@ -75,24 +75,32 @@
 		and z.price = r.price
 		inner join accom a
 		on z.anum = a.anum
+		<if test="sort eq 'HIGHPRICE'">
+			order by r.price desc
+		</if>
+		<if test="sort eq 'ROWPRICE'">
+			order by r.price asc
+		</if>
 	</select>
 	
 	<select id="GetOrderInfoByRnum" parameterType="hashmap" resultType="DetailBean">
 		select a.name as aname, 
 		r.name as rname, 
-		a.addr, 
+		re.sido || ' ' || re.sigungu as addr,
 		r.price,
 		<![CDATA[to_char(to_date(#{startDate}, 'yyyyMMdd'), 'MM"월"dd"일"') as startDate,]]>
 		<![CDATA[to_char(to_date(#{endDate}, 'yyyyMMdd'), 'MM"월"dd"일"') as endDate,]]>
-		to_date(#{endDate}, 'yyyyMMdd') - to_date(#{startDate}, 'yyyyMMdd') as totalDate
+		to_date(#{endDate}, 'yyyyMMdd') - to_date(#{startDate}, 'yyyyMMdd') + 1 as totalDate
 		from room r
 		inner join accom a
 		on r.anum = a.anum
+	    inner join region re
+	    on a.rcode = re.rcode
 		where r.rnum = #{rnum}
 	</select>
 	
 	<insert id="InsertOrders">
 		insert into orders (onum, rnum, mnum, resname, resphone, resnum, accnum, bank, startdate, enddate, odate)
-		values (orders_seq.nextval, #{rnum}, 1, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
+		values (orders_seq.nextval, #{rnum}, #{mnum}, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
 	</insert>
 </mapper>
