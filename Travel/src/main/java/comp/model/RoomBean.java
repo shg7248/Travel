@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class RoomBean {
 
 	private int rnum;
+	private String cnum;
 	private int anum;
 	private String name;
 	private String info;
@@ -20,6 +21,12 @@ public class RoomBean {
 	}
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
+	}
+	public String getCnum() {
+		return cnum;
+	}
+	public void setCnum(String cnum) {
+		this.cnum = cnum;
 	}
 	public int getAnum() {
 		return anum;
