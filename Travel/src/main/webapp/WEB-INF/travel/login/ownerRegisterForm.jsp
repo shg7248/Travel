@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <%@ include file="../common/common.jsp" %>
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 
