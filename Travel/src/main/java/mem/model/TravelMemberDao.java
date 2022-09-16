@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import login.model.TravelUserBean;
 import shop.model.OrdersBean;
 
 
@@ -16,9 +17,9 @@ public class TravelMemberDao {
 	SqlSessionTemplate sst;
 	
 	//맴버 비밀번호변경
-	public void updateMemPwd(TravelMemberBean tmbean) {
+	public void updateMemPwd(TravelUserBean tubean) {
 		int cnt = -1;
-		cnt = sst.update(namespace+".UpdateMemberPwd", tmbean);
+		cnt = sst.update(namespace+".UpdateMemberPwd", tubean);
 		System.out.println("cnt: "+cnt);
 	}
 	
@@ -39,6 +40,19 @@ public class TravelMemberDao {
 	public List<TravelBookBean> orderList(int mnum) {
 		List<TravelBookBean> lists = sst.selectList(namespace+".selectOrder", mnum);
 		return lists;
+	}
+
+	public int seachAccount(String accnum) {
+		int cnt = -1;
+		cnt = sst.selectOne(namespace+".SearchAccount", accnum);
+		System.out.println("cnt: "+cnt);
+		return cnt;
+	}
+
+	public void deleteMember(TravelUserBean userInfo) {
+		int cnt = -1;
+		cnt = sst.delete(namespace+".DeleteMember", userInfo);
+		System.out.println("cnt: "+cnt);
 	}
 	
 	

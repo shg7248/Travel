@@ -34,11 +34,28 @@ $('input[name="pwd_update2"]').on({
 	
 });//ready
 
-function allCheck(){
+function allCheck(mypwd){
+	if($('input[name="pwd"]').val() == ""){
+		$('#checkPwd').text("비밀번호를 입력해주세요.");
+		$('#checkPwd').focus();
+		return false;
+	}
+	
+	if($('input[name="pwd_update"]').val() == $('input[name="pwd_update2"]').val()){
+		checkPwd = true;
+	}
+	
 	if(!checkPwd){
 		alert("비밀번호를 확인하세요.");
 		f.pwd_update2.focus();
 		return false;
+	}
+	
+	if(mypwd =! $('input[name="pwd"]').val()){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}else{
+		alert("비밀번호가 변경되었습니다.");
 	}
 	
 }
@@ -52,6 +69,7 @@ memberPwdUpdate.jsp
 <label for="pwd">현재 비밀번호</label>  
 <input type="text" name="pwd" id="pwd" value="${param.pwd }" placeholder="현재 비밀번호를 입력하세요." >
 </div>
+<font id="checkPwd" class="err"></font>
 
 <div class="div">
 <label for="pwd_update">변경할 비밀번호</label>  
@@ -61,10 +79,10 @@ memberPwdUpdate.jsp
 <div class="div">
 <label for="pwd_update2">변경할 비밀번호 확인</label>  
 <input type="text" name="pwd_update2" id="pwd_update2" value="${param.pwd_update2 }" placeholder="변경할 비밀번호를 입력하세요." >
-<font id="pwdMsg" class="err"></font>
 </div>
+<font id="pwdMsg" class="err"></font>
 
-<input type="submit" value="변경" onclick="return allCheck()" >
+<input type="submit" value="변경" onclick="return allCheck(${userInfo.pwd})" >
 </form>
 </div>
 </body>
