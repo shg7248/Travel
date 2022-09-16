@@ -22,11 +22,11 @@ import board.board1.model.Board1Dao;
 
 @Controller
 public class Board1UpdateController {
-	private final String command1="updatenotice.brd";
-	private final String command2="updateevent.brd";
+	private final String command1="noticeupdate.brd";
+	private final String command2="eventupdate.brd";
 	
-	private String getPage1="board1/updateNoticeForm";
-	private String getPage2="board1/updateEventForm";
+	private String getPage1="board1/noticeUpdateForm";
+	private String getPage2="board1/eventUpdateForm";
 	
 	private String gotoPage1="redirect:/noticelist.brd";
 	private String gotoPage2="redirect:/eventlist.brd";

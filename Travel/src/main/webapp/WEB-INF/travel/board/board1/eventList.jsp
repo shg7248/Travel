@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
-list.brd<br>
+<%@include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
+
+eventList.jsp<br>
 <c:forEach items="${list }" var="board1">
 	<table border="1">
 		<tr>

@@ -4,4 +4,111 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.model.Admin">
 
+	<select id="GetMemTotalCount" resultType="int">
+		select count(*) from Member
+		<if test="whatColumn=='name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn=='phone'">
+			where phone like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetMemberList" resultType="admin.model.MemberBean">
+		select * from member
+		<if test="whatColumn == 'phone'">
+		where phone like #{keyword}
+		</if>
+		<if test="whatColumn == 'name'">
+		where name like #{keyword}
+		</if>
+		
+	</select>
+	
+	<select id="GetComTotalCount" resultType="int">
+		select count(*) from company
+		<if test="whatColumn=='cnum'">
+			where cnum like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetCompanyList" resultType="admin.model.CompanyBean">
+		select * from company order by approyn
+		<if test="whatColumn == 'cnum'">
+		where cnum like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetCateTotalCount" resultType="int">
+		select count(*) from category
+		<if test="whatColumn=='CANUM'">
+			where CANUM like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetCateList" resultType="admin.model.CateBean">
+		select * from category 
+		<if test="whatColumn == 'CANUM'">
+		where CANUM like #{keyword} 
+		</if>
+	</select>
+	
+	<select id="GetCate" resultType="admin.model.CateBean">
+		select * from category
+		where CANUM = #{CANUM}
+	</select>
+	
+	<delete id="DeleteCate">
+  		delete from category where canum = #{canum}
+  	</delete>
+  	
+  	<select id="GetFaTotalCount" resultType="int">
+		select count(*) from facility
+		<if test="whatColumn=='fnum'">
+			where fnum like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetFaciList" resultType="admin.model.FaciBean">
+		select * from facility 
+		<if test="whatColumn == 'fnum'">
+		where fnum like #{keyword}
+		</if>
+	</select>
+	
+  	<select id="GetFaci" resultType="admin.model.FaciBean">
+		select * from facility
+		where fnum = #{fnum}
+	</select>
+	
+	<delete id="DeleteFaci">
+  		delete from facility where fnum = #{fnum}
+  	</delete>
+	
+	<insert id="InsertCate" parameterType="admin.model.CateBean">
+		insert into category
+		values(CATEGORY_SEQ.nextval,#{caname},#{url},#{cagroup}
+		)
+	</insert>
+	
+	<update id="UpdateCate" parameterType="admin.model.CateBean">
+  		update category set caname=#{caname},url=#{url},cagroup=#{cagroup}
+  		where canum=#{canum}
+  	</update>
+	
+	<insert id="InsertFaci" parameterType="admin.model.FaciBean">
+		insert into facility
+		values(faci_SEQ.nextval,#{FNUM},#{NAME},#{FGROUP}
+		)
+	</insert>
+	
+	
+	
 </mapper>
+
+
+
+
+
+
+
