@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7aa66b36bac14d52a5dbbdb09a9f4b5a&libraries=services,clusterer,drawing"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('#summernote').summernote({
+	        placeholder: '숙박지 기본정보를 입력하세요',
+	        height: 400,
+	        maxHeight: 300
+	    });
+	});
+</script>
 		<form method="post" action="insertAccom.comp" enctype="multipart/form-data" name="accomForm">
 		<input type="hidden" name="latitude" value="">
 		<input type="hidden" name="longitude" value="">
 		<input type="hidden" name="rcode" value="">
-		<table>
+		<table class="accom-insert__form">
 			<tr>
 				<th>사업자 등록번호</th>
 				<td>
@@ -35,12 +41,16 @@
 			<tr>
 				<th>숙박지 주소</th>
 				<td>
-					<input type="button" value="주소 입력" onclick="findAddress()"><br>
-					우편번호 <input type="text" name="zip"><br>
-					시/도 <input type="text" name="sido"><br>
-					시/군/구 <input type="text" name="sigungu"><br>
-					상세주소 <input type="text" name="etcAddr"><br>
+					<p class="table__msg--import">※ 주소 입력 버튼을 눌러 숙박지를 선택하면 자동으로 입력됩니다.</p>
+					<input type="button" value="주소 입력" onclick="findAddress()"><br><br>
+					우편번호<br><input type="text" name="zip" readonly="readonly"><br>
+					시/도<br><input type="text" name="sido" readonly="readonly"><br>
+					시/군/구<br><input type="text" name="sigungu" readonly="readonly"><br>
+					상세주소<br><input type="text" name="etcAddr" readonly="readonly"><br>
 				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div id="map" style="width:500px;height:400px;"></div></td>
 			</tr>
 			<tr>
 				<th>숙박지 주변 편의시설</th>
@@ -81,13 +91,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th>숙박지 기본정보</th>
-				<td>
-					<textarea rows="" cols="" name="info"></textarea>
+				<td colspan="2">
+					<textarea rows="" cols="" name="info" id="summernote"></textarea>
 				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><div id="map" style="width:500px;height:400px;"></div></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -99,14 +105,16 @@
 	</section>
 </main>
 <script>
-
-	
-
-	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+	var container = document.getElementById('map'),
+	map = new kakao.maps.Map(container, { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
 	    level : 3 // 지도의 확대 레벨 
 	});
 	
+	container.style.width = '100%';
+	container.style.height = '200px';
+	map.relayout();
+
 	function findAddress() {
 		new daum.Postcode({
 		    oncomplete: function(data) {
@@ -122,15 +130,20 @@
 		        	accomForm.rcode.value = data.bcode;
 		        	
 		        	var ps = new kakao.maps.services.Places();
-		        	ps.keywordSearch(data.address, (data, status, pagination) => {
-		        		
-		        		accomForm.latitude.value = data[0].y;
-		        		accomForm.longitude.value = data[0].x;
-		        		
-		         		var moveLatLon = new kakao.maps.LatLng(data[0].y, data[0].x);
-		         		map.setCenter(moveLatLon);
-		         		addMarker(moveLatLon)
-		         	});
+		        	
+		        	const p2 = Promise.resolve(data);
+					p2.then((data)=> {
+			        	ps.keywordSearch(data.address, (data, status, pagination) => {
+			        		
+			        		accomForm.latitude.value = data[0].y;
+			        		accomForm.longitude.value = data[0].x;
+			        		
+			         		var moveLatLon = new kakao.maps.LatLng(data[0].y, data[0].x);
+			         		map.setCenter(moveLatLon);
+			         		addMarker(moveLatLon);
+			         		
+			         	});
+					});	        	
 		        });
 		    }
 		}).open();
