@@ -31,7 +31,7 @@ public class ShopSearchContoller {
 	private String getPage = "search";
 	
 	@RequestMapping(value = command)
-	public String doGetAction(Model model, 
+	public String doGetAction(Model model,
 								@ModelAttribute("searchBean") SearchBean searchBean, 
 								@RequestParam(required = false) String start, 
 								@RequestParam(required = false) String end,

@@ -29,17 +29,28 @@ client_secret=
 
 -------------------------------------------
 
-drop table company;
+DROP SEQUENCE com_SEQ;
 
-create table company(
-	cnum		 varchar2(12) primary key,
-	image		 varchar2(50),
-	email		 varchar2(40),
-	pwd			 varchar2(15),
-	phone		 varchar2(13),
-	approyn		 number,
-	reg_date	 date default sysdate
-);
+CREATE SEQUENCE com_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
+drop table company CASCADE CONSTRAINTS;
+create table company (
+   cnum varchar2(12) primary key,
+   image varchar2(50),
+   email varchar2(40),
+   pwd varchar2(15),
+   phone varchar2(11),
+   approyn number,
+   reg_date date
+) ;
+
+insert into company 
+values('123456789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+
+select * from company;
 
 insert into company (cnum, image, email, pwd, phone, approyn, reg_date)
 values('111-11-11111', '1.jpg', '1111@22.33', '1234', '010-1111-2222', 1, sysdate);
@@ -207,3 +218,50 @@ CREATE TABLE ORDERS (
 	ENDDATE		 VARCHAR2(8),
 	ODATE		 DATE DEFAULT SYSDATE
 );
+
+DROP SEQUENCE mem_SEQ;
+
+CREATE SEQUENCE mem_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
+DROP TABLE member CASCADE CONSTRAINTS;
+
+CREATE TABLE member (
+	
+	mnum number primary key,
+	email varchar2(40),
+	name varchar2(12),
+	pwd varchar2(15),
+	phone varchar2(11),
+	flatform varchar2(10),
+	ref_date date,
+	point number
+);
+
+drop sequence seq_member;
+create sequence seq_member start with 1 increment by 1 nocache ;
+
+drop table member CASCADE CONSTRAINTS;
+create table member(
+   mnum number primary key,
+   email varchar2(40),
+   name varchar2(12),
+   pwd varchar2(15),
+   phone varchar2(11),
+   flatform varchar2(10),
+   reg_date date,
+   point number default 200
+) ;
+
+insert into member 
+values(seq_member.nextval,'abc@naver.com','test','1234','01012345678','kakao',sysdate,200);
+
+select * from member;
+
+
+
+
+
+
