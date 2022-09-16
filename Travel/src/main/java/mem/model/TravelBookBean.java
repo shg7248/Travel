@@ -43,5 +43,5 @@ public class TravelBookBean {
 	}
 	public void setoDate(String oDate) {
 		this.oDate = oDate;
-	}
+	} 
 }

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.header {
+	width: inherit;
+	height: 176px;
+	background: red;
+}
+
+.header__inner {
+	position: relative;
+	width: 940px;
+	margin: 0 auto;
+}
+.header__sub-menu {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.sub-menu__list {
+	display: flex;
+}
+.sub-menu__item:not(.sub-menu__item:nth-child(3))::after {
+	content: '|';
+}
+
+.sub-menu__item a {
+	padding: 0 10px;
+	font-size: 11px;
+}
+
+.sub-menu__item {
+	position: relative;
+}
+
+.sub-menu__item:hover .temp{
+	display: block;
+} 
+
+.temp {
+	width: 300px;
+	position: absolute;
+	display: none;
+}
+
