@@ -28,13 +28,15 @@ userLoginForm.jsp
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
 <input type="text" name="email" placeholder="Email">
-<font id="checkEmail"></font>
 </div>
+<font id="checkEmail" class="err"></font>
 <div class="div password">
 <input type="text" name="pwd" placeholder="PassWord">
-<font id="checkPwd"></font>
 </div>
+<font id="checkPwd" class="err"></font>
+<div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
+</div>
 </form>
 <div class="edit">
 <a href="userPwdForm.log">비밀번호 찾기</a>

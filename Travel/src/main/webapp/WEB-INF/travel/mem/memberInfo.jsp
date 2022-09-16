@@ -23,5 +23,5 @@ MemberInfo.jsp
 </div>
 
 <input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.log'">
-<input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='memDelete.mem'">
+<input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='confirm.mem'">
 </div>

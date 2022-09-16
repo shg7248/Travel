@@ -24,4 +24,9 @@
 		from orders o, room r, accom a
 		where r.rnum = o.rnum and r.anum = a.anum and o.mnum = #{mnum}
 	</select>
+	
+	<delete id="DeleteMember">
+		delete member 
+		where mnum = #{mnum}
+	</delete>
 </mapper>
