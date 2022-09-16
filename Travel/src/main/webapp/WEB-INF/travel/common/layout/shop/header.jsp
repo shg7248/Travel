@@ -6,15 +6,16 @@
 	<div class="header__inner">
 		<div class="header__sub-menu">
 			<ul class="sub-menu__list">
-				<li class="sub-menu__item"><a href="userLoginForm.log">로그인</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/userLoginForm.log">로그인</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/memberInfo.mem">내정보</a></li>
 				<li class="sub-menu__item"><a href="">예약내역</a></li>
 				<li class="sub-menu__item">
 					<a href="">더보기</a>
 					<ul class="temp">
-						<li><a href="noticelist.brd">공지사항</a></li>
-						<li><a href="eventlist.brd">이벤트</a></li>
-						<li><a href="faqlist.brd">자주묻는 질문</a></li>
-						<li><a href="inqlist.brd">1대1 문의</a></li>
+						<li><a href="${contextPath }/noticelist.brd">공지사항</a></li>
+						<li><a href="${contextPath }/eventlist.brd">이벤트</a></li>
+						<li><a href="${contextPath }/faqlist.brd">자주묻는 질문</a></li>
+						<li><a href="${contextPath }/inqlist.brd">1대1 문의</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -35,3 +36,6 @@
 		</nav>
 	</div>
 </header>
+
+사용자: ${sessionScope.userInfo.email }<br>
+사업자: ${sessionScope.loginInfo.email }<br>

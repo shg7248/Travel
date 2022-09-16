@@ -101,6 +101,6 @@
 	
 	<insert id="InsertOrders">
 		insert into orders (onum, rnum, mnum, resname, resphone, resnum, accnum, bank, startdate, enddate, odate)
-		values (orders_seq.nextval, #{rnum}, 1, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
+		values (orders_seq.nextval, #{rnum}, #{mnum}, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
 	</insert>
 </mapper>

@@ -1,5 +1,7 @@
 package shop.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import shop.model.OrdersBean;
+import login.model.TravelUserBean;
 import shop.model.DetailBean;
+import shop.model.OrdersBean;
 import shop.model.ShopDao;
 import shop.model.ShopOrderDao;
 
@@ -28,6 +31,7 @@ public class ShopOrderController {
 	@RequestMapping(value = command, method=RequestMethod.GET)
 	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model) {
 		
+		
 		DetailBean orderBean = new DetailBean();
 		orderBean.setRnum(rnum);
 		orderBean.setStartDate(startDate);
@@ -40,7 +44,12 @@ public class ShopOrderController {
 	}
 	
 	@RequestMapping(value = command, method=RequestMethod.POST)
-	public String doPostAction(OrdersBean ordersBean) {
+	public String doPostAction(HttpSession session, OrdersBean ordersBean) {
+		
+		TravelUserBean tub = (TravelUserBean) session.getAttribute("userInfo");
+		int mnum = tub.getMnum();
+		
+		ordersBean.setMnum(mnum);
 		
 		int cnt = shopDao.insertOrders(ordersBean);
 		
