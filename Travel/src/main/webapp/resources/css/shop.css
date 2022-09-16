@@ -20,7 +20,7 @@
 	right: 0;
 	top: 10px;
 }
-.sub-menu__item:not(.sub-menu__item:nth-child(3))::after {
+.sub-menu__item:not(.sub-menu__item:last-child)::after {
 	content: '|';
 	color: white;
 }
