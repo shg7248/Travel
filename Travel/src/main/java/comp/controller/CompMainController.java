@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CompMainController {
 	
-	private final String command = "compMain.comp";
+	private final String command = "/main.comp";
 	private String getPage = "compMain";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)

@@ -23,7 +23,7 @@ public class AccomDetailController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/1/accomDetail.comp";
+	private final String command = "/accom/detail.comp";
 	private String getPage = "accomDetail";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
