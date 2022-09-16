@@ -5,10 +5,15 @@
 	background: red;
 }
 
+.logo {
+	position: absolute;
+	top: 30px;
+}
+
 .header__inner {
 	position: relative;
 	width: 940px;
-	height: 176px;
+	height: 120px;
 	margin: 0 auto;
 }
 .header__sub-menu {

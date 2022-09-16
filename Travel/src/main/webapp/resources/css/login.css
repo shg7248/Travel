@@ -1,9 +1,10 @@
 @charset "UTF-8";
 .edit{
+	margin-top: 10px;
 	text-align: center;
-	font-size:8px;
 }
-a:link, a:visited {
+.edit>a:link, .edit>a:visited {
+	font-size: 11px;
 	padding: 0 10 0 10;
      text-align: center;
      text-decoration: none;
@@ -11,6 +12,7 @@ a:link, a:visited {
 }
 
 .all{
+	margin: 0 auto;
 	width: 200px;
 }
 .div{
@@ -27,6 +29,7 @@ a:link, a:visited {
 	opacity: 0.5;
 	border-width: 1px;
 	border-radius:0px;
+	margin-top: 10;
 
 }
 .email input{
@@ -52,15 +55,15 @@ a:link, a:visited {
 .display{
 	display: none;
 }
-font,.err{
+.err{
  font-size: 8px;
  color: red;
  font-weight: bold;
 }
 
 label{
+	font-size:12px;
 	font-weight: bold;
-	font-size: 8px;
 }
 input[type=file]{
 	padding: 2 0 0 2;
