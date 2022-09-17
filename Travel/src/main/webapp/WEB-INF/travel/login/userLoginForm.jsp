@@ -39,7 +39,7 @@ userLoginForm.jsp
 </div>
 </form>
 <div class="edit">
-<a href="userPwdForm.log">비밀번호 찾기</a>
+<a href="userFindPwdForm.log">비밀번호 찾기</a>
 |
 <a href="phoneAuthForm.log">회원가입</a>
 </div>
