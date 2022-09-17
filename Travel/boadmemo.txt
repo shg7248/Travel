@@ -185,7 +185,24 @@ values(faq_seq.nextval,'아이디와 비밀번호를 잊었어요.',
 4. 발급받은 인증번호 입력을 통해 새로운 비밀번호 생성
 위 방법으로도 이용에 불편을 겪으실 경우 여기어때 고객행복센터로 문의해주시길 바랍니다.'
 );
-----------------------------------------------
+----------------------------------------------하단도테스트중
+-- 사업자 테이블
+drop table company CASCADE CONSTRAINTS;
+create table company (
+   cnum varchar2(12) primary key,
+   image varchar2(50),
+   email varchar2(40),
+   pwd varchar2(15),
+   phone varchar2(11),
+   approyn number,
+   reg_date date
+) ;
+
+insert into company 
+values('123456789123', 'abc.img', 'qrzv123@naver.com', '1234', '01012345678', 0, sysdate);
+
+select * from company;
+commit;
 
 
 
