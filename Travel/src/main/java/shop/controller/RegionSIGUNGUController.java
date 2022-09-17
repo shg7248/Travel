@@ -26,7 +26,6 @@ public class RegionSIGUNGUController {
 	public List<ResionBean> doGetAction(@RequestBody Map<String, Object> param) {
 		
 		String rcode = String.valueOf(param.get("rcode"));
-		System.out.println(rcode);
 		List<ResionBean> roomBean = compDao.GetResionSIGUNGUList(rcode);
 		
 		return roomBean;
