@@ -29,7 +29,8 @@ ${path }
 		</c:forEach>
 	</select>
 	<select name="sigungu" onchange="addrDeps2Changed()">
-		<option value="">시/군/구</option>
+		<option>시/군/구</option>
+		<option value="000">전체</option>
 	</select>
 	<br><br><br><br><br><br>
 
@@ -47,7 +48,7 @@ ${path }
 	<br>
 	<c:forEach var="fac" items="${facLists }">
 		<c:if test="${fac.fgroup eq 'F1' }">
-			<input type="checkbox" name="fac1" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac1, fac.fnum) }">checked</c:if>>${fac.name }
+			<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
 		</c:if>
 	</c:forEach>
 	<br>
@@ -55,7 +56,7 @@ ${path }
 	<br>
 	<c:forEach var="fac" items="${facLists }">
 		<c:if test="${fac.fgroup eq 'F2' }">
-			<input type="checkbox" name="fac2" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac2, fac.fnum) }">checked</c:if>>${fac.name }
+			<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
 		</c:if>
 	</c:forEach>
 	<br>
@@ -74,7 +75,7 @@ ${path }
 	<c:forEach var="search" items="${sLists }">
 		<div class="testDiv">
 			<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
-			${search.addr }<br>
+			${search.region }<br>
 			${search.price }원<br>
 			${search.image }
 		</div>
@@ -88,23 +89,25 @@ ${path }
 		const pathname = window.location.pathname;
 		searchForm.action = pathname;
 		
+		// 달력 생성
 		const start = ${start};
 		const end = ${end};
 		const cal = new Calendar({start: start, end: end});
 		
-		const rcode = searchForm.sido.value;
-		const sigungu = searchForm.sigungu;
-		
 		// 지역 체크박스
 		if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-			const si = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
+			const sido = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
 			Array.from(searchForm.sido.children, (e)=> {
-				if(e.value === si) {
+				if(e.value === sido) {
 					e.selected = true;
 				}
 			});
-			changeSido();
 		}
+		else {
+			searchForm.sido.options[0].selected = true;
+		}
+		
+		changeSido();
 	}
 
 	function displayCal() {
@@ -119,14 +122,15 @@ ${path }
 		ele.parentElement.submit();
 	}
 	
-	// 주소 2deps 업데이트
+	// sido 선택하면
 	function changeSido() {
-		const rcode = searchForm.sido.value;
+
+		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu;
 		
 		const pathname = window.location.pathname;
 		
-		const obj = {rcode : rcode};
+		const obj = {rcode : sido};
 		const data = {
 				method: 'POST',
 				headers: {
@@ -138,20 +142,27 @@ ${path }
 		fetch('${contextPath}/getSIGUNGU.shop', data)
 		.then((res)=> res.json())
 		.then((result)=> {
-			sigungu.options.length = 1;
+			sigungu.options.length = 2;
 			result.forEach((e, i) => {
-				sigungu.options[i + 1] = new Option(e.sigungu, e.rcode);
+				sigungu.options[i + 2] = new Option(e.sigungu, e.rcode);
 			});
 		})
 		.then(()=> {
 			
+			// 2dept 체크처리
 			// fetch의 비동기 방식으로 인해서 2dept가 만들어진 이후 선택되야 한다.
 			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
+				const oldSido = pathname.match(/(\d{2})\d+\.shop/)[1];
+				
+				console.log(oldSido, sido)
 				
 				Array.from(searchForm.sigungu.children, (e)=> {
-					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];			
-					if(e.value === sigungu) {
+					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];	
+					if(sido + e.value === oldSido + sigungu) {
 						e.selected = true;
+					}
+					else {
+						e.selected = false;
 					}
 				});	
 			}
@@ -167,7 +178,9 @@ ${path }
 		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
 		const fac = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
 		
-		searchForm.action = url + fac + "/" + sido.concat(sigungu) + ".shop";
+		const rcode = sido.concat(sigungu).padEnd(5, 0);
+		
+		searchForm.action = url + fac + "/" + rcode + ".shop";
 		searchForm.submit();
 	}
 </script>
