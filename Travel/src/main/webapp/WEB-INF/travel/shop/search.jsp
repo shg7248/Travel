@@ -29,7 +29,7 @@ ${path }
 		</c:forEach>
 	</select>
 	<select name="sigungu" onchange="addrDeps2Changed()">
-		<option>시/군/구</option>
+		<option value="0">시/군/구</option>
 		<option value="000">전체</option>
 	</select>
 	<br><br><br><br><br><br>
@@ -173,6 +173,10 @@ ${path }
 		
 		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu.value;
+		
+		if(sigungu.value === 0)
+			return;
+		
 		const pathname = window.location.pathname;
 		
 		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
