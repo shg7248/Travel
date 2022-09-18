@@ -139,7 +139,7 @@ public class TravelLoginController {
 						session.setAttribute("email", login.getEmail());
 						
 						//로그인성공시 이동할 위치
-					return "redirect:/main.comp";
+					return "redirect:/comp/main.comp";
 					}
 					
 				}

@@ -10,7 +10,7 @@
 	    });
 	});
 </script>
-		<form method="post" action="insertAccom.comp" enctype="multipart/form-data" name="accomForm">
+		<form method="post" action="${contextPath }/accom/insert.comp" enctype="multipart/form-data" name="accomForm">
 		<input type="hidden" name="latitude" value="">
 		<input type="hidden" name="longitude" value="">
 		<input type="hidden" name="rcode" value="">
@@ -111,17 +111,22 @@
 	    level : 3 // 지도의 확대 레벨 
 	});
 	
+	 map.setDraggable(false);
+	 map.setZoomable(false);
+	
 	container.style.width = '100%';
 	container.style.height = '200px';
 	map.relayout();
 
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	const markers = [];
+	
 	function findAddress() {
 		new daum.Postcode({
 		    oncomplete: function(data) {
-		        const p = Promise.resolve(data);
-		        p.then((data) => {
-		        	
-		        	console.log(data);
+		        let promise = Promise.resolve(data);
+		        promise.then((data) => {
 		        	
 		        	accomForm.zip.value = data.zonecode;
 		        	accomForm.sido.value = data.sido;
@@ -129,35 +134,35 @@
 		        	accomForm.etcAddr.value = data.roadAddress.substr(data.sido.concat(data.sigungu).length + 2);
 		        	accomForm.rcode.value = data.bcode;
 		        	
-		        	var ps = new kakao.maps.services.Places();
-		        	
-		        	const p2 = Promise.resolve(data);
-					p2.then((data)=> {
-			        	ps.keywordSearch(data.address, (data, status, pagination) => {
-			        		
-			        		accomForm.latitude.value = data[0].y;
-			        		accomForm.longitude.value = data[0].x;
-			        		
-			         		var moveLatLon = new kakao.maps.LatLng(data[0].y, data[0].x);
-			         		map.setCenter(moveLatLon);
-			         		addMarker(moveLatLon);
-			         		
-			         	});
-					});	        	
-		        });
+		        	geocoder.addressSearch(data.address, (result, status) => {
+		        		
+		        		let promise = Promise.resolve(result);
+		        		promise.then((data3) => {
+		        			
+		        			accomForm.latitude.value = data3[0].y;
+		        			accomForm.longitude.value = data3[0].x;
+		        			
+		        			let moveLatLon = new kakao.maps.LatLng(data3[0].y, data3[0].x);
+		        			
+		        			map.setCenter(moveLatLon);
+		        			addMarker(moveLatLon);
+		        		});
+		        	});
+		        })
 		    }
 		}).open();
 	}
 	
 	function addMarker(position) {
 		
-		const lat = position.getLat();
-		const lng = position.getLng();
-		
 		var marker = new kakao.maps.Marker({
 			position: position
 		});
 		
+		if(markers.length === 1) 
+			markers.pop().setMap(null);
+			
+		markers.push(marker);
 		marker.setMap(map);
 	}
 </script>

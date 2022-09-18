@@ -29,7 +29,7 @@ public class AccomInsertController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/accom/insert.comp";
+	private final String command = "/comp/accom/insert.comp";
 	private String getPage = "accomInsertForm";
 	private String gotoPage = "redirect:detail.comp";
 	
