@@ -13,7 +13,7 @@
 			on a.rcode = re.rcode
 			where 1 = 1
 			<if test="fac != null">
-				and a.anum in(
+				and a.anum in (
 					with a as (
 						select anum, regexp_substr(fac1, '[^,]+', 1, level) as fac
 						from accom a
@@ -26,21 +26,16 @@
 						<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
 						and prior a.cnum = a.cnum
 						and prior dbms_random.value is not null
-					),
-					b as (
-						select anum, count(fac) fac
-						from a
-						where fac in (
-							select regexp_substr(#{fac}, '[^,]+', 1, level)
-							from dual
-							<![CDATA[connect by level <= (select regexp_count(#{fac}, '[^,]+') from dual)]]>
-						)
-						group by anum
-						having count(fac) = (select regexp_count(#{fac}, '[^,]+') from dual)
 					)
-					select anum 
-					from b
-					
+					select anum
+					from a
+					where fac in (
+						select regexp_substr(#{fac}, '[^,]+', 1, level)
+						from dual
+						<![CDATA[connect by level <= (select regexp_count(#{fac}, '[^,]+') from dual)]]>
+					)
+					group by anum
+					having count(fac) = (select regexp_count(#{fac}, '[^,]+') from dual)				
 				)
 			</if>
 			and r.rnum not in (

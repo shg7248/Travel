@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 				<div class="accom-detail__btns">
 			    	<%-- <c:if test="${empty requestScope.accom }"> --%>
-			        	<input type="button" value="등록하기" class="accom-detail__btn accom-detail__btn--insert" onclick="location.href='${contextPath }/accom/insert.comp'">
+			        	<input type="button" value="등록하기" class="accom-detail__btn accom-detail__btn--insert" onclick="location.href='${contextPath }/comp/accom/insert.comp'">
 			        <%-- </c:if> --%>
 			        <%-- <c:if test="${!empty requestScope.accom }"> --%>
 			        	<input type="button" value="수정하기" class="accom-detail__btn accom-detail__btn--update" onclick="location.href='${contextPath }/1/updateAccom.comp'">

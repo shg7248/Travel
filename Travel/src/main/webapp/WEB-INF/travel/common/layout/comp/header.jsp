@@ -10,8 +10,8 @@
 	    <nav class="nav">
 	        <div class="nav__inner">
 	            <ul class="nav__list">
-	                <li class="nav__item"><a href="${contextPath }/accom/detail.comp" class='nav__link <c:if test="${page eq 'ac' }">on</c:if>'>숙박지 정보</a></li>
-	                <li class="nav__item"><a href="${contextPath }/2/roomMain.comp" class='nav__link <c:if test="${page eq '2' }">on</c:if>'>객실 관리</a></li>
+	                <li class="nav__item"><a href="${contextPath }/comp/accom/detail.comp" class='nav__link'>숙박지 정보</a></li>
+	                <li class="nav__item"><a href="${contextPath }/comp/room/main.comp" class='nav__link'>객실 관리</a></li>
 	                <li class="nav__item"><a href="#" class="nav__link">객실이용 후기</a></li>
 	                <li class="nav__item">
 	                	<a href="#" class="nav__link">사업자 정보</a>

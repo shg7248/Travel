@@ -1,4 +1,4 @@
-package comp.controller;
+package shop.controller;
 
 import java.util.List;
 
