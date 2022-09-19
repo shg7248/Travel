@@ -10,10 +10,10 @@
 	    });
 	});
 </script>
-		<form method="post" action="${contextPath }/comp/accom/insert.comp" enctype="multipart/form-data" name="accomForm">
-		<input type="hidden" name="latitude" value="">
-		<input type="hidden" name="longitude" value="">
-		<input type="hidden" name="rcode" value="">
+		<form method="post" action="${contextPath }/comp/accom/update.comp" enctype="multipart/form-data" name="accomForm">
+		<input type="hidden" name="latitude" value="${ab.latitude }">
+		<input type="hidden" name="longitude" value="${ab.longitude }">
+		<input type="hidden" name="rcode" value="${ab.rcode }">
 		<table class="accom-insert__form">
 			<tr>
 				<th>사업자 등록번호</th>
@@ -22,12 +22,12 @@
 				</td>
 			</tr>
 			<tr>
-				<th>숙박지 종류</th>
+				<th>숙박지 종류${ab.canum }</th>
 				<td>
 					<select name="canum">
 						<option>종류를 선택하세요</option>
 						<c:forEach var="cate" items="${caLists }">
-							<option value="${cate.canum }">${cate.caname }</option>
+							<option value="${cate.canum }" <c:if test="${cate.canum eq ab.canum }">selected</c:if>>${cate.caname }</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -35,7 +35,7 @@
 			<tr>
 				<th>숙박지 이름</th>
 				<td>
-					<input type="text" name="name">
+					<input type="text" name="name" value="${ab.name }">
 				</td>
 			</tr>
 			<tr>
@@ -43,10 +43,10 @@
 				<td>
 					<p class="table__msg--import">※ 주소 입력 버튼을 눌러 숙박지를 선택하면 자동으로 입력됩니다.</p>
 					<input type="button" value="주소 입력" onclick="findAddress()"><br><br>
-					우편번호<br><input type="text" name="zip" readonly="readonly"><br>
-					시/도<br><input type="text" name="sido" readonly="readonly"><br>
-					시/군/구<br><input type="text" name="sigungu" readonly="readonly"><br>
-					상세주소<br><input type="text" name="etcAddr" readonly="readonly"><br>
+					우편번호<br><input type="text" name="zip" readonly="readonly" value="${ab.zip }"><br>
+					시/도<br><input type="text" name="sido" readonly="readonly" value="${ab.sido }"><br>
+					시/군/구<br><input type="text" name="sigungu" readonly="readonly" value="${ab.sigungu }"><br>
+					상세주소<br><input type="text" name="etcAddr" readonly="readonly" value="${ab.etcAddr }"><br>
 				</td>
 			</tr>
 			<tr>
@@ -57,7 +57,7 @@
 				<td>
 					<c:forEach var="fac" items="${fLists }">
 						<c:if test="${fac.fgroup eq 'F1' }">
-							<input type="checkbox" name="fac1" value="${fac.fnum }">${fac.name }
+							<input type="checkbox" name="fac1" value="${fac.fnum }" <c:if test="${fn:contains(ab.fac1, fac.fnum) }">checked</c:if>>${fac.name }
 						</c:if>
 					</c:forEach>
 				</td>
@@ -67,7 +67,7 @@
 				<td>
 					<c:forEach var="fac" items="${fLists }">
 						<c:if test="${fac.fgroup eq 'F2' }">
-							<input type="checkbox" name="fac2" value="${fac.fnum }">${fac.name }
+							<input type="checkbox" name="fac2" value="${fac.fnum }" <c:if test="${fn:contains(ab.fac2, fac.fnum) }">checked</c:if>>${fac.name }
 						</c:if>
 					</c:forEach>
 				</td>
@@ -75,29 +75,29 @@
 			<tr>
 				<th>입실시간</th>
 				<td>
-					<input type="text" name="startTime">
+					<input type="text" name="startTime" value="${ab.startTime }">
 				</td>
 			</tr>
 			<tr>
 				<th>퇴실시간</th>
 				<td>
-					<input type="text" name="endTime">
+					<input type="text" name="endTime" value="${ab.endTime }">
 				</td>
 			</tr>
 			<tr>
 				<th>숙박지 이미지</th>
 				<td>
-					<input type="file" name="upload">
+					<input type="file" name="upload" multiple="multiple">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea rows="" cols="" name="info" id="summernote"></textarea>
+					<textarea rows="" cols="" name="info" id="summernote">${ab.info }</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="등록">
+					<input type="submit" value="수정">
 				</td>
 			</tr>
 		</table>
@@ -111,17 +111,25 @@
 	    level : 3 // 지도의 확대 레벨 
 	});
 	
+	const markers = [];
+	
 	 map.setDraggable(false);
 	 map.setZoomable(false);
+	 
+	 let moveLatLon = new kakao.maps.LatLng('${ab.latitude }', '${ab.longitude }');
+	 map.setCenter(moveLatLon);
+	 addMarker(moveLatLon);
 	
 	container.style.width = '100%';
 	container.style.height = '200px';
 	map.relayout();
 
 	var geocoder = new kakao.maps.services.Geocoder();
+	map.setCenter(moveLatLon);
 
-	const markers = [];
 	
+	// 수정에선 분리
+	//
 	function findAddress() {
 		new daum.Postcode({
 		    oncomplete: function(data) {

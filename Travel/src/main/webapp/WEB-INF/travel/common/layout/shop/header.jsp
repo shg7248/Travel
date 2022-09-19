@@ -43,6 +43,5 @@
 		</nav>
 	</div>
 </header>
-
-사용자: ${sessionScope.userInfo.email }<br>
-사업자: ${sessionScope.loginInfo.email }<br>
+<main class="main">
+	<div class="main__inner">

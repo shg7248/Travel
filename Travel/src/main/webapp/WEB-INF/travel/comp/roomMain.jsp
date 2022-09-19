@@ -25,7 +25,7 @@
 	<div class="tempDiv">
 		${room.name }
 		<div>
-			<a href="detail.comp?rnum=${room.rnum }">상세/수정</a>
+			<a href="${contextPath }/comp/room/detail.comp?rnum=${room.rnum }">상세/수정</a>
 			<a href="">삭제</a>
 		</div>
 	</div>

@@ -6,7 +6,7 @@
 			        	<input type="button" value="등록하기" class="accom-detail__btn accom-detail__btn--insert" onclick="location.href='${contextPath }/comp/accom/insert.comp'">
 			        <%-- </c:if> --%>
 			        <%-- <c:if test="${!empty requestScope.accom }"> --%>
-			        	<input type="button" value="수정하기" class="accom-detail__btn accom-detail__btn--update" onclick="location.href='${contextPath }/1/updateAccom.comp'">
+			        	<input type="button" value="수정하기" class="accom-detail__btn accom-detail__btn--update" onclick="location.href='${contextPath }/comp/accom/update.comp?anum=${requestScope.accom.anum }'">
 					<%-- </c:if> --%>
 				</div>
 		        
@@ -17,6 +17,9 @@
 						</tr>
 		         	</c:if>
 		         	<c:if test="${!empty requestScope.accom }">
+			        	<tr>
+			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/${requestScope.accom.image }"></td>
+			        	</tr>
 			        	<tr>
 			        		<td>사업자 등록번호</td>
 			        		<td>${requestScope.accom.cnum }</td>
