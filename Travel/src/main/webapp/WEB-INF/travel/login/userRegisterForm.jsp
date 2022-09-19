@@ -5,11 +5,15 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-
-
 $(document).ready(function(){
+	//정규식 10글자 이상
+	rex = /^.{10,15}$/;
+	//이메일체크
 	checkEmail = false;
+	//비번일치체크
 	checkPwd = false;
+	//비번정규식체크
+	checkPwdRex = false;
 
 $("input[name='confirm']").click(function(){
 	$.ajax({
@@ -30,8 +34,13 @@ $("input[name='confirm']").click(function(){
         		$("#checkMsg").css("color","red");
         		$("#checkMsg").show();
         		checkEmail = false;
-        	}else{
-        		$("#checkMsg").text(" 이메일을 입력하세요.");
+        	}else if (data == "null"){
+        		$("#checkMsg").text("이메일을 입력하세요.");
+        		$("#checkMsg").css("color","red");
+        		$("#checkMsg").show();
+        		checkEmail = false;
+        	}else if (data == "no"){
+        		$("#checkMsg").text("이메일 형식이 아닙니다.");
         		$("#checkMsg").css("color","red");
         		$("#checkMsg").show();
         		checkEmail = false;
@@ -55,83 +64,142 @@ $('input[name="email"]').keydown(function(){
 $('input[name="pwd2"]').on({
 	keyup: function(){
 	if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
-		$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
-		$("#pwdMsg").css("color","red");
+		$("#pwd2Msg").text("비밀번호가 일치하지 않습니다.");
 		checkPwd = false;
 	}else{
-		$("#pwdMsg").text("비밀번호가 일치합니다.");
-		$("#pwdMsg").css("color","green");
+		$("#pwd2Msg").text("");
 		checkPwd = true;
 		}
 	},
 	click: function(){
 		if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
-			$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
-			$("#pwdMsg").css("color","red");
+			$("#pwd2Msg").text("비밀번호가 일치하지 않습니다.");
 			checkPwd = false;
 		}else{
-			$("#pwdMsg").text("비밀번호가 일치합니다.");
-			$("#pwdMsg").css("color","green");
+			$("#pwd2Msg").text("");
 			checkPwd = true;
 			}
 		}
 	});
 	
+	//pwd값이 생기면 정규식테스트
+	$('input[name="pwd"]').keyup(function(){
+			if(!rex.test($('input[name="pwd"]').val())){
+				$('#pwdMsg').text("10글자이상 입력해주세요.");
+				checkPwdRex = false;
+			}else{
+				$('#pwdMsg').text("");
+				checkPwdRex = true;
+			}
+		});
+	
+	//현재 내비번과 확인이 같으면
+	if($('input[name="pwd"]').val() != ""){
+		if($('input[name="pwd"]').val() == $('input[name="pwd2"]').val()){
+			checkPwd = true;
+		}
+	}
+	
 });//ready
 
 function allCk(){
+	
+	
+	//공백확인
+	if($('input[name="name"]').val() == ""){
+		$('#nameMsg').text("이름을 입력하세요");
+		f.name.focus();
+		return false;
+	}
+	
+	if($('input[name="email"]').val() == ""){
+		$("#checkMsg").show();
+		$('#checkMsg').text("이메일을 입력하세요");
+		f.email.focus();
+		return false;
+	}
+	
+	//소셜로그인이메일
+	if($('input[name="flatform"]').val() != ""){
+		checkEmail = true;
+		checkPwd = true;
+		checkPwdRex = true;
+	}else{
+		if($('input[name="pwd"]').val() == ""){
+			$('#pwdMsg').text("비밀번호를 입력하세요");
+			f.pwd.focus();
+			return false;
+		}
+		
+		if($('input[name="pwd2"]').val() == ""){
+			$('#pwd2Msg').text("비밀번호를 입력하세요");
+			f.pwd2.focus();
+			return false;
+		}
+	}
+	
+	//이메일 중복체크
 	if(!checkEmail){
 		alert("이메일 중복체크하세요.");
 		f.email.focus();
 		return false;
 	}
+	
+	//비밀번호 다름
 	if(!checkPwd){
 		alert("비밀번호를 확인하세요.");
 		f.pwd2.focus();
 		return false;
 	}
 	
+	if(!checkPwdRex){
+		alert("비밀번호를 확인하세요.");
+		f.pwd2.focus();
+		return false;
+	}
 }
 </script>
 <body>
 userRegisterForm.jsp
 <div class="all">
-<form:form commandName="tubean" name="f" method="post" action="userRegisterForm.log" >
+<form name="f" method="post" action="userRegisterForm.log" >
 <input type="hidden" name="phone" value="${param.phone }">
+<input type="hidden" name="flatform" value="${param.flatform }">
 
 <div class="div">
 <label for="name">이름</label>
-<input type="text" name="name" id="name" value="${tubean.name }" placeholder="이름을 입력해주세요.">
-<form:errors path="name" cssClass="err" />
+<input type="text" name="name" id="name" value="${param.name }" placeholder="이름을 입력해주세요.">
+<font id="nameMsg" class="msg err"></font>
 </div>
-
 <div class="div">
 <label for="email">이메일</label> 
-<input type="text" name="email" id="email" value="${tubean.email }" placeholder="이메일을 입력해주세요.">
-<font id="checkMsg"></font>
-<form:errors path="email" cssClass="err" />
 
+<input type="text" name="email" id="email" value="${param.email }" placeholder="이메일을 입력해주세요." 
+<c:if test="${email ne '' }"> readonly </c:if>
+>
+<font id="checkMsg" class="msg err"></font>
+<c:if test="${email eq '' }">
 <input type="button" class="confirm" name="confirm" value="중복확인">
-
+</c:if>
 </div>
 
-
+<c:if test="${param.flatform eq '' }">
 <div class="div">
 <label for="pwd">비밀번호</label>  
-<input type="text" name="pwd" id="pwd" value="${tubean.pwd }" placeholder="비밀번호를 입력해주세요.">
-<form:errors path="pwd" cssClass="err" />
+<input type="text" name="pwd" id="pwd" value="${param.pwd }" placeholder="비밀번호를 입력해주세요.">
+<font id="pwdMsg" class="msg err"></font>
 </div>
 
 
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
 <input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwdMsg" class="err"></font>
+<font id="pwd2Msg" class="msg err"></font>
 </div>
-
+</c:if>
 
 <input type="submit" value="회원가입" onclick="return allCk()">
 <input type="reset" name="" value="다시입력">
-</form:form>
+</form>
 </div>
 </body>

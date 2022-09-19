@@ -50,10 +50,10 @@ public class TravelLoginController {
 			HttpSession session) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
 		//입력한 이메일과 비밀번호
 		System.out.println("email:" + tubean.getEmail());
 		System.out.println("password:" + tubean.getPwd());
-		PrintWriter writer = response.getWriter();
 
 		//한계정 로그인 정보
 		TravelUserBean login = tudao.getMember(tubean.getEmail());
@@ -68,7 +68,15 @@ public class TravelLoginController {
 		}
 		else {// 일치하는 아이디 존재
 			System.out.println("login.getPwd(): " + login.getPwd());
-			if(tubean.getPwd().equals(login.getPwd())) {
+			
+			//비밀번호가 null이면 다른플랫폼 계정
+			if(login.getPwd().equals(null)) {
+				writer.println("<script type='text/javascript'>");
+				writer.println("alert('"+login.getFlatform()+"계정으로 로그인해주세요.'); ");
+				writer.println("</script>");
+				writer.flush();
+				
+			}else if(tubean.getPwd().equals(login.getPwd())) {
 				System.out.println("가입한 회원");
 				session.setAttribute("userInfo", login);
 				session.setAttribute("mnum", login.getMnum());
@@ -77,8 +85,7 @@ public class TravelLoginController {
 				//로그인성공시 이동할 위치
 			return "redirect:/";
 				
-			}
-			else { // 비번이 일치하지 않을 때
+			}else { // 비번이 일치하지 않을 때
 				writer.println("<script type='text/javascript'>");
 				writer.println("alert('비번이 일치하지 않습니다.'); ");
 				writer.println("</script>");

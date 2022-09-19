@@ -2,6 +2,7 @@ package login.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -45,29 +46,44 @@ public class TravelRegisterController {
 	
 	//phoneAuthForm.jsp > userRegisterForm.jsp
 	@RequestMapping(method = RequestMethod.GET,value = command)
-	public ModelAndView userRegister(@RequestParam(value = "phone") String phone) {
+	public ModelAndView userRegister(@RequestParam(value = "phone") String phone,
+			@RequestParam(required = false) String email,
+			@RequestParam(required = false) String flatform) {
 
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName(getPage);
-		mav.addObject("phone", phone);
-		System.out.println("phone"+ phone);
+		
+		System.out.println("phone: "+ phone);
+		System.out.println("email: "+ email);
+		System.out.println("flatform: "+ flatform);
 		
 		return mav;
 	}
 
 	//userRegisterForm.jsp > userRegisterEnd.jsp
 	@RequestMapping(method = RequestMethod.POST,value = command)
-	public ModelAndView userRegister(@ModelAttribute("tubean") @Valid TravelUserBean tubean,BindingResult br,
-			@RequestParam("phone") String phone
+	public ModelAndView userRegister(TravelUserBean tubean,
+			@RequestParam("phone") String phone,
+			@RequestParam(required = false) String email
 			) {
 		
 		ModelAndView mav = new ModelAndView();
-		if(br.hasErrors()){
-			mav.setViewName(getPage);
-			return mav;
-		}
+		System.out.println("flatform: "+tubean.getFlatform());
+		System.out.println("Pwd: "+tubean.getPwd());
+		
 		//받아온 phone 넣기
 		tubean.setPhone(phone);
+		
+		//플랫폼 null이면 home값넣기
+		if(tubean.getFlatform().equals(null)) {
+			tubean.setFlatform("home");
+		}
+		//pwd null이면 flatform넣기
+		if(tubean.getPwd() == null) {
+			tubean.setPwd("flatform");
+		}
+		System.out.println("변경된 비밀번호:"+tubean.getPwd());
 		//user회원가입
 		tudao.insert(tubean);
 		
@@ -135,13 +151,21 @@ public class TravelRegisterController {
 	@RequestMapping(value = command3 ,method = RequestMethod.POST)
 	public String ajaxUser(String email) {
 		System.out.println("email"+email);
-		int cnt = tudao.emailCheck(email);
+		String rex = "^(.+)@(.+)$"; // 이메일 형식인지
+		
 		if(email == "") {
 			return "null";
-		}else if(cnt > 0 ) {
-			return "fail";
+		}
+
+		if(Pattern.matches(rex, email)) {
+			int cnt = tudao.emailCheck(email);
+			if(cnt > 0 ) {
+				return "fail";
+			}else {
+				return "ok";
+			}
 		}else {
-			return "ok";
+			return "no";
 		}
 	}
 	

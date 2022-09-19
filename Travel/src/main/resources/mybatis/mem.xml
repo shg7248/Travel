@@ -29,4 +29,10 @@
 		delete member 
 		where mnum = #{mnum}
 	</delete>
+	
+	<select id="SearchAccount" resultType="int">
+		select count(*)
+		from account
+		where accnum = #{accnum}
+	</select>
 </mapper>
