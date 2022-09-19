@@ -175,10 +175,10 @@ userRegisterForm.jsp
 <label for="email">이메일</label> 
 
 <input type="text" name="email" id="email" value="${param.email }" placeholder="이메일을 입력해주세요." 
-<c:if test="${email ne '' }"> readonly </c:if>
+<c:if test="${param.flatform ne '' }"> readonly </c:if>
 >
 <font id="checkMsg" class="msg err"></font>
-<c:if test="${email eq '' }">
+<c:if test="${param.flatform eq '' }">
 <input type="button" class="confirm" name="confirm" value="중복확인">
 </c:if>
 </div>
