@@ -15,12 +15,6 @@
 	}
 </style>
 
-<!-- 
-	지역을 바꾸면 전부 초기화되면서 새로고침이 되고 다른 요소로 인해서 절대 바뀌지 않는다.
-	기간을 선택하면 지역은 그대로고 다른것들은 전부 초기화 된다.
- -->
-
-${path }
 <form method="post" name="searchForm">
 	지역 
 	<select name="sido" onchange="changeSido()">
@@ -29,7 +23,7 @@ ${path }
 		</c:forEach>
 	</select>
 	<select name="sigungu" onchange="addrDeps2Changed()">
-		<option>시/군/구</option>
+		<option value="0">시/군/구</option>
 		<option value="000">전체</option>
 	</select>
 	<br><br><br><br><br><br>
@@ -153,9 +147,6 @@ ${path }
 			// fetch의 비동기 방식으로 인해서 2dept가 만들어진 이후 선택되야 한다.
 			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
 				const oldSido = pathname.match(/(\d{2})\d+\.shop/)[1];
-				
-				console.log(oldSido, sido)
-				
 				Array.from(searchForm.sigungu.children, (e)=> {
 					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];	
 					if(sido + e.value === oldSido + sigungu) {
@@ -173,6 +164,10 @@ ${path }
 		
 		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu.value;
+		
+		if(sigungu.value === 0)
+			return;
+		
 		const pathname = window.location.pathname;
 		
 		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];

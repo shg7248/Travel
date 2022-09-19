@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 
-<form method="post" action="roomInsert.comp" enctype="multipart/form-data">
+<form method="post" action="insert.comp" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td>이름</td>
