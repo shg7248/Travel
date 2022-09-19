@@ -10,7 +10,7 @@
 }
 </style>
 eventInsertForm.jsp<br>
-
+<center>
 <form:form commandName="board1" method="post" action="insertevent.brd" enctype="multipart/form-data">
 	<h2 align="center">이벤트 입력 화면</h2>
 	<input type="hidden" name="type" value="event">
@@ -23,3 +23,4 @@ eventInsertForm.jsp<br>
 	<form:errors cssClass="err" path="content"/><br>
 	<input type="submit" value="입력하기">
 </form:form>
+</center>

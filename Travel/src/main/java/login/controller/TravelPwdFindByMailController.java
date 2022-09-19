@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import login.model.TravelCompanyBean;
 import login.model.TravelCompanyDao;
+import login.model.TravelUserBean;
+import login.model.TravelUserDao;
 
 @Controller
 public class TravelPwdFindByMailController {
-	private final String command="ownerFindPwd.log";
+	private final String command1="userFindPwd.log";
+	private final String command2="ownerFindPwd.log";
 	private String getPage="/ownerFindPwdForm";
 	private String gotoPage="redirect:/checkVcode.log";
 	
@@ -31,19 +34,73 @@ public class TravelPwdFindByMailController {
 	TravelCompanyDao tcdao;
 	
 	@Autowired
+	TravelUserDao tudao;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 	
-	//ownerPwdForm.jsp > codeCheck.jsp
-	@RequestMapping(value = command)
-	public String sendVcode(@RequestParam("ownerEmail1") String ownerEmail1,
-								@RequestParam("ownerEmail2") String ownerEmail2,
+	//userPwdForm.jsp > codeCheck.jsp
+	@RequestMapping(value = command1)
+	public String sendUserVcode(@RequestParam("userEmail1") String userEmail1,
+								@RequestParam("userEmail2") String userEmail2,
 								HttpServletResponse response, HttpSession session) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
-		System.out.println("mailcontroller를 거쳐갔는가");
+		String userEmail = userEmail1+userEmail2;
+		System.out.println(userEmail);
+
+		TravelUserBean tub = tudao.getMember(userEmail);
+		
+//		System.out.println("TravelCompanyBean서가져온값: "+tcb.getEmail());
+		if(tub != null) {
+			if(userEmail.equals(tub.getEmail())) {
+				//0~9까지 랜덤숫자 6개 생성 verification_code = Vcode
+				String vcode ="";
+				for(int i =0;i<6;i++) {
+					vcode += (int)(Math.random()*10);
+				}
+//				System.out.println("Vcode의 갯수:"+vcode.length());
+//				System.out.println("Vcode:"+vcode);
+				try {
+					
+					MimeMessage mimeMessage = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					
+					messageHelper.setFrom("admin"); 						// 보내는사람 이메일 여기선 google 메일서버 사용하는 아이디를 작성하면됨
+					messageHelper.setTo(tub.getEmail());					// 받는사람 이메일
+					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );	// 메일제목
+					messageHelper.setText(
+							"text/html","비밀번호 찾기에 관한 인증 번호는 다음과 같습니다.<br><hr>"
+									+ "<br>"+vcode+"<br><hr><br>");
+					//메일보내기
+					mailSender.send(mimeMessage);
+				} catch (MessagingException e) {
+					System.out.println("메일 발송 실패");
+				}
+				
+				session.setAttribute("vcode", vcode);
+				session.setAttribute("userEmail",userEmail);
+				session.setAttribute("findPwdtype","user");
+				return gotoPage;
+			}
+		}
+		writer.println("<script type='text/javascript'>");
+		writer.println("alert('해당하는 이메일의 회원이 없습니다.'); ");
+		writer.println("</script>");
+		writer.flush();
+		return getPage;
+	}
+	
+	//ownerPwdForm.jsp > codeCheck.jsp
+	@RequestMapping(value = command2)
+	public String sendOwnerVcode(@RequestParam("ownerEmail1") String ownerEmail1,
+			@RequestParam("ownerEmail2") String ownerEmail2,
+			HttpServletResponse response, HttpSession session) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
 		String ownerEmail = ownerEmail1+ownerEmail2;
 		System.out.println(ownerEmail);
-
+		
 		TravelCompanyBean tcb = tcdao.getMember(ownerEmail);
 		
 //		System.out.println("TravelCompanyBean서가져온값: "+tcb.getEmail());
@@ -75,6 +132,7 @@ public class TravelPwdFindByMailController {
 				
 				session.setAttribute("vcode", vcode);
 				session.setAttribute("ownerEmail",ownerEmail);
+				session.setAttribute("findPwdtype","owner");
 				return gotoPage;
 			}
 		}
