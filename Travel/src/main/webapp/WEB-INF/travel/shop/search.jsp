@@ -4,77 +4,125 @@
 <script src="${contextPath }/resources/js/calendar.js"></script>
 <link rel="stylesheet" href="${contextPath }/resources/css/calendar.css">
 <style>
-	.testDiv {
-		width: 400px;
-		height: 200px;
-		border: 1px solid black;
+	.search-wrap {
+		display: grid;
+		grid-template-columns: repeat(16, 1fr);
+		column-gap: 10px;
 	}
 	
-	form {
-		border: 1px solid black;
+	.search-wrap__options {
+		grid-column: 1 / 5;
+	}
+	
+	.search-wrap__result {
+		grid-column: 5 / 17;
+	}
+	.region__title {
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.search-wrap__region {
+		padding: 20px;
+		text-align: center;
+	}
+	.region__list {
+		width: 100%;
+		height: 40px;
+		border-radius: 10px;
+		border: 1px solid rgb(209, 209, 209);
+		text-align: center;
+	}
+	.region__list--sigungu {
+		margin-top: 10px;
+	}
+	.search-wrap__submit {
+		padding: 20px;
+	}
+	.search-wrap__btn {
+		width: 100%;
+		height: 40px;
+		background: #ff6060;
+		border-radius: 10px;
+		border: none;
+		color: white;
+		font-weight: bold;
 	}
 </style>
 
-<form method="post" name="searchForm">
-	지역 
-	<select name="sido" onchange="changeSido()">
-		<c:forEach var="resion" items="${rLists }">
-			<option value="${resion.rcode }">${resion.sido }</option>
-		</c:forEach>
-	</select>
-	<select name="sigungu" onchange="addrDeps2Changed()">
-		<option value="0">시/군/구</option>
-		<option value="000">전체</option>
-	</select>
-	<br><br><br><br><br><br>
+<section class="section">
+	<div class="search-wrap">
+		<article class="article search-wrap__options">
+			<form method="post" name="searchForm">
+				<div class="search-wrap__region">
+					<div class="region">
+						<p class="region__title">지역</p> 
+						<select class="region__list region__list--sido" name="sido" onchange="changeSido()">
+							<c:forEach var="resion" items="${rLists }">
+								<option class="region__item" value="${resion.rcode }">${resion.sido }</option>
+							</c:forEach>
+						</select>
+						<select class="region__list region__list--sigungu" name="sigungu" onchange="addrDeps2Changed()">
+							<option class="region__item" value="0">시/군/구</option>
+							<option class="region__item" value="000">전체</option>
+						</select>
+					</div>
+				</div>
+				<div class="search-wrap__submit">
+					<input class="search-wrap__btn" type="submit" value="검색" />
+				</div>
+				<div class="search-wrap__price">
+					<p class="region__title">가격</p> 
+					<input class="search-wrap__price" type="text" name="price" value="${searchBean.price }"/>
+				</div>
+				인원 <input type="text" name="count" value="${searchBean.count }"/>
+				<br>
+				기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
+				${start } ~ ${end }
+				<br>
+				<div class="calendar"></div>
+				<input type="hidden" name="start" value="${start }">
+				<input type="hidden" name="end" value="${end }">
+				<input type="hidden" name="sort" value="${searchBean.sort }">
+				<br>
+				공용시설
+				<br>
+				<c:forEach var="fac" items="${facLists }">
+					<c:if test="${fac.fgroup eq 'F1' }">
+						<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
+					</c:if>
+				</c:forEach>
+				<br>
+				객실 내 시설
+				<br>
+				<c:forEach var="fac" items="${facLists }">
+					<c:if test="${fac.fgroup eq 'F2' }">
+						<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
+					</c:if>
+				</c:forEach>
+				<br>
+			</form>
+		</article>
+		<article class="article search-wrap__result">
+			<a href="javascript:sort('HIT')">추천 높은순</a>
+			<a href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
+			<a href="javascript:sort('LOWPRICE')">가격 낮은순</a>
+			<c:if test="${empty sLists }">
+				<h2>찾으시는 정보가 존재하지 않습니다.</h2>
+			</c:if>
+			<c:if test="${!empty sLists }">
+				<c:forEach var="search" items="${sLists }">
+					<div class="testDiv">
+						<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
+						${search.region }<br>
+						${search.price }원<br>
+						${search.image }
+					</div>
+				</c:forEach>
+			</c:if>
+		</article>
+	</div>
+</section>
 
-	<input type="submit" value="검색" />
-	<br>
-	기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
-	${start } ~ ${end }
-	<br>
-	<div class="calendar"></div>
-	<input type="hidden" name="start" value="${start }">
-	<input type="hidden" name="end" value="${end }">
-	<input type="hidden" name="sort" value="${searchBean.sort }">
-	<br>
-	공용시설
-	<br>
-	<c:forEach var="fac" items="${facLists }">
-		<c:if test="${fac.fgroup eq 'F1' }">
-			<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
-		</c:if>
-	</c:forEach>
-	<br>
-	객실 내 시설
-	<br>
-	<c:forEach var="fac" items="${facLists }">
-		<c:if test="${fac.fgroup eq 'F2' }">
-			<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
-		</c:if>
-	</c:forEach>
-	<br>
-	인원 <input type="text" name="count" value="${searchBean.count }"/>
-	<br>
-	가격 <input type="text" name="price" value="${searchBean.price }"/>
-	<br>
-</form>
-<a href="javascript:sort('HIT')">추천 높은순</a>
-<a href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
-<a href="javascript:sort('LOWPRICE')">가격 낮은순</a>
-<c:if test="${empty sLists }">
-	<h2>찾으시는 정보가 존재하지 않습니다.</h2>
-</c:if>
-<c:if test="${!empty sLists }">
-	<c:forEach var="search" items="${sLists }">
-		<div class="testDiv">
-			<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
-			${search.region }<br>
-			${search.price }원<br>
-			${search.image }
-		</div>
-	</c:forEach>
-</c:if>
 <script>
 
 	window.onload = function() {
