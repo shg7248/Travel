@@ -41,20 +41,36 @@
 	</insert>
 	
 	<select id="GetAccomByAnum" resultType="AccomBean">
-		select anum, cnum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
+		select anum, cnum, canum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
 		from accom a
 	    inner join region r
 	    on a.rcode = r.rcode
 		where anum = #{anum}
 	</select>
 	
+	<select id="GetAccomByAnumForUpdate" resultType="AccomBean">
+		select a.anum, a.canum, a.name, a.zip, r.sido, r.sigungu, a.etcAddr, a.fac1, a.fac2, a.startTime, a.endTime, a.image, a.latitude, a.longitude, r.rcode, a.info
+		from accom a
+		inner join region r
+		on a.rcode = r.rcode
+		where anum = #{anum}	
+	</select>
+	
 	<select id="GetAccomByCnum" resultType="AccomBean">
-		select anum, cnum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
+		select anum, cnum, canum, r.sido, r.sigungu, a.etcAddr, a.name as name, info, replaceFac(fac1, cnum) as fac1, replaceFac(fac2, cnum) as fac2, starttime, endtime, latitude, longitude, image, a.reg_date
 		from accom a
 	    inner join region r
 	    on a.rcode = r.rcode
 		where cnum = #{cnum}
 	</select>
+	
+	<update id="UpdateAccomByCnum">
+		update accom set canum = #{canum}, name = #{name}, zip = #{zip}, rcode = #{rcode}, etcaddr = #{etcAddr}, info = #{info}, fac1 = #{fac1}, fac2 = #{fac2}, starttime = #{startTime}, endtime = #{endTime}, latitude = #{latitude}, longitude = #{longitude} 
+		<if test="image != null">
+			, image = #{image}
+		</if>
+		where cnum = #{cnum}
+	</update>
 	
 	<insert id="InsertRoom">
 		insert into room (rnum, anum, name, info, price, sale, image, max, reg_date)
