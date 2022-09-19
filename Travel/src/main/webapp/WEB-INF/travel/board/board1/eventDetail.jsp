@@ -4,6 +4,7 @@
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 
 eventDetail.jsp<br>
+<center>
 <table>
 	<tr>
 		<td>${bb.subject }</td>
@@ -15,10 +16,11 @@ eventDetail.jsp<br>
 		<td>
 			<c:set var="email" value='<%=(String)session.getAttribute("email") %>'/>
 			<c:if test="${email eq 'admin' }">
-				<input type="button" value="수정" onclick="location.href='eventupdate.brd?nnum=${bb.nnum}'">
+				<input type="button" value="수정" onclick="location.href='eventupdate.brd?nnum=${bb.nnum}&pageNumber=${pageNumber}'">
 				<input type="button" value="삭제" onclick="location.href='eventdelete.brd?nnum=${bb.nnum}'">
 			</c:if>
-			<input type="button" value="목록보기" onclick="location.href='eventlist.brd'">
+			<input type="button" value="목록보기" onclick="location.href='eventlist.brd?pageNumber=${pageNumber}'">
 		</td>
 	</tr>
 </table>
+</center>

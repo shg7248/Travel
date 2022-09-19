@@ -11,13 +11,15 @@
 			</c:if>
 			<c:if test="${!empty userInfo }">
 				<li class="sub-menu__item"><a href="${contextPath }/memberInfo.mem">내정보</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/logout.log">로그아웃</a></li>
 			</c:if>
 			<c:if test="${!empty loginInfo }">
 				<li class="sub-menu__item"><a href="${contextPath }/memberInfo.mem">숙소정보</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/logout.log">로그아웃</a></li>
 			</c:if>
 				<li class="sub-menu__item"><a href="">예약내역</a></li>
 				<li class="sub-menu__item">
-					<a href="">더보기</a>
+					<a href="${contextPath }/noticelist.brd">더보기</a>
 					<ul class="temp">
 						<li><a href="${contextPath }/noticelist.brd">공지사항</a></li>
 						<li><a href="${contextPath }/eventlist.brd">이벤트</a></li>

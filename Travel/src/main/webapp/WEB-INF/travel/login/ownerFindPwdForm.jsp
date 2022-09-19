@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
-<style>
-.num{
-	display: none;
-}
-</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
@@ -21,7 +16,6 @@ $(document).ready(function(){
 </script>
 <body>
 	<h2>비밀번호 찾기</h2>
-<form action="ownerPwdForm.log" method="post">
 	<label for="email">이메일</label>
 	<input type="text" class="form-control" name="ownerEmail1" id="ownerEmail1" placeholder="이메일">
 	<select class="form-control" name="ownerEmail2" id="ownerEmail2">
@@ -31,6 +25,5 @@ $(document).ready(function(){
 		<option>@hanmail.com</option>
 		<option>@yahoo.co.kr</option>
 	</select>
-	<input type="button" name="sendVcode" value="인증번호 발송하기"><br><br>
-</form>
+	<input type="button" name="sendVcode" value="인증번호 발송하기">
 </body>
