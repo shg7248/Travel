@@ -11,8 +11,6 @@ public class TravelFindPwdController {
 	private final String command2 = "ownerFindPwdForm.log";
 	private String getPage1 = "/userFindPwdForm";
 	private String getPage2 = "/ownerFindPwdForm";
-	private String gotoPage1 = "redirect:/";
-	private String gotoPage2 = "redirect:/";
 
 	//userLoginForm.jsp > userPwdForm.jsp
 	@RequestMapping(value = command1,method = RequestMethod.GET)
@@ -25,15 +23,5 @@ public class TravelFindPwdController {
 	public String ownerpwdfind() {
 		
 		return getPage2;
-	}
-	
-	@RequestMapping(value = command1,method = RequestMethod.POST)
-	public void userpwdfindmail() {
-		
-	}
-	
-	@RequestMapping(value = command2,method = RequestMethod.POST)
-	public void ownerpwdfindmail() {
-		
 	}
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import login.model.TravelCompanyBean;
 import login.model.TravelCompanyDao;
+import login.model.TravelUserBean;
 import login.model.TravelUserDao;
 
 @Controller
@@ -28,13 +29,13 @@ public class TravelVerificationCodeCheckController {
 	@Autowired
 	TravelCompanyDao tcdao;
 	
-	//codeCheck.jsp >
+	//codeCheck.jsp > codeCheck.jsp
 	@RequestMapping(value=command,method = RequestMethod.GET)
 	public String checkvcodeowner() {
 		return getPage1;
 	}
 	
-	//ownerPwdForm.jsp > CodeCheck.jsp
+	//codeCheck.jsp > codeShow.jsp
 	@RequestMapping(value=command,method = RequestMethod.POST)
 	public String checkvcodeowner(HttpSession session,HttpServletResponse response,Model model,
 			@RequestParam("inputvcode") String inputvcode) throws IOException {
@@ -42,14 +43,29 @@ public class TravelVerificationCodeCheckController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		String vcode = (String)session.getAttribute("vcode");
+		String findPwdtype = (String)session.getAttribute("findPwdtype");
+		
 		
 		if(inputvcode.equals(vcode)) {
-			String ownerEmail = (String)session.getAttribute("ownerEmail");
-			TravelCompanyBean tcb = tcdao.getMember(ownerEmail);
+			if(findPwdtype.equals("owner")) {
+				String ownerEmail = (String)session.getAttribute("ownerEmail");
+				TravelCompanyBean tcb = tcdao.getMember(ownerEmail);
+				
+				String myPwd = tcb.getPwd();
+				model.addAttribute("myPwd",myPwd);
+			}
+			else {
+				String ownerEmail = (String)session.getAttribute("userEmail");
+				TravelUserBean tub = tudao.getMember(ownerEmail);
+				
+				String myPwd = tub.getPwd();
+				model.addAttribute("myPwd",myPwd);
+			}
 			
-			String myPwd = tcb.getPwd();
-			model.addAttribute("myPwd",myPwd);
-			
+			session.removeAttribute("ownerEmail");
+			session.removeAttribute("userEmail");
+			session.removeAttribute("findPwdtype");
+
 			writer.println("<script type='text/javascript'>");
 			writer.println("alert('인증번호 확인이 완료되었습니다.'); ");
 			writer.println("</script>");

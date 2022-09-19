@@ -35,6 +35,16 @@
 		where nnum = #{nnum}
 	</update>
 	
+	<select id="GetTotalNoticeCount" resultType="int">
+		select count(*) from board1
+		where type = 'notice'
+	</select>
+	
+	<select id="GetTotalEventCount" resultType="int">
+		select count(*) from board1
+		where type = 'event'
+	</select>
+	
 	
 	
 	<insert id="InsertInquiry">
@@ -47,15 +57,15 @@
 		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
 		from inquiry inner join member
 		on inquiry.mnum = member.mnum
-		order by inum
+		order by inum desc
 	</select>
 	
-	<select id="GetAllInquiryListByEmail" resultType="board.inquiry.model.InquiryBean">
+	<select id="GetAllInquiryListByMemberEmail" resultType="board.inquiry.model.InquiryBean">
 		<!-- select * from inquiry -->
 		select inum,inquiry.mnum,subject,question,answer,reg_date1,reg_date2,progress,email
 		from inquiry inner join member
 		on inquiry.mnum = member.mnum and email = #{email}
-		order by inum
+		order by inum desc
 	</select>
 	
 	<select id="GetInquiryByInum" resultType="board.inquiry.model.InquiryBean">
@@ -82,8 +92,18 @@
 		where inum = #{inum}
 	</delete>
 	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from inquiry
+	</select>
 	
-	
+	<select id="GetTotalInquiryListByMemberEmailCount" resultType="int">
+		select count(*)
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and email = #{email}
+	</select>
+
+
+
 	<insert id="InsertFaq">
 		insert into faq(fnum,question,answer)
 		values(faq_seq.nextval,#{question},#{answer})

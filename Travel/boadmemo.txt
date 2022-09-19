@@ -171,20 +171,11 @@ select * from member;
 
 commit;
 ---------------------------테스트공간----------
-
-insert into faq(fnum, question, answer)
-values(faq_seq.nextval,'아이디와 비밀번호를 잊었어요.',
-'[아이디 찾기]
-1. 이메일 주소로 가입한 회원 : 가입 시 등록한 닉네임이나 이메일 주소 일부를 고객행복센터에 조회 요청
-2. 카카오톡/페이스북/네이버 계정으로 가입한 회원 : 해당 계정관리 업체의 고객센터에 문의'|| CHR(10) ||'
-[비밀번호 찾기]
-- 이메일주소 가입만 해당
-1. 이메일로 로그인하기 > 비밀번호 재설정 
-2. 가입 시 등록한 이메일 주소 입력
-3. 인증수단 선택 (휴대폰번호 또는 이메일 주소)
-4. 발급받은 인증번호 입력을 통해 새로운 비밀번호 생성
-위 방법으로도 이용에 불편을 겪으실 경우 여기어때 고객행복센터로 문의해주시길 바랍니다.'
-);
+insert into member 
+values(seq_member.nextval,'qrzv123@gmail.com','test','1234','01012345678','kakao',sysdate,200);
+select count(*)
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and email = qrzv123@naver.com
 ----------------------------------------------하단도테스트중
 -- 사업자 테이블
 drop table company CASCADE CONSTRAINTS;
@@ -200,6 +191,8 @@ create table company (
 
 insert into company 
 values('123456789123', 'abc.img', 'qrzv123@naver.com', '1234', '01012345678', 0, sysdate);
+insert into company 
+values('12345689123', 'abc.img', 'qrzv123@gmail.com', '1234', '01012345678', 0, sysdate);
 
 select * from company;
 commit;

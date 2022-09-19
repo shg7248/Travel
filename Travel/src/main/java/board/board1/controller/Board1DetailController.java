@@ -19,9 +19,11 @@ public class Board1DetailController {
 	Board1Dao bdao;
 	
 	@RequestMapping(value=command)
-	public String eventdetail(Model model,@RequestParam("nnum") String nnum) {
+	public String eventdetail(Model model,@RequestParam("nnum") String nnum,
+			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		Board1Bean bb = bdao.getBoard1ByNnum(nnum);
 		model.addAttribute("bb",bb);
+		model.addAttribute("pageNumber",pageNumber);
 		return getPage;
 	}
 }

@@ -11,7 +11,9 @@
 </style>
 noticeUpdateForm.jsp<br>
 
+<center>
 <form:form commandName="board1" method="post" action="noticeupdate.brd" enctype="multipart/form-data">
+<input type="hidden" name="pageNumber" value="${pageNumber }">
 	<h2 align="center">공지사항/이벤트 입력 화면</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
 	
@@ -22,3 +24,4 @@ noticeUpdateForm.jsp<br>
 	<form:errors cssClass="err" path="content"/><br>
 	<input type="submit" value="수정하기">
 </form:form>
+</center>

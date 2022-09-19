@@ -23,10 +23,6 @@ inquiryAnswerForm.jsp
 			</td>
 			<td align="center" width="20%">답변일</td>
 			<td align="center" width="20%">
-			<%-- 
-				<fmt:parseDate var="date2" value="${ib.reg_date2 }" pattern="yyyy-MM-dd" />
-				<fmt:formatDate var="reg_date2" value="${date2 }" pattern="yyyy-MM-dd" /> ${reg_date2 }
-				 --%>
 				 <input type="date" name="reg_date2">
 			</td>
 		</tr>
@@ -47,7 +43,7 @@ inquiryAnswerForm.jsp
 					<input type="submit" value="답변하기">
 					<input type="button" value="삭제" onclick="location.href='inqdelete.brd'">
 				</c:if>
-				<input type="button" value="목록보기" onclick="location.href='inqlist.brd'">
+				<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageInfo.pageNumber}'">
 			</td>
 		</tr>
 	</table>

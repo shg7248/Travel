@@ -38,33 +38,41 @@ public class Board1UpdateController {
 	ServletContext servletContext;
 	
 	@RequestMapping(value=command1,method = RequestMethod.GET)
-	public String noticeupdate(Model model,@RequestParam("nnum") String nnum) {
+	public String noticeupdate(Model model,@RequestParam("nnum") String nnum,
+			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		Board1Bean board1 = bdao.getBoard1ByNnum(nnum);
 		model.addAttribute("board1",board1);
+		model.addAttribute("pageNumber",pageNumber);
 		return getPage1;
 	}
 	
 	@RequestMapping(value=command1,method = RequestMethod.POST)
-	public String noticeupdate(Model model,@RequestParam("nnum") String nnum,@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result) {
+	public String noticeupdate(Model model,@RequestParam("nnum") String nnum,@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result,
+			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		if(result.hasErrors()) {
+			model.addAttribute("pageNumber",pageNumber);
 			return getPage1;
 		}
 		bdao.updateBoard1ByNnum(bb);
+		model.addAttribute("pageNumber",pageNumber);
 		return gotoPage1;
 	}
 	
 	@RequestMapping(value=command2,method = RequestMethod.GET)
-	public String eventupdate(Model model,@RequestParam("nnum") String nnum) {
+	public String eventupdate(Model model,@RequestParam("nnum") String nnum,
+			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		Board1Bean board1 = bdao.getBoard1ByNnum(nnum);
 		model.addAttribute("board1",board1);
+		model.addAttribute("pageNumber",pageNumber);
 		return getPage2;
 	}
 	
 	@RequestMapping(value=command2,method = RequestMethod.POST)
 	public String eventupdate(Model model,@RequestParam("nnum") String nnum,
 			@RequestParam("originalContent") String originalContent,
-			@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result) {
+			@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result,@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		if(result.hasErrors()) {
+			model.addAttribute("pageNumber",pageNumber);
 			return getPage2;
 		}
 		
@@ -87,6 +95,7 @@ public class Board1UpdateController {
 		}
 		
 		bdao.updateBoard1ByNnum(bb);
+		model.addAttribute("pageNumber",pageNumber);
 		return gotoPage2;
 	}
 	
