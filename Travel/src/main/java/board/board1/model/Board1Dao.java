@@ -3,9 +3,12 @@ package board.board1.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import Util.Paging;
 
 @Component("board1Dao")
 public class Board1Dao {
@@ -18,15 +21,17 @@ public class Board1Dao {
 		sqlSessionTemplate.insert(namespace+".Insert", bb);
 	}
 
-	public List<Board1Bean> getBoard1NoticeList() {
+	public List<Board1Bean> getBoard1NoticeList(Paging pageInfo) {
 		List<Board1Bean> list= new ArrayList<Board1Bean>();
-		list = sqlSessionTemplate.selectList(namespace+".GetBoard1NoticeList");
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
+		list = sqlSessionTemplate.selectList(namespace+".GetBoard1NoticeList",null,rowBounds);
 		return list;
 	}
 	
-	public List<Board1Bean> getBoard1EventList() {
+	public List<Board1Bean> getBoard1EventList(Paging pageInfo) {
 		List<Board1Bean> list= new ArrayList<Board1Bean>();
-		list = sqlSessionTemplate.selectList(namespace+".GetBoard1EventList");
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
+		list = sqlSessionTemplate.selectList(namespace+".GetBoard1EventList",null,rowBounds);
 		return list;
 	}
 
@@ -41,6 +46,16 @@ public class Board1Dao {
 
 	public void updateBoard1ByNnum(Board1Bean bb) {
 		sqlSessionTemplate.selectOne(namespace+".UpdateBoard1ByNnum",bb);
+	}
+
+	public int getTotalNoticeCount() {
+		int result = sqlSessionTemplate.selectOne(namespace+".GetTotalNoticeCount");
+		return result;
+	}
+
+	public int getTotalEventCount() {
+		int result = sqlSessionTemplate.selectOne(namespace+".GetTotalEventCount");
+		return result;
 	}
 	
 	

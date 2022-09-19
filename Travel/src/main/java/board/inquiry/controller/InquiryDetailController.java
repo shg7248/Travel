@@ -18,9 +18,11 @@ public class InquiryDetailController {
 	InquiryDao idao;
 	
 	@RequestMapping(value=command)
-	public String inquirydetail(Model model,@RequestParam("inum") String inum) {
+	public String inquirydetail(Model model,@RequestParam("inum") String inum,
+			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		InquiryBean ib = idao.getInquiryByInum(inum);
 		model.addAttribute("ib",ib);
+		model.addAttribute("pageNumber",pageNumber);
 		return getPage;
 	}
 }

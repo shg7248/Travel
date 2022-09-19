@@ -10,7 +10,7 @@
 }
 </style>
 noticeInsertForm.jsp<br>
-
+<center>
 <form:form commandName="board1" method="post" action="insertnotice.brd" enctype="multipart/form-data">
 	<h2 align="center">공지사항 입력 화면</h2>
 	<input type="hidden" name="type" value="notice">
@@ -21,3 +21,4 @@ noticeInsertForm.jsp<br>
 			<form:errors cssClass="err" path="content"/><br>
 			<input type="submit" value="입력하기">
 </form:form>
+</center>
