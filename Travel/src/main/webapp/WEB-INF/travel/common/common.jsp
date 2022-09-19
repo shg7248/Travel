@@ -18,3 +18,4 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" />
 <c:set var="page" value="${fn:substring(path, 1, 3) }" />
+<%-- <script src="${contextPath }/resources/js/common.js"></script> --%>

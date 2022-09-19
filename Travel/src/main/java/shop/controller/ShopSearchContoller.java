@@ -38,6 +38,8 @@ public class ShopSearchContoller {
 		
 		System.out.println("GetRcode : " + rcode);
 		
+		System.out.println(canum);
+		
 		searchBean.setCanum(canum);
 		if(rcode != null) {
 			searchBean.setRcode(rcode);
@@ -69,18 +71,25 @@ public class ShopSearchContoller {
 	
 	private final String command2 = "/shop/search/{canum}/{rcode}.shop";
 	@RequestMapping(value = command2)
-	public String doGetAction2(Model model, 
+	public String doPostAction(Model model, 
 			@ModelAttribute("searchBean") SearchBean searchBean, 
 			@RequestParam(required = false) String start, 
 			@RequestParam(required = false) String end,
 			@PathVariable(value = "canum") String canum,
 			@PathVariable(value = "rcode") String rcode) {
 		
-			System.out.println("PostRcode : " + rcode);
-		
 			doGetAction(model, searchBean, canum, rcode);
 			return getPage;
 	}
+	
+	private final String command3 = "/shop/around.shop";
+	@RequestMapping(value = command3)
+	public String doGetAction2(Model model) {
+		
+		
+		
+		return getPage;
+	}	
 	
 	public String formatDate(LocalDate date) {
 		int year = date.getYear();
@@ -88,4 +97,5 @@ public class ShopSearchContoller {
 		String day = String.format("%02d", date.getDayOfMonth());
 		return year + month + day;
 	}
+	
 }
