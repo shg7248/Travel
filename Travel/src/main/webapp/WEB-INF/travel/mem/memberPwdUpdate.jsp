@@ -61,9 +61,8 @@ function allCheck(mypwd){
 }
 </script>
 <body>
-memberPwdUpdate.jsp
-<%@include file="./memberList.jsp" %>
 <div class="all">
+<%@include file="./memberList.jsp" %>
 <!-- 소셜로그인이 아니면 -->
 <c:if test="${param.pwd ne flatform }">
 <form action="pwdUpdate.mem" method="post" name="f" >
