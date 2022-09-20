@@ -14,7 +14,7 @@
 				<li class="sub-menu__item"><a href="${contextPath }/logout.log">로그아웃</a></li>
 			</c:if>
 			<c:if test="${!empty loginInfo }">
-				<li class="sub-menu__item"><a href="${contextPath }/memberInfo.mem">숙소정보</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/comp/main.comp">숙소정보</a></li>
 				<li class="sub-menu__item"><a href="${contextPath }/logout.log">로그아웃</a></li>
 			</c:if>
 				<li class="sub-menu__item"><a href="">예약내역</a></li>
