@@ -68,19 +68,21 @@ function checkAll(){
 			alert("로그인 정보가 없습니다.");
 			return;
 		}
-		//로그아웃
-		Kakao.Auth.logout(function() {
-			console.log(Kakao.Auth.getAccessToken());
-		});
 		//연결끊기
 		Kakao.API.request({
 			url : '/v1/user/unlink',
 			success : function(response) {
+				alert("연결끊기");
 				console.log(response);
 			},
 			fail : function(error) {
 				console.log(error);
 			}
+		});
+		//로그아웃
+		Kakao.Auth.logout(function() {
+			alert("로그아웃");
+			console.log(Kakao.Auth.getAccessToken());
 		});
 	}
 </script>

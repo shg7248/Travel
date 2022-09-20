@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
-<%@include file="./memberList.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -37,6 +36,7 @@ $(document).ready(function(){
 </script>
 <body>
 <div class="all">
+<%@include file="./memberList.jsp" %>
 <h2>회원 탈퇴</h2>
 	<form action="confirm.mem" method="post" name="f">
 		<div class="div">

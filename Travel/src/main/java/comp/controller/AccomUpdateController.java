@@ -62,15 +62,26 @@ public class AccomUpdateController {
 		System.out.println("realPath :" + realPath);
 		
 		File file = new File(realPath);
-		if(!file.exists())
-			file.mkdir();
 		
-		if(accomBean.getUpload() != null) {
+		System.out.println("111111111");
+		
+		if(!file.exists()) file.mkdir();
+		
+		System.out.println("222222222");
+		
+		if(!accomBean.getUpload().isEmpty()) {
+			
+			System.out.println("333333333");
 			MultipartFile mf = accomBean.getUpload();
+			System.out.println("4444444444");
 			File uploadFile = new File(realPath, mf.getOriginalFilename());
+			System.out.println("555555555");
 			accomBean.setImage(mf.getOriginalFilename());
+			System.out.println("66666666666");
 			mf.transferTo(uploadFile);
+			System.out.println("7777777777777");
 		}
+		System.out.println("88888888888888");
 		
 		compDao.updateAccomByCnum(accomBean);
 		return gotoPage;
