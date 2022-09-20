@@ -11,13 +11,13 @@
 	<select id="GetBoard1NoticeList" resultType="board.board1.model.Board1Bean">
 		select * from board1
 		where type = 'notice'
-		order by nnum
+		order by nnum desc
 	</select>
 	
 	<select id="GetBoard1EventList" resultType="board.board1.model.Board1Bean">
 		select * from board1
 		where type = 'event'
-		order by nnum
+		order by nnum desc
 	</select>
 	
 	<delete id="DeleteBoard1ByNnum">
