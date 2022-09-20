@@ -31,7 +31,7 @@ noticeList.jsp<br>
 			</tr>
 			<tr class="content">
 				<td width="800">
-					<pre style="word-wrap: break-word; white-space: pre-wrap;"><c:out value="${board1.content}" /></pre>
+					<pre style="word-wrap: break-word; white-space: pre-wrap;">${board1.content}</pre>
 					<c:set var="email" value='<%=(String)session.getAttribute("email") %>'/>
 					<c:if test="${email eq 'admin' }">
 					<div align="right">

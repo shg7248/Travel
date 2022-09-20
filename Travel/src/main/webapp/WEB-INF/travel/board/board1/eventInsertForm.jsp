@@ -12,7 +12,7 @@
 eventInsertForm.jsp<br>
 <center>
 <form:form commandName="board1" method="post" action="insertevent.brd" enctype="multipart/form-data">
-	<h2 align="center">이벤트 입력 화면</h2>
+	<h2 align="center">이벤트 입력</h2>
 	<input type="hidden" name="type" value="event">
 	제목 : <input type="text" name="subject" value=${board1.subject }>
 			<form:errors cssClass="err" path="subject"/><br>

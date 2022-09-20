@@ -12,7 +12,7 @@
 eventUpdateForm.jsp<br>
 <center>
 <form:form commandName="board1" method="post" action="eventupdate.brd" enctype="multipart/form-data">
-	<h2 align="center">공지사항/이벤트 입력 화면</h2>
+	<h2 align="center">이벤트 수정</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
 	<input type="hidden" name="originalContent" value="${board1.content }">
 	<input type="hidden" name="pageNumber" value="${pageNumber }">
