@@ -20,6 +20,8 @@ inquiryList.jsp<br>
 <center>
 <h2>1:1문의 사항</h2>
 <table border="1" width="800">
+	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
+<c:if test="${email ne 'null'}">
 	<tr height="50">
 		<td align="center" width="10%">번호</td>
 		<td align="center" width="50%">제목</td>
@@ -46,7 +48,6 @@ inquiryList.jsp<br>
 			</tr>
 		</c:forEach>
 	</c:if>
-	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 	<c:if test="${email ne 'admin' and email ne 'null'}">
 		<tr>
 			<td align="right" colspan="5" height="50">
@@ -54,6 +55,13 @@ inquiryList.jsp<br>
 			</td>
 		</tr>
 	</c:if>
+</c:if>
+
+<c:if test="${email eq 'null'}">
+	<tr>
+		<td align="center">로그인 한 이후에 1:1 문의사항을 확인하실 수 있습니다.</td>
+	</tr>
+</c:if>
 </table>
 ${pageInfo.pagingHtml }
 </center>

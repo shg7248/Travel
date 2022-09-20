@@ -75,7 +75,7 @@ create table inquiry(
 	question varchar2(2000) not null,				--문의사항
 	answer varchar2(2000) default '답변 대기중입니다.',	--답변사항
 	reg_date1 date default sysdate,					--문의작성일
-	reg_date2 date default sysdate,					--답변작성일
+	reg_date2 date,					--답변작성일
 	progress varchar2(20) default '답변대기'			--답변상황 대기/완료
 	--progress는 '답변대기'과 '답변완료'로 구분
 );
