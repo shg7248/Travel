@@ -26,7 +26,7 @@
 	            	<li class="nav__item">
 	            		<a href="#" class="nav__link">이동하기</a>
 	            		<ul>
-	            			<li class="nav__item"><a href="" class='nav-2dept__link'>사용자 화면</a></li>
+	            			<li class="nav__item"><a href="${contextPath }/" class='nav-2dept__link'>사용자 화면</a></li>
 	            			<li class="nav__item"><a href="" class='nav-2dept__link'>로그아웃</a></li>
 	            		</ul>
 	            	</li>
