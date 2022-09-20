@@ -8,6 +8,12 @@
 		display: grid;
 		grid-template-columns: repeat(16, 1fr);
 		column-gap: 10px;
+		--input-height: 40px;
+	}
+	
+	.search-wrap .title {
+		font-size: 16px;
+		font-weight: bold;		
 	}
 	
 	.search-wrap__options {
@@ -23,7 +29,6 @@
 	}
 	.search-wrap__region {
 		padding: 20px;
-		text-align: center;
 	}
 	.region__list {
 		width: 100%;
@@ -47,12 +52,106 @@
 		color: white;
 		font-weight: bold;
 	}
+	
+	.calendar {
+		width: 100%;
+		overflow: hidden;
+	    height: 0px;
+	    transition: all ease-in 0.3s;
+	}
+	.calendar.on {
+		height: 250px;
+	}
+	.search-wrap__calendar {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+	}
+	.calendar__show-btn {
+		width: 100%;
+		height: 40px;
+		border-radius: 5px;
+		border: 1px solid #ff6060;
+		margin-bottom: 10px;
+	}
+	.search-wrap__price {
+		padding: 10px 20px;
+	}
+	.price__text {
+		width: 100%;
+		height: var(--input-height);
+		border-radius: 5px;
+		border: 1px solid rgb(209, 209, 209);
+		padding-left: 20px;	
+	}
+	
+	.search-wrap__count {
+		padding: 10px 20px;
+	}
+	.count__text {
+		width: 100%;
+		height: var(--input-height);
+		border-radius: 5px;
+		border: 1px solid rgb(209, 209, 209);
+		padding-left: 20px;		
+	}
+	.search-wrap__fac {
+		padding: 20px;
+	}
+	.fac__select-wrap {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 10px;
+	}
+	
+	.search-wrap__sort {
+		padding: 20px;
+		text-align: right;
+	}
+	.sort__link {
+		font-size: 11px;
+		margin-left: 20px;
+		color: black;
+	}
+	.result__room {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+		padding: 20px;
+		height: 250px;
+		cursor: pointer;
+		margin-bottom: 10px;
+		transition: all .2s;
+	}
+	.result__room:hover {
+		background-size: 120% 120%!important;
+	}
+	.result__room::before {
+		content: '';
+		opacity: 0.5;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		right: 0px;
+		left: 0px;
+		background-color: #000;
+	}
+	.room__info {
+		color: white;
+		font-weight: bold;
+		font-size: 1.4em;
+	}
 </style>
 
 <section class="section">
 	<div class="search-wrap">
 		<article class="article search-wrap__options">
 			<form method="post" name="searchForm">
+				<input type="hidden" name="start" value="${start }">
+				<input type="hidden" name="end" value="${end }">
+				<input type="hidden" name="sort" value="${searchBean.sort }">
 				<div class="search-wrap__region">
 					<div class="region">
 						<p class="region__title">지역</p> 
@@ -70,55 +169,71 @@
 				<div class="search-wrap__submit">
 					<input class="search-wrap__btn" type="submit" value="검색" />
 				</div>
-				<div class="search-wrap__price">
-					<p class="region__title">가격</p> 
-					<input class="search-wrap__price" type="text" name="price" value="${searchBean.price }"/>
+				<div class="search-wrap__calendar">
+					
+					<fmt:parseDate var="parsedStartDate" value="${start }" pattern="yyyyMMdd"/>
+					<fmt:formatDate var="startDate" value="${parsedStartDate }" pattern="MM월 dd일"/>
+					
+					<fmt:parseDate var="parsedEndDate" value="${end }" pattern="yyyyMMdd"/>
+					<fmt:formatDate var="endDate" value="${parsedEndDate }" pattern="MM월 dd일"/>					
+					<p class="calendar__title title">기간 선택</p>
+					<input class="calendar__show-btn" type="button" value="${startDate } ~ ${endDate }" onclick="displayCal()"/>
+					<div class="calendar"></div>
 				</div>
-				인원 <input type="text" name="count" value="${searchBean.count }"/>
-				<br>
-				기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
-				${start } ~ ${end }
-				<br>
-				<div class="calendar"></div>
-				<input type="hidden" name="start" value="${start }">
-				<input type="hidden" name="end" value="${end }">
-				<input type="hidden" name="sort" value="${searchBean.sort }">
-				<br>
-				공용시설
-				<br>
-				<c:forEach var="fac" items="${facLists }">
-					<c:if test="${fac.fgroup eq 'F1' }">
-						<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
-					</c:if>
-				</c:forEach>
-				<br>
-				객실 내 시설
-				<br>
-				<c:forEach var="fac" items="${facLists }">
-					<c:if test="${fac.fgroup eq 'F2' }">
-						<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>${fac.name }
-					</c:if>
-				</c:forEach>
-				<br>
+				<div class="search-wrap__price">
+					<p class="price__title title">가격</p> 
+					<input class="price__text" type="text" name="price" value="${searchBean.price }"/>
+				</div>
+				<div class="search-wrap__count">
+					<p class="count__title title">인원</p>
+					<input class="count__text" type="text" name="count" value="${searchBean.count }"/>
+				</div>
+				<div class="search-wrap__fac">
+					<p class="fac__title title">공용시설</p>
+					<div class="fac__select-wrap">
+						<c:forEach var="fac" items="${facLists }">
+							<c:if test="${fac.fgroup eq 'F1' }">
+								<div>
+									<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>&nbsp;${fac.name }
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="search-wrap__fac">
+					<p class="fac__title title">객실 내 시설</p>
+					<div class="fac__select-wrap">
+						<c:forEach var="fac" items="${facLists }">
+							<c:if test="${fac.fgroup eq 'F2' }">
+								<div>
+									<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>&nbsp;${fac.name }
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+				</div>
 			</form>
 		</article>
 		<article class="article search-wrap__result">
-			<a href="javascript:sort('HIT')">추천 높은순</a>
-			<a href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
-			<a href="javascript:sort('LOWPRICE')">가격 낮은순</a>
-			<c:if test="${empty sLists }">
-				<h2>찾으시는 정보가 존재하지 않습니다.</h2>
-			</c:if>
-			<c:if test="${!empty sLists }">
-				<c:forEach var="search" items="${sLists }">
-					<div class="testDiv">
-						<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
-						${search.region }<br>
-						${search.price }원<br>
-						${search.image }
-					</div>
-				</c:forEach>
-			</c:if>
+			<div class="search-wrap__sort">
+				<a class="sort__link sort__link--hit" href="javascript:sort('HIT')">추천 높은순</a>
+				<a class="sort__link sort__link--heghPrice" href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
+				<a class="sort__link sort__link--lowPrice" href="javascript:sort('LOWPRICE')">가격 낮은순</a>
+			</div>
+			<div class="result__rooms">
+				<c:if test="${empty sLists }">
+					<h2>찾으시는 정보가 존재하지 않습니다.</h2>
+				</c:if>
+				<c:if test="${!empty sLists }">
+					<c:forEach var="search" items="${sLists }">
+						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
+							<span class="room__info room__info--name">${search.name }</span>
+							<span class="room__info room__info--region">${search.region }</span>
+							<span class="room__info room__info--price"><fmt:formatNumber value="${search.price }" />원</span>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
 		</article>
 	</div>
 </section>
