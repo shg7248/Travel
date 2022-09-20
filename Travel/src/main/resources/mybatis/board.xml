@@ -77,7 +77,7 @@
 	</select>
 	
 	<update id="Answer">
-		update inquiry set answer = #{answer}, reg_date2 = #{reg_date2}, progress = '답변완료'
+		update inquiry set answer = #{answer}, reg_date2 = sysdate, progress = '답변완료'
 		where inum = #{inum}
 	</update>
 	

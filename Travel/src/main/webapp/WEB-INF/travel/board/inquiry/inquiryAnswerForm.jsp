@@ -8,6 +8,7 @@ inquiryAnswerForm.jsp
 <center>
 <form method="post" action="inqanswer.brd">
 <input type="hidden" name="inum" value="${ib.inum }">
+<input type="hidden" name="pageNumber" value="${pageInfo.pageNumber }">
 	<table border="1" height="800" width="800">
 		<tr>
 			<td align="center" width="10%">제목</td>
@@ -23,7 +24,7 @@ inquiryAnswerForm.jsp
 			</td>
 			<td align="center" width="20%">답변일</td>
 			<td align="center" width="20%">
-				 <input type="date" name="reg_date2">
+				 <input type="date" name="reg_date2" readonly="readonly" value="${ib.reg_date2 }">
 			</td>
 		</tr>
 		<tr height="300">
