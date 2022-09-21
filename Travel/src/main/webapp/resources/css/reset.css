@@ -52,6 +52,12 @@ a {
 	color: black;
 }
 
+/* 커스텀 */
+
 a:hover {
 	text-decoration: none;
+}
+
+p {
+	line-height: 1.7;
 }
