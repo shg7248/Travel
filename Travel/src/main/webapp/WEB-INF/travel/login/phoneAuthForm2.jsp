@@ -38,7 +38,6 @@ function subNum(){
 	//location.href='phoneAuth.tra';
 }
 </script>
-    phoneAuthForm2.jsp
 <div class="all">
 <form method="post" action="phoneAuthForm2.log">
 	<div class="div">
@@ -50,7 +49,7 @@ function subNum(){
 	<div class="div display" >
 	<label for="phoneCheck">인증번호</label> 
 	<input type="text" name="phoneCheck" id="phoneCheck" placeholder="숫자 6자리를 입력해주세요.">
-	</div>
 	<input type="submit" value="확인" class="display">
+	</div>
 </form>
 </div>

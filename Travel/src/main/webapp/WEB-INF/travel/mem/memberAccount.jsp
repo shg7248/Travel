@@ -35,9 +35,9 @@ function checkAll(){
 <div class="all">
 <%@include file="./memberList.jsp" %>
 <div class="contents">
-<h2> 무통장 입금 계좌번호를 등록해주세요.</h2>
 <form action="memberAccount.mem" method="post" name="f">
-<div class="div">
+<label for="accnum">무통장 입금 계좌번호를 등록해주세요.</label>
+<div class="div" >
 <select name="bank" >
 	<option value="선택">결제수단 선택</option>
 	<c:set value="${fn:split('국민|신한|기업|농협','|') }" var="bankArr"/>
@@ -45,16 +45,27 @@ function checkAll(){
 	<option value="${bank}">${bank}</option>
 	</c:forEach>
 </select>
-<input type="text" name="accnum" placeholder="계좌번호 - 없이 입력">
+<input type="text" name="accnum" id="accnum" placeholder="계좌번호 - 없이 입력">
 <font class="err"></font>
 </div>
 <input type="submit" value="등록" onclick="return checkAll()">
 </form>
 
-<h2>등록되어있는 계좌목록</h2>
+<label class="height">등록된 계좌번호 목록</label>
+<div class="board">
+<ul>
+<li>은행</li>
+<li>계좌번호</li>
+<li>삭제</li>
+</ul>
 <c:forEach items="${lists }" var="tabean">
-${tabean.bank }, ${tabean.accnum }
+<ul>
+<li>${tabean.bank }</li>
+<li>${tabean.accnum }</li>
+<li><a href="#">삭제</a></li>
+</ul>
 </c:forEach>
+</div>
 </div>
 </div>
 </body>

@@ -86,8 +86,8 @@ function checkAll(){
 		});
 	}
 </script>
-userLoginForm.jsp
 <div class="all">
+<div class="one"> 
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
 <input type="text" name="email" placeholder="Email">
@@ -112,4 +112,5 @@ userLoginForm.jsp
 	</a>
 	<Br>
 	<a href="javascript:kakaoLogout();"> 로그아웃 </a><Br>
+</div>
 </div>

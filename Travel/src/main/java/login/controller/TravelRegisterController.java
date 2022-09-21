@@ -187,6 +187,9 @@ public class TravelRegisterController {
 	@RequestMapping(value = "/ajax3.log" ,method = RequestMethod.POST)
 	public String ajaxCompanyCnum(String cnum) {
 		System.out.println("cnum"+cnum);
+		if(cnum.length()>12) {
+			return "leng";
+		}
 		int cnt = tcdao.cnumCheck(cnum);
 		if(cnum == "") {
 			return "null";

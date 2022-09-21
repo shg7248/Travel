@@ -7,6 +7,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	//이메일체크
+	checkEmail = false;
+	//비번일치체크
+	checkPwd = false;
 	checkEmail = false;
 	checkPwd = false;
 	checkCnum = false;
@@ -75,7 +79,12 @@ $("input[name='confirm2']").click(function(){
         		$("#checkCnum").css("color","red");
         		$("#checkCnum").show();
         		checkCnum = false;
-        	}else{
+        	}else if(data == "leng") {
+        		$("#checkCnum").text(" 12자리 이하로 입력해주세요.");
+        		$("#checkCnum").css("color","red");
+        		$("#checkCnum").show();
+        		checkCnum = false;
+        	}else {
         		$("#checkCnum").text(" 사업자 번호를 입력하세요.");
         		$("#checkCnum").css("color","red");
         		$("#checkCnum").show();
@@ -139,26 +148,63 @@ $('input[name="pwd2"]').on({
 });//ready
 
 function allCk(){
+	
+	//공백확인
+	if($('input[name="email"]').val() == ""){
+		$("#checkMsg").show();
+		$('#checkMsg').text("이메일을 입력하세요");
+		f.email.focus();
+		return false;
+	}
+	
+	if($('input[name="pwd"]').val() == ""){
+		$('#pwdMsg').text("비밀번호를 입력하세요");
+		f.pwd.focus();
+		return false;
+	}
+	
+	if($('input[name="pwd2"]').val() == ""){
+		$('#pwdMsg').text("비밀번호를 입력하세요");
+		f.pwd2.focus();
+		return false;
+	}
+	
+	if($('input[name="cnum"]').val() == ""){
+		$('#cnum').text("사업자번호를 입력하세요");
+		f.cnum.focus();
+		return false;
+	}
+	
+	if($('input[name="cnum"]').val() == ""){
+		$('#cnum').text("사업자번호를 입력하세요");
+		f.cnum.focus();
+		return false;
+	}
+	
+	
+	
+	//이메일 중복체크
 	if(!checkEmail){
 		alert("이메일 중복체크하세요.");
 		f.email.focus();
 		return false;
 	}
-	if(!checkCnum){
-		alert("사업자번호 중복체크하세요.");
-		f.cnum.focus();
-		return false;
-	}
+	
+	//비밀번호 다름
 	if(!checkPwd){
 		alert("비밀번호를 확인하세요.");
 		f.pwd2.focus();
 		return false;
 	}
 	
+	if(!checkPwdRex){
+		alert("비밀번호를 확인하세요.");
+		f.pwd2.focus();
+		return false;
+	}
 }
 </script>
 <body>
-ownerRegisterForm.jsp
 <div class="all">
 <form:form commandName="tcbean" name="f" method="post" action="ownerRegisterForm.log" enctype="multipart/form-data" >
 <input type="hidden" name="phone" value="${param.phone }">
@@ -174,7 +220,7 @@ ownerRegisterForm.jsp
 <div class="div">
 <label for="pwd">비밀번호</label>  
 <input type="text" name="pwd" id="pwd" value="${tcbean.pwd }" placeholder="비밀번호를 입력해주세요.">
-<form:errors path="pwd" cssClass="err" />
+<font id="pwdMsg" class="msg err"></font>
 </div>
 
 
@@ -182,7 +228,7 @@ ownerRegisterForm.jsp
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
 <input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwdMsg" class="err"></font>
+<font id="pwd2Msg" class="msg err"></font>
 </div>
 
 
@@ -190,7 +236,7 @@ ownerRegisterForm.jsp
 <div class="div">
 <label for="cnum">사업자 번호</label> 
 <input type="text" name="cnum" id="cnum" value="${tcbean.cnum }" placeholder="사업자번호를 입력해주세요.">
-<form:errors path="cnum" cssClass="err" />
+<font id="cnumMsg" class="msg err"></font>
 <font id="checkCnum"></font>
 <input type="button" class="confirm2" name="confirm2" value="중복확인">
 </div>
@@ -200,11 +246,11 @@ ownerRegisterForm.jsp
 <div class="div">
 <label for="upload">사업자 이미지</label> 
 <input type="file" name="upload" id="upload" value="">
-<form:errors path="image" cssClass="err" />
+<font id="imgMsg" class="msg err"></font>
 </div>
 
 <input type="submit" value="회원가입" onclick="return allCk()" class="custom-btn btn-5">
-<input type="reset" name="" value="다시입력" class="custom-btn btn-5">
+<input type="reset" value="다시입력" class="custom-btn btn-5">
 </form:form>
 </div>
 </body>

@@ -1,7 +1,10 @@
 @charset "UTF-8";
+a:hover{
+	text-decoration: none;
+}
+
 .sidebar{
-	position: relative;
-    
+	position:relative;
     top: 0;
     left: 0;
     height: 100%;
@@ -28,7 +31,6 @@
 .sidebar ul li a.active{
 	color:white;
     background:#ff0000;
-    text-decoration: none;
     
 }
 
