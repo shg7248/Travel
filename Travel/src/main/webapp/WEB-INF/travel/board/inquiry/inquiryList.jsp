@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-inquiryList.jsp<br>
 <%-- 
 <center>
 	<form action="list.brd" method="post">
@@ -17,17 +17,18 @@ inquiryList.jsp<br>
 	</form>
 </center>
  --%>
-<center>
-<h2>1:1문의 사항</h2>
-<table border="1" width="800">
+<div class="default">
+<div class="contents">
+<h2>1:1 문의사항</h2>
+<table>
 	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 <c:if test="${email ne 'null'}">
-	<tr height="50">
-		<td align="center" width="10%">번호</td>
-		<td align="center" width="50%">제목</td>
-		<td align="center" width="10%">작성자</td>
-		<td align="center" width="15%">작성일</td>
-		<td align="center" width="15%">답변상황</td>
+	<tr>
+		<td class="title_td" align="center" width="10%">번호</td>
+		<td class="title_td" align="center" width="50%">제목</td>
+		<td class="title_td" align="center" width="10%">작성자</td>
+		<td class="title_td" align="center" width="15%">작성일</td>
+		<td class="title_td" align="center" width="15%">답변상황</td>
 	</tr>
 	<c:if test="${empty lists }">
 		<tr>
@@ -50,8 +51,8 @@ inquiryList.jsp<br>
 	</c:if>
 	<c:if test="${email ne 'admin' and email ne 'null'}">
 		<tr>
-			<td align="right" colspan="5" height="50">
-					<input type="button" value="문의하기" onclick="location.href='inqinsert.brd'">
+			<td align="right" colspan="5">
+				<input type="button" value="문의하기" onclick="location.href='inqinsert.brd'">
 			</td>
 		</tr>
 	</c:if>
@@ -64,4 +65,5 @@ inquiryList.jsp<br>
 </c:if>
 </table>
 ${pageInfo.pagingHtml }
-</center>
+</div>
+</div>

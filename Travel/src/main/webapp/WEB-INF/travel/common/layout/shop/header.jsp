@@ -20,7 +20,7 @@
 				<li class="sub-menu__item"><a href="">예약내역</a></li>
 				<li class="sub-menu__item">
 					<a href="${contextPath }/noticelist.brd">더보기</a>
-					<ul class="temp">
+					<ul class="temp" style="z-index: 1;">
 						<li><a href="${contextPath }/noticelist.brd">공지사항</a></li>
 						<li><a href="${contextPath }/eventlist.brd">이벤트</a></li>
 						<li><a href="${contextPath }/faqlist.brd">자주묻는 질문</a></li>
@@ -29,7 +29,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="logo">
+		<div class="logo" style="z-index: 1;">
 			<a href="${contextPath }/"><img alt="" src="${contextPath }/resources/images/Logo.png"></a>
 		</div>
 		<div class="search"></div>

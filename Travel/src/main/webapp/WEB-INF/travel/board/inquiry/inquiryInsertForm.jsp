@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <style>
 .err {
@@ -21,29 +22,29 @@ $(document).ready(function() {
 		    ['para', ['ul', 'ol', 'paragraph']],
 		    ['height', ['height']]
 		  ],
-		  width: 600,
-		  maxWidth: 600,
-		  minWidth: 600,
 		  height: 400,
 		  maxHeight: 400,
 		  minHeight: 400,
+		  width: 700,
+		  maxWidth: 700,
+		  minWidth: 700,
 		  placeholder: '내용을 입력하세요.'
 	});
 });
 </script>
 
-inquiryInsertForm.jsp<br>
-<center>
+<div class="default">
+<div class="contents">
+<h2>1:1 문의사항</h2>
 <form:form commandName="inquiry" method="post" action="inqinsert.brd">
 <table>
 	<tr>
 		<td>
-			<h2 align="center">1:1 문의사항</h2>
-			제목 : <input type="text" name="subject" value=${inquiry.subject }>
+			<input type="text" name="subject" placeholder="제목을 입력하세요." value=${inquiry.subject }>
 			<form:errors cssClass="err" path="subject"/><br>
 			
-			내용 : <textarea name="question" rows="13" cols="50" id="summernote" style="resize:none">${inquiry.question }</textarea><br>
-			<form:errors cssClass="err" path="question"/><br>
+			<textarea name="question" rows="13" cols="50" placeholder="문의사항을 입력하세요." id="summernote" style="resize:none">${inquiry.question }</textarea>
+			<form:errors cssClass="err" path="question"/>
 			<div align="right">
 			<input type="submit" value="문의하기">			
 			</div>
@@ -51,4 +52,5 @@ inquiryInsertForm.jsp<br>
 	</tr>
 </table>
 </form:form>
-</center>
+</div>
+</div>

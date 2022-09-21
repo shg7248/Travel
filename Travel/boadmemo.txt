@@ -3,10 +3,10 @@ drop table board1;
 
 create table board1( 
 	nnum number not null primary key,	--일련번호
-	subject varchar2(100) not null,		--제목
-	content varchar2(2000) not null,	--내용/이미지파일
+	subject varchar2(100),				--제목
+	content clob not null,				--내용/이미지파일
 	reg_date date default sysdate,		--공지사항작성일
-	type varchar2(20) not null			--공지사항/이벤트구분
+	type varchar2(20)					--공지사항/이벤트구분
 	--type은 String타입의 notice와event로 구분
 );
 
@@ -56,27 +56,27 @@ values(board1_seq.nextval, '여기어때 닉네임 정책에 따른 조치',
 
 --이벤트 데이터
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트1','','event');
+values(board1_seq.nextval, '이벤트1','이벤트1파일','event');
 
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트1','','event');
+values(board1_seq.nextval, '이벤트2','이벤트2파일','event');
 
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트1','','event');
+values(board1_seq.nextval, '이벤트3','이벤트3파일','event');
 -------------------------------------------------------
   
 --inquiry은 1대1문의 처리
 drop table inquiry;
 
 create table inquiry( 
-	inum number not null primary key,				--문의일련번호
-	mnum number not null,							--작성자일련번호
-	subject varchar2(100) not null,					--제목
-	question varchar2(2000) not null,				--문의사항
-	answer varchar2(2000) default '답변 대기중입니다.',	--답변사항
-	reg_date1 date default sysdate,					--문의작성일
-	reg_date2 date,					--답변작성일
-	progress varchar2(20) default '답변대기'			--답변상황 대기/완료
+	inum number primary key,				--문의일련번호
+	mnum number,							--작성자일련번호
+	subject varchar2(100),					--제목
+	question clob,							--문의사항
+	answer clob default '답변 대기중입니다.',		--답변사항
+	reg_date1 date default sysdate,			--문의작성일
+	reg_date2 date,							--답변작성일
+	progress varchar2(20) default '답변대기'	--답변상황 대기/완료
 	--progress는 '답변대기'과 '답변완료'로 구분
 );
 
@@ -102,10 +102,10 @@ commit;
 drop table faq;
 
 create table faq( 
-	fnum number not null primary key,		--faq일련번호
-	question varchar2(100) not null,		--faq질문
-	answer varchar2(2000) not null,			--faq답변
-	reg_date date default sysdate			--faq작성일
+	fnum number not null primary key,	--faq일련번호
+	question varchar2(100),				--faq질문
+	answer clob,						--faq답변
+	reg_date date default sysdate		--faq작성일
 );
 
 drop sequence faq_seq;
@@ -127,7 +127,7 @@ insert into faq(fnum, question, answer)
 values(faq_seq.nextval,'아이디와 비밀번호를 잊었어요.',
 '[아이디 찾기]
 1. 이메일 주소로 가입한 회원 : 가입 시 등록한 닉네임이나 이메일 주소 일부를 고객행복센터에 조회 요청
-2. 카카오톡/페이스북/네이버 계정으로 가입한 회원 : 해당 계정관리 업체의 고객센터에 문의' || CHR(10) ||'
+2. 카카오톡/페이스북/네이버 계정으로 가입한 회원 : 해당 계정관리 업체의 고객센터에 문의 '|| CHR(10) ||' 
 [비밀번호 찾기]
 - 이메일주소 가입만 해당
 1. 이메일로 로그인하기 > 비밀번호 재설정 
@@ -170,13 +170,7 @@ values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao'
 select * from member;
 
 commit;
----------------------------테스트공간----------
-insert into member 
-values(seq_member.nextval,'qrzv123@gmail.com','test','1234','01012345678','kakao',sysdate,200);
-select count(*)
-		from inquiry inner join member
-		on inquiry.mnum = member.mnum and email = qrzv123@naver.com
-----------------------------------------------하단도테스트중
+
 -- 사업자 테이블
 drop table company CASCADE CONSTRAINTS;
 create table company (
@@ -196,6 +190,14 @@ values('12345689123', 'abc.img', 'qrzv123@gmail.com', '1234', '01012345678', 0, 
 
 select * from company;
 commit;
+---------------------------테스트공간----------
+insert into member 
+values(seq_member.nextval,'qrzv123@gmail.com','test','1234','01012345678','kakao',sysdate,200);
+select count(*)
+		from inquiry inner join member
+		on inquiry.mnum = member.mnum and email = qrzv123@naver.com
+----------------------------------------------하단도테스트중
+
 
 
 
