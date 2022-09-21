@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 
-<link rel="stylesheet" href="${contextPath }/resources/css/calendar.css">
-<script src="${contextPath }/resources/js/calendar.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/css/compCalendar.css">
+<script src="${contextPath }/resources/js/compCalendar.js"></script>
 
 <style>
 	.tempImage {
@@ -29,10 +29,12 @@
 </table>
 <script type="text/javascript">
 	window.onload = function() {
-		new Calendar({
-			start: '20220910',
-			end: '20220926',
-			clickable: false
-		});
+		new Calendar([
+			{
+				name: '송학관',
+				start: '20220921',
+				end: '20220928'
+			}
+		]);
 	}
 </script>
