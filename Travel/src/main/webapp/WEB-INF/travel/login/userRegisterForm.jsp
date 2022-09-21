@@ -23,7 +23,6 @@ $("input[name='confirm']").click(function(){
         	email : $("input[name='email']").val()
         },
         success: function(data){
-        	$("#checkMsg").addClass('err');
         	if(data == "ok"){
         		$("#checkMsg").text("사용가능한 이메일입니다.");
         		$("#checkMsg").css("color","green");
@@ -42,7 +41,7 @@ $("input[name='confirm']").click(function(){
         	}else if (data == "no"){
         		$("#checkMsg").text("이메일 형식이 아닙니다.");
         		$("#checkMsg").css("color","red");
-        		$("#checkMsg").show();
+        		$("#chec	kMsg").show();
         		checkEmail = false;
         	}
         },
@@ -57,12 +56,12 @@ $("input[name='confirm']").click(function(){
 	
 $('input[name="email"]').keydown(function(){
 	$("#checkMsg").hide();
-	$("#checkMsg").removeClass('err');
 	checkEmail = false;
 });
 
 $('input[name="pwd2"]').on({
 	keyup: function(){
+		if($('input[name="pwd"]').val() != "" && $('input[name="pwd2"]').val() != ""){
 	if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
 		$("#pwd2Msg").text("비밀번호가 일치하지 않습니다.");
 		checkPwd = false;
@@ -70,8 +69,10 @@ $('input[name="pwd2"]').on({
 		$("#pwd2Msg").text("");
 		checkPwd = true;
 		}
+		}
 	},
 	click: function(){
+		if($('input[name="pwd"]').val() != "" && $('input[name="pwd2"]').val() != ""){
 		if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
 			$("#pwd2Msg").text("비밀번호가 일치하지 않습니다.");
 			checkPwd = false;
@@ -80,6 +81,7 @@ $('input[name="pwd2"]').on({
 			checkPwd = true;
 			}
 		}
+	}
 	});
 	
 	//pwd값이 생기면 정규식테스트
@@ -103,8 +105,6 @@ $('input[name="pwd2"]').on({
 });//ready
 
 function allCk(){
-	
-	
 	//공백확인
 	if($('input[name="name"]').val() == ""){
 		$('#nameMsg').text("이름을 입력하세요");
@@ -168,15 +168,14 @@ function allCk(){
 <div class="div">
 <label for="name">이름</label>
 <input type="text" name="name" id="name" value="${param.name }" placeholder="이름을 입력해주세요.">
-<font id="nameMsg" class="msg err"></font>
+<font id="nameMsg" ></font>
 </div>
 <div class="div">
 <label for="email">이메일</label> 
-
 <input type="text" name="email" id="email" value="${param.email }" placeholder="이메일을 입력해주세요." 
 <c:if test="${param.flatform ne '' }"> readonly </c:if>
 >
-<font id="checkMsg" class="msg err"></font>
+<font id="checkMsg" style="display: inline;"></font>
 <c:if test="${param.flatform eq '' }">
 <input type="button" class="confirm" name="confirm" value="중복확인">
 </c:if>
@@ -186,14 +185,14 @@ function allCk(){
 <div class="div">
 <label for="pwd">비밀번호</label>  
 <input type="text" name="pwd" id="pwd" value="${param.pwd }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwdMsg" class="msg err"></font>
+<font id="pwdMsg" ></font>
 </div>
 
 
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
 <input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwd2Msg" class="msg err"></font>
+<font id="pwd2Msg" ></font>
 </div>
 </c:if>
 
