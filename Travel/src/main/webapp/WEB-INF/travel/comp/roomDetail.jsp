@@ -6,16 +6,10 @@
 <script src="${contextPath }/resources/js/compCalendar.js"></script>
 
 <style>
-	.tempImage {
-		width: 100%;
-		height: 300px;
-		border: 1px solid black;
-	}
+
 </style>
-<input type="button" value="정보수정" />
-<div class="tempImage">
-	<img src="" >
-</div>
+<input type="button" value="객실정보 수정" onclick="location.href='${contextPath}/comp/room/update.comp?rnum=${rb.rnum }'"/><br>
+※ 예약 정보는 이번달부터 이후까지만 보여집니다.
 <div class="calendar"></div>
 <table>
 	<tr>
@@ -29,12 +23,30 @@
 </table>
 <script type="text/javascript">
 	window.onload = function() {
-		new Calendar([
-			{
-				name: '송학관',
-				start: '20220921',
-				end: '20220928'
-			}
-		]);
+		
+		const data = {
+				rnum: '${rb.rnum}'
+		}
+		
+		fetch('/travel/getRoomResList.comp', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data)
+		})
+		.then((data)=> {
+			return data.json();
+		})
+		.then((result)=> {
+			const arr = result.map((elem)=> {
+				return {
+					name: elem.resName,
+					start: elem.startDate,
+					end: elem.endDate
+				}
+			});
+			new Calendar(arr);
+		});
 	}
 </script>

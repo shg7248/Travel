@@ -80,7 +80,7 @@ window.document.ondragstart = new Function("return false");
     }
 
     function Plugin(users, options) {
-        this.users = dummy;
+        this.users = users;
         this.options = {...defaults, ...options};
 
         this.init();
@@ -115,16 +115,16 @@ window.document.ondragstart = new Function("return false");
         drawCalendar: function() {
 
             // 기본 구조
-            const c = document.querySelector('.calendar2');
+            const c = document.querySelector('.calendar');
             let inner = `<div class='calendar__inner'>`;
-            inner += `<div class='calendar__header2'></div>`;
-            inner += `<div class='calendar__content2'></div>`;
-            inner += `<div class='calendar__footer2'></div>`;
+            inner += `<div class='calendar__header'></div>`;
+            inner += `<div class='calendar__content'></div>`;
+            inner += `<div class='calendar__footer'></div>`;
             inner += `</div>`;
             c.innerHTML = inner;
 
             // 해더
-            const header = document.querySelector('.calendar__header2');
+            const header = document.querySelector('.calendar__header');
             const prev = makeElement('input', {type: 'button', class: 'calendar__btn calendar__btn--prev', value: '<'}, 'click', ()=> {
                 monthInfo.plusMonth -= 1;
                 this.init();
@@ -139,7 +139,7 @@ window.document.ondragstart = new Function("return false");
 
             // 컨텐츠
             const days = ['일', '월', '화', '수', '목', '금', '토'].map(ele=> `<div class='calendar__date'>${ele}</div>`)
-            const content = document.querySelector('.calendar__content2');
+            const content = document.querySelector('.calendar__content');
             const makeDates = this.dates.map((value, i)=> {
                 return `<div class='calendar__date' data-date='${value}'>${value.substring(6, 8).replace(/0(?=\d{1})/, '')}</div>`
             });
