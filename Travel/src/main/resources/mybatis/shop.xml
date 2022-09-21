@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.model.Shop">
 	<select id="Search" resultType="SearchBean">
-		select a.anum, a.name, r.price, a.image from(
+		select a.anum, a.name, r.price, a.image, re.sido || ' ' || re.sigungu || ' ' || re.bname || ' ' || re.bname2 as region from(
 			select a.anum, min(r.price) as price
 			from accom a
 			inner join room r
@@ -12,41 +12,31 @@
 			inner join region re
 			on a.rcode = re.rcode
 			where 1 = 1
-			<if test="fac2 != null">
-			and a.anum in(
-				select anum from(
-					select anum, cnum, regexp_substr(fac2, '[^,]+', 1, level) fac2
-					from accom a
-					<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
-					and prior a.cnum = a.cnum
-					and prior dbms_random.value is not null
-				) 
-				where fac2 in (
-					select regexp_substr(#{fac2}, '[^,]+', 1, level)
-					from dual
-					<![CDATA[connect by level <= (select regexp_count(#{fac2}, '[^,]+') from dual)]]>
+			<if test="fac != null">
+				and a.anum in (
+					with a as (
+						select anum, regexp_substr(fac1, '[^,]+', 1, level) as fac
+						from accom a
+						<![CDATA[connect by level <= regexp_count(fac1, '[^,]+')]]>
+						and prior a.cnum = a.cnum
+						and prior dbms_random.value is not null
+						union all
+						select anum, regexp_substr(fac2, '[^,]+', 1, level)
+						from accom a
+						<![CDATA[connect by level <= regexp_count(fac2, '[^,]+')]]>
+						and prior a.cnum = a.cnum
+						and prior dbms_random.value is not null
+					)
+					select anum
+					from a
+					where fac in (
+						select regexp_substr(#{fac}, '[^,]+', 1, level)
+						from dual
+						<![CDATA[connect by level <= (select regexp_count(#{fac}, '[^,]+') from dual)]]>
+					)
+					group by anum
+					having count(fac) = (select regexp_count(#{fac}, '[^,]+') from dual)				
 				)
-				group by anum
-				having count(anum) = (select regexp_count(#{fac2}, '[^,]+') from dual)
-			)
-			</if>
-			<if test="fac1 != null">
-			and a.anum in(
-				select anum from(
-					select anum, cnum, regexp_substr(fac1, '[^,]+', 1, level) fac1
-					from accom a
-					<![CDATA[connect by level <= regexp_count(fac1, '[^,]+')]]>
-					and prior a.cnum = a.cnum
-					and prior dbms_random.value is not null
-				) 
-				where fac1 in (
-					select regexp_substr(#{fac1}, '[^,]+', 1, level)
-					from dual
-					<![CDATA[connect by level <= (select regexp_count(#{fac1}, '[^,]+') from dual)]]>
-				)
-				group by anum
-				having count(anum) = (select regexp_count(#{fac1}, '[^,]+') from dual)
-			)
 			</if>
 			and r.rnum not in (
 				select rnum
@@ -65,21 +55,26 @@
 			<if test="canum != null">
 			<![CDATA[and a.canum = #{canum}]]>
 			</if>
-			<if test="region != null">
-				and substr(re.rcode, 0, 5) = #{region}
+			<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
+				and substr(re.rcode, 0, 5) = #{rcode}
+			</if>
+			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
+				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
 			</if>
 			group by a.anum
 		) z
 		inner join room r
-		on z.anum = r.anum
-		and z.price = r.price
+		on z.price = r.price
+		and z.anum = r.anum
 		inner join accom a
 		on z.anum = a.anum
+		inner join region re
+		on a.rcode = re.rcode
 		<if test="sort eq 'HIGHPRICE'">
-			order by r.price desc
+			order by price desc
 		</if>
-		<if test="sort eq 'ROWPRICE'">
-			order by r.price asc
+		<if test="sort eq 'LOWPRICE'">
+			order by price
 		</if>
 	</select>
 	

@@ -6,19 +6,19 @@ public class SearchBean {
 	private int rating;
 	private String canum;
 	private String name;
-	private String addr;
 	private int price;
 	private String start;
 	private String end;
 	private String image;
 	
-	private String fac1;
-	private String fac2;
+	private String fac;
 	private int count;
+	private String rcode;
 	private String region;
 	private String sort;
 	
 	SearchBean() {
+		this.rcode = "11000";
 		this.price = 300000;
 		this.count = 2;
 		this.sort = "LOWPRICE";
@@ -49,12 +49,6 @@ public class SearchBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
 	public int getPrice() {
 		return price;
 	}
@@ -79,17 +73,11 @@ public class SearchBean {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getFac1() {
-		return fac1;
+	public String getFac() {
+		return fac;
 	}
-	public void setFac1(String fac1) {
-		this.fac1 = fac1;
-	}
-	public String getFac2() {
-		return fac2;
-	}
-	public void setFac2(String fac2) {
-		this.fac2 = fac2;
+	public void setFac(String fac) {
+		this.fac = fac;
 	}
 	public int getCount() {
 		return count;
@@ -97,12 +85,22 @@ public class SearchBean {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public String getRcode() {
+		return rcode;
+	}
+
+	public void setRcode(String rcode) {
+		this.rcode = rcode;
+	}
+
 	public String getRegion() {
 		return region;
 	}
+
 	public void setRegion(String region) {
 		this.region = region;
 	}
+
 	public String getSort() {
 		return sort;
 	}

@@ -3,11 +3,12 @@ package board.inquiry.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import board.board1.model.Board1Bean;
+import Util.Paging;
 
 @Component("InquiryDao")
 public class InquiryDao {
@@ -22,18 +23,19 @@ public class InquiryDao {
 	}
 
 
-	public List<InquiryBean> getAllInquiryList() {
+	public List<InquiryBean> getAllInquiryList(Paging pageInfo) {
 		List<InquiryBean> lists = new ArrayList<InquiryBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllInquiryList");
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllInquiryList",null,rowBounds);
 		return lists;
 	}
-	public List<InquiryBean> getAllInquiryListByEmail(String email) {
+	public List<InquiryBean> getAllInquiryListByMemberEmail(String email, Paging pageInfo) {
 		List<InquiryBean> lists = new ArrayList<InquiryBean>();
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
 		System.out.println(email);
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllInquiryListByEmail",email);
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllInquiryListByMemberEmail",email,rowBounds);
 		return lists;
 	}
-
 
 	public InquiryBean getInquiryByInum(String inum) {
 		InquiryBean ib = new InquiryBean();
@@ -56,4 +58,17 @@ public class InquiryDao {
 	public void deleteInquiryByInum(String inum) {
 		sqlSessionTemplate.delete(namespace+".DeleteInquiryByInum",inum);
 	}
+
+
+	public int getTotalCount() {
+		int result = sqlSessionTemplate.selectOne(namespace+".GetTotalCount");
+		return result;
+	}
+
+
+	public int getTotalInquiryListByMemberEmailCount(String email) {
+		int result = sqlSessionTemplate.selectOne(namespace+".GetTotalInquiryListByMemberEmailCount",email);
+		return result;
+	}
+	
 }

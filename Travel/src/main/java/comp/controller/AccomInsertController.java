@@ -29,9 +29,9 @@ public class AccomInsertController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/1/insertAccom.comp";
+	private final String command = "/comp/accom/insert.comp";
 	private String getPage = "accomInsertForm";
-	private String gotoPage = "redirect:accomDetail.comp";
+	private String gotoPage = "redirect:detail.comp";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doGetAction(Model model) {
@@ -60,6 +60,9 @@ public class AccomInsertController {
 		compDao.insertAccom(accomBean);
 		
 		String realPath = servletContext.getRealPath("/resources/uploadImage");
+		
+		System.out.println("realPath : " + realPath);
+		
 		System.out.println("실제 파일 경로 : " + realPath);
 		File file = new File(realPath);
 		

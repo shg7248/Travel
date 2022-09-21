@@ -28,7 +28,7 @@ public class RoomMainController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/2/roomMain.comp";
+	private final String command = "/comp/room/main.comp";
 	private String getPage = "roomMain";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)

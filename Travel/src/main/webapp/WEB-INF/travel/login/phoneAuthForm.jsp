@@ -41,9 +41,11 @@ function subNum(){
  phoneAuthForm.jsp
 <div class="all">
 <form method="post" action="phoneAuthForm.log">
+	<input type="hidden" name="email" value="${param.email }">
+	<input type="hidden" name="flatform" value="${param.flatform }">
 	<div class="div">
 	<label for="phone">휴대폰번호</label> 
-	<input type="text" id="phone" name="phone" placeholder="-없이 입력해주세요.">
+	<input type="text" id="phone" name="phone" placeholder="-없이 입력해주세요." value="${param.phone }">
 	<font class="checkPhone"></font>
 	<input type="button" value="전송" onclick="subNum()">
 	</div>

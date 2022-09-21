@@ -1,12 +1,13 @@
 html, body {
     height: 100%;
 }
+
 .wrap {
     position: relative;
     margin: 0 auto;
     width: 960px;
     padding-left: 200px;
-    height: inherit;
+    min-height: 100%;
 }
 
 .header {
@@ -14,8 +15,8 @@ html, body {
     left: 0;
     top: 0;
     width: 200px;
-    height: inherit;
-    background: black;
+    min-height: inherit;
+    background: #2e2e2e;
     color: white;
 }
 .nav__inner {
@@ -44,6 +45,67 @@ html, body {
     color: red;	
 }
 
+.nav-2dept__link {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    width: 95%;
+    height: 30px;
+    line-height: 30px;
+    color: white;	
+}
+
 .main {
-	padding-top: 200px;
+	padding-top: 100px;
+}
+
+.section__inner {
+	padding: 0px 10px;
+}
+
+.accom-detail__btns {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.accom-detail__btn {
+	background: #2e2e2e;
+	color: white;
+	cursor: pointer;
+}
+
+.accom-detail__img {
+	width: 100%;
+}
+
+.table__msg--import {
+	color: red;
+}
+
+table {
+	width: 100%;
+	margin: 0 auto;
+	color: #70757a;
+	font-size: 12px;
+}
+
+table tr:not(tr:last-child) {
+	border-bottom: 1px solid #ebebeb;
+}
+
+table th {
+	font-weight: bold;
+}
+
+table td {
+	padding: 20px 0px 5px 0px;
+}
+
+table.accom-insert__form th {
+	width: 30%;
+}
+
+table input[type='text'] {
+	width: 200px;
+	border: 1px solid #ebebeb;
 }

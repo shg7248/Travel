@@ -22,19 +22,26 @@ public class TravelPhoneController {
 	//userLoginForm.jsp >> phoneAuthForm.jsp
 	@RequestMapping(value = command,method = RequestMethod.GET)
 	public String phoneUser() {
-
+		
 
 		return getPage;
 	}
 
 	//phoneAuthForm.jsp >> userRegisterForm.jsp
 	@RequestMapping(value = command,method = RequestMethod.POST)
-	public ModelAndView phoneUser(@RequestParam(value = "phone") String phone) {
+	public ModelAndView phoneUser2(@RequestParam(value = "phone") String phone,
+			@RequestParam(required = false) String email,
+			@RequestParam(required = false) String flatform) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotoPage);
 		mav.addObject("phone", phone);
+		mav.addObject("email", email);
+		mav.addObject("flatform", flatform);
+		
 		System.out.println("phone"+ phone);
+		System.out.println("email"+ email);
+		System.out.println("flatform"+ flatform);
 
 		return mav;
 	}
