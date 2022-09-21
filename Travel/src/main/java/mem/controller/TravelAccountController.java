@@ -1,8 +1,11 @@
 package mem.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +45,22 @@ public class TravelAccountController {
 	@RequestMapping(value = command,method = RequestMethod.POST)
 	public String account2(@RequestParam String bank,
 			@RequestParam String accnum,
-			HttpSession session
-			) {
+			HttpSession session,
+			HttpServletResponse response
+			) throws IOException {
+		//중복계좌확인
+		int cnt = tmdao.seachAccount(accnum);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		if(cnt>0) {
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('사용불가능한 계좌번호입니다.'); ");
+			writer.println("</script>");
+			writer.flush();
+			
+			return getPage;
+		}
+		
 		int mnum = (Integer) session.getAttribute("mnum");
 		System.out.println("mnum: " + mnum);
 		

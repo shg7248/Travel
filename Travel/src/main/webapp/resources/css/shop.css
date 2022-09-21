@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
 .header {
 	width: inherit;	
 	background: red;
@@ -67,4 +72,18 @@
 	color: white;
 	font-weight: bold;
 	font-size: 20px;
+}
+
+.main {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.main__inner {
+	padding: 35px 10px;
+}
+
+.footer {
+	background: #747474;
+	height: 150px;
 }

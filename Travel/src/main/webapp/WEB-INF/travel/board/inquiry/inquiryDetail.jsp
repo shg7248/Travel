@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
+<%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+
 inquiryDetail.jsp
 <br>
 <center>
@@ -35,12 +37,12 @@ inquiryDetail.jsp
 		<td align="right" colspan="6">
 			<c:set var="email1" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 			<c:if test="${email1 eq 'admin' }">
-				<input type="button" value="답변하기" onclick="location.href='inqanswer.brd?inum=${ib.inum }'">
+				<input type="button" value="답변하기" onclick="location.href='inqanswer.brd?inum=${ib.inum }&pageNumber=${pageNumber}'">
 			</c:if>
 			<c:if test="${email1 eq 'admin' || email1 eq ib.email}">
 				<input type="button" value="삭제" onclick="location.href='inqdelete.brd?inum=${ib.inum }'">
 			</c:if>
-			<input type="button" value="목록보기" onclick="location.href='inqlist.brd'">
+			<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageNumber}'">
 		</td>
 	</tr>
 </table>

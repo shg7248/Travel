@@ -11,8 +11,8 @@
 		height: 200px;
 	}
 </style>
-<input type="button" value="등록" onclick="location.href='${contextPath}/2/roomInsert.comp'"><br>
-<form method="get" action="roomMain.comp">
+<input type="button" value="등록" onclick="location.href='${contextPath}/comp/room/insert.comp'"><br>
+<form method="get" action="main.comp">
 	<select name="whatColumn">
 		<option value="">전체 검색</option>
 		<option value="name" <c:if test="${whatColumn eq 'name' }">selected</c:if>>객실 이름</option>
@@ -25,7 +25,7 @@
 	<div class="tempDiv">
 		${room.name }
 		<div>
-			<a href="roomDetail.comp?rnum=${room.rnum }">상세/수정</a>
+			<a href="${contextPath }/comp/room/detail.comp?rnum=${room.rnum }">상세/수정</a>
 			<a href="">삭제</a>
 		</div>
 	</div>

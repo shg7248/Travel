@@ -30,15 +30,22 @@ public class TravelLoginController {
 	@Autowired
 	TravelCompanyDao tcdao;
 	
-	//selectLogin.log > selectLogin.jsp
-	@RequestMapping(method = RequestMethod.GET,value = "selectLogin.log")
-	public String selectLogin() {
-		
-		return "selectLogin";
-	}
 	//userLoginForm.log > userLoginForm.jsp
 	@RequestMapping(method = RequestMethod.GET,value = command)
-	public String userLogin() {
+	public String userLogin(HttpSession session,HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		
+		if(session.getAttribute("userInfo") != null) {
+			System.out.println("로그인 중인 사용자");
+
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('이미 로그인 하였습니다.'); ");
+			writer.println("window.history.back()");
+			writer.println("</script>");
+			writer.flush();
+		}
 		
 		return getPage;
 	}
@@ -50,10 +57,10 @@ public class TravelLoginController {
 			HttpSession session) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
 		//입력한 이메일과 비밀번호
 		System.out.println("email:" + tubean.getEmail());
 		System.out.println("password:" + tubean.getPwd());
-		PrintWriter writer = response.getWriter();
 
 		//한계정 로그인 정보
 		TravelUserBean login = tudao.getMember(tubean.getEmail());
@@ -68,7 +75,15 @@ public class TravelLoginController {
 		}
 		else {// 일치하는 아이디 존재
 			System.out.println("login.getPwd(): " + login.getPwd());
-			if(tubean.getPwd().equals(login.getPwd())) {
+			
+			//비밀번호가 flatform이면 다른플랫폼 계정
+			if(login.getPwd().equals("flatform")) {
+				writer.println("<script type='text/javascript'>");
+				writer.println("alert('"+login.getFlatform()+"계정으로 로그인해주세요.'); ");
+				writer.println("</script>");
+				writer.flush();
+				
+			}else if(tubean.getPwd().equals(login.getPwd())) {
 				System.out.println("가입한 회원");
 				session.setAttribute("userInfo", login);
 				session.setAttribute("mnum", login.getMnum());
@@ -77,8 +92,7 @@ public class TravelLoginController {
 				//로그인성공시 이동할 위치
 			return "redirect:/";
 				
-			}
-			else { // 비번이 일치하지 않을 때
+			}else { // 비번이 일치하지 않을 때
 				writer.println("<script type='text/javascript'>");
 				writer.println("alert('비번이 일치하지 않습니다.'); ");
 				writer.println("</script>");
@@ -92,7 +106,20 @@ public class TravelLoginController {
 	
 	//ownerLoginForm.log > ownerLoginForm.jsp
 		@RequestMapping(method = RequestMethod.GET,value = command2)
-		public String ownerLogin() {
+		public String ownerLogin(HttpSession session,HttpServletResponse response) throws IOException {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			
+			if(session.getAttribute("loginInfo") != null) {
+				System.out.println("로그인 중인 사업자");
+
+				writer.println("<script type='text/javascript'>");
+				writer.println("alert('이미 로그인 하였습니다.'); ");
+				writer.println("window.history.back()");
+				writer.println("</script>");
+				writer.flush();
+			}
 			
 			return getPage2;
 		}
@@ -102,11 +129,13 @@ public class TravelLoginController {
 		public String ownerLogin(TravelCompanyBean tcbean,
 				HttpServletResponse response,
 				HttpSession session) throws IOException {
+			
 			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			
 			//입력한 이메일과 비밀번호
 			System.out.println("email:" + tcbean.getEmail());
 			System.out.println("password:" + tcbean.getPwd());
-			PrintWriter writer = response.getWriter();
 
 			//한계정 로그인 정보
 			TravelCompanyBean login = tcdao.getMember(tcbean.getEmail());
@@ -139,7 +168,7 @@ public class TravelLoginController {
 						session.setAttribute("email", login.getEmail());
 						
 						//로그인성공시 이동할 위치
-					return "redirect:/compMain.comp";
+					return "redirect:/";
 					}
 					
 				}

@@ -27,19 +27,22 @@ public class ShopSearchContoller {
 	@Autowired
 	private ShopDao shopDao;
 	
-	private final String command = "/shop/search/{canum}.shop";
-	private final String command2 = "/shop/search/{canum}/{region}.shop";
 	private String getPage = "search";
 	
+	private final String command = "/shop/search/{canum}.shop";
 	@RequestMapping(value = command)
 	public String doGetAction(Model model, 
 								@ModelAttribute("searchBean") SearchBean searchBean,
 								@PathVariable(value = "canum") String canum,
-								@RequestParam(required = false) @PathVariable(value = "rcode") String rcode) {
+								String rcode) {
+		
+		System.out.println("GetRcode : " + rcode);
+		
+		System.out.println(canum);
 		
 		searchBean.setCanum(canum);
 		if(rcode != null) {
-			searchBean.setRegion(rcode);
+			searchBean.setRcode(rcode);
 		}
 		
 		String start = searchBean.getStart();
@@ -65,17 +68,28 @@ public class ShopSearchContoller {
 		return getPage;
 	}
 	
+	
+	private final String command2 = "/shop/search/{canum}/{rcode}.shop";
 	@RequestMapping(value = command2)
-	public String doGetAction2(Model model, 
+	public String doPostAction(Model model, 
 			@ModelAttribute("searchBean") SearchBean searchBean, 
 			@RequestParam(required = false) String start, 
 			@RequestParam(required = false) String end,
 			@PathVariable(value = "canum") String canum,
-			@PathVariable(value = "region") String region) {
+			@PathVariable(value = "rcode") String rcode) {
 		
-			doGetAction(model, searchBean, canum, region);
+			doGetAction(model, searchBean, canum, rcode);
 			return getPage;
 	}
+	
+	private final String command3 = "/shop/around.shop";
+	@RequestMapping(value = command3)
+	public String doGetAction2(Model model) {
+		
+		
+		
+		return getPage;
+	}	
 	
 	public String formatDate(LocalDate date) {
 		int year = date.getYear();
@@ -83,4 +97,5 @@ public class ShopSearchContoller {
 		String day = String.format("%02d", date.getDayOfMonth());
 		return year + month + day;
 	}
+	
 }

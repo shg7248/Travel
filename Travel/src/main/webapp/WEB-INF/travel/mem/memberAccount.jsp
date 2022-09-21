@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
-<%@include file="./memberList.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,8 +32,12 @@ function checkAll(){
 }
 </script>
 <body>
+<div class="all">
+<%@include file="./memberList.jsp" %>
+<div class="contents">
 <h2> 무통장 입금 계좌번호를 등록해주세요.</h2>
 <form action="memberAccount.mem" method="post" name="f">
+<div class="div">
 <select name="bank" >
 	<option value="선택">결제수단 선택</option>
 	<c:set value="${fn:split('국민|신한|기업|농협','|') }" var="bankArr"/>
@@ -44,6 +47,7 @@ function checkAll(){
 </select>
 <input type="text" name="accnum" placeholder="계좌번호 - 없이 입력">
 <font class="err"></font>
+</div>
 <input type="submit" value="등록" onclick="return checkAll()">
 </form>
 
@@ -51,4 +55,6 @@ function checkAll(){
 <c:forEach items="${lists }" var="tabean">
 ${tabean.bank }, ${tabean.accnum }
 </c:forEach>
+</div>
+</div>
 </body>
