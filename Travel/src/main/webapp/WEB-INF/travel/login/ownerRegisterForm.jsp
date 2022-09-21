@@ -128,6 +128,13 @@ $('input[name="pwd2"]').on({
 			}
 		}
 	});
+	
+	//현재 내비번과 확인이 같으면
+	if($('input[name="pwd"]').val() != ""){
+		if($('input[name="pwd"]').val() == $('input[name="pwd2"]').val()){
+			checkPwd = true;
+		}
+	}
 
 });//ready
 

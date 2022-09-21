@@ -27,4 +27,5 @@ public class TravelUserDao {
 		TravelUserBean loginEmail = sst.selectOne(namespace+".UserLogin", email);
 		return loginEmail;
 	}
+	
 }

@@ -56,7 +56,7 @@ public class InquiryMailController {
 			//메일보내기
 			mailSender.send(mimeMessage);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("메일 발송 실패");
 		}
 		System.out.println("답변 메일 발송 성공");
 		return gotoPage;

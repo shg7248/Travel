@@ -22,9 +22,9 @@ public class RoomInsertController {
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/2/roomInsert.comp";
+	private final String command = "/comp/room/insert.comp";
 	private String getPage = "roomInsertForm";
-	private String gotoPage = "redirect:roomMain.comp";
+	private String gotoPage = "redirect:main.comp";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doGetAction() {

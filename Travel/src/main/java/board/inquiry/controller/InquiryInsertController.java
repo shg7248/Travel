@@ -32,7 +32,7 @@ public class InquiryInsertController {
 		if(result.hasErrors()) {
 			return getPage;
 		}
-		int mnum = Integer.parseInt((String)session.getAttribute("mnum"));
+		int mnum = Integer.parseInt((String) session.getAttribute("mnum"));
 		ib.setMnum(mnum);
 		idao.insertInquiry(ib);
 		

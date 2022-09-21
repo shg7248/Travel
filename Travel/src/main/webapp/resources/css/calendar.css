@@ -6,12 +6,7 @@
     z-index: 999;
 }
 .calendar {
-    width: calc(var(--s) * 7);
     background: white;
-    display: none;
-}
-.calendar.on {
-	display: block;
 }
 .calendar__title {
     display: flex;
@@ -20,14 +15,10 @@
 .calendar__view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border-left: 1px solid rgb(209, 209, 209);
-    border-top: 1px solid rgb(209, 209, 209);
 }
 .calendar__view div {
     width: var(--s);
     height: var(--s);
-    border-right: 1px solid rgb(209, 209, 209);
-    border-bottom: 1px solid rgb(209, 209, 209);
     font-size: 11px;
     cursor: pointer;
     text-align: center;

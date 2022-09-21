@@ -5,7 +5,7 @@
 <mapper namespace="login.model.Login">
 	<insert id="UserInsert">
 		insert into member 
-		values(seq_member.nextval,#{email},#{name},#{pwd},#{phone},'kakao',sysdate,200)
+		values(seq_member.nextval,#{email},#{name},#{pwd, jdbcType=VARCHAR},#{phone},#{flatform, jdbcType=VARCHAR},sysdate,200)
 	</insert>
 	
 	<select id="UserEmail" resultType="int">

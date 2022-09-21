@@ -218,7 +218,7 @@ create table member(
 ) ;
 
 insert into member 
-values(seq_member.nextval,'abc@naver.com','test','1234','01012345678','kakao',sysdate,200);
+values(seq_member.nextval,'abc@naver.com','test','1234','01012345678','main',sysdate,200);
 
 select * from member;
 commit;
@@ -231,8 +231,8 @@ DROP TABLE ACCOUNT CASCADE CONSTRAINTS;
 CREATE TABLE ACCOUNT (
 	ACCNUM	 	  VARCHAR2(20) PRIMARY KEY,
 	MNUM	 	 NUMBER,
-	BANK	 	 VARCHAR2(20),
-	CONSTRAINT MNUM FOREIGN KEY(MNUM)
-    REFERENCES MEMBER(MNUM)
+	BANK	 	 VARCHAR2(20)
+	--CONSTRAINT MNUM FOREIGN KEY(MNUM)
+    --REFERENCES MEMBER(MNUM)
 );
 -------------------------------------------

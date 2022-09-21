@@ -35,7 +35,7 @@ ownerLoginForm.jsp
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
 </form>
 <div class="edit">
-<a href="pwdForm.log">비밀번호 찾기</a>|
+<a href="ownerFindPwdForm.log">비밀번호 찾기</a>|
 <a href="phoneAuthForm2.log" >회원가입</a>
 </div>
 </div>

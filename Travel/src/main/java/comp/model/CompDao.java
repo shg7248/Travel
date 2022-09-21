@@ -34,6 +34,10 @@ public class CompDao {
 		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByAnum", anum);
 	}
 	
+	public AccomBean getAccomByAnumForUpdate(String anum) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByAnumForUpdate", anum);
+	}
+	
 	public AccomBean getAccomByCnum(String cnum) {
 		return sqlSessionTemplate.selectOne(namespace + ".GetAccomByCnum", cnum);
 	}
@@ -77,6 +81,10 @@ public class CompDao {
 	// rcode에 관련된 시/군/구 리스트
 	public List<ResionBean> GetResionSIGUNGUList(String rcode) {
 		return sqlSessionTemplate.selectList(namespace + ".GetResionSIGUNGUList", rcode); 
+	}
+
+	public void updateAccomByCnum(AccomBean accomBean) {
+		sqlSessionTemplate.update(namespace + ".UpdateAccomByCnum", accomBean); 
 	}
 
 }
