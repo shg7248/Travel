@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
-<script type="text/javascript">
-	$(document).ready(function () {
-	    $('#summernote').summernote({
-	        placeholder: '숙박지 기본정보를 입력하세요',
-	        height: 400,
-	        maxHeight: 300
-	    });
-	});
-</script>
+		
 		<form method="post" action="${contextPath }/comp/accom/insert.comp" enctype="multipart/form-data" name="accomForm">
 		<input type="hidden" name="latitude" value="">
 		<input type="hidden" name="longitude" value="">
@@ -92,12 +84,12 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea rows="" cols="" name="info" id="summernote"></textarea>
+					<textarea rows="20" cols="20" name="info" id="ir1" class="ir1"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="등록">
+					<input type="submit" value="등록" onclick='oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", [])'>
 				</td>
 			</tr>
 		</table>
@@ -105,6 +97,17 @@
 	</section>
 </main>
 <script>
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef : oEditors,
+		elPlaceHolder : "ir1",
+		sSkinURI : "${contextPath}/resources/se2/SmartEditor2Skin.html",
+		fCreator : "createSEditor2",
+		htParams : {
+			fOnBeforeUnload : function() {}
+		}
+	});
+	
 	var container = document.getElementById('map'),
 	map = new kakao.maps.Map(container, { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
