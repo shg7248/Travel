@@ -35,8 +35,13 @@ $("input[name='confirm']").click(function(){
         		$("#checkMsg").css("color","red");
         		$("#checkMsg").show();
         		checkEmail = false;
-        	}else{
-        		$("#checkMsg").text(" 이메일을 입력하세요.");
+        	}else if (data == "null"){
+        		$("#checkMsg").text("이메일을 입력하세요.");
+        		$("#checkMsg").css("color","red");
+        		$("#checkMsg").show();
+        		checkEmail = false;
+        	}else if (data == "no"){
+        		$("#checkMsg").text("이메일 형식이 아닙니다.");
         		$("#checkMsg").css("color","red");
         		$("#checkMsg").show();
         		checkEmail = false;
@@ -226,7 +231,7 @@ function allCk(){
 
 <div class="div">
 <label for="pwd">비밀번호</label>  
-<input type="text" name="pwd" id="pwd" value="${tcbean.pwd }" placeholder="비밀번호를 입력해주세요.">
+<input type="password" name="pwd" id="pwd" value="${tcbean.pwd }" placeholder="비밀번호를 입력해주세요.">
 <font id="pwdMsg" ></font>
 </div>
 
@@ -234,7 +239,7 @@ function allCk(){
 
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
-<input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
+<input type="password" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
 <font id="pwd2Msg" ></font>
 </div>
 
