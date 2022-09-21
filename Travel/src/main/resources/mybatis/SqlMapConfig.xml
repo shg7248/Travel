@@ -11,6 +11,7 @@
 		<typeAlias type="comp.model.CategoryBean" alias="CategoryBean"/>
 		<typeAlias type="shop.model.SearchBean" alias="SearchBean"/>
 		<typeAlias type="shop.model.DetailBean" alias="DetailBean"/>
+		<typeAlias type="shop.model.OrdersBean" alias="OrdersBean"/>
 		
 		<typeAlias type="login.model.TravelBookBean" alias="MyBook"/>
 		<typeAlias type="login.model.TravelUserBean" alias="MyMember"/>

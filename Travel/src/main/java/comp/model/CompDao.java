@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import Util.Paging;
+import shop.model.OrdersBean;
 
 @Component
 public class CompDao {
@@ -85,6 +86,14 @@ public class CompDao {
 
 	public void updateAccomByCnum(AccomBean accomBean) {
 		sqlSessionTemplate.update(namespace + ".UpdateAccomByCnum", accomBean); 
+	}
+
+	public List<OrdersBean> getOrderListByRnum(String rnum) {
+		return sqlSessionTemplate.selectList(namespace + ".GetOrderListByRnum", rnum); 
+	}
+
+	public void updateRoom(RoomBean roomBean) {
+		sqlSessionTemplate.update(namespace + ".UpdateRoom", roomBean); 
 	}
 
 }
