@@ -15,10 +15,16 @@ public class TravelLogoutController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		TravelUserBean login = (TravelUserBean)session.getAttribute("userInfo");
-		if(login.getFlatform() != "home") {
-			
+		TravelUserBean user = (TravelUserBean)session.getAttribute("userInfo");
+		
+		//유저정보가 있으면
+		if(user != null) {
+			//소셜로그인이면
+			if(user.getFlatform() != "home") {
+				
+			}
 		}
+		
 		//모든세션제거
 		session.invalidate(); 
 		 

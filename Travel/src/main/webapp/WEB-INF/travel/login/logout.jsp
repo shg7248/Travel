@@ -4,6 +4,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	/* 
 	//2a2af0084ddd5b6b3167da014e30faa3
 	Kakao.init('2a2af0084ddd5b6b3167da014e30faa3');
 
@@ -36,7 +37,7 @@ $(document).ready(function(){
 			}
 			
 		}
-		
+		 */
 	alert("로그아웃이 완료되었습니다.");
 	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
 	var uri = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) )+"/";

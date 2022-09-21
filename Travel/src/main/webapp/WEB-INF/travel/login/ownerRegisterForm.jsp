@@ -11,11 +11,10 @@ $(document).ready(function(){
 	checkEmail = false;
 	//비번일치체크
 	checkPwd = false;
-	checkEmail = false;
-	checkPwd = false;
-	checkCnum = false;
+	//사업자번호일치체크
+	cnumMsg = false;
 	//정규표현식(숫자만)
-	var rex = /^\d+$/;
+	var rex = /^\d{2,10}$/;
 
 $("input[name='confirm']").click(function(){
 	$.ajax({
@@ -54,11 +53,11 @@ $("input[name='confirm']").click(function(){
 
 $("input[name='confirm2']").click(function(){
 	if(!rex.test($("input[name='cnum']").val())){
-		$("#checkCnum").text("숫자만 입력가능합니다.");
-		$("#checkCnum").css("color","red");
-		$("#checkCnum").show();
+		$("#cnumMsg").text("12자리이하 숫자만 입력하세요.");
+		$("#cnumMsg").css("color","red");
+		$("#cnumMsg").show();
 		$("input[name='cnum']").focus();
-		checkCnum = false;
+		cnumMsg = false;
 		return;
 	}
 	$.ajax({
@@ -68,27 +67,26 @@ $("input[name='confirm2']").click(function(){
         	cnum : $("input[name='cnum']").val()
         },
         success: function(data){
-        	$("#checkCnum").addClass('err');
         	if(data == "ok"){
-        		$("#checkCnum").text("사용가능한 번호입니다.");
-        		$("#checkCnum").css("color","green");
-        		$("#checkCnum").show();
-        		checkCnum = true;
+        		$("#cnumMsg").text("사용가능한 번호입니다.");
+        		$("#cnumMsg").css("color","green");
+        		$("#cnumMsg").show();
+        		cnumMsg = true;
         	}else if(data == "fail"){
-        		$("#checkCnum").text("중복된 번호입니다.");
-        		$("#checkCnum").css("color","red");
-        		$("#checkCnum").show();
-        		checkCnum = false;
+        		$("#cnumMsg").text("중복된 번호입니다.");
+        		$("#cnumMsg").css("color","red");
+        		$("#cnumMsg").show();
+        		cnumMsg = false;
         	}else if(data == "leng") {
-        		$("#checkCnum").text(" 12자리 이하로 입력해주세요.");
-        		$("#checkCnum").css("color","red");
-        		$("#checkCnum").show();
-        		checkCnum = false;
+        		$("#cnumMsg").text(" 12자리 이하로 입력해주세요.");
+        		$("#cnumMsg").css("color","red");
+        		$("#cnumMsg").show();
+        		cnumMsg = false;
         	}else {
-        		$("#checkCnum").text(" 사업자 번호를 입력하세요.");
-        		$("#checkCnum").css("color","red");
-        		$("#checkCnum").show();
-        		checkCnum = false;
+        		$("#cnumMsg").text(" 사업자 번호를 입력하세요.");
+        		$("#cnumMsg").css("color","red");
+        		$("#cnumMsg").show();
+        		cnumMsg = false;
         	}
         },
         error: function(jqxhr, textStatus, errorThrown){
@@ -103,18 +101,17 @@ $("input[name='confirm2']").click(function(){
 //email 입력시 err 사라짐
 $('input[name="email"]').keydown(function(){
 	$("#checkMsg").hide();
-	$("#checkMsg").removeClass('err');
 	checkEmail = false;
 });
 //cnum 입력시 err 사라짐
 $('input[name="cnum"]').keydown(function(){
-	$("#checkCnum").hide();
-	$("#checkCnum").removeClass('err');
+	$("#cnumMsg").hide();
 	checkEmail = false;
 });
 
-$('input[name="pwd2"]').on({
+$('input[name="pwd"]').add('input[name="pwd2"]').on({
 	keyup: function(){
+	if($('input[name="pwd"]').val() != "" && $('input[name="pwd2"]').val() != ""){
 	if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
 		$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
 		$("#pwdMsg").css("color","red");
@@ -124,8 +121,10 @@ $('input[name="pwd2"]').on({
 		$("#pwdMsg").css("color","green");
 		checkPwd = true;
 		}
+	}
 	},
 	click: function(){
+		if($('input[name="pwd"]').val() != "" && $('input[name="pwd2"]').val() != ""){
 		if($('input[name="pwd"]').val() != $('input[name="pwd2"]').val()){
 			$("#pwdMsg").text("비밀번호가 일치하지 않습니다.");
 			$("#pwdMsg").css("color","red");
@@ -136,6 +135,7 @@ $('input[name="pwd2"]').on({
 			checkPwd = true;
 			}
 		}
+	}
 	});
 	
 	//현재 내비번과 확인이 같으면
@@ -161,24 +161,31 @@ function allCk(){
 		$('#pwdMsg').text("비밀번호를 입력하세요");
 		f.pwd.focus();
 		return false;
+	}else{
+		$('#pwdMsg').text("");
 	}
 	
 	if($('input[name="pwd2"]').val() == ""){
-		$('#pwdMsg').text("비밀번호를 입력하세요");
+		$('#pwd2Msg').text("비밀번호를 입력하세요");
 		f.pwd2.focus();
 		return false;
+	}else{
+		$('#pwd2Msg').text("");
 	}
 	
 	if($('input[name="cnum"]').val() == ""){
-		$('#cnum').text("사업자번호를 입력하세요");
+		$('#cnumMsg').text("사업자번호를 입력하세요");
 		f.cnum.focus();
 		return false;
+	}else{
+		$('#cnumMsg').text("");
 	}
 	
-	if($('input[name="cnum"]').val() == ""){
-		$('#cnum').text("사업자번호를 입력하세요");
-		f.cnum.focus();
+	if($('input[name="upload"]').val() == ""){
+		$('#imgMsg').text("이미지를 넣어주세요");
 		return false;
+	}else{
+		$('#imgMsg').text("");
 	}
 	
 	
@@ -220,7 +227,7 @@ function allCk(){
 <div class="div">
 <label for="pwd">비밀번호</label>  
 <input type="text" name="pwd" id="pwd" value="${tcbean.pwd }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwdMsg" class="msg err"></font>
+<font id="pwdMsg" ></font>
 </div>
 
 
@@ -228,7 +235,7 @@ function allCk(){
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
 <input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
-<font id="pwd2Msg" class="msg err"></font>
+<font id="pwd2Msg" ></font>
 </div>
 
 
@@ -236,8 +243,7 @@ function allCk(){
 <div class="div">
 <label for="cnum">사업자 번호</label> 
 <input type="text" name="cnum" id="cnum" value="${tcbean.cnum }" placeholder="사업자번호를 입력해주세요.">
-<font id="cnumMsg" class="msg err"></font>
-<font id="checkCnum"></font>
+<font id="cnumMsg" ></font>
 <input type="button" class="confirm2" name="confirm2" value="중복확인">
 </div>
 
@@ -246,7 +252,7 @@ function allCk(){
 <div class="div">
 <label for="upload">사업자 이미지</label> 
 <input type="file" name="upload" id="upload" value="">
-<font id="imgMsg" class="msg err"></font>
+<font id="imgMsg"></font>
 </div>
 
 <input type="submit" value="회원가입" onclick="return allCk()" class="custom-btn btn-5">
