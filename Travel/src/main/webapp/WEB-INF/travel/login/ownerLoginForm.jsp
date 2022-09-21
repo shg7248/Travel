@@ -21,8 +21,8 @@ function checkAll(){
 	}
 }
 </script>    
-ownerLoginForm.jsp
 <div class="all">
+<div class="one">
 <form method="post" name="f" action="ownerLoginForm.log">
 <div class="div email">
 <input type="text" name="email" placeholder="Email">
@@ -37,6 +37,7 @@ ownerLoginForm.jsp
 <div class="edit">
 <a href="ownerFindPwdForm.log">비밀번호 찾기</a>|
 <a href="phoneAuthForm2.log" >회원가입</a>
+</div>
 </div>
 </div>
    

@@ -160,7 +160,6 @@ function allCk(){
 }
 </script>
 <body>
-userRegisterForm.jsp
 <div class="all">
 <form name="f" method="post" action="userRegisterForm.log" >
 <input type="hidden" name="phone" value="${param.phone }">

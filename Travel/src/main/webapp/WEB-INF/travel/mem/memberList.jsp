@@ -26,7 +26,7 @@
 </script>
 
 <!--Top menu -->
-<div class="sidebar garo">
+<div class="sidebar">
 	<ul>
 		<li class="list"><a href="memberInfo.mem">내정보 보기</a></li>
 		<li class="list"><a href="pwdUpdate.mem">비밀번호 변경</a></li>

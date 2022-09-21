@@ -37,6 +37,7 @@ $(document).ready(function(){
 <body>
 <div class="all">
 <%@include file="./memberList.jsp" %>
+<div class="contents">
 <h2>회원 탈퇴</h2>
 	<form action="confirm.mem" method="post" name="f">
 		<div class="div">
@@ -46,5 +47,6 @@ $(document).ready(function(){
 		</div>
 		<input type="button" value="확인" onclick="checkPwd()">
 	</form>
+</div>
 </div>
 </body>
