@@ -41,7 +41,7 @@ $("input[name='confirm']").click(function(){
         	}else if (data == "no"){
         		$("#checkMsg").text("이메일 형식이 아닙니다.");
         		$("#checkMsg").css("color","red");
-        		$("#chec	kMsg").show();
+        		$("#checkMsg").show();
         		checkEmail = false;
         	}
         },

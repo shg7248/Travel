@@ -76,7 +76,7 @@ public class TravelRegisterController {
 		tubean.setPhone(phone);
 		
 		//플랫폼 null이면 home값넣기
-		if(tubean.getFlatform().equals(null)) {
+		if(tubean.getFlatform() == "") {
 			tubean.setFlatform("home");
 		}
 		//pwd null이면 flatform넣기
@@ -173,13 +173,21 @@ public class TravelRegisterController {
 	@RequestMapping(value = command4 ,method = RequestMethod.POST)
 	public String ajaxCompany(String email) {
 		System.out.println("email"+email);
-		int cnt = tcdao.emailCheck(email);
+		String rex = "^(.+)@(.+)$"; // 이메일 형식인지
+		
 		if(email == "") {
 			return "null";
-		}else if(cnt > 0 ) {
-			return "fail";
+		}
+
+		if(Pattern.matches(rex, email)) {
+			int cnt = tcdao.emailCheck(email);
+			if(cnt > 0 ) {
+				return "fail";
+			}else {
+				return "ok";
+			}
 		}else {
-			return "ok";
+			return "no";
 		}
 	}
 	

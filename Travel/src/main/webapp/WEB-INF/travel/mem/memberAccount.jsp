@@ -6,12 +6,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	//정규표현식(숫자만)
-	var rex = /^\d+$/;
+	var rex = /^\d{2,12}$/;
 	
 	$('input[name="accnum"]').keyup(function(){
 		if(!rex.test($('input[name="accnum"]').val())){
 			$('.err').show();
-			$('.err').text('숫자만 입력가능합니다.');
+			$('.err').text('12자리이하 숫자만 입력가능합니다.');
 			$('input[name="accnum"]').val('');
 		}else{
 			$('.err').hide();
@@ -62,7 +62,7 @@ function checkAll(){
 <ul>
 <li>${tabean.bank }</li>
 <li>${tabean.accnum }</li>
-<li><a href="#">삭제</a></li>
+<li><a href="accDelete.mem?accnum=${tabean.accnum }">삭제</a></li>
 </ul>
 </c:forEach>
 </div>

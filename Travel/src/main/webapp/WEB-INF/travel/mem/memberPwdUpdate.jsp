@@ -64,8 +64,8 @@ function allCheck(mypwd){
 <div class="all">
 <%@include file="./memberList.jsp" %>
 <div class="contents">
-<!-- 소셜로그인이 아니면 -->
-<c:if test="${param.pwd ne flatform }">
+<!-- 소셜플랫폼이 아니면 -->
+<c:if test="${userInfo.flatform eq 'home' }">
 <form action="pwdUpdate.mem" method="post" name="f" >
 <div class="div">
 <label for="pwd">현재 비밀번호</label>  
@@ -88,7 +88,7 @@ function allCheck(mypwd){
 </form>
 </c:if>
 <!-- 소셜로그인이면 -->
-<c:if test="${param.pwd eq flatform }">
+<c:if test="${userInfo.flatform ne 'home' }">
 소셜로그인은 비밀번호를 변경 할 수 없습니다.
 </c:if>
 </div>

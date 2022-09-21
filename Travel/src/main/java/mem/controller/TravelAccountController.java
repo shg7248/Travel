@@ -55,10 +55,12 @@ public class TravelAccountController {
 		if(cnt>0) {
 			writer.println("<script type='text/javascript'>");
 			writer.println("alert('사용불가능한 계좌번호입니다.'); ");
+			writer.println("location.href='memberAccount.mem'");
 			writer.println("</script>");
+			
 			writer.flush();
 			
-			return getPage;
+			return "";
 		}
 		
 		int mnum = (Integer) session.getAttribute("mnum");
@@ -70,6 +72,24 @@ public class TravelAccountController {
 		tabean.setMnum(mnum);
 		
 		tmdao.insertAccount(tabean);
+		
+		return "redirect:"+command;
+	}
+	
+	@RequestMapping(value = "accDelete.mem",method = RequestMethod.GET)
+	public String account3(@RequestParam String accnum,HttpServletResponse response) throws IOException {
+		
+		//계좌삭제
+		tmdao.deleteAccnum(accnum);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		writer.println("<script type='text/javascript'>");
+		writer.println("alert('등록계좌를 삭제하였습니다.'); ");
+		writer.println("location.href='memberAccount.mem'");
+		writer.println("</script>");
+		writer.flush();
+			
 		
 		return "redirect:"+command;
 	}

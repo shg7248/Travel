@@ -35,4 +35,9 @@
 		from account
 		where accnum = #{accnum}
 	</select>
+	
+	<delete id="DeleteAccnum">
+		delete account 
+		where accnum = #{accnum}
+	</delete>
 </mapper>
