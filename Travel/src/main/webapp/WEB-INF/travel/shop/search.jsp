@@ -4,82 +4,240 @@
 <script src="${contextPath }/resources/js/calendar.js"></script>
 <link rel="stylesheet" href="${contextPath }/resources/css/calendar.css">
 <style>
-	.testDiv {
-		width: 400px;
-		height: 200px;
-		border: 1px solid black;
+	.search-wrap {
+		display: grid;
+		grid-template-columns: repeat(16, 1fr);
+		column-gap: 10px;
+		--input-height: 40px;
 	}
 	
-	form {
-		border: 1px solid black;
+	.search-wrap .title {
+		font-size: 16px;
+		font-weight: bold;		
+	}
+	
+	.search-wrap__options {
+		grid-column: 1 / 5;
+	}
+	
+	.search-wrap__result {
+		grid-column: 5 / 17;
+	}
+	.region__title {
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.search-wrap__region {
+		padding: 20px;
+	}
+	.region__list {
+		width: 100%;
+		height: 40px;
+		border-radius: 10px;
+		border: 1px solid rgb(209, 209, 209);
+		text-align: center;
+	}
+	.region__list--sigungu {
+		margin-top: 10px;
+	}
+	.search-wrap__submit {
+		padding: 20px;
+	}
+	.search-wrap__btn {
+		width: 100%;
+		height: 40px;
+		background: #ff6060;
+		border-radius: 10px;
+		border: none;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.calendar {
+		width: 100%;
+		overflow: hidden;
+	    height: 0px;
+	    transition: all ease-in 0.3s;
+	}
+	.calendar.on {
+		height: 250px;
+	}
+	.search-wrap__calendar {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+	}
+	.calendar__show-btn {
+		width: 100%;
+		height: 40px;
+		border-radius: 5px;
+		border: 1px solid #ff6060;
+		margin-bottom: 10px;
+	}
+	.search-wrap__price {
+		padding: 10px 20px;
+	}
+	.price__text {
+		width: 100%;
+		height: var(--input-height);
+		border-radius: 5px;
+		border: 1px solid rgb(209, 209, 209);
+		padding-left: 20px;	
+	}
+	
+	.search-wrap__count {
+		padding: 10px 20px;
+	}
+	.count__text {
+		width: 100%;
+		height: var(--input-height);
+		border-radius: 5px;
+		border: 1px solid rgb(209, 209, 209);
+		padding-left: 20px;		
+	}
+	.search-wrap__fac {
+		padding: 20px;
+	}
+	.fac__select-wrap {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 10px;
+	}
+	
+	.search-wrap__sort {
+		padding: 20px;
+		text-align: right;
+	}
+	.sort__link {
+		font-size: 11px;
+		margin-left: 20px;
+		color: black;
+	}
+	.result__room {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+		padding: 20px;
+		height: 250px;
+		cursor: pointer;
+		margin-bottom: 10px;
+		transition: all .2s;
+	}
+	.result__room:hover {
+		background-size: 120% 120%!important;
+	}
+	.result__room::before {
+		content: '';
+		opacity: 0.5;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		right: 0px;
+		left: 0px;
+		background-color: #000;
+	}
+	.room__info {
+		color: white;
+		font-weight: bold;
+		font-size: 1.4em;
 	}
 </style>
 
-<!-- 
-	지역을 바꾸면 전부 초기화되면서 새로고침이 되고 다른 요소로 인해서 절대 바뀌지 않는다.
-	기간을 선택하면 지역은 그대로고 다른것들은 전부 초기화 된다.
- -->
+<section class="section">
+	<div class="search-wrap">
+		<article class="article search-wrap__options">
+			<form method="post" name="searchForm">
+				<input type="hidden" name="start" value="${start }">
+				<input type="hidden" name="end" value="${end }">
+				<input type="hidden" name="sort" value="${searchBean.sort }">
+				<div class="search-wrap__region">
+					<div class="region">
+						<p class="region__title">지역</p> 
+						<select class="region__list region__list--sido" name="sido" onchange="changeSido()">
+							<c:forEach var="resion" items="${rLists }">
+								<option class="region__item" value="${resion.rcode }">${resion.sido }</option>
+							</c:forEach>
+						</select>
+						<select class="region__list region__list--sigungu" name="sigungu" onchange="addrDeps2Changed()">
+							<option class="region__item" value="0">시/군/구</option>
+							<option class="region__item" value="000">전체</option>
+						</select>
+					</div>
+				</div>
+				<div class="search-wrap__submit">
+					<input class="search-wrap__btn" type="submit" value="검색" />
+				</div>
+				<div class="search-wrap__calendar">
+					
+					<fmt:parseDate var="parsedStartDate" value="${start }" pattern="yyyyMMdd"/>
+					<fmt:formatDate var="startDate" value="${parsedStartDate }" pattern="MM월 dd일"/>
+					
+					<fmt:parseDate var="parsedEndDate" value="${end }" pattern="yyyyMMdd"/>
+					<fmt:formatDate var="endDate" value="${parsedEndDate }" pattern="MM월 dd일"/>					
+					<p class="calendar__title title">기간 선택</p>
+					<input class="calendar__show-btn" type="button" value="${startDate } ~ ${endDate }" onclick="displayCal()"/>
+					<div class="calendar"></div>
+				</div>
+				<div class="search-wrap__price">
+					<p class="price__title title">가격</p> 
+					<input class="price__text" type="text" name="price" value="${searchBean.price }"/>
+				</div>
+				<div class="search-wrap__count">
+					<p class="count__title title">인원</p>
+					<input class="count__text" type="text" name="count" value="${searchBean.count }"/>
+				</div>
+				<div class="search-wrap__fac">
+					<p class="fac__title title">공용시설</p>
+					<div class="fac__select-wrap">
+						<c:forEach var="fac" items="${facLists }">
+							<c:if test="${fac.fgroup eq 'F1' }">
+								<div>
+									<input type="checkbox" name="fac" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>&nbsp;${fac.name }
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="search-wrap__fac">
+					<p class="fac__title title">객실 내 시설</p>
+					<div class="fac__select-wrap">
+						<c:forEach var="fac" items="${facLists }">
+							<c:if test="${fac.fgroup eq 'F2' }">
+								<div>
+									<input type="checkbox" name="fac" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac, fac.fnum) }">checked</c:if>>&nbsp;${fac.name }
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+				</div>
+			</form>
+		</article>
+		<article class="article search-wrap__result">
+			<div class="search-wrap__sort">
+				<a class="sort__link sort__link--hit" href="javascript:sort('HIT')">추천 높은순</a>
+				<a class="sort__link sort__link--heghPrice" href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
+				<a class="sort__link sort__link--lowPrice" href="javascript:sort('LOWPRICE')">가격 낮은순</a>
+			</div>
+			<div class="result__rooms">
+				<c:if test="${empty sLists }">
+					<h2>찾으시는 정보가 존재하지 않습니다.</h2>
+				</c:if>
+				<c:if test="${!empty sLists }">
+					<c:forEach var="search" items="${sLists }">
+						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
+							<span class="room__info room__info--name">${search.name }</span>
+							<span class="room__info room__info--region">${search.region }</span>
+							<span class="room__info room__info--price"><fmt:formatNumber value="${search.price }" />원</span>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+		</article>
+	</div>
+</section>
 
-${path }
-<form method="post" name="searchForm">
-	지역 
-	<select name="sido" onchange="changeSido()">
-		<c:forEach var="resion" items="${rLists }">
-			<option value="${resion.rcode }">${resion.sido }</option>
-		</c:forEach>
-	</select>
-	<select name="sigungu" onchange="addrDeps2Changed()">
-		<option value="">시/군/구</option>
-	</select>
-	<br><br><br><br><br><br>
-
-	<input type="submit" value="검색" />
-	<br>
-	기간 <input type="button" value="기간 선택" onclick="displayCal()"/>
-	${start } ~ ${end }
-	<br>
-	<div class="calendar"></div>
-	<input type="hidden" name="start" value="${start }">
-	<input type="hidden" name="end" value="${end }">
-	<input type="hidden" name="sort" value="${searchBean.sort }">
-	<br>
-	공용시설
-	<br>
-	<c:forEach var="fac" items="${facLists }">
-		<c:if test="${fac.fgroup eq 'F1' }">
-			<input type="checkbox" name="fac1" value="${fac.fnum }"<c:if test="${fn:contains(searchBean.fac1, fac.fnum) }">checked</c:if>>${fac.name }
-		</c:if>
-	</c:forEach>
-	<br>
-	객실 내 시설
-	<br>
-	<c:forEach var="fac" items="${facLists }">
-		<c:if test="${fac.fgroup eq 'F2' }">
-			<input type="checkbox" name="fac2" value="${fac.fnum }" <c:if test="${fn:contains(searchBean.fac2, fac.fnum) }">checked</c:if>>${fac.name }
-		</c:if>
-	</c:forEach>
-	<br>
-	인원 <input type="text" name="count" value="${searchBean.count }"/>
-	<br>
-	가격 <input type="text" name="price" value="${searchBean.price }"/>
-	<br>
-</form>
-<a href="javascript:sort('HIT')">추천 높은순</a>
-<a href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
-<a href="javascript:sort('LOWPRICE')">가격 낮은순</a>
-<c:if test="${empty sLists }">
-	<h2>찾으시는 정보가 존재하지 않습니다.</h2>
-</c:if>
-<c:if test="${!empty sLists }">
-	<c:forEach var="search" items="${sLists }">
-		<div class="testDiv">
-			<a href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }">${search.name }</a><br>
-			${search.addr }<br>
-			${search.price }원<br>
-			${search.image }
-		</div>
-	</c:forEach>
-</c:if>
 <script>
 
 	window.onload = function() {
@@ -88,23 +246,25 @@ ${path }
 		const pathname = window.location.pathname;
 		searchForm.action = pathname;
 		
+		// 달력 생성
 		const start = ${start};
 		const end = ${end};
 		const cal = new Calendar({start: start, end: end});
 		
-		const rcode = searchForm.sido.value;
-		const sigungu = searchForm.sigungu;
-		
 		// 지역 체크박스
 		if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-			const si = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
+			const sido = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
 			Array.from(searchForm.sido.children, (e)=> {
-				if(e.value === si) {
+				if(e.value === sido) {
 					e.selected = true;
 				}
 			});
-			changeSido();
 		}
+		else {
+			searchForm.sido.options[0].selected = true;
+		}
+		
+		changeSido();
 	}
 
 	function displayCal() {
@@ -119,14 +279,15 @@ ${path }
 		ele.parentElement.submit();
 	}
 	
-	// 주소 2deps 업데이트
+	// sido 선택하면
 	function changeSido() {
-		const rcode = searchForm.sido.value;
+
+		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu;
 		
 		const pathname = window.location.pathname;
 		
-		const obj = {rcode : rcode};
+		const obj = {rcode : sido};
 		const data = {
 				method: 'POST',
 				headers: {
@@ -138,20 +299,24 @@ ${path }
 		fetch('${contextPath}/getSIGUNGU.shop', data)
 		.then((res)=> res.json())
 		.then((result)=> {
-			sigungu.options.length = 1;
+			sigungu.options.length = 2;
 			result.forEach((e, i) => {
-				sigungu.options[i + 1] = new Option(e.sigungu, e.rcode);
+				sigungu.options[i + 2] = new Option(e.sigungu, e.rcode);
 			});
 		})
 		.then(()=> {
 			
+			// 2dept 체크처리
 			// fetch의 비동기 방식으로 인해서 2dept가 만들어진 이후 선택되야 한다.
 			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-				
+				const oldSido = pathname.match(/(\d{2})\d+\.shop/)[1];
 				Array.from(searchForm.sigungu.children, (e)=> {
-					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];			
-					if(e.value === sigungu) {
+					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];	
+					if(sido + e.value === oldSido + sigungu) {
 						e.selected = true;
+					}
+					else {
+						e.selected = false;
 					}
 				});	
 			}
@@ -162,12 +327,19 @@ ${path }
 		
 		const sido = searchForm.sido.value;
 		const sigungu = searchForm.sigungu.value;
+		
+		if(sigungu.value === 0)
+			return;
+		
 		const pathname = window.location.pathname;
 		
 		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
 		const fac = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
 		
-		searchForm.action = url + fac + "/" + sido.concat(sigungu) + ".shop";
+		const rcode = sido.concat(sigungu).padEnd(5, 0);
+		
+		searchForm.action = url + fac + "/" + rcode + ".shop";
 		searchForm.submit();
 	}
 </script>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

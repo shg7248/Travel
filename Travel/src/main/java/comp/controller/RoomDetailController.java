@@ -1,4 +1,7 @@
-package shop.controller;
+package comp.controller;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,18 +15,21 @@ import comp.model.RoomBean;
 
 @Controller
 public class RoomDetailController {
-
+	
+	@Autowired
+	private ServletContext servletContext;
+	
 	@Autowired
 	private CompDao compDao;
 	
-	private final String command = "/2/roomDetail.comp";
+	private final String command = "/comp/room/detail.comp";
 	private String getPage = "roomDetail";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doGetAction(Model model, @RequestParam String rnum) {
+	public String doGetAction(Model model, HttpSession session, @RequestParam String rnum) {
 		
-		RoomBean roomBean = compDao.getRoomByRnum(rnum);
-		model.addAttribute("roomBean", roomBean);
+		RoomBean rb = compDao.getRoomByRnum(rnum);
+		model.addAttribute("rb", rb);
 		
 		return getPage;
 	}

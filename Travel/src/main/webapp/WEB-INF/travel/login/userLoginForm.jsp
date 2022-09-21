@@ -22,23 +22,94 @@ function checkAll(){
 	}
 }
 </script>    
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+	//2a2af0084ddd5b6b3167da014e30faa3
+	Kakao.init('2a2af0084ddd5b6b3167da014e30faa3');
 
+	// SDK 초기화 여부를 판단합니다.
+	console.log(Kakao.isInitialized());
+
+	function kakaoLogin() {
+		//로그인(이메일받음)
+		Kakao.Auth.login({
+			scope : 'account_email',
+
+			success : function(response) {
+				console.log(response);
+				
+				//사용자 정보 가져오기
+				Kakao.API.request({
+					  url: '/v2/user/me',
+					  data: {
+					    property_keys: ['kakao_account.email']
+					  },
+					  success: function(response) {
+					    console.log(response);
+					    //kakaoLogin.log
+					    location.href='kakaoLogin.log?email='+response.kakao_account.email;
+					 	
+					  },
+					  fail: function(error) {
+					    console.log(error);
+					  }
+					});
+			},
+			fail : function(error) {
+				console.log(error);
+			},
+		});
+	}
+
+	function kakaoLogout() {
+		//토큰확인
+		if (!Kakao.Auth.getAccessToken()) {
+			console.log('Not logged in.');
+			alert("로그인 정보가 없습니다.");
+			return;
+		}
+		//연결끊기
+		Kakao.API.request({
+			url : '/v1/user/unlink',
+			success : function(response) {
+				alert("연결끊기");
+				console.log(response);
+			},
+			fail : function(error) {
+				console.log(error);
+			}
+		});
+		//로그아웃
+		Kakao.Auth.logout(function() {
+			alert("로그아웃");
+			console.log(Kakao.Auth.getAccessToken());
+		});
+	}
+</script>
 userLoginForm.jsp
 <div class="all">
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
 <input type="text" name="email" placeholder="Email">
-<font id="checkEmail"></font>
 </div>
+<font id="checkEmail" class="err"></font>
 <div class="div password">
 <input type="text" name="pwd" placeholder="PassWord">
-<font id="checkPwd"></font>
 </div>
+<font id="checkPwd" class="err"></font>
+<div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
+</div>
 </form>
 <div class="edit">
-<a href="userPwdForm.log">비밀번호 찾기</a>
+<a href="userFindPwdForm.log">비밀번호 찾기</a>
 |
 <a href="phoneAuthForm.log">회원가입</a>
 </div>
+
+<a href="javascript:kakaoLogin();"> <img alt=""
+		src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png">
+	</a>
+	<Br>
+	<a href="javascript:kakaoLogout();"> 로그아웃 </a><Br>
 </div>
