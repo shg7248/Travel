@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
+
 <style>
 .fq{
 	cursor : pointer;
@@ -9,19 +11,25 @@
 .fa{
 	display : none;
 }
+.search{
+	display: flex;
+	justify-content: space-between;
+}
 </style>
 
 <script>
 $(document).ready(function(){
 	$('.fq').click(function(){
-		$(this).next().toggle('fast');
+		$(this).next().toggle();
 	});
 });
 </script>
 
-<center>
+<div class="default">
+<div class="contents">
 <h2>자주 묻는 질문 FAQ</h2><br>
 <form action="faqlist.brd" method="post">
+<div class="search">
 	<select name="whatColumn">
 		<option value="">전체 검색</option>
 		<option value="question" <c:if test="${whatColumn eq 'question' }">selected</c:if>>제목</option>
@@ -29,21 +37,22 @@ $(document).ready(function(){
 	</select>
 	<input type="text" name="keyword" value="${keyword }">
 	<input type="submit" value="검색">
-</form>
-	<table border="1" width="800">
+</div>
+</form><br>
+	<table border="1" width="700">
+		<c:if test="${email eq 'admin' }">
 		<tr>
-			<td align="right" height="50">
-			<c:if test="${email eq 'admin' }">
+			<td align="right">
 				<input type="button" value="추가하기" onclick="location.href='faqinsert.brd'">
-			</c:if>
 			</td>
 		</tr>
+		</c:if>
 		<c:forEach var="faq" items="${lists }">
 		<tr height="50" class="fq">
-			<td>${faq.question }</td>
+			<td class="title_td">${faq.question }</td>
 		</tr>
 		<tr class="fa">
-			<td width="800">
+			<td width="800" class="inner_td">
 			<pre style="word-wrap: break-word; white-space: pre-wrap;">${faq.answer }</pre><br>
 			<c:if test="${email eq 'admin' }">
 			<div align="right">
@@ -55,4 +64,5 @@ $(document).ready(function(){
 		</tr>
 		</c:forEach>
 	</table>
-</center>
+</div>
+</div>

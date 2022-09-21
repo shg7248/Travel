@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-inquiryDetail.jsp
-<br>
-<center>
-<table border="1" height="800" width="800">
+<div class="default">
+<div class="contents">
+<h2>1:1 문의사항 답변하기</h2>
+<table>
 	<tr>
 		<td align="center" width="10%">제목</td>
 		<td align="center" width="90%" colspan="5">${ib.subject }</td>
@@ -46,4 +47,5 @@ inquiryDetail.jsp
 		</td>
 	</tr>
 </table>
-</center>
+</div>
+</div>

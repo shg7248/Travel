@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <style>
 .err {
@@ -32,21 +33,21 @@ $(document).ready(function() {
 });
 </script>
 
-<center>
+<div class="default">
+<div class="contents">
 <form:form commandName="faq" method="post" action="faqupdate.brd">
 <input type="hidden" name="fnum" value="${faq.fnum }">
 <h2 align="center">FAQ 수정하기</h2>
 <table>
 	<tr>
-		<td>질문</td>
 		<td>
-			<input type="text" name="question" value="${faq.question }" size="50">
+			<input type="text" name="question" placeholder="질문을 입력하세요." value="${faq.question }">
 			<form:errors cssClass="err" path="question"/><br>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<textarea name="answer" rows="13" cols="50" id="summernote" style="resize:none">${faq.answer }</textarea><br>
+			<textarea name="answer" rows="13" cols="50" placeholder="내용을 입력하세요." id="summernote" style="resize:none">${faq.answer }</textarea><br>
 			<form:errors cssClass="err" path="answer"/><br>
 			<div align="right">
 			<input type="submit" value="수정하기">
@@ -55,4 +56,5 @@ $(document).ready(function() {
 	</tr>
 </table>
 </form:form>
-</center>
+</div>
+</div>
