@@ -125,4 +125,17 @@
 	<select id="GetCategoryList" resultType="CategoryBean">
 		select * from category order by 1
 	</select>
+	
+	<select id="GetOrderListByRnum" resultType="OrdersBean">
+		select * from orders
+		<![CDATA[where to_date(startdate, 'yyyyMMdd') >= trunc(sysdate, 'MM') and rnum = #{rnum}]]>
+	</select>
+	
+	<update id="UpdateRoom">
+		update room set name = #{name}, info = #{info}, price = #{price}, sale = #{sale}, max = #{max}
+		<if test="image != null">
+			, image = #{image}
+		</if>
+		where rnum = #{rnum}
+	</update>
 </mapper>
