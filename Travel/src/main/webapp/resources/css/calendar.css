@@ -1,12 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    --s: 30px;
-    z-index: 999;
-}
 .calendar {
     background: white;
+    --s: 30px;
 }
 .calendar__title {
     display: flex;

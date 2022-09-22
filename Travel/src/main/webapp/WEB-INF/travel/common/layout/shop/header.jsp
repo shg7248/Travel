@@ -20,12 +20,14 @@
 				<li class="sub-menu__item"><a href="">예약내역</a></li>
 				<li class="sub-menu__item">
 					<a href="${contextPath }/noticelist.brd">더보기</a>
-					<ul class="temp" style="z-index: 1;">
-						<li><a href="${contextPath }/noticelist.brd">공지사항</a></li>
-						<li><a href="${contextPath }/eventlist.brd">이벤트</a></li>
-						<li><a href="${contextPath }/faqlist.brd">자주묻는 질문</a></li>
-						<li><a href="${contextPath }/inqlist.brd">1대1 문의</a></li>
-					</ul>
+					<div class="sub-menu__more-info">
+						<ul class="more-info__list">
+							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/noticelist.brd">공지사항</a></li>
+							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/eventlist.brd">이벤트</a></li>
+							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/faqlist.brd">자주묻는 질문</a></li>
+							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/inqlist.brd">1대1 문의</a></li>
+						</ul>
+					</div>
 				</li>
 			</ul>
 		</div>
