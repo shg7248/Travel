@@ -10,6 +10,11 @@ font{
 	font-size: 8px;
 }
 
+h2{
+	font-size: 18px;
+	font-weight: bolder;
+}
+
 .edit{
 	text-align: center;
 	margin: 10 0;
@@ -47,7 +52,7 @@ font{
 	border-width: 1px;
 	border-radius:0px;
 	margin-top: 10;
-	padding-left: 30;
+	padding-left: 40;
 }
 .email input{
   background: white;
@@ -67,7 +72,7 @@ font{
 .password input{
   background: white;
   background-image: url(../images/password.PNG);
-  background-position: 5px center;
+  background-position: 12px center;
   background-repeat: no-repeat;
 }
 
@@ -82,6 +87,7 @@ font{
 
 .height{
 	margin-top: 100;
+	display: block;
 }
 
 .board ul > li:first-child               {width:40%;} /*열 크기*/
@@ -89,6 +95,7 @@ font{
 .board ul > li:first-child +li +li           {width:20%;} /*열 크기*/
     
 .board ul:first-child li  {
+	margin-top:20;
     background-color:#ff8080;
     font-weight:bold;
     font-size:12pt;
@@ -102,6 +109,7 @@ font{
     border-bottom:1px solid #ff0000;
     vertical-align:baseline;
     line-height: 2;
+    color: white;
 }  
 
 .board ul:not(ul:first-child) > li:last-child { 
