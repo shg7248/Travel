@@ -42,11 +42,10 @@ public class TravelPwdFindByMailController {
 	//userPwdForm.jsp > codeCheck.jsp
 	@RequestMapping(value = command1)
 	public String sendUserVcode(@RequestParam("userEmail1") String userEmail1,
-								@RequestParam("userEmail2") String userEmail2,
 								HttpServletResponse response, HttpSession session) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
-		String userEmail = userEmail1+userEmail2;
+		String userEmail = userEmail1;
 		System.out.println(userEmail);
 
 		TravelUserBean tub = tudao.getMember(userEmail);

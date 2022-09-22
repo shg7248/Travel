@@ -31,7 +31,7 @@ h2{
 }
 .contents{
 	width: 700px;
-	margin: auto;
+	margin: 0px 20 0 20;
 	text-align: center;
 	justify-content: center;
 }
@@ -46,4 +46,7 @@ h2{
 
 .event_img{
 	width: 100%;
+}
+.search>input[type=text]{
+	margin: 0 5 0 5;
 }

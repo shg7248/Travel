@@ -28,11 +28,11 @@
 	</tr>
 	<tr height="300">
 		<td align="center" width="10%">내용</td>
-		<td align="center" width="90%" colspan="5">${ib.question }</td>
+		<td width="90%" colspan="5">${ib.question }</td>
 	</tr>
 	<tr height="300">
 		<td align="center" width="10%">답변</td>
-		<td align="center" width="90%" colspan="5"><pre>${ib.answer }</pre></td>
+		<td width="90%" colspan="5"><pre>${ib.answer }</pre></td>
 	</tr>
 	<tr>
 		<td align="right" colspan="6">

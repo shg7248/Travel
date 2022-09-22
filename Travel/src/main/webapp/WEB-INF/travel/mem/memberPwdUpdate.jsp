@@ -62,7 +62,7 @@ function allCheck(mypwd){
 </script>
 <body>
 <div class="all">
-<%@include file="./memberList.jsp" %>
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 <!-- 소셜플랫폼이 아니면 -->
 <c:if test="${userInfo.flatform eq 'home' }">
