@@ -57,10 +57,11 @@
 		width: 100%;
 		overflow: hidden;
 	    height: 0px;
+	    margin-top: 10px;
 	    transition: all ease-in 0.3s;
 	}
 	.calendar.on {
-		height: 250px;
+		height: 280px;
 	}
 	.search-wrap__calendar {
 		display: flex;
@@ -72,7 +73,6 @@
 		height: 40px;
 		border-radius: 5px;
 		border: 1px solid #ff6060;
-		margin-bottom: 10px;
 	}
 	.search-wrap__price {
 		padding: 10px 20px;
@@ -125,6 +125,7 @@
 		margin-bottom: 10px;
 		transition: all .2s;
 	}
+
 	.result__room:hover {
 		background-size: 120% 120%!important;
 	}
@@ -142,6 +143,7 @@
 		color: white;
 		font-weight: bold;
 		font-size: 1.4em;
+		z-index: 999;
 	}
 </style>
 
