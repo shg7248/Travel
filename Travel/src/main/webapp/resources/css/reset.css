@@ -21,7 +21,9 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	box-sizing: border-box;
 	vertical-align: baseline;
+	
 	font-family: "Noto Sans KR", sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
@@ -30,7 +32,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1.42857143;
+	font-size: 14px;
 }
 ol, ul {
 	list-style: none;
@@ -59,5 +62,11 @@ a:hover {
 }
 
 p {
-	line-height: 1.7;
+	margin: 0 0 10px;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
 }
