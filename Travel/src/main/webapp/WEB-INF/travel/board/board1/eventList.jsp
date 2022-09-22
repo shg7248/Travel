@@ -2,16 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-eventList.jsp<br>
-<center>
+<div class="default">
+<div class="contents">
 	<h2>이벤트</h2>
-<c:forEach items="${list }" var="board1">
 	<table border="1" width="800">
+		<c:if test="${email eq 'admin' }">
 		<tr>
-			<th><a href="eventdetail.brd?nnum=${board1.nnum }&pageNumber=${pageInfo.pageNumber}">${board1.subject }</a></th>
+			<td align="right">
+				<input type="button" value="추가하기" onclick="location.href='insertevent.brd'">
+			</td>
 		</tr>
+		</c:if>
+		<c:forEach items="${list }" var="board1">
+		<tr>
+			<td class="title_td">
+				<a href="eventdetail.brd?nnum=${board1.nnum }&pageNumber=${pageInfo.pageNumber}">${board1.subject }</a>
+			</td>
+		</tr>
+		</c:forEach>
 	</table>
-</c:forEach>
 ${pageInfo.pagingHtml }
-</center>
+</div>
+</div>

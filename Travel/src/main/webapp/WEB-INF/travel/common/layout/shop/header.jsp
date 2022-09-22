@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="logo">
+		<div class="logo" style="z-index: 1;">
 			<a href="${contextPath }/"><img alt="" src="${contextPath }/resources/images/Logo.png"></a>
 		</div>
 		<div class="search"></div>

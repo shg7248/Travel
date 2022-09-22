@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <style>
 .err {
@@ -9,8 +10,9 @@
 	color: red;
 }
 </style>
-eventInsertForm.jsp<br>
-<center>
+
+<div class="default">
+<div class="contents">
 <form:form commandName="board1" method="post" action="insertevent.brd" enctype="multipart/form-data">
 	<h2 align="center">이벤트 입력</h2>
 	<input type="hidden" name="type" value="event">
@@ -23,4 +25,5 @@ eventInsertForm.jsp<br>
 	<form:errors cssClass="err" path="content"/><br>
 	<input type="submit" value="입력하기">
 </form:form>
-</center>
+</div>
+</div>
