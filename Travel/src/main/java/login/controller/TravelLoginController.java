@@ -3,6 +3,7 @@ package login.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +33,7 @@ public class TravelLoginController {
 	
 	//userLoginForm.log > userLoginForm.jsp
 	@RequestMapping(method = RequestMethod.GET,value = command)
-	public String userLogin(HttpSession session,HttpServletResponse response) throws IOException {
+	public String userLogin(HttpSession session,HttpServletResponse response, HttpServletRequest request) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
@@ -47,6 +48,14 @@ public class TravelLoginController {
 			writer.flush();
 		}
 		
+		//이전페이지 uri
+		String history = request.getHeader("Referer");
+		System.out.println("history: "+history);
+		
+		if(history != null && history.contains(command)) {
+			request.getSession().setAttribute("history", history);
+		}
+		
 		return getPage;
 	}
 	
@@ -54,7 +63,9 @@ public class TravelLoginController {
 	@RequestMapping(method = RequestMethod.POST,value = command)
 	public String userLogin2(TravelUserBean tubean,
 			HttpServletResponse response,
-			HttpSession session) throws IOException {
+			HttpSession session,
+			HttpServletRequest request
+			) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
@@ -89,6 +100,15 @@ public class TravelLoginController {
 				session.setAttribute("mnum", login.getMnum());
 				session.setAttribute("email", login.getEmail());
 			
+				//받아온 전페이지 url
+				String history = (String)request.getSession().getAttribute("history");
+				System.out.println("history2: "+history);
+				
+				if(history != null) {
+					
+					request.getSession().removeAttribute("history");
+					System.out.println("history3: "+history);
+				}
 				//로그인성공시 이동할 위치
 			return "redirect:/";
 				

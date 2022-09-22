@@ -17,8 +17,12 @@
 		//주소에 맞게 백그라운드
 		$.each(arr,function(index){
 			if (url.indexOf(arr[index]) != -1) {
+				//해당주소 css
 				$('.list:eq('+index+')').css('background-color', '#ff0000');
-				$('.list:eq('+index+')').css('color', '#ffffff');
+				$('.list:eq('+index+') a').css('color', '#ffffff');
+			}else{
+				//나머지 css
+				$('.list:eq('+index+') a').css('color', '#ff8080');
 			}
 		});
 

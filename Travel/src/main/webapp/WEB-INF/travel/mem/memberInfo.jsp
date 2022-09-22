@@ -3,8 +3,7 @@
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <div class="all">
-<%@include file="./memberList.jsp" %>
-
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 <div class="div">
 <label for="name">이름</label>

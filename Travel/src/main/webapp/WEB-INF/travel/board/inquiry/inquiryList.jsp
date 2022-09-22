@@ -4,20 +4,8 @@
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-<%-- 
-<center>
-	<form action="list.brd" method="post">
-		<select name="whatColumn">
-			<option value="">전체 검색</option>
-			<option value="subject" <c:if test="${pageInfo.whatColumn eq 'subject' }">selected</c:if>>제목</option>
-			<option value="writer" <c:if test="${pageInfo.whatColumn eq 'writer' }">selected</c:if>>작성자</option>
-		</select>
-		<input type="text" name="keyword" value="${pageInfo.keyword }">
-		<input type="submit" value="검색">
-	</form>
-</center>
- --%>
 <div class="default">
+<%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 <h2>1:1 문의사항</h2>
 <table>
@@ -39,7 +27,7 @@
 		<c:forEach items="${lists }" var="inquiry" varStatus="status">
 			<tr align="center">
 				<td>${(pageInfo.totalCount-(pageInfo.pageNumber-1)*pageInfo.pageSize)-status.index }</td>
-				<td><a href="inqdetail.brd?inum=${inquiry.inum }&pageNumber=${pageInfo.pageNumber}">${inquiry.subject }</a></td>
+				<td align="left"><a href="inqdetail.brd?inum=${inquiry.inum }&pageNumber=${pageInfo.pageNumber}">${inquiry.subject }</a></td>
 				<td>${inquiry.email}</td>
 				<td>
 					<fmt:parseDate var="date" value="${inquiry.reg_date1 }" pattern="yyyy-MM-dd" />

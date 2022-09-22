@@ -19,7 +19,15 @@ public class InquiryBean {
 	private String progress;
 	
 	private String email;
+	private String sort;
 	
+	
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
 	public String getEmail() {
 		return email;
 	}

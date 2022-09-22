@@ -4,25 +4,6 @@
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#summernote').summernote({
-		toolbar: [
-		    ['style', ['bold', 'italic', 'underline', 'clear']],
-		    ['font', ['strikethrough', 'superscript', 'subscript']],
-		    ['fontsize', ['fontsize']],
-		    ['color', ['color']],
-		    ['para', ['ul', 'ol', 'paragraph']],
-		    ['height', ['height']]
-		  ],
-		  height: 400,
-		  maxHeight: 400,
-		  minHeight: 400,
-		  placeholder: '내용을 입력하세요.'
-	});
-});
-</script>
-
 <div class="default">
 <div class="contents">
 <form method="post" action="inqanswer.brd">
@@ -54,7 +35,7 @@ $(document).ready(function() {
 		<tr height="300">
 			<td align="center" width="10%">답변</td>
 			<td align="center" width="90%" colspan="5">
-				<textarea name="answer" rows="13" cols="50" id="summernote" style="resize:none">${ib.answer }</textarea>
+				<textarea name="answer" id="answer">${ib.answer }</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -71,3 +52,25 @@ $(document).ready(function() {
 </form>
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+var oEditors = [];
+var ans = $('#answer').val();
+
+   nhn.husky.EZCreator.createInIFrame({
+      oAppRef: oEditors,
+      elPlaceHolder: "answer",
+      sSkinURI: "<%=request.getContextPath()%>/resources/se2/SmartEditor2Skin.html",  
+      htParams : {
+          bUseToolbar : true,             
+          bUseVerticalResizer : false,     
+          bUseModeChanger : false,
+          fOnBeforeUnload : function(){}
+      }
+      });
+   
+   $("#submit").click(function() {
+	   oEditors.getById["ans"].exec("UPDATE_CONTENTS_FIELD", []);
+	});
+});
+</script>

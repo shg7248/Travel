@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <div class="all">
-<%@include file="./memberList.jsp" %>
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 숙소명/객실명/날짜/가격/결제일<br>
 <table border="1">
