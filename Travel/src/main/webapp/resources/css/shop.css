@@ -6,6 +6,7 @@ body {
 }
 
 .header {
+	box-sizing: border-box;
 	width: inherit;	
 	background: red;
 }
@@ -35,7 +36,7 @@ body {
 	color: white;
 }
 
-.sub-menu__item a {
+.sub-menu__item > a {
 	padding: 0 10px;
 	font-size: 11px;
 	color: white;
@@ -45,14 +46,34 @@ body {
 	position: relative;
 }
 
-.sub-menu__item:hover .temp{
+.sub-menu__item:hover .sub-menu__more-info{
 	display: block;
 } 
 
-.temp {
-	width: 100px;
+.sub-menu__more-info {
+	width: 130px;
 	position: absolute;
+	background: white;
+	border: 1px solid black;
 	display: none;
+	z-index: 999;
+	color: black;
+}
+
+.more-info__item {
+	
+}
+
+.more-info__link {
+	line-height: 3;
+	display: inline-block;
+	width: 100%;
+	font-size: 11px;
+	padding-left: 20px;
+}
+
+.more-info__link:hover {
+	color: red;
 }
 
 .main-nav {

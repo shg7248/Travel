@@ -66,8 +66,8 @@
 
 <div class="tab">
     <ul class="tab__list">
-        <li class="tab__item"><a href="#" class="tab__link tab__link--1 on">객실목록</a></li>
-        <li class="tab__item"><a href="#" class="tab__link tab__link--2">후기</a></li>
+        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--1 on">객실목록</a></li>
+        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--2">후기</a></li>
     </ul>
     <div class="tab__content on">
         <c:forEach var="room" items="${lists }">
@@ -78,10 +78,12 @@
 		</c:forEach>
     </div>
     <div class="tab__content">
-        너무 조아요
-    </div>
-    <div class="tab__content">
-        tab3
+        <input type="radio">★☆☆☆☆
+        <input type="radio">★★☆☆☆
+        <input type="radio">★★★☆☆
+        <input type="radio">★★★★☆
+        <input type="radio">★★★★★<br>
+        <textarea rows="" cols="" style="width: 100%; height: 100px;" ></textarea>
     </div>
 </div>
 <script type="text/javascript">
