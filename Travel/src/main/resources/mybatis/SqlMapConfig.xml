@@ -19,6 +19,8 @@
 		<typeAlias type="mem.model.TravelAccountBean" alias="MyAccount"/>
 		
 		<typeAlias type="board.faq.model.FaqBean" alias="FaqBean"/>
+		
+		<typeAlias type="reply.model.ReplyBean" alias="ReplyBean"/>
 
 	</typeAliases>
 	<mappers>
@@ -28,5 +30,6 @@
 		<mapper resource="mybatis/login.xml"/>
 		<mapper resource="mybatis/mem.xml"/>
 		<mapper resource="mybatis/shop.xml"/>
+		<mapper resource="mybatis/reply.xml"/>
 	</mappers>
 </configuration>

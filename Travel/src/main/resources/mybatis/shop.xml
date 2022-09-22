@@ -98,4 +98,28 @@
 		insert into orders (onum, rnum, mnum, resname, resphone, resnum, accnum, bank, startdate, enddate, odate)
 		values (orders_seq.nextval, #{rnum}, #{mnum}, #{resName}, #{resPhone}, 123456, #{accnum}, #{bank}, #{startDate}, #{endDate}, sysdate)
 	</insert>
+	
+	<select id="GetRoomListByAnum" resultType="RoomBean" parameterType="hashmap">
+		with a as(
+			select rnum, sum(orders) orders
+			from (
+				select r.rnum, case when o.onum is null then 0 else 1 end as orders 
+				from room r
+				left outer join (
+					select *
+					from orders
+					<![CDATA[where to_date(startDate, 'yyyyMMdd') <= to_date(${end}, 'yyyyMMdd')]]>
+					and
+					<![CDATA[to_date(endDate, 'yyyyMMdd') >= to_date(${start}, 'yyyyMMdd')]]>
+				) o
+				on r.rnum = o.rnum
+				where anum = ${anum}
+			)
+			group by rnum, orders
+		)
+		select a.rnum, a.orders, anum, name, info, price, sale, image, max, reg_date
+		from a
+		inner join room r
+		on a.rnum = r.rnum
+	</select>
 </mapper>

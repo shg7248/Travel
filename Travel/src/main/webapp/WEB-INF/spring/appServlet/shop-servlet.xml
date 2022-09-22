@@ -23,4 +23,5 @@
 	
 	<context:component-scan base-package="shop" />
 	<context:component-scan base-package="comp" />
+	<context:component-scan base-package="reply" />
 </beans:beans>

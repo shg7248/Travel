@@ -19,8 +19,8 @@
 		where mnum = #{mnum}
 	</select>
 	
-	<select id="selectOrder" resultType="MyBook">
-		select  a.name, r.name, o.startdate, o.enddate, r.price, o.odate 
+	<select id="selectOrder" resultType="OrdersBean">
+		select  o.onum, a.anum, a.name, r.name, o.startdate, o.enddate, r.price, o.odate 
 		from orders o, room r, accom a
 		where r.rnum = o.rnum and r.anum = a.anum and o.mnum = #{mnum}
 	</select>
