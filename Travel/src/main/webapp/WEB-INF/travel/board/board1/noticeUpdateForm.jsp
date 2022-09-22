@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <style>
 .err {
@@ -32,19 +33,22 @@ $(document).ready(function() {
 });
 </script>
 
-<center>
+<div class="default">
+<%@include file="./memberList.jsp" %>
+<div class="contents">
 <form:form commandName="board1" method="post" action="noticeupdate.brd" enctype="multipart/form-data">
 <input type="hidden" name="pageNumber" value="${pageNumber }">
 	<h2 align="center">공지사항 수정</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
 	
-	제목 <input type="text" name="subject" value=${board1.subject } size="50">
+	<input type="text" name="subject" placeholder="제목을 입력하세요." value=${board1.subject }>
 	<form:errors cssClass="err" path="subject"/><br>
 	
-	<textarea name="content" rows="13" cols="50" id="summernote" style="resize:none"><c:out value="${board1.content}" /></textarea><br><br>
+	<textarea name="content" rows="13" cols="50" id="summernote" placeholder="내용을 입력하세요." style="resize:none"><c:out value="${board1.content}" /></textarea><br><br>
 	<form:errors cssClass="err" path="content"/><br>
 	<div align="right">
 	<input type="submit" value="수정하기">
 	</div>
 </form:form>
-</center>
+</div>
+</div>

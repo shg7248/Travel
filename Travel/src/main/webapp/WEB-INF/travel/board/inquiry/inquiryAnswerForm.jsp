@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -21,9 +22,9 @@ $(document).ready(function() {
 	});
 });
 </script>
-inquiryAnswerForm.jsp
-<br>
-<center>
+
+<div class="default">
+<div class="contents">
 <form method="post" action="inqanswer.brd">
 <input type="hidden" name="inum" value="${ib.inum }">
 <input type="hidden" name="pageNumber" value="${pageInfo.pageNumber }">
@@ -42,7 +43,8 @@ inquiryAnswerForm.jsp
 			</td>
 			<td align="center" width="20%">답변일</td>
 			<td align="center" width="20%">
-				 <input type="date" name="reg_date2" readonly="readonly" value="${ib.reg_date2 }">
+				<fmt:parseDate var="date2" value="${ib.reg_date2 }" pattern="yyyy-MM-dd" />
+				<fmt:formatDate var="reg_date1" value="${date2 }" pattern="yyyy-MM-dd" /> ${reg_date2 }
 			</td>
 		</tr>
 		<tr height="300">
@@ -67,4 +69,5 @@ inquiryAnswerForm.jsp
 		</tr>
 	</table>
 </form>
-</center>
+</div>
+</div>

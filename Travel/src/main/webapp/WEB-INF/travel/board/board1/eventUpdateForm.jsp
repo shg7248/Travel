@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <style>
 .err {
@@ -9,8 +10,9 @@
 	color: red;
 }
 </style>
-eventUpdateForm.jsp<br>
-<center>
+
+<div class="default">
+<div class="contents">
 <form:form commandName="board1" method="post" action="eventupdate.brd" enctype="multipart/form-data">
 	<h2 align="center">이벤트 수정</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
@@ -26,4 +28,5 @@ eventUpdateForm.jsp<br>
 	<form:errors cssClass="err" path="content"/><br>
 	<input type="submit" value="수정하기">
 </form:form>
-</center>
+</div>
+</div>

@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-eventDetail.jsp<br>
-<center>
+<div class="default">
+<div class="contents">
 <table>
 	<tr>
 		<td>${bb.subject }</td>
@@ -23,4 +24,5 @@ eventDetail.jsp<br>
 		</td>
 	</tr>
 </table>
-</center>
+</div>
+</div>

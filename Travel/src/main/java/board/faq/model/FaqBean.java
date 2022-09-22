@@ -9,7 +9,7 @@ public class FaqBean {
 	@NotEmpty(message = "질문을 입력하세요")
 	private String question;
 
-	@NotEmpty(message = "답변을 입력하세요")
+	@NotEmpty(message = "내용을 입력하세요")
 	private String answer;
 	
 	private String reg_date;
