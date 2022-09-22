@@ -28,11 +28,11 @@ public class InquiryInsertController {
 	
 	@RequestMapping(value=command,method = RequestMethod.POST)
 	public String inquiryinsert(@ModelAttribute("inquiry") @Valid InquiryBean ib,BindingResult result,HttpSession session) {
-		
 		if(result.hasErrors()) {
 			return getPage;
 		}
-		int mnum = Integer.parseInt((String) session.getAttribute("mnum"));
+		System.out.println(session.getAttribute("mnum"));
+		int mnum = Integer.parseInt(String.valueOf(session.getAttribute("mnum")));
 		ib.setMnum(mnum);
 		idao.insertInquiry(ib);
 		

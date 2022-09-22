@@ -22,6 +22,7 @@ $(document).ready(function(){
 </script>
 
 <div class="default">
+<%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 	<h2>공지사항</h2>
 	<form>
@@ -38,7 +39,7 @@ $(document).ready(function(){
 			<td class="title_td title">${board1.subject }</td>
 		</tr>
 		<tr class="notice_contents">
-			<td class="inner_td">
+			<td width="800" class="inner_td">
 				<pre style="word-wrap: break-word; white-space: pre-wrap;">${board1.content}</pre>
 				<c:set var="email" value='<%=(String)session.getAttribute("email") %>'/>
 				<c:if test="${email eq 'admin' }">

@@ -26,8 +26,9 @@ $(document).ready(function(){
 </script>
 
 <div class="default">
+<%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
-<h2>자주 묻는 질문 FAQ</h2><br>
+<h2>자주묻는 질문 FAQ</h2>
 <form action="faqlist.brd" method="post">
 <div class="search">
 	<select name="whatColumn">
@@ -35,7 +36,7 @@ $(document).ready(function(){
 		<option value="question" <c:if test="${whatColumn eq 'question' }">selected</c:if>>제목</option>
 		<option value="answer" <c:if test="${whatColumn eq 'answer' }">selected</c:if>>내용</option>
 	</select>
-	<input type="text" name="keyword" value="${keyword }">
+	<input type="text" name="keyword" placeholder="키워드 검색" value="${keyword }">
 	<input type="submit" value="검색">
 </div>
 </form><br>
