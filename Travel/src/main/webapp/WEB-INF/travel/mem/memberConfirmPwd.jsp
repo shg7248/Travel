@@ -36,7 +36,7 @@ $(document).ready(function(){
 </script>
 <body>
 <div class="all">
-<%@include file="./memberList.jsp" %>
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 <h2>회원 탈퇴</h2>
 	<form action="confirm.mem" method="post" name="f">

@@ -33,7 +33,7 @@ function checkAll(){
 </script>
 <body>
 <div class="all">
-<%@include file="./memberList.jsp" %>
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 <form action="memberAccount.mem" method="post" name="f">
 <label for="accnum">무통장 입금 계좌번호를 등록해주세요.</label>
