@@ -15,6 +15,7 @@ public class RoomBean {
 	private MultipartFile upload;
 	private int max;
 	private String reg_date;
+	private int orders;
 	
 	public int getRnum() {
 		return rnum;
@@ -81,5 +82,11 @@ public class RoomBean {
 	}
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+	public int getOrders() {
+		return orders;
+	}
+	public void setOrders(int orders) {
+		this.orders = orders;
 	}
 }

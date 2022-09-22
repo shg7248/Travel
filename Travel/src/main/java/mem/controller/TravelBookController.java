@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import mem.model.TravelBookBean;
 import mem.model.TravelMemberDao;
 import shop.model.OrdersBean;
 
@@ -27,7 +26,7 @@ public class TravelBookController {
 	@RequestMapping(value = command,method = RequestMethod.GET)
 	public ModelAndView book(HttpSession session) {
 		int mnum = (Integer) session.getAttribute("mnum");
-		List<TravelBookBean> lists = tmdao.orderList(mnum);
+		List<OrdersBean> lists = tmdao.orderList(mnum);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);

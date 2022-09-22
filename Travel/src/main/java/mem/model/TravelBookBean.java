@@ -1,6 +1,7 @@
 package mem.model;
 
 public class TravelBookBean {
+	private int onum;
 	private String aname;
 	private String rname;
 	private String startDate;
@@ -8,6 +9,13 @@ public class TravelBookBean {
 	private int price;
 	private String oDate;
 	
+	
+	public int getOnum() {
+		return onum;
+	}
+	public void setOnum(int onum) {
+		this.onum = onum;
+	}
 	public String getAname() {
 		return aname;
 	}

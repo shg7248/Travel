@@ -3,8 +3,12 @@ package shop.model;
 public class OrdersBean {
 
 	private int onum;
+	private int anum;
+	private String aname;
 	private int rnum;
+	private String rname;
 	private int mnum;
+	private int price;
 	private String resName;
 	private String resPhone;
 	private int resNum;
@@ -14,6 +18,26 @@ public class OrdersBean {
 	private String endDate;
 	private String oDate;
 	
+	
+	
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+	public int getAnum() {
+		return anum;
+	}
+	public void setAnum(int anum) {
+		this.anum = anum;
+	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
 	public int getOnum() {
 		return onum;
 	}
@@ -25,6 +49,12 @@ public class OrdersBean {
 	}
 	public void setMnum(int mnum) {
 		this.mnum = mnum;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public int getResNum() {
 		return resNum;

@@ -37,8 +37,8 @@ public class TravelMemberDao {
 	}
 
 	//
-	public List<TravelBookBean> orderList(int mnum) {
-		List<TravelBookBean> lists = sst.selectList(namespace+".selectOrder", mnum);
+	public List<OrdersBean> orderList(int mnum) {
+		List<OrdersBean> lists = sst.selectList(namespace+".selectOrder", mnum);
 		return lists;
 	}
 

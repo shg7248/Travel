@@ -1,26 +1,9 @@
-const dummy = [
-    {
-        name: '송학관',
-        start: '20220920',
-        end: '20220922'
-    },
-    {
-        name: '김찬우',
-        start: '20220921',
-        end: '20220927'
-    },
-    {
-        name: '전진환',
-        start: '20220909',
-        end: '20220916'
-    }
-]
-
-window.document.oncontextmenu = new Function("return false");
-window.document.onselectstart = new Function("return false");
-window.document.ondragstart = new Function("return false");
-
 ;(function(window, undefined) {
+
+	window.document.oncontextmenu = new Function("return false");
+	window.document.onselectstart = new Function("return false");
+	window.document.ondragstart = new Function("return false");
+	
 
     const pluginName = 'calendar',
     defaults = {

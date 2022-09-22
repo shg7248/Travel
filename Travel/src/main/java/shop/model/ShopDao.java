@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import comp.model.RoomBean;
+
 @Component
 public class ShopDao {
 
@@ -25,5 +27,9 @@ public class ShopDao {
 
 	public int insertOrders(OrdersBean ordersBean) {
 		return sqlSessionTemplate.insert(namespace + ".InsertOrders", ordersBean);
+	}
+
+	public List<RoomBean> getRoomListByAnum(Map<String, String> map) {
+		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByAnum", map);
 	}
 }
