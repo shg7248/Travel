@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <div class="default">
+<%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 	<h2>이벤트</h2>
-	<table border="1" width="800">
+	<table>
 		<c:if test="${email eq 'admin' }">
 		<tr>
 			<td align="right">
