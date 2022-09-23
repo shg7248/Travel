@@ -8,8 +8,8 @@
 <div class="contents">
 <form method="post" action="inqanswer.brd">
 <input type="hidden" name="inum" value="${ib.inum }">
-<input type="hidden" name="pageNumber" value="${pageInfo.pageNumber }">
-	<table border="1" height="800" width="800">
+<input type="hidden" name="pageNumber" value="${pageNumber }">
+	<table>
 		<tr>
 			<td align="center" width="10%">제목</td>
 			<td align="center" width="90%" colspan="5">${ib.subject }</td>
@@ -30,11 +30,11 @@
 		</tr>
 		<tr height="300">
 			<td align="center" width="10%">내용</td>
-			<td align="center" width="90%" colspan="5">${ib.question }</td>
+			<td width="90%" colspan="5">${ib.question }</td>
 		</tr>
 		<tr height="300">
 			<td align="center" width="10%">답변</td>
-			<td align="center" width="90%" colspan="5">
+			<td width="90%" colspan="5">
 				<textarea name="answer" id="answer">${ib.answer }</textarea>
 			</td>
 		</tr>
@@ -42,10 +42,10 @@
 			<td align="right" colspan="6">
 				<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 				<c:if test="${email eq 'admin' }">
-					<input type="submit" value="답변하기">
-					<input type="button" value="삭제" onclick="location.href='inqdelete.brd'">
+					<input type="submit" id="submit" value="답변하기">
+					<input type="button" value="삭제" onclick="location.href='inqdelete.brd?inum=${ib.inum }'">
 				</c:if>
-				<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageInfo.pageNumber}'">
+				<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageNumber}'">
 			</td>
 		</tr>
 	</table>
@@ -55,7 +55,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 var oEditors = [];
-var ans = $('#answer').val();
 
    nhn.husky.EZCreator.createInIFrame({
       oAppRef: oEditors,
@@ -70,7 +69,7 @@ var ans = $('#answer').val();
       });
    
    $("#submit").click(function() {
-	   oEditors.getById["ans"].exec("UPDATE_CONTENTS_FIELD", []);
+	   oEditors.getById["answer"].exec("UPDATE_CONTENTS_FIELD", []);
 	});
 });
 </script>
