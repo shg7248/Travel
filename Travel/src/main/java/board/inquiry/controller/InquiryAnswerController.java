@@ -54,8 +54,7 @@ public class InquiryAnswerController {
 			@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		//답변완료가 아니면 답변을 달고
 		idao.answer(ib);
-		
 		//inum을 메일발송페이지로 넘긴다
-		return gotoPage+"?inum="+ib.getInum();
+		return gotoPage+"?inum="+ib.getInum()+"&pageNumber="+pageNumber;
 	}
 }

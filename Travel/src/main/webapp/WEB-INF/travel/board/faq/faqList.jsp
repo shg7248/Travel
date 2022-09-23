@@ -40,7 +40,7 @@ $(document).ready(function(){
 	<input type="submit" value="검색">
 </div>
 </form><br>
-	<table border="1" width="700">
+	<table>
 		<c:if test="${email eq 'admin' }">
 		<tr>
 			<td align="right">
