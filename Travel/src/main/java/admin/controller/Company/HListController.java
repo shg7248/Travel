@@ -55,9 +55,10 @@ public class HListController {
 		mav.setViewName(getPage);
 		return mav;
 		
-		
 	}
+	
 }
+
 
 
 

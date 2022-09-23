@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
     HostList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
+<%@ include file ="Main.jsp" %>
 <style>
 	table {
 		border: 1px solid black;
 	}
 </style>    
+
+<script>
+	
+</script>
 <h2>회원관리(사업자)</h2>
 <center>
 <form action="Hlist.admin" method="get">
@@ -45,7 +50,21 @@
 				<fmt:formatDate var="newformattedDay" value="${formattedDay }" pattern="yyyy-MM-dd"/>
 				${newformattedDay }
    			</td>
-   			<td><a href="hdele.admin?cnum=${h.cnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+   				<td>
+   				<c:choose>
+   					<c:when test="${h.approyn==0 }">
+   						<input type="button" value="승인확인" onclick="location.href='Comapprove.admin?cnum=${h.cnum}'">
+   					</c:when>
+   				</c:choose>
+   				
+   				<c:choose>
+   					<c:when test="${h.approyn==1 }">
+   						승인
+   					</c:when>
+   				</c:choose>
+   				
+   				</td>
+   				<td><a href="Hdele.admin?cnum=${h.cnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
    		</tr>
    	
 	</c:forEach>

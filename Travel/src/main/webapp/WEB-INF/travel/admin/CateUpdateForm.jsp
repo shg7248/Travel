@@ -2,20 +2,11 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file ="../common/common.jsp" %>
-CatetUpdateForm.jsp<br>
+CateUpdateForm.jsp<br>
    
-<style>
-	.err {
-		font-size: 9px;
-		font-weight: bold;
-		color: red; 
-	}
-</style>
-
-
 
 <form:form commandName="cate" method="post" action="Cateupdate.admin" enctype="multipart/form-data">
-	<h1><span>상품 수정 화면</span></h1>
+	<h1><span>카테고리 수정 화면</span></h1>
 	<input type="hidden" name="canum" value="${cate.canum }">
 	<input type="hidden" name="pageNumber" value="${pageNumber }">
 	

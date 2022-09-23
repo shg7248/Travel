@@ -7,17 +7,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class CompanyBean {
 	
-	@NotBlank(message = "이름을 입력해주세요")
 	private String cnum;
-	@NotEmpty(message= "사업자 등록증을 첨부해주세요")
 	private String image;
-	@NotBlank(message = "이메일을 입력해주세요")
-	@Pattern(regexp = "^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-]+$")
 	private String email;
-	@NotBlank(message = "비밀번호를 입력해주세요")
 	private String pwd;
-	@NotBlank(message = "핸드폰번호를 입력해주세요")
-	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\\\d{3}|\\\\d{4})-\\\\d{4}$\r\n")
 	private String phone;
 	private String approyn;
 	private String reg_date;

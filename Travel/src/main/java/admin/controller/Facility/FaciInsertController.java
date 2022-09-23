@@ -1,17 +1,18 @@
 package admin.controller.Facility;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import admin.model.CateBean;
-import admin.model.CateDao;
 import admin.model.FaciBean;
 import admin.model.FaciDao;
 
@@ -26,13 +27,18 @@ public class FaciInsertController {
 	private FaciDao faciDao;
 
 	@RequestMapping(value= command,method=RequestMethod.GET)
-	public String insert() {
+	public String insert2(Model model) {
+		
+		List<FaciBean> lists = faciDao.getFacGroupList();
+		model.addAttribute("lists", lists);
+		
+		System.out.println("lists.size : " + lists.size());
 		
 		return getPage;
 	}
 
 	@RequestMapping(value= command,method=RequestMethod.POST)
-	public ModelAndView Cateinsert(@ModelAttribute("faci") @Valid FaciBean bean, 	
+	public ModelAndView Faciinsert(@ModelAttribute("faci") @Valid FaciBean bean, 	
 							BindingResult result) {
 		
 		ModelAndView mav = new ModelAndView();
