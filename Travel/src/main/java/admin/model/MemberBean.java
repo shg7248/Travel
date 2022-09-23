@@ -7,26 +7,18 @@ import org.hibernate.validator.constraints.NotBlank;
 public class MemberBean {
 	
 	
-	private int mnum;
-	@NotBlank(message = "이메일을 입력해주세요")
-	@Pattern(regexp = "^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-]+$")
+	private String mnum;
 	private String email;
-	@NotBlank(message = "이름을 입력해주세요")
 	private String name;
-	@NotBlank(message = "비밀번호를 입력해주세요")
 	private String pwd;
-	@NotBlank(message = "핸드폰번호를 입력해주세요")
-	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\\\d{3}|\\\\d{4})-\\\\d{4}$\r\n")
 	private String phone;
 	private String flatform;
-	@NotBlank(message = "등록일을 입력해주세요")
-	private String ref_date;
+	private String reg_date;
 	private int point;
-	
-	public int getMnum() {
+	public String getMnum() {
 		return mnum;
 	}
-	public void setMnum(int mnum) {
+	public void setMnum(String mnum) {
 		this.mnum = mnum;
 	}
 	public String getEmail() {
@@ -59,11 +51,11 @@ public class MemberBean {
 	public void setFlatform(String flatform) {
 		this.flatform = flatform;
 	}
-	public String getRef_date() {
-		return ref_date;
+	public String getReg_date() {
+		return reg_date;
 	}
-	public void setRef_date(String ref_date) {
-		this.ref_date = ref_date;
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 	public int getPoint() {
 		return point;

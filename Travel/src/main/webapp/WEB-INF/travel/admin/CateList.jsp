@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 CategoryList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
+<%@ include file ="Main.jsp" %>
 
 
 <style>
@@ -9,7 +10,7 @@ CategoryList.jsp<br>
 		border: 1px solid black;
 	}
 </style> 
-<input type="button" value="추가" onclick="location.href='Cateinsert.admin'">
+
 
 <h2>코드관리(카테고리)</h2>
 <center>
@@ -39,6 +40,7 @@ CategoryList.jsp<br>
 
 </table>
 ${pageInfo.pagingHtml}
+<input type="button" value="추가" onclick="location.href='Cateinsert.admin'">
 </center>
 
 

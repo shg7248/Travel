@@ -1,14 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-admin.Main.jsp<br>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!-- admin.Main.jsp<br> -->
+<style>
+	h1 {
+	size: 200px;
+}
 
-<h3>È¸¿ø°ü¸®</h3>
-<div>»ç¿ëÀÚ</div>
-<div>»ç¾÷ÀÚ</div>
-<br>
-<br>
-<h3>ÄÚµå°ü¸®</h3>
-<div>Ä«Å×°í¸®</div>
-<div>Áö¿ª</div>
-<div>½Ã¼³</div>
+</style>
+<br><br>
+<h1>íšŒì›ê´€ë¦¬</h1>
+
+<li><a href="<%=request.getContextPath() +"/Ulist.admin"%>">ì‚¬ìš©ìž</a></li>
+
+<li><a href="<%=request.getContextPath() +"/Hlist.admin"%>">ì‚¬ì—…ìž</a></li>
+
+<br><br>
+<h1 >ì½”ë“œê´€ë¦¬</h1>
+
+<li><a href="<%=request.getContextPath() +"/Catelist.admin"%>">ì¹´í…Œê³ ë¦¬</a></li>
+
+<li><a href="<%=request.getContextPath() +"/Facilist.admin"%>">ì‹œì„¤ëª©ë¡</a></li>
+
+<br><br>
+
+
+
+
+
+
+
 

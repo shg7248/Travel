@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import Util.Paging;
+import comp.model.FacBean;
 
 @Component
 public class FaciDao {
@@ -35,23 +36,47 @@ private String namespace = "admin.model.Admin";
 	
 	}
 	
-	public FaciBean selectFaciByNum(String fnum) {
-		FaciBean fb = sqlSessionTemplate.selectOne(namespace+".GetFaci",fnum);
-		System.out.println("selectFaci fb num : " + fb.getFnum());
+	public FaciBean selectFaciByNo(String fno) {
+		FaciBean fb = sqlSessionTemplate.selectOne(namespace+".GetFaci",fno);
+		System.out.println("selectFaci fb fno : " + fb.getFno());
 		return fb;
 
 	}
 
-	public int deleteFaci(String fnum) {
-		int cnt = sqlSessionTemplate.delete(namespace+".DeleteFaci",fnum);
+	public int deleteFaci(String fno) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteFaci",fno);
 		System.out.println(cnt);
 		return cnt;
 	}
 	
-	public int insertFaci(FaciBean bean) {
-		int cnt = sqlSessionTemplate.insert(namespace + ".InsertFaci", bean);
+	public int insertFaci(FaciBean faci) {
+		int cnt = sqlSessionTemplate.insert(namespace + ".InsertFaci", faci);
 		return cnt; // 써놓기 
 	}
 	
+	public int updateFaci(FaciBean fb){
+		//System.out.println(album.getTitle());
+		int cnt = sqlSessionTemplate.update(namespace+".UpdateFaci", fb);
+		System.out.println(cnt);
+		return cnt;
+		
+	}
+
+	public List<FaciBean> getFacGroupList() {
+		return sqlSessionTemplate.selectList(namespace+".GetFacGroupList");
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

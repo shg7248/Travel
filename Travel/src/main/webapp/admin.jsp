@@ -7,3 +7,5 @@ session.setAttribute("mnum", "0");
 response.sendRedirect("boardstart.jsp");
 System.out.println(session.getAttribute("email"));
 %>
+
+

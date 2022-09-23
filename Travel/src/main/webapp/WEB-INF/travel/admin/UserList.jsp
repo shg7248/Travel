@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 memberList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
+<%@ include file ="Main.jsp" %>
 
 <style>
 	table {
@@ -10,7 +11,7 @@ memberList.jsp<br>
 </style>
 <h2>회원관리(사용자)</h2>
 <center>
-<form action="UList.admin" method="get">
+<form action="Ulist.admin" method="get">
 	   	<select name="whatColumn">
 	   		<option value="">전체검색</option>
 	   		<option value="name">이름</option>
@@ -24,7 +25,7 @@ memberList.jsp<br>
    
    	<table border="1">
    		<tr>
-   			<td>사용자번호</td>
+   			<td>번호</td>
    			<td>이름</td>
    			<td>이메일</td>
    			<td>핸드폰번호</td>
@@ -37,8 +38,14 @@ memberList.jsp<br>
 	   			<td>${u.name }</td>
 	   			<td>${u.email }</td>
 	   			<td>${u.phone }</td>
-	   			<td>${u.mnum }</td>
-	   			<td><a href="delete.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+	   			<td>
+	   			
+	   			<fmt:parseDate var="formattedDay" value="${u.reg_date }" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate var="newformattedDay" value="${formattedDay }" pattern="yyyy-MM-dd"/>
+				${newformattedDay }
+	   			
+	   			</td>
+	   			<td><a href="Udele.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
 	   		</tr>
 		</c:forEach>
 	</table>
