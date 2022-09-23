@@ -1,14 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ include file ="../common/common.jsp" %>
 approve.jsp<br>
 
-<c:forEach items="${lists}" var="u">
-<div>
+<td>
+${appr.image }
+</td>
 
-${u.image }
-</div>
+<br><br>
 
-<input type="button" value="½ÂÀÎ" onclick="${u.approyn}">
+<form:form commandName="ApprUpdate" method="post" action="Comapprove.admin?cnum=${appr.cnum}" enctype="multipart/form-data">
 
-</c:forEach>
+<p>
+	<input type="submit" value="ìŠ¹ì¸í•˜ê¸°" id="BtnSubmit">		
+</p>
+</form:form>
+
+
+
+
+
+

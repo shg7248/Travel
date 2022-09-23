@@ -33,19 +33,25 @@ public class CompanyDao {
 		return lists;
 	
 	}
-	
-	public CompanyBean selectHostByNum(String cnum) {
-		CompanyBean cb = sqlSessionTemplate.selectOne(namespace+".GetHost",cnum);
-		System.out.println("selectCompany cb num : " + cb.getCnum());
-		return cb;
 
+	public CompanyBean getByNum(String cnum) {
+		CompanyBean cb= sqlSessionTemplate.selectOne(namespace+".GetAppr",cnum);
+		return cb;
 	}
 
-	public int deleteHost(String cnum) {
-		int cnt = sqlSessionTemplate.delete(namespace+".DeleteHost",cnum);
-		System.out.println(cnt);
+	public int updateAppr(CompanyBean cb) {
+		
+		int cnt = sqlSessionTemplate.update(namespace+".UpdateAppr",cb);
 		return cnt;
 	}
+
+	public int deleteCompany(String cnum) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteCompany",cnum);
+		System.out.print("cnt:"+cnt);
+		return cnt;
+	}
+	
+
 }
 
 

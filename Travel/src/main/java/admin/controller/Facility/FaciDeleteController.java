@@ -19,11 +19,11 @@ public class FaciDeleteController {
 	private FaciDao faciDao;
 	
 	@RequestMapping(command)
-	public String catedele(@RequestParam("fnum") String fnum,
+	public String catedele(@RequestParam("fno") String fno,
 				 		 @RequestParam(value="pageNumber", required=false) String pageNumber,
 				 		 Model model) {
 		
-		int result=faciDao.deleteFaci(fnum);
+		int result=faciDao.deleteFaci(fno);
 		System.out.println(result);
 		return gotoPage+"?pageNumber="+pageNumber;
 	

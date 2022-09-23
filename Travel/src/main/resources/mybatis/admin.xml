@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.model.Admin">
 
+
 	<select id="GetMemTotalCount" resultType="int">
 		select count(*) from Member
 		<if test="whatColumn=='name'">
@@ -37,6 +38,11 @@
 		<if test="whatColumn == 'cnum'">
 		where cnum like #{keyword}
 		</if>
+	</select>
+	
+	<select id="GetAppr" resultType="admin.model.CompanyBean">
+		select * from company
+		where cnum = #{cnum}
 	</select>
 	
 	<select id="GetCateTotalCount" resultType="int">
@@ -78,11 +84,11 @@
 	
   	<select id="GetFaci" resultType="admin.model.FaciBean">
 		select * from facility
-		where fnum = #{fnum}
+		where fno = #{fno}
 	</select>
 	
 	<delete id="DeleteFaci">
-  		delete from facility where fnum = #{fnum}
+  		delete from facility where fno = #{fno}
   	</delete>
 	
 	<insert id="InsertCate" parameterType="admin.model.CateBean">
@@ -98,13 +104,39 @@
 	
 	<insert id="InsertFaci" parameterType="admin.model.FaciBean">
 		insert into facility
-		values(faci_SEQ.nextval,#{FNUM},#{NAME},#{FGROUP}
+		values(faci_SEQ.nextval,#{fnum},#{fname},#{fgroup,jdbcType=VARCHAR}
 		)
 	</insert>
 	
+	<update id="UpdateFaci" parameterType="admin.model.FaciBean">
+  		update facility set fnum=#{fnum},fname=#{fname},fgroup=#{fgroup}
+  		where fno=#{fno}
+  	</update>
+  	
+  	<update id="UpdateAppr" parameterType="admin.model.CompanyBean">
+  		update company set approyn=1
+  		where cnum=#{cnum}
+  		
+  	</update>
+  	
+  	<delete id="DeleteMember">
+  		delete member
+  		where mnum=#{mnum}
+  	</delete>
+  	
+  	<delete id="DeleteCompany">
+  		delete company
+  		where cnum=#{cnum}
+  	</delete>
 	
-	
+	<select id="GetFacGroupList" resultType="admin.model.FaciBean">
+		select fnum, fname from facility where fgroup is null
+	</select>
 </mapper>
+
+
+
+
 
 
 
