@@ -1,6 +1,7 @@
 package reply.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,19 @@ public class ReplyDao {
 		sqlSessionTemplate.insert(namespace + ".InsertReply", replyBean);
 	}
 	
-	public List<ReplyBean> getReplyListByRnum(int rnum) {
-		return sqlSessionTemplate.selectList(namespace + ".GetReplyListByRnum", rnum);
+	public List<ReplyBean> getReplyListByAnum(int anum) {
+		return sqlSessionTemplate.selectList(namespace + ".GetReplyListByRnum", anum);
 	}
 	
-	public List<ReplyBean> getReplyListByRnum(String rnum) {
-		return sqlSessionTemplate.selectList(namespace + ".GetReplyListByRnum", rnum);
+	public List<ReplyBean> getReplyListByAnum(String anum) {
+		return sqlSessionTemplate.selectList(namespace + ".GetReplyListByRnum", anum);
+	}
+
+	public List<ReplyBean> getReplyListByAnum(Map<String, Object> param) {
+		return sqlSessionTemplate.selectList(namespace + ".GetReplyListByRnum", param);
+	}
+
+	public int getReplyTotalCountByRnum(Map<String, Object> param) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetReplyTotalCountByRnum", param);
 	}
 }

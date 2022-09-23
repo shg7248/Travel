@@ -7,6 +7,8 @@ public class ReplyBean {
 	private int rvnum;
 	private int mnum;
 	private int onum;
+	private String rname;
+	private String email;
 	private String content;
 	private String reply;
 	private MultipartFile upload;
@@ -67,5 +69,17 @@ public class ReplyBean {
 	}
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
