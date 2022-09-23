@@ -3,6 +3,7 @@ package login.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +25,7 @@ public class TravelKakaoController {
 
 	@RequestMapping(value = command,method = RequestMethod.GET)
 	public ModelAndView kakaoLogin(@RequestParam String email,HttpSession session,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response,HttpServletRequest request) throws IOException {
 		//location.href='kakaoRegister.log?email='+response.kakao_account.email;
 		ModelAndView mav = new ModelAndView();
 		
@@ -43,9 +44,22 @@ public class TravelKakaoController {
 				session.setAttribute("userInfo", login);
 				session.setAttribute("mnum", login.getMnum());
 				session.setAttribute("email", login.getEmail());
+				
+				//받아온 전페이지 url
+				String history = (String)request.getSession().getAttribute("history");
+				System.out.println("history2: "+history);
+				
+				if(history != null) {
+					//주소값얻기 http://loca ~ /travel
+					System.out.println("sub"+history.substring(28)); 
+					
+					//세션 제거
+					request.getSession().removeAttribute("history");
+					System.out.println("history3: "+history);
+				}
 
 				//로그인성공시 이동할 위치
-				mav.setViewName("redirect:/");
+				mav.setViewName("redirect:/"+history.substring(28));
 				return mav;
 			}else {
 				//다른 플렛폼으로 로그인 하세요.
