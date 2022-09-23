@@ -18,7 +18,7 @@ FaciInsertForm.jsp<br>
 	<p>
 		<select name="fgroup">
 			<c:forEach var="item" items="${lists }">
-				<option value="${item.fnum }">${item.fname } (${item.fnum })</option>
+				<option value="${item.fnum }">${item.name } (${item.fnum })</option>
 			</c:forEach>
 		</select>
 	</p>
@@ -30,8 +30,8 @@ FaciInsertForm.jsp<br>
 		
 	</p>
 	<p>
-		<label for="fname">시설이름</label>
-		<input type="text" name="fname" id="fname" value="${faci.fname}">
+		<label for="name">시설이름</label>
+		<input type="text" name="name" id="name" value="${faci.name}">
 	</p>
 		
 			

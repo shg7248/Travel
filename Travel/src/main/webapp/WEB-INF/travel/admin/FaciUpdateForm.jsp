@@ -22,8 +22,8 @@ FaciUpdateForm.jsp<br>
 	</p>
 	
 	<p>
-		<label for="fname">시설 이름</label>
-		<input type="text" name="fname" id="fname" value="${faci.fname }">
+		<label for="name">시설 이름</label>
+		<input type="text" name="name" id="name" value="${faci.name }">
 	</p>
 	
 	

@@ -3,7 +3,7 @@ package admin.model;
 public class FaciBean {
 	private String fno;
 	private String fnum;
-	private String fname;
+	private String name;
 	private String fgroup;
 	public String getFno() {
 		return fno;
@@ -17,11 +17,11 @@ public class FaciBean {
 	public void setFnum(String fnum) {
 		this.fnum = fnum;
 	}
-	public String getFname() {
-		return fname;
+	public String getName() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getFgroup() {
 		return fgroup;

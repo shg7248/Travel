@@ -232,6 +232,9 @@ values(0,'admin','test','1234');
 insert into member 
 values(seq_member.nextval,'qrzv123@naver.com','test','1234','01012345678','kakao',sysdate,200);
 
+insert into member 
+values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao',sysdate,200);
+
 
 select * from member;
 
@@ -250,7 +253,7 @@ create table company (
 ) ;
 
 insert into company 
-values('12345689123', 'abc.img', 'qrzv13@gmail.com', '1234', '01012345678', 0, sysdate);
+values('12345689123', 'abc.img', 'qrzv13@gmail.com', '1234', '01012345678', 1, sysdate);
 
 select * from company;
 commit;
