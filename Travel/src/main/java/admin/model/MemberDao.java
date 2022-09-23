@@ -35,6 +35,15 @@ public class MemberDao {
 		
 	}
 	
+	public int deleteMember(String mnum) {
+		
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteMember",mnum);
+		System.out.print("cnt:"+cnt);
+		return cnt;
+		
+		
+	}
+	
 	
 	
 }
