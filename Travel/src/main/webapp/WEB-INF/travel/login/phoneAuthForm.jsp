@@ -35,11 +35,25 @@ function subNum(){
 	$('.display').show();
 	
 	//휴대폰인증 api
-	//location.href='phoneAuth.tra';
+	
+	const formData = new FormData(myform);
+	console.log(myform);
+	console.log(formData);
+	
+	fetch('phoneAuth.tra', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		},
+		body: formData
+	})
+	.then(()=> {
+		console.log("ffsddfsdsfdfs");
+	})
 }
 </script>
 <div class="all">
-<form method="post" action="phoneAuthForm.log">
+<form method="post" action="phoneAuthForm.log" name="myform">
 	<input type="hidden" name="email" value="${param.email }">
 	<input type="hidden" name="flatform" value="${param.flatform }">
 	<div class="div">

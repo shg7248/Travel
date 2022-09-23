@@ -24,6 +24,8 @@ public class TravelPhoneAuthController {
 	@RequestMapping(value = command, method=RequestMethod.POST)
 	public String doPostAction(@RequestParam String phone) throws Exception {
 		
+		System.out.println("dfssdfdfs : " + phone);
+		
 		String api_key = "NCSWLQNCGD42Q5DB";
 		String api_secret = "KYXPY42RJNJQXYPBUC6ELRIX8YXHAK3F";
 		
