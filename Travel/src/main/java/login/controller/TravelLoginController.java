@@ -52,8 +52,9 @@ public class TravelLoginController {
 		String history = request.getHeader("Referer");
 		System.out.println("history: "+history);
 		
-		if(history != null && history.contains(command)) {
+		if(history != null && !history.contains(getPage)) {
 			request.getSession().setAttribute("history", history);
+			System.out.println("전페이지 저장됨");
 		}
 		
 		return getPage;
@@ -105,10 +106,16 @@ public class TravelLoginController {
 				System.out.println("history2: "+history);
 				
 				if(history != null) {
+					//주소값얻기 http://loca ~ /travel
+					System.out.println("sub"+history.substring(28)); 
 					
+					//세션 제거
 					request.getSession().removeAttribute("history");
 					System.out.println("history3: "+history);
+					
+					return "redirect:/"+history.substring(28);
 				}
+				
 				//로그인성공시 이동할 위치
 			return "redirect:/";
 				

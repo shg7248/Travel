@@ -35,6 +35,7 @@ function checkAll(){
 <div class="all">
 <%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
+<div class="one">
 <form action="memberAccount.mem" method="post" name="f">
 <label for="accnum">무통장 입금 계좌번호를 등록해주세요.</label>
 <div class="div" >
@@ -65,6 +66,7 @@ function checkAll(){
 <li><a href="accDelete.mem?accnum=${tabean.accnum }">삭제</a></li>
 </ul>
 </c:forEach>
+</div>
 </div>
 </div>
 </div>
