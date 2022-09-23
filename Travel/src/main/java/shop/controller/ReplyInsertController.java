@@ -27,7 +27,5 @@ public class ReplyInsertController {
 		TravelUserBean tub = (TravelUserBean)session.getAttribute("userInfo");
 		replyBean.setMnum(tub.getMnum());
 		replyDao.insertReply(replyBean);
-		
-		replyDao.getReplyListByRnum(command);
 	}
 }
