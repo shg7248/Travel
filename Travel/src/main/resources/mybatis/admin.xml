@@ -104,12 +104,12 @@
 	
 	<insert id="InsertFaci" parameterType="admin.model.FaciBean">
 		insert into facility
-		values(faci_SEQ.nextval,#{fnum},#{fname},#{fgroup,jdbcType=VARCHAR}
+		values(faci_SEQ.nextval,#{fnum},#{name},#{fgroup,jdbcType=VARCHAR}
 		)
 	</insert>
 	
 	<update id="UpdateFaci" parameterType="admin.model.FaciBean">
-  		update facility set fnum=#{fnum},fname=#{fname},fgroup=#{fgroup}
+  		update facility set fnum=#{fnum},name=#{name},fgroup=#{fgroup}
   		where fno=#{fno}
   	</update>
   	
@@ -130,7 +130,7 @@
   	</delete>
 	
 	<select id="GetFacGroupList" resultType="admin.model.FaciBean">
-		select fnum, fname from facility where fgroup is null
+		select fnum, name from facility where fgroup is null
 	</select>
 </mapper>
 

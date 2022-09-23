@@ -179,8 +179,8 @@ public class TravelLoginController {
 				System.out.println("login.getPwd(): " + login.getPwd());
 				if(tcbean.getPwd().equals(login.getPwd())) {
 					//가입승인이 안낫을때.
-					
-					if(tcbean.getApproyn()==10) {
+					System.out.println("tcbean.getApproyn() : " + tcbean.getApproyn());
+					if(login.getApproyn()==0) {
 						System.out.println("가입승인이 안난 회원");
 
 						writer.println("<script type='text/javascript'>");
