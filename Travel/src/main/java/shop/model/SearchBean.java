@@ -16,6 +16,8 @@ public class SearchBean {
 	private String rcode;
 	private String region;
 	private String sort;
+	private String lat;	// 위도
+	private String lng;	// 적도
 	
 	SearchBean() {
 		this.rcode = "11000";
@@ -106,5 +108,20 @@ public class SearchBean {
 	}
 	public void setSort(String sort) {
 		this.sort = sort;
+	}
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 }

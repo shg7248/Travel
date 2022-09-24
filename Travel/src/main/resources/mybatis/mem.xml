@@ -20,9 +20,35 @@
 	</select>
 	
 	<select id="selectOrder" resultType="OrdersBean">
-		select  o.onum, a.anum, a.name, r.name, o.startdate, o.enddate, r.price, o.odate 
-		from orders o, room r, accom a
-		where r.rnum = o.rnum and r.anum = a.anum and o.mnum = #{mnum}
+		with a as (
+			select  onum, 
+					ro.rnum, 
+					to_date(startdate || '' || a.starttime, 'yyyyMMddhh24') as startDate, 
+					to_date(enddate|| '' || a.endtime, 'yyyyMMddhh24') as endDate,
+					(to_date(enddate, 'yyyyMMdd') - to_date(startdate, 'yyyyMMdd') + 1) * ro.price as price,
+					ro.name as rname,
+					a.name as aname,
+					(select count(*)
+						from orders o1
+						inner join review r
+						on o1.onum = r.onum
+						where o1.onum = o.onum ) as reviewCount
+			from orders o
+			inner join room ro
+			on o.rnum = ro.rnum
+			inner join accom a
+			on ro.anum = a.anum
+		),
+		b as(
+			<![CDATA[select onum, rname, aname, reviewCount, price, case when sysdate < startDate then 0]]>
+						<![CDATA[when sysdate >= startDate  and sysdate < endDate then 1]]>
+						else 2 end as resStatus
+			from a
+		)
+		select *
+		from b
+		inner join orders o
+		on b.onum = o.onum
 	</select>
 	
 	<delete id="DeleteMember">
