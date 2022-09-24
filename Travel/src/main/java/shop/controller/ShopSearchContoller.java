@@ -3,6 +3,9 @@ package shop.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,6 @@ import comp.model.CompDao;
 import comp.model.FacBean;
 import comp.model.ResionBean;
 import shop.model.SearchBean;
-import shop.model.SearchSort;
 import shop.model.ShopDao;
 
 @Controller
@@ -36,11 +38,8 @@ public class ShopSearchContoller {
 								@PathVariable(value = "canum") String canum,
 								String rcode) {
 		
-		System.out.println("GetRcode : " + rcode);
-		
-		System.out.println(canum);
-		
 		searchBean.setCanum(canum);
+		
 		if(rcode != null) {
 			searchBean.setRcode(rcode);
 		}
@@ -61,6 +60,7 @@ public class ShopSearchContoller {
 		
 		searchBean.setStart(start);
 		searchBean.setEnd(end);
+		
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
 		
@@ -82,11 +82,51 @@ public class ShopSearchContoller {
 			return getPage;
 	}
 	
-	private final String command3 = "/shop/around.shop";
+	private final String command3 = "/shop/around/{canum}.shop";
 	@RequestMapping(value = command3)
-	public String doGetAction2(Model model) {
+	public String doGetAction2(	Model model, 
+								HttpServletRequest request, 
+								@ModelAttribute("searchBean") SearchBean searchBean,
+								@PathVariable(value = "canum") String canum) {
 		
 		
+		String start = searchBean.getStart();
+		String end = searchBean.getEnd();
+		
+		LocalDate date = LocalDate.now();
+		model.addAttribute("start", start = start == null? formatDate(date) : start);
+		LocalDate date2 = date.plusDays(1);
+		model.addAttribute("end", end = end == null? formatDate(date2) : end);
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for(Cookie c : cookies) {
+			String name = c.getName();
+			String value = c.getValue();
+
+			if(name.equals("lat") || name.equals("lng")) {
+				model.addAttribute(name, value);
+				
+				if(name.equals("lat")) {
+					searchBean.setLat(value);
+				}
+				if(name.equals("lng")) {
+					searchBean.setLng(value);
+				}
+			}
+		}
+		
+		List<FacBean> facLists = compDao.getFacList();
+		model.addAttribute("facLists", facLists);
+		
+		List<ResionBean> rLists = compDao.getResionList();
+		model.addAttribute("rLists", rLists);
+		
+		searchBean.setStart(start);
+		searchBean.setEnd(end);
+		
+		List<SearchBean> sLists = shopDao.search(searchBean);
+		model.addAttribute("sLists", sLists);
 		
 		return getPage;
 	}	

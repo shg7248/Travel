@@ -151,9 +151,9 @@
 	<div class="search-wrap">
 		<article class="article search-wrap__options">
 			<form method="post" name="searchForm">
-				<input type="hidden" name="start" value="${start }">
-				<input type="hidden" name="end" value="${end }">
-				<input type="hidden" name="sort" value="${searchBean.sort }">
+				<input type="hidden" name="start" value="${start }"> <!-- 시작일 -->
+				<input type="hidden" name="end" value="${end }"> <!-- 마지막일 -->
+				<input type="hidden" name="sort" value="${searchBean.sort }"> <!-- 정렬 -->
 				<div class="search-wrap__region">
 					<div class="region">
 						<p class="region__title">지역</p> 
@@ -239,109 +239,5 @@
 		</article>
 	</div>
 </section>
-
-<script>
-
-	window.onload = function() {
-		
-		// DOM의 렌더링이 끝나면 form에 현재 경로로 action값을 넣어준다.
-		const pathname = window.location.pathname;
-		searchForm.action = pathname;
-		
-		// 달력 생성
-		const start = ${start};
-		const end = ${end};
-		const cal = new Calendar({start: start, end: end});
-		
-		// 지역 체크박스
-		if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-			const sido = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
-			Array.from(searchForm.sido.children, (e)=> {
-				if(e.value === sido) {
-					e.selected = true;
-				}
-			});
-		}
-		else {
-			searchForm.sido.options[0].selected = true;
-		}
-		
-		changeSido();
-	}
-
-	function displayCal() {
-		const cal = document.querySelector('.calendar');
-		cal.classList.toggle('on');
-	}
-	
-	// 
-	function sort(sort) {
-		const ele = document.querySelector('input[name="sort"]');
-		ele.value = sort;
-		ele.parentElement.submit();
-	}
-	
-	// sido 선택하면
-	function changeSido() {
-
-		const sido = searchForm.sido.value;
-		const sigungu = searchForm.sigungu;
-		
-		const pathname = window.location.pathname;
-		
-		const obj = {rcode : sido};
-		const data = {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(obj)
-		};
-		
-		fetch('${contextPath}/getSIGUNGU.shop', data)
-		.then((res)=> res.json())
-		.then((result)=> {
-			sigungu.options.length = 2;
-			result.forEach((e, i) => {
-				sigungu.options[i + 2] = new Option(e.sigungu, e.rcode);
-			});
-		})
-		.then(()=> {
-			
-			// 2dept 체크처리
-			// fetch의 비동기 방식으로 인해서 2dept가 만들어진 이후 선택되야 한다.
-			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-				const oldSido = pathname.match(/(\d{2})\d+\.shop/)[1];
-				Array.from(searchForm.sigungu.children, (e)=> {
-					const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];	
-					if(sido + e.value === oldSido + sigungu) {
-						e.selected = true;
-					}
-					else {
-						e.selected = false;
-					}
-				});	
-			}
-		});
-	}
-	
-	function addrDeps2Changed() {
-		
-		const sido = searchForm.sido.value;
-		const sigungu = searchForm.sigungu.value;
-		
-		if(sigungu.value === 0)
-			return;
-		
-		const pathname = window.location.pathname;
-		
-		const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
-		const fac = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
-		
-		const rcode = sido.concat(sigungu).padEnd(5, 0);
-		
-		searchForm.action = url + fac + "/" + rcode + ".shop";
-		searchForm.submit();
-	}
-</script>
+<script src="${contextPath }/resources/js/shop/shop.js"></script>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

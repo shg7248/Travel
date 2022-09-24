@@ -4,6 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<head>
+	<meta http-equiv="page-enter" content="blendTrans(duration=3)">
+	<meta http-equiv="page-exit" content="blendTrans(duration=3)">
+</head>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" />
@@ -16,3 +20,37 @@
 
 <!-- css -->
 <link rel="stylesheet" href="${contextPath }/resources/css/reset.css">
+
+
+
+
+
+<style>
+	#load {
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    position: fixed;
+	    display: block;
+	    opacity: 0.8;
+	    background: white;
+	    z-index: 999;
+	    text-align: center;
+	}
+	
+	#load > img {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    z-index: 100;
+	}
+</style>
+<%-- <div id="load">
+    <img src="${contextPath }/resources/images/loading.gif" alt="loading">
+</div> --%>
+<!-- <script>
+	window.onload = function() {
+		document.querySelector('#load').style.display = 'none';
+	}
+</script> -->
