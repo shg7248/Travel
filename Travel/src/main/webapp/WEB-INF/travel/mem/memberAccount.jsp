@@ -60,7 +60,7 @@ function checkAll(){
 <li>삭제</li>
 </ul>
 <c:forEach items="${lists }" var="tabean">
-<ul>
+<ul class="normal">
 <li>${tabean.bank }</li>
 <li>${tabean.accnum }</li>
 <li><a href="accDelete.mem?accnum=${tabean.accnum }">삭제</a></li>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.footer1 {
+	margin-top : 100px;
+	background: #747474;
+}
+.footer__inner {
+	width: 960px;
+	margin: 20px auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.ul_box{
+	display: flex;
+	flex-direction: row;
+	margin: 5px auto;
+}
+.footer1 p{
+	display: flex;
+	flex-direction: row;
+	margin: 10px auto;
+	color: white;
+}
+.footer1 ul li{
+	color: white;
+}
+.footer1 span {
+    display: inline-block;
+    width: 24px;
+    text-align: center;
+}
