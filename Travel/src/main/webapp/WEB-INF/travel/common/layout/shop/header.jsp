@@ -25,7 +25,9 @@
 							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/noticelist.brd">공지사항</a></li>
 							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/eventlist.brd">이벤트</a></li>
 							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/faqlist.brd">자주묻는 질문</a></li>
-							<li class="more-info__item"><a class="more-info__link" href="${contextPath }/inqlist.brd">1대1 문의</a></li>
+							<c:if test='<%=session.getAttribute("loginInfo")==null%>'>
+								<li class="more-info__item"><a class="more-info__link" href="${contextPath }/inqlist.brd">1대1 문의</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</li>

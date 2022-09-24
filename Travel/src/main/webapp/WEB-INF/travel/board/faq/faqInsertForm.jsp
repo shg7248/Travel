@@ -56,3 +56,4 @@ var oEditors = [];
 	});
 });
 </script>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
