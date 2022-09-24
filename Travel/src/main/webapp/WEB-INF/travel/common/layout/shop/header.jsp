@@ -38,7 +38,7 @@
 		<nav class="main-nav">
 			<div class="main-nav__inner">
 				<ul class="main-nav__list">
-					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/around.shop">주변검색</a></li>
+					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/around/1.shop">주변검색</a></li>
 					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/1.shop">모텔</a></li>
 					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/2.shop">호텔</a></li>
 					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/3.shop">펜션</a></li>

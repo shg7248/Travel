@@ -61,6 +61,17 @@
 			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
 				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
 			</if>
+			<if test="lat != null and lng != null">
+				and (	SELECT (
+						6371*ACOS(COS(RADIANS(latitude))
+					    *COS(RADIANS(#{lat}))
+				     	*COS(radians(#{lng})-RADIANS(longitude))
+				        +SIN(RADIANS(latitude))*SIN(RADIANS(#{lat}))))
+						AS DISTANCE
+						FROM accom a2
+						where a2.anum = a.anum
+						<![CDATA[) <= 5]]>
+			</if>
 			group by a.anum
 		) z
 		inner join room r
