@@ -30,6 +30,7 @@ public class ShopSearchContoller {
 	private ShopDao shopDao;
 	
 	private String getPage = "search";
+	private String getPage2 = "around";
 	
 	private final String command = "/shop/search/{canum}.shop";
 	@RequestMapping(value = command)
@@ -38,8 +39,10 @@ public class ShopSearchContoller {
 								@PathVariable(value = "canum") String canum,
 								String rcode) {
 		
+		// 카테고리번호 넣어줌
 		searchBean.setCanum(canum);
 		
+		// 지역번호가 null이 아닌 경우 넣어줌 (null인 경우는 카테고리를 클릭하거나 전지역을 검색하거나)
 		if(rcode != null) {
 			searchBean.setRcode(rcode);
 		}
@@ -82,6 +85,7 @@ public class ShopSearchContoller {
 			return getPage;
 	}
 	
+	// 주변검색
 	private final String command3 = "/shop/around/{canum}.shop";
 	@RequestMapping(value = command3)
 	public String doGetAction2(	Model model, 
@@ -128,7 +132,7 @@ public class ShopSearchContoller {
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
 		
-		return getPage;
+		return getPage2;
 	}	
 	
 	public String formatDate(LocalDate date) {

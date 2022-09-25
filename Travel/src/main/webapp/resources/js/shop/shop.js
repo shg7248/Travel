@@ -10,7 +10,7 @@
 	
 	// 지역 체크박스
 	if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-		const sido = pathname.match(/\d{2}(?=\d{3}.shop)/)[0];
+		const sido = pathname.match(/[\d]{2}(?=\d*\.shop)/)[0]; 
 		Array.from(searchForm.sido.children, (elem)=> {
 			if(elem.value === sido) {
 				elem.selected = true;
@@ -21,28 +21,22 @@
 		searchForm.sido.options[0].selected = true;
 	}
 	
-	changeSido();
+	changeSido(0)
 }());	
 
-function displayCal() {
-	const cal = document.querySelector('.calendar');
-	cal.classList.toggle('on');
-}
-
-// 
-function sort(sort) {
-	const ele = document.querySelector('input[name="sort"]');
-	ele.value = sort;
-	ele.parentElement.submit();
-}
-
 // sido 선택하면
-function changeSido() {
+function changeSido(c) {
 
-	const sido = searchForm.sido.value;
-	const sigungu = searchForm.sigungu;
-	
-	const pathname = window.location.pathname;
+	const 	sido = searchForm.sido.value,
+			sigungu = searchForm.sigungu,
+			pathname = window.location.pathname,
+			url = pathname.match(/\/\w+\/\w+\/\w+/)[0], 
+			cate = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
+			
+	// c 가 0이면 페이지가 리로드 됬을 때, 1이면 selectbox를 선택했을 때 
+	if(sido == 0 && c) {
+		window.location.href = url + '/' + cate + '.shop';
+	}
 	
 	const obj = {rcode : sido};
 	const data = {
@@ -56,15 +50,15 @@ function changeSido() {
 	fetch('/travel/getSIGUNGU.shop', data)
 	.then((res)=> res.json())
 	.then((result)=> {
-		sigungu.options.length = 2;
+		sigungu.options.length = 1;
 		result.forEach((e, i) => {
-			sigungu.options[i + 2] = new Option(e.sigungu, e.rcode);
+			sigungu.options[i + 1] = new Option(e.sigungu, e.rcode);
 		});
 	})
 	.then(()=> {
 
-		if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-			const oldSido = pathname.match(/(\d{2})\d+\.shop/)[1];
+		if(/\/\d\/\d{2}\d{3}\.shop/.test(pathname)) {
+			const oldSido = pathname.match(/[\d]{2}(?=\d*\.shop)/)[0];
 			Array.from(searchForm.sigungu.children, (e)=> {
 				const sigungu = pathname.match(/\d{3}(?=\.shop)/)[0];	
 				if(sido + e.value === oldSido + sigungu) {
@@ -83,16 +77,25 @@ function addrDeps2Changed() {
 	const sido = searchForm.sido.value;
 	const sigungu = searchForm.sigungu.value;
 	
-	if(sigungu.value === 0)
-		return;
-	
 	const pathname = window.location.pathname;
 	
 	const url = pathname.match(/\/\w+\/\w+\/\w+\//)[0];
-	const fac = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
+	const cate = pathname.match(/\/\w+\/\w+\/\w+\/(\d+)/)[1];
 	
-	const rcode = sido.concat(sigungu).padEnd(5, 0);
+	const rcode = sido.concat(sigungu);
 	
-	searchForm.action = url + fac + "/" + rcode + ".shop";
+	searchForm.action = url + cate + "/" + rcode + '.shop';
 	searchForm.submit();
+}
+
+function displayCal() {
+	const cal = document.querySelector('.calendar');
+	cal.classList.toggle('on');
+}
+
+// 
+function sort(sort) {
+	const ele = document.querySelector('input[name="sort"]');
+	ele.value = sort;
+	ele.parentElement.submit();
 }

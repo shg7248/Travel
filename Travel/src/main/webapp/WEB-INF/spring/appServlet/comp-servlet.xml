@@ -28,7 +28,7 @@
 	<interceptors>
            <interceptor>
                <mapping path="/comp/**"/>
-                   <beans:bean id="commonInterceptor" class="Util.CompInterceptor"/>
+                   <beans:bean id="commonInterceptor" class="util.CompInterceptor"/>
         </interceptor>
     </interceptors>
 	

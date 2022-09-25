@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Util.Paging;
 import comp.model.CompDao;
 import comp.model.RoomBean;
 import login.model.TravelCompanyBean;
+import util.Paging;
 
 @Controller
 public class RoomMainController {

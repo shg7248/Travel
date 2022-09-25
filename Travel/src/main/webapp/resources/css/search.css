@@ -1,0 +1,142 @@
+@charset "UTF-8";
+.search-wrap {
+	display: grid;
+	grid-template-columns: repeat(16, 1fr);
+	column-gap: 10px;
+	--input-height: 40px;
+}
+
+.search-wrap .title {
+	font-size: 16px;
+	font-weight: bold;		
+}
+
+.search-wrap__options {
+	grid-column: 1 / 5;
+}
+
+.search-wrap__result {
+	grid-column: 5 / 17;
+}
+.region__title {
+	font-size: 16px;
+	font-weight: bold;
+}
+.search-wrap__region {
+	padding: 20px;
+}
+.region__list {
+	width: 100%;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid rgb(209, 209, 209);
+	text-align: center;
+}
+.region__list--sigungu {
+	margin-top: 10px;
+}
+.search-wrap__submit {
+	padding: 20px;
+}
+.search-wrap__btn {
+	width: 100%;
+	height: 40px;
+	background: #ff6060;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	font-weight: bold;
+}
+
+.calendar {
+	width: 100%;
+	overflow: hidden;
+    height: 0px;
+    margin-top: 10px;
+    transition: all ease-in 0.3s;
+}
+.calendar.on {
+	height: 280px;
+}
+.search-wrap__calendar {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.calendar__show-btn {
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #ff6060;
+}
+.search-wrap__price {
+	padding: 10px 20px;
+}
+.price__text {
+	width: 100%;
+	height: var(--input-height);
+	border-radius: 5px;
+	border: 1px solid rgb(209, 209, 209);
+	padding-left: 20px;	
+}
+
+.search-wrap__count {
+	padding: 10px 20px;
+}
+.count__text {
+	width: 100%;
+	height: var(--input-height);
+	border-radius: 5px;
+	border: 1px solid rgb(209, 209, 209);
+	padding-left: 20px;		
+}
+.search-wrap__fac {
+	padding: 20px;
+}
+.fac__select-wrap {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 10px;
+}
+
+.search-wrap__sort {
+	padding: 20px;
+	text-align: right;
+}
+.sort__link {
+	font-size: 11px;
+	margin-left: 20px;
+	color: black;
+}
+.result__room {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	padding: 20px;
+	height: 250px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	transition: all .2s;
+}
+
+.result__room:hover {
+	background-size: 120% 120%!important;
+}
+.result__room::before {
+	content: '';
+	opacity: 0.5;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	background-color: #000;
+}
+.room__info {
+	color: white;
+	font-weight: bold;
+	font-size: 1.4em;
+	z-index: 999;
+}
