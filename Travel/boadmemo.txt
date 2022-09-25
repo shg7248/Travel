@@ -3,7 +3,7 @@ drop table board1;
 
 create table board1( 
 	nnum number not null primary key,	--일련번호
-	subject varchar2(100),				--제목
+	subject varchar2(100),				--제목--
 	content clob not null,				--내용/이미지파일
 	reg_date date default sysdate,		--공지사항작성일
 	type varchar2(20)					--공지사항/이벤트구분
