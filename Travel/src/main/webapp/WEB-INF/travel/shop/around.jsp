@@ -12,18 +12,7 @@
 				<input type="hidden" name="end" value="${end }"> <!-- 마지막일 -->
 				<input type="hidden" name="sort" value="${searchBean.sort }"> <!-- 정렬 -->
 				<div class="search-wrap__region">
-					<div class="region">
-						<p class="region__title">지역</p> 
-						<select class="region__list region__list--sido" name="sido" onchange="changeSido(1)">
-							<option class="region__item" value="0">전지역</option>
-							<c:forEach var="resion" items="${rLists }">
-								<option class="region__item" value="${resion.rcode }">${resion.sido }</option>
-							</c:forEach>
-						</select>
-						<select class="region__list region__list--sigungu" name="sigungu" onchange="addrDeps2Changed()">
-							<option class="region__item" value="">전체</option>
-						</select>
-					</div>
+					<p class="region__title">지역</p> 
 				</div>
 				<div class="search-wrap__submit">
 					<input class="search-wrap__btn" type="submit" value="검색" />
@@ -71,6 +60,10 @@
 						</c:forEach>
 					</div>
 				</div>
+				<div>
+					<p class="title">범위</p>
+					<input type="text" name="around"/>
+				</div>
 			</form>
 		</article>
 		<article class="article search-wrap__result">
@@ -96,5 +89,21 @@
 		</article>
 	</div>
 </section>
-<script src="${contextPath }/resources/js/shop/shop.js"></script>
+<script>
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	searchDetailAddrFromCoords(function(result, status) {
+		if (status === kakao.maps.services.Status.OK) {
+			const region = document.querySelector('.search-wrap__region');
+			region.append(result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
+		}
+	});
+	
+	function searchDetailAddrFromCoords(callback) {
+	    latLng((lat, lng)=> {
+		    geocoder.coord2Address(lng, lat, callback);
+	    });
+	}
+</script>
+<%-- <script src="${contextPath }/resources/js/shop/shop.js"></script> --%>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

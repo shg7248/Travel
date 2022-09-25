@@ -45,6 +45,7 @@
 				and
 				<![CDATA[to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')]]>
 			)
+			and 
 
 			<if test="count != 0">
 			<![CDATA[and r.max >= #{count}]]>
@@ -55,11 +56,8 @@
 			<if test="canum != null">
 			<![CDATA[and a.canum = #{canum}]]>
 			</if>
-			<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
-				and substr(re.rcode, 0, 5) = #{rcode}
-			</if>
-			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
-				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
+			<if test='rcode != null'>
+				and re.rcode like #{rcode}||'%'
 			</if>
 			<if test="lat != null and lng != null">
 				and (	SELECT (

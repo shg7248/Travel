@@ -20,7 +20,6 @@ public class SearchBean {
 	private String lng;	// 적도
 	
 	SearchBean() {
-		this.rcode = "11000";
 		this.price = 300000;
 		this.count = 2;
 		this.sort = "LOWPRICE";

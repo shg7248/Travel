@@ -6,7 +6,7 @@ begin
 	with a as (
 	    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac
 		from dual
-		connect by level <= length(regexp_substr(vcolumn, '[^,]+', 1, level)) + 1
+		connect by level <= length(regexp_subst(vcolumn, '[^,]+', 1, level)) + 1
 	),
 	b as (
 	    select fnum, name, fgroup 
@@ -53,3 +53,9 @@ end;
 
 --------------------------------------------
 
+			<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
+				and substr(re.rcode, 0, 5) = #{rcode}
+			</if>
+			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
+				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
+			</if>
