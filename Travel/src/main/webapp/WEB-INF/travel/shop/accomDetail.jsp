@@ -174,6 +174,7 @@
 		})
 		.then((data)=> data.json())
 		.then((data)=> {
+		
 				
 			defaults.addPageNumber();
 			
@@ -186,33 +187,41 @@
 			reply__list.classList.add('reply__list');
 			
 			let reply__item = ``;
-			data.lists.forEach((obj, i)=> {
-				reply__item += `<div class="reply__item">`;
-				reply__item += `<div class="reply__info--content">`;
-				reply__item += obj.content
-				reply__item += `</div>`;
-				reply__item += `<div class="reply__info--writer">`;
-				reply__item += `<span>` + obj.reg_date + `</span>`;
-				reply__item += `<span>`+ obj.rname +`</span>`;
-				reply__item += `<span>` + obj.email + `</span>`;
-				reply__item += `<span>` + obj.rating + `</span>`;
-				reply__item += `</div></div>`
-			});
 			
-			
-			reply__list.innerHTML = reply__item;
-			reply.append(reply__list);
-			
-			const item__length = document.querySelectorAll('.reply__item');
-			
-			const makeAddInfo = document.createElement('div');
-			makeAddInfo.classList.add('reply__info--addInfo');
-			makeAddInfo.setAttribute('onclick', 'reply()');
-			makeAddInfo.innerHTML = "더보기";
-			
-			if(data.totalCount !== item__length.length) {
-				reply.append(makeAddInfo);
+			if(data.totalCount == 0) {
+				reply_item = "등록된 리뷰가 없습니다";
+				reply.append(reply_item);
 			}
+			else {
+				data.lists.forEach((obj, i)=> {
+					reply__item += `<div class="reply__item">`;
+					reply__item += `<div class="reply__info--content">`;
+					reply__item += obj.content
+					reply__item += `</div>`;
+					reply__item += `<div class="reply__info--writer">`;
+					reply__item += `<span>` + obj.reg_date + `</span>`;
+					reply__item += `<span>`+ obj.rname +`</span>`;
+					reply__item += `<span>` + obj.email + `</span>`;
+					reply__item += `<span>` + obj.rating + `</span>`;
+					reply__item += `</div></div>`
+				});
+				
+				
+				reply__list.innerHTML = reply__item;
+				reply.append(reply__list);
+				
+				const item__length = document.querySelectorAll('.reply__item');
+				
+				const makeAddInfo = document.createElement('div');
+				makeAddInfo.classList.add('reply__info--addInfo');
+				makeAddInfo.setAttribute('onclick', 'reply()');
+				makeAddInfo.innerHTML = "더보기";
+				
+				if(data.totalCount !== item__length.length) {
+					reply.append(makeAddInfo);
+				}
+			}
+			
 		
 		})
 	}
@@ -248,8 +257,8 @@
 			
 			defaults = {...defaults, pageNumber: 1};
 			
-			reply(window);
-		});
+			reply(window); 
+		}); 
 		
 		return false;
 	}

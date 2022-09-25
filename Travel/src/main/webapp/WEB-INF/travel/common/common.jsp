@@ -14,6 +14,8 @@
 <c:set var="page" value="${fn:substring(path, 1, 3) }" />
 
 <!-- script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7aa66b36bac14d52a5dbbdb09a9f4b5a&libraries=services,clusterer,drawing"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${contextPath }/resources/js/jquery-2.0.2.js"></script>
 <script src="${contextPath }/resources/se2/js/HuskyEZCreator.js"></script>
 <script src="${contextPath }/resources/js/common.js"></script>
