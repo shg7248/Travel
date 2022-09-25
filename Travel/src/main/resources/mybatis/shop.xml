@@ -45,8 +45,6 @@
 				and
 				<![CDATA[to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')]]>
 			)
-			and 
-
 			<if test="count != 0">
 			<![CDATA[and r.max >= #{count}]]>
 			</if>
