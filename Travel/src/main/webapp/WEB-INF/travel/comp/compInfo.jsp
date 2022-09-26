@@ -1,28 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
-<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
-<div class="all">
-<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
-<div class="contents">
-<div class="div">
-<label for="name">이름</label>
-<input type="text" name="name" id="name" value="${loginInfo.name }"  disabled="disabled">
-</div>
 
-<div class="div">
-<label for="email">이메일</label> 
-<input type="text" name="email" id="email" value="${loginInfo.email }" disabled="disabled">
-<font id="checkMsg"></font>
-</div>
-
-
-<div class="div">
-<label for="point">포인트</label>  
-<input type="text" name="point" id="point" value="${loginInfo.point }" disabled="disabled">
-</div>
-
-<input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.log'">
-<input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='confirm.mem'">
-</div>
-</div>
+<table class="accom-detail__info">
+			        	<tr>
+			        		<td>사업자 등록번호</td>
+			        		<td>${loginInfo.cnum }</td>
+			        	</tr>
+			        	<tr>
+			        		<td>이메일</td>
+			        		<td>${loginInfo.email }</td>
+			        	</tr>
+			        	<tr>
+			        		<td>핸드폰번호</td>
+			        		<td>${loginInfo.phone }</td>
+			        	</tr>
+			        	<tr>
+			        		<td>가입일자</td>
+			        		<td>${loginInfo.reg_date }</td>
+			        	</tr>
+		        </table>
+	        </div> <!-- inner -->
+        </section> <!-- section -->
+    </div> <!-- main -->
+</div> <!-- wrap -->
