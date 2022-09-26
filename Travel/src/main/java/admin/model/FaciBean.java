@@ -1,8 +1,6 @@
 package admin.model;
 
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class FaciBean {
 	private String fno;
