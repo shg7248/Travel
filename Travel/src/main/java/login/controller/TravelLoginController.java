@@ -52,7 +52,7 @@ public class TravelLoginController {
 		String history = request.getHeader("Referer");
 		System.out.println("history: "+history);
 		
-		if(history != null && !history.contains(getPage)) {
+		if(history != null && !history.contains(getPage) && !history.contains("Register")) {
 			request.getSession().setAttribute("history", history);
 			System.out.println("전페이지 저장됨");
 		}

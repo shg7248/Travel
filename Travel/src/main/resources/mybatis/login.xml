@@ -20,7 +20,7 @@
 	
 	<insert id="CompanyInsert">
 		insert into company
-		values(#{cnum},#{image},#{email},#{pwd},#{phone},0,sysdate)
+		values(#{cnum},#{image},#{email},#{pwd},#{phone},1,sysdate)
 	</insert>
 	
 	<select id="CompanyEmail" resultType="int">

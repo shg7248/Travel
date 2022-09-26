@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
-<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <div class="all">
+<%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
-<table border="1" style="width: 100%">
+<label>예약 내역</label>
+<br>
+<table border="1" >
 	<tr>
 		<th>숙소명</th>
 		<th>객실명</th>

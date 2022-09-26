@@ -200,7 +200,7 @@ create table company (
 ) ;
 
 insert into company 
-values('123456789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+values('123456789123', 'abc.img', 'company', '1234', '01012345678', 1, sysdate);
 
 select * from company;
 commit;
