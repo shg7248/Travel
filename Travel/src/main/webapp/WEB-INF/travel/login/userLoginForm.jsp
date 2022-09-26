@@ -108,7 +108,7 @@ function checkAll(){
 </div>
 
 <a href="javascript:kakaoLogin();"> <img alt=""
-		src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png">
+		src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" width="300px" height="60">
 	</a>
 	<Br>
 	<a href="javascript:kakaoLogout();"> 로그아웃 </a><Br>
