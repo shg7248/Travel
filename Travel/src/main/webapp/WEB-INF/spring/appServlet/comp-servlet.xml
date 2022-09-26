@@ -24,6 +24,7 @@
 	<context:component-scan base-package="comp" />
 	<context:component-scan base-package="shop" />
 	<context:component-scan base-package="reply" />
+	<context:component-scan base-package="mem" />
 	
 	<interceptors>
            <interceptor>

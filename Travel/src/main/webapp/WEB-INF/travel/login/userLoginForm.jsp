@@ -90,11 +90,11 @@ function checkAll(){
 <div class="one"> 
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
-<input type="text" name="email" placeholder="Email">
+<input type="text" name="email" id="email" placeholder="Email">
 </div>
 <font id="checkEmail" class="err"></font>
 <div class="div password">
-<input type="text" name="pwd" placeholder="PassWord">
+<input type="text" name="pwd" id="pwd" placeholder="PassWord">
 </div>
 <font id="checkPwd" class="err"></font>
 <div>
@@ -108,7 +108,7 @@ function checkAll(){
 </div>
 
 <a href="javascript:kakaoLogin();"> <img alt=""
-		src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" width="300px" height="60">
+		src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg" width="300px" height="60">
 	</a>
 	<Br>
 	<a href="javascript:kakaoLogout();"> 로그아웃 </a><Br>
