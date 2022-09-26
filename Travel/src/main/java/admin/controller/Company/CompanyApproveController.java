@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import Util.Paging;
 import admin.model.CompanyBean;
 import admin.model.CompanyDao;
 import admin.model.FaciBean;
 import admin.model.FaciDao;
+import util.Paging;
 
 @Controller
 public class CompanyApproveController {

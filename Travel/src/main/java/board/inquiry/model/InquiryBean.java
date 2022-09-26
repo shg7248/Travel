@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class InquiryBean {
 	private int inum;
 	private int mnum;
+	private int cnum;
 
 	@NotEmpty(message = "제목을 입력하세요")
 	private String subject;
@@ -45,6 +46,12 @@ public class InquiryBean {
 	}
 	public void setMnum(int mnum) {
 		this.mnum = mnum;
+	}
+	public int getCnum() {
+		return cnum;
+	}
+	public void setCnum(int cnum) {
+		this.cnum = cnum;
 	}
 	public String getSubject() {
 		return subject;

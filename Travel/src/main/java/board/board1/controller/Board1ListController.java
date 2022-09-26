@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import Util.Paging;
 import board.board1.model.Board1Bean;
 import board.board1.model.Board1Dao;
+import util.Paging;
 
 @Controller
 public class Board1ListController {

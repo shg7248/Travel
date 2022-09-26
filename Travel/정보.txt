@@ -55,15 +55,26 @@ window.location.search
 -- 1. 공용시설
 -- 2. 객실 내 시설
 
+CREATE SEQUENCE faci_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1;
+
 DROP TABLE FACILITY;
  
 CREATE TABLE FACILITY(
+<<<<<<< HEAD
 	fno	 VARCHAR2(10) PRIMARY KEY,
 	FNUM	 VARCHAR2(10) ,
+=======
+	FNO		 VARCHAR2(10) PRIMARY KEY,
+	FNUM	 VARCHAR2(10),
+>>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 	NAME	 VARCHAR2(50),
 	FGROUP	  VARCHAR2(10)
 ); 
 
+<<<<<<< HEAD
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F1', '공용시설', NULL);
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '객실 내 시설', NULL);
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F101', '노래방', 'F1');
@@ -72,6 +83,16 @@ INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F201', '와이파이', 'F2');
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F202', '전기밥솥', 'F2');
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F203', '냉장고', 'F2');
 INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F204', '청소기', 'F2');
+=======
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F1', '공용시설', NULL);
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F2', '객실 내 시설', NULL);
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F101', '노래방', 'F1');
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F102', '편의점', 'F1');
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F201', '와이파이', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F202', '전기밥솥', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F203', '냉장고', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F204', '청소기', 'F2');
+>>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 
 COMMIT; 
 SELECT * FROM FACILITY; 
@@ -196,7 +217,7 @@ create table company (
 ) ;
 
 insert into company 
-values('123456789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+values('123456789123', 'abc.img', 'company', '1234', '01012345678', 1, sysdate);
 
 insert into company 
 values('4567123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 1, sysdate);
@@ -246,9 +267,14 @@ CREATE TABLE ACCOUNT (
 );
 -------------------------------------------
 
+DROP SEQUENCE REVIEW_SEQ;
+
 CREATE SEQUENCE REVIEW_SEQ
 START WITH 1
 INCREMENT BY 1;
+
+
+DROP TABLE REVIEW;
 
 CREATE TABLE REVIEW(
 	RVNUM	 	 NUMBER PRIMARY KEY,

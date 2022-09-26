@@ -33,11 +33,12 @@ public class TravelConfirmController {
 	}
 	
 	@RequestMapping(value = command,method = RequestMethod.POST)
-	public String confirm(@RequestParam String pwd, HttpSession session,HttpServletResponse response,HttpServletRequest request) throws IOException {
+	public String confirm(HttpSession session,HttpServletResponse response,HttpServletRequest request) throws IOException {
 		
 		TravelUserBean userInfo = (TravelUserBean) session.getAttribute("userInfo");
+		
 		//해당맴버삭제
-		tmdao.deleteMember(userInfo);
+		tmdao.deleteMember(userInfo.getMnum());
 		
 		//세션없애기
 		session.invalidate();

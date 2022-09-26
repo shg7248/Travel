@@ -11,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import Util.Paging;
 import board.inquiry.model.InquiryBean;
 import board.inquiry.model.InquiryDao;
+import util.Paging;
 
 @Controller
 public class InquiryListController {

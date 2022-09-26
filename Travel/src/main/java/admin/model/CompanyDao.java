@@ -8,7 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import Util.Paging;
+
+import util.Paging;
 
 @Component
 public class CompanyDao {

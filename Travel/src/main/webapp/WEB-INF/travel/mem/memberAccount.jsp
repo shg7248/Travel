@@ -37,8 +37,8 @@ function checkAll(){
 <div class="contents">
 <div class="one">
 <form action="memberAccount.mem" method="post" name="f">
-<label for="accnum">무통장 입금 계좌번호를 등록해주세요.</label>
 <div class="div" >
+<label for="accnum">무통장 입금 계좌번호를 등록해주세요.</label>
 <select name="bank" >
 	<option value="선택">결제수단 선택</option>
 	<c:set value="${fn:split('국민|신한|기업|농협','|') }" var="bankArr"/>
@@ -57,10 +57,10 @@ function checkAll(){
 <ul>
 <li>은행</li>
 <li>계좌번호</li>
-<li>삭제</li>
+<li>　</li>
 </ul>
 <c:forEach items="${lists }" var="tabean">
-<ul>
+<ul class="normal">
 <li>${tabean.bank }</li>
 <li>${tabean.accnum }</li>
 <li><a href="accDelete.mem?accnum=${tabean.accnum }">삭제</a></li>

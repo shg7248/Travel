@@ -5,7 +5,6 @@
 <div class="all">
 <%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
-<div class="">
 <div class="div">
 <label for="name">이름</label>
 <input type="text" name="name" id="name" value="${userInfo.name }"  disabled="disabled">
@@ -25,6 +24,5 @@
 
 <input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.log'">
 <input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='confirm.mem'">
-</div>
 </div>
 </div>

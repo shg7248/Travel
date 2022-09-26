@@ -6,7 +6,7 @@ begin
 	with a as (
 	    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac
 		from dual
-		connect by level <= length(regexp_substr(vcolumn, '[^,]+', 1, level)) + 1
+		connect by level <= length(regexp_subst(vcolumn, '[^,]+', 1, level)) + 1
 	),
 	b as (
 	    select fnum, name, fgroup 
@@ -24,97 +24,12 @@ begin
 end;
 --------------------
 
-		select a.anum, a.name, r.price, a.image from(
-			select a.anum, min(r.price) as price
-			from accom a
-			inner join room r
-			on a.anum = r.anum
-			inner join region re
-			on a.rcode = re.rcode
-			where 1 = 1
-			and a.anum in(
-				select anum from(
-					select anum, cnum, regexp_substr(fac2, '[^,]+', 1, level) fac2
-					from accom a
-					connect by level <= regexp_count(fac2, '[^,]+')
-					and prior a.cnum = a.cnum
-					and prior dbms_random.value is not null
-				) 
-				where fac2 in (
-					select regexp_substr('F201,F202', '[^,]+', 1, level)
-					from dual
-					connect by level <= (select regexp_count('F201,F202', '[^,]+') from dual)
-				)
-				group by anum
-				having count(anum) = (select regexp_count('F201,F202', '[^,]+') from dual)
-			)
-			and a.anum in(
-				select anum from(
-					select anum, cnum, regexp_substr(fac1, '[^,]+', 1, level) fac1
-					from accom a
-					connect by level <= regexp_count(fac1, '[^,]+')
-					and prior a.cnum = a.cnum
-					and prior dbms_random.value is not null
-				) 
-				where fac1 in (
-					select regexp_substr('F101', '[^,]+', 1, level)
-					from dual
-					connect by level <= (select regexp_count('F101', '[^,]+') from dual)
-				)
-				group by anum
-				having count(anum) = (select regexp_count('F101', '[^,]+') from dual)
-			)
-			and r.rnum not in (
-				select rnum
-				from orders
-				where to_date(startDate, 'yyyyMMdd') <= to_date('20220916', 'yyyyMMdd')
-				and
-				to_date(endDate, 'yyyyMMdd') >= to_date('20220915', 'yyyyMMdd')
-			)
-			and substr(re.rcode, 0, 4) = '2820'
-			--and r.max >= #{count}
-			--and r.price <= #{price}
-			--and a.canum = #{canum}
-			--and a.canum = #{canum}
-			group by a.anum
-		) z
-		inner join room r
-		on z.anum = r.anum
-		and z.price = r.price
-		inner join accom a
-		on z.anum = a.anum;
-		
-		
-		select substr(rcode, 0, 4) from accom;
-		select * from accom;
-		
-		
-		
-		
---------------------------------------
 
- 			if(/\d+\/\d+(?=.shop)/.test(pathname)) {
-				
-				Array.from(searchForm.sido.children, (e)=> {
-					
-					if(e.value === rcode) {
-						e.selected = true;
-					}
-				});
-				
-				Array.from(searchForm.sigungu.children, (e)=> {
-					const sigungu = pathname.match(/\d{2}(?=\.shop)/)[0];
-					if(e.value === sigungu)
-						e.selected = true;
-				});
-			}
+		
 			
-			
-			
-			
-			(function() {
+	(function() {
 	
-	navigator.geolocation.getCurrentPosition(geoSucess, geoError);
+	navigator.geolocation.getCurrentPosition(geoSucess, geoError, { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 });
 	
 	function geoSucess(position) {
 		
@@ -128,8 +43,19 @@ end;
 	}
 	
 	function geoError() {
-		alert('주변검색을 사용하기 위해서는 위치 액세스를 허용하셔야 합니다.');
+		console.log('주변검색을 사용하기 위해서는 위치 액세스를 허용하셔야 합니다.');
 	}
 	
 	
 }());
+
+
+
+--------------------------------------------
+
+			<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
+				and substr(re.rcode, 0, 5) = #{rcode}
+			</if>
+			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
+				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
+			</if>

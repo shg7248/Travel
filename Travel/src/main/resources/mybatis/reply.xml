@@ -7,4 +7,37 @@
 		insert into review (rvnum, mnum, onum, content<if test="image neq null">, image</if>, rating, reg_date)
 		values (review_seq.nextval, #{mnum}, #{onum}, #{content}<if test="image neq null">, #{image}</if>, #{rating}, sysdate)
 	</insert>
+	
+	<select id="GetReplyListByRnum" parameterType="java.util.Map" resultType="ReplyBean">
+		select *
+		from(
+			select row_number() over (order by rvnum 
+			<if test="order == 0">
+				asc
+			</if>
+			<if test="order == 1">
+				desc
+			</if>
+			) as l, rpad(substr(m.email, 1, 3), 6, '*') as email, o.onum, content, reply, r.image, rating, ro.name as rname, to_char(r.reg_date, 'yyyy.MM.dd') as reg_date
+			from review r
+			inner join orders o
+			on o.onum = r.onum
+			inner join room ro
+			on ro.rnum = o.rnum
+			inner join member m
+			on r.mnum = m.mnum
+			where ro.anum = #{anum}
+		)
+		where l between #{start} and #{end}
+	</select>
+	
+	<select id="GetReplyTotalCountByRnum" resultType="int">
+			select count(*)
+			from review r
+			inner join orders o
+			on o.onum = r.onum
+			inner join room ro
+			on ro.rnum = o.rnum
+			where ro.anum = #{anum}
+	</select>
 </mapper>

@@ -25,9 +25,13 @@ h2{
 	font-size:20pt;
 	padding: 15px;
 }
+td img{
+	max-width: 700px;
+}
 .default{
 	width: 940px;
 	display: flex;
+	justify-content: space-around;
 }
 .contents{
 	width: 700px;
@@ -36,8 +40,9 @@ h2{
 	justify-content: center;
 }
 .title_td{
-	border: 0px;
-	padding: 20px 10px 20px 10px;
+	border: 1px solid rgb(192,192,192);
+	border-collapse: collapse;
+	padding: 15px 10px 15px 10px;
 }
 .inner_td{
 	border: 0px;
