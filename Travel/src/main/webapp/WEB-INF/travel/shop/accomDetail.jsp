@@ -60,13 +60,16 @@
         .reply__list {
         
         }
-        .reply__item {
+        .reply__item, .reply__accom-item {
         	display: grid;
         	grid-template-columns: 8fr 2fr;
         	column-gap: 10px;
         	width: 100%;
         	border: 1px solid black;
         	padding: 20px;
+        }
+        .reply__accom-item {
+        	border: 0px 1px 1px 1px solid black;
         }
         
         .reply__info--content {
@@ -89,9 +92,13 @@
         .reply__order {
         	cursor: pointer;
         }
-        
+        .room__list {
+        	display: grid;
+        	grid-template-columns: 1fr 1fr;
+        }
         .room_item {
         	border: 1px solid black;
+        	height: 200px;
         }
 </style>
 <article>
@@ -109,7 +116,7 @@
 		<div class="room">
 			<div class="room__list">
 		        <c:forEach var="room" items="${lists }">
-		        	<div class="room_item">
+		        	<div class="room_item" style="background: url('${contextPath}/resources/images/room/${room.image }') center no-repeat;">
 						${room.name }
 						<c:if test="${room.orders > 0 }">
 							예약불가
@@ -204,6 +211,16 @@
 					reply__item += `<span>` + obj.email + `</span>`;
 					reply__item += `<span>` + obj.rating + `</span>`;
 					reply__item += `</div></div>`
+					
+					if(obj.reply !== null) {
+						reply__item += `<div class="reply__accom-item">`;
+						reply__item += `<div class="reply__info--content">`;
+						reply__item += obj.reply
+						reply__item += `</div>`;
+						reply__item += `<div class="reply__info--writer">`;
+						reply__item += `<span>사장님</span>`;
+						reply__item += `</div></div>`						
+					}
 				});
 				
 				
