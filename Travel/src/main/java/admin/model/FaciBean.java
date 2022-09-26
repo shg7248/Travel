@@ -1,9 +1,13 @@
 package admin.model;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class FaciBean {
 	private String fno;
 	private String fnum;
-	private String fname;
+	private String name;
 	private String fgroup;
 	public String getFno() {
 		return fno;
@@ -17,11 +21,11 @@ public class FaciBean {
 	public void setFnum(String fnum) {
 		this.fnum = fnum;
 	}
-	public String getFname() {
-		return fname;
+	public String getname() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFname(String name) {
+		this.name = name;
 	}
 	public String getFgroup() {
 		return fgroup;

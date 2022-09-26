@@ -28,7 +28,7 @@ FaciList.jsp<br>
 	<td>${f.fno }</td>
 	<td>${f.fgroup }</td>
 	<td>${f.fnum }</td>
-	<td>${f.fname}</td>
+	<td>${f.name}</td>
 	<td><a href="Faciupdate.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">수정</a></td>
 	<td><a href="Facidele.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
 </tr>

@@ -20,7 +20,7 @@
 		
 		<typeAlias type="board.faq.model.FaqBean" alias="FaqBean"/>
 		
-		<typeAlias type="reply.model.ReplyBean" alias="ReplyBean"/>
+	<!-- 	<typeAlias type="reply.model.ReplyBean" alias="ReplyBean"/> -->
 
 	</typeAliases>
 	<mappers>

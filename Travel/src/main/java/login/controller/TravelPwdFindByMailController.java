@@ -88,7 +88,7 @@ public class TravelPwdFindByMailController {
 		writer.println("</script>");
 		writer.flush();
 		return getPage;
-	}
+		}
 	
 	//ownerPwdForm.jsp > codeCheck.jsp
 	@RequestMapping(value = command2)
