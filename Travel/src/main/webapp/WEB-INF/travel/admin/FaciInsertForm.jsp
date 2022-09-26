@@ -10,7 +10,11 @@ FaciInsertForm.jsp<br>
 	<p>
 		<select class="option" name="fgroup">
 			<c:forEach var="item" items="${lists }">
+<<<<<<< HEAD
 				<option class="option" value="${item.fnum }">${item.name } (${item.fnum })</option>
+=======
+				<option value="${item.fnum }">${item.name } (${item.fnum })</option>
+>>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 			</c:forEach>
 		</select>
 	</p>

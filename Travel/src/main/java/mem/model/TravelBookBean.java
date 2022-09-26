@@ -9,7 +9,6 @@ public class TravelBookBean {
 	private int price;
 	private String oDate;
 	
-	
 	public int getOnum() {
 		return onum;
 	}
@@ -51,5 +50,5 @@ public class TravelBookBean {
 	}
 	public void setoDate(String oDate) {
 		this.oDate = oDate;
-	} 
+	}
 }

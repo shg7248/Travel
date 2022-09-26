@@ -2,25 +2,24 @@ package travel.controller;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.nurigo.java_sdk.api.Message;
 
 @Controller
 public class TravelPhoneAuthController {
-
+	
+	@Autowired
+	private RedisAuth redisAuth;
+	
 	private final String command = "/phoneAuth.tra";
-	private String getPage = "login/phoneAuthForm";
-	
-	@RequestMapping(value = command, method=RequestMethod.GET)
-	public String doGetAction() {
-		
-		return getPage;
-	}
-	
+
+	@ResponseBody
 	@RequestMapping(value = command, method=RequestMethod.POST)
 	public String doPostAction(@RequestParam String phone) throws Exception {
 		
@@ -31,6 +30,7 @@ public class TravelPhoneAuthController {
 		int rannum = (int)(Math.random() * 900000) + 100000;
 		String rannum2 = String.valueOf(rannum);
 		
+		redisAuth.setKeyValue(phone, rannum2, 300);
 		
 		Message coolsms = new Message(api_key, api_secret);
 		
@@ -43,6 +43,19 @@ public class TravelPhoneAuthController {
 	    
 	    coolsms.send(set); // 보내기&전송결과받기
 		
-		return null;
+		return "success";
+	}
+	
+	private final String command2 = "/phoneAuthConfirm.tra";
+	
+	@ResponseBody
+	@RequestMapping(value = command2, method=RequestMethod.POST)
+	public String doPostAction2(@RequestParam String phoneCheck, @RequestParam String phone) throws Exception {
+		
+		if(redisAuth.hasKey(phone) && redisAuth.getValue(phone).equals(phoneCheck)) {
+			System.out.println("인증에 성공했습니다.");
+			return "true";
+		}
+		return "false";
 	}
 }

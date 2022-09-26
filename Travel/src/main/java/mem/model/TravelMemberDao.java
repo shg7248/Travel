@@ -49,9 +49,9 @@ public class TravelMemberDao {
 		return cnt;
 	}
 
-	public void deleteMember(TravelUserBean userInfo) {
+	public void deleteMember(int mnum) {
 		int cnt = -1;
-		cnt = sst.delete(namespace+".DeleteMember", userInfo);
+		cnt = sst.delete(namespace+".DeleteMember", mnum);
 		System.out.println("cnt: "+cnt);
 	}
 

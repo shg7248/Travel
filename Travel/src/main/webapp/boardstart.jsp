@@ -6,6 +6,7 @@
 <a href="insertevent.brd">이벤트 삽입</a>
 <a href="faqlist.brd">자주묻는 질문</a>
 <a href="inqlist.brd">1대1문의</a>
+<a href="caraousel.brd">캐러셀</a>
 
 <script type="text/javascript">
 	function logout(){

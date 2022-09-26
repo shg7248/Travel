@@ -58,7 +58,7 @@
         }
         
         .reply__list {
-        	padding-top: 10px;
+        
         }
         .reply__item {
         	display: grid;
@@ -69,8 +69,29 @@
         	padding: 20px;
         }
         
-        .item__inner {
+        .reply__info--content {
         	overflow: hidden;
+        }
+        
+        .reply__info--writer {
+        	display: flex;
+        	flex-direction: column;
+        	font-size: 11px;
+        }
+        
+        .reply__info--addInfo {
+        	width: 100%;
+        	text-align: center;
+        	border: 1px solid blue;
+        	cursor: pointer;
+        }
+        
+        .reply__order {
+        	cursor: pointer;
+        }
+        
+        .room_item {
+        	border: 1px solid black;
         }
 </style>
 <article>
@@ -85,56 +106,138 @@
         <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--2 <c:if test="${onum ne null }">on</c:if>">리뷰</a></li>
     </ul>
     <div class="tab__content <c:if test="${onum eq null }">on</c:if>">
-        <c:forEach var="room" items="${lists }">
-			<div>
-				${room.name }
-				<c:if test="${room.orders > 0 }">
-					예약불가
-				</c:if>
-				<c:if test="${room.orders == 0 }">
-					<a href="${contextPath }/shop/order.shop?rnum=${room.rnum }&startDate=${start }&endDate=${end }">예약하기</a>
-				</c:if>
+		<div class="room">
+			<div class="room__list">
+		        <c:forEach var="room" items="${lists }">
+		        	<div class="room_item">
+						${room.name }
+						<c:if test="${room.orders > 0 }">
+							예약불가
+						</c:if>
+						<c:if test="${room.orders == 0 }">
+							<a href="${contextPath }/shop/order.shop?rnum=${room.rnum }&startDate=${start }&endDate=${end }">예약하기</a>
+						</c:if>
+		        	</div>
+				</c:forEach>
 			</div>
-		</c:forEach>
+		</div>
     </div>
     <div class="tab__content <c:if test="${onum ne null }">on</c:if>">
-    	<a>오래된순</a>
-    	<a>최신순</a>
     	<div class="reply">
-    		<div class="reply__form">
+    	    <a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
+    		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
 		    	<c:if test="${onum ne null}">
-			    	<form action="reviewWrite.shop" method="post" name="replyForm" enctype="multipart/form-data">
-			    		<input type="hidden" name="onum" value="${onum }"/>
-				        <input type="radio" name="rating" value="1">★☆☆☆☆
-				        <input type="radio" name="rating" value="2">★★☆☆☆
-				        <input type="radio" name="rating" value="3">★★★☆☆
-				        <input type="radio" name="rating" value="4">★★★★☆
-				        <input type="radio" name="rating" value="5">★★★★★<br>
-				        <textarea rows="" cols="" style="width: 100%; height: 100px;" name="content"></textarea>
-				        <input type="file" name="upload"/>
-				        <input type="submit" value="등록" onclick="return replySubmit()"/>
-			    	</form>
+	    			<div class="reply__form">
+				    	<form action="reviewWrite.shop" method="post" name="replyForm" enctype="multipart/form-data">
+				    		<input type="hidden" name="onum" value="${onum }"/>
+					        <input type="radio" name="rating" value="1">★☆☆☆☆
+					        <input type="radio" name="rating" value="2">★★☆☆☆
+					        <input type="radio" name="rating" value="3">★★★☆☆
+					        <input type="radio" name="rating" value="4">★★★★☆
+					        <input type="radio" name="rating" value="5">★★★★★<br>
+					        <textarea rows="" cols="" style="width: 100%; height: 100px;" name="content"></textarea>
+					        <input type="file" name="upload"/>
+					        <input type="submit" value="등록" onclick="return replySubmit()"/>
+				    	</form>
+	    			</div>
 		    	</c:if>
-    		</div>
-	    	<div class="reply__list">
-	    		<div class="reply__item">
-	    			<div class="item__inner">
-	    				봄바람을 이상 위하여서 우리 영원히 방황하여도, 때문이다. 이상이 않는 피고 품에 있는가? 품었기 피어나기 거친 인도하겠다는 대한 있다. 아니더면, 붙잡아 청춘 내는 황금시대의 청춘의 이상 튼튼하며, 교향악이다. 곳이 얼마나 품에 광야에서 피는 같지 것이다. 하였으며, 같으며, 있으며, 이것이야말로 얼음이 속잎나고, 청춘 하여도 것이다. 기관과 인간의 품었기 위하여서 것은 교향악이다. 얼마나 끓는 우리 위하여, 이것을 피고 목숨을 목숨이 주며, 이것이다. 청춘에서만 것이다.보라, 쓸쓸한 꽃이 이상이 있으며, 못하다 무한한 힘있다. 관현악이며, 타오르고 피가 청춘의 원대하고, 아니다.
-	    				봄바람을 이상 위하여서 우리 영원히 방황하여도, 때문이다. 이상이 않는 피고 품에 있는가? 품었기 피어나기 거친 인도하겠다는 대한 있다. 아니더면, 붙잡아 청춘 내는 황금시대의 청춘의 이상 튼튼하며, 교향악이다. 곳이 얼마나 품에 광야에서 피는 같지 것이다. 하였으며, 같으며, 있으며, 이것이야말로 얼음이 속잎나고, 청춘 하여도 것이다. 기관과 인간의 품었기 위하여서 것은 교향악이다. 얼마나 끓는 우리 위하여, 이것을 피고 목숨을 목숨이 주며, 이것이다. 청춘에서만 것이다.보라, 쓸쓸한 꽃이 이상이 있으며, 못하다 무한한 힘있다. 관현악이며, 타오르고 피가 청춘의 원대하고, 아니다.
-	    			</div>
-	    			<div>
-	    				2022.09.21<br>
-	    				sup....@naver.com
-	    			</div>
-	    		</div>
-	    		<div class="reply__item">
-	    			리뷰2
-	    		</div>
-	    	</div>
+	    	<div class="reply__list"></div>
     	</div>
     </div>
 </div>
 <script type="text/javascript">
+		
+	let defaults = {
+		pageNumber: 1,
+		pageSize: 5,
+		order: 1, // 0: asc / 1: desc
+		addPageNumber: function() {
+			this.pageNumber += 1;
+		}
+	};
+	
+	function reply() {
+		
+		const reply = document.querySelector('.reply');
+		
+		fetch("${contextPath}/getReply.shop", {
+			method: 'post',
+			headers: {
+				'Content-Type': "application/json"
+			},
+			body: JSON.stringify({
+				anum: '${accom.anum}',
+				start: (defaults.pageNumber - 1) * defaults.pageSize + 1,
+				end: defaults.pageNumber * defaults.pageSize,
+				order: defaults.order
+			})
+		})
+		.then((data)=> data.json())
+		.then((data)=> {
+		
+				
+			defaults.addPageNumber();
+			
+			const addInfo = document.querySelector('.reply__info--addInfo');
+			if(addInfo) {
+				document.querySelector('.reply__info--addInfo').remove();
+			}
+			
+			const reply__list = document.createElement('div');
+			reply__list.classList.add('reply__list');
+			
+			let reply__item = ``;
+			
+			if(data.totalCount == 0) {
+				reply_item = "등록된 리뷰가 없습니다";
+				reply.append(reply_item);
+			}
+			else {
+				data.lists.forEach((obj, i)=> {
+					reply__item += `<div class="reply__item">`;
+					reply__item += `<div class="reply__info--content">`;
+					reply__item += obj.content
+					reply__item += `</div>`;
+					reply__item += `<div class="reply__info--writer">`;
+					reply__item += `<span>` + obj.reg_date + `</span>`;
+					reply__item += `<span>`+ obj.rname +`</span>`;
+					reply__item += `<span>` + obj.email + `</span>`;
+					reply__item += `<span>` + obj.rating + `</span>`;
+					reply__item += `</div></div>`
+				});
+				
+				
+				reply__list.innerHTML = reply__item;
+				reply.append(reply__list);
+				
+				const item__length = document.querySelectorAll('.reply__item');
+				
+				const makeAddInfo = document.createElement('div');
+				makeAddInfo.classList.add('reply__info--addInfo');
+				makeAddInfo.setAttribute('onclick', 'reply()');
+				makeAddInfo.innerHTML = "더보기";
+				
+				if(data.totalCount !== item__length.length) {
+					reply.append(makeAddInfo);
+				}
+			}
+			
+		
+		})
+	}
+	
+	reply();
+	
+	function replyOrder(order) {
+		const r = document.querySelectorAll('.reply__list');
+		
+		r.forEach((elem)=> {
+			elem.remove();
+		})
+		
+		defaults = {...defaults, pageNumber: 1, order: order};
+		reply();
+	}
 	
 	function replySubmit() {
 		const form = replyForm;
@@ -146,25 +249,19 @@
 		})
 		.then(()=> {
 			
-		});
+			const r = document.querySelectorAll('.reply__list');
+			
+			r.forEach((elem)=> {
+				elem.remove();
+			})
+			
+			defaults = {...defaults, pageNumber: 1};
+			
+			reply(window); 
+		}); 
 		
 		return false;
 	}
-	
-	(function() {
-		
-		const len = document.querySelectorAll('.reply__item').length;
-		console.log(len);
-		
-		defaults = {
-				first: 1,
-				last: this.first + 5,
-				setFirst: function() {
-					
-				}
-		}
-		
-	}());
 	
 	(function() {
 	    const link = document.querySelectorAll('.tab__link');

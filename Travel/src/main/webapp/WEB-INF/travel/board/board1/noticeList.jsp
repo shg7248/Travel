@@ -56,3 +56,4 @@ $(document).ready(function(){
 ${pageInfo.pagingHtml }
 </div>
 </div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

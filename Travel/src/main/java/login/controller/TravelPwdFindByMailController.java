@@ -50,7 +50,6 @@ public class TravelPwdFindByMailController {
 
 		TravelUserBean tub = tudao.getMember(userEmail);
 		
-//		System.out.println("TravelCompanyBean서가져온값: "+tcb.getEmail());
 		if(tub != null) {
 			if(userEmail.equals(tub.getEmail())) {
 				//0~9까지 랜덤숫자 6개 생성 verification_code = Vcode
@@ -58,16 +57,14 @@ public class TravelPwdFindByMailController {
 				for(int i =0;i<6;i++) {
 					vcode += (int)(Math.random()*10);
 				}
-//				System.out.println("Vcode의 갯수:"+vcode.length());
-//				System.out.println("Vcode:"+vcode);
 				try {
 					
 					MimeMessage mimeMessage = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 					
-					messageHelper.setFrom("admin"); 						// 보내는사람 이메일 여기선 google 메일서버 사용하는 아이디를 작성하면됨
-					messageHelper.setTo(tub.getEmail());					// 받는사람 이메일
-					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );	// 메일제목
+					messageHelper.setFrom("admin","admin");
+					messageHelper.setTo(tub.getEmail());
+					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );
 					messageHelper.setText(
 							"text/html","비밀번호 찾기에 관한 인증 번호는 다음과 같습니다.<br><hr>"
 									+ "<br>"+vcode+"<br><hr><br>");
@@ -102,7 +99,6 @@ public class TravelPwdFindByMailController {
 		
 		TravelCompanyBean tcb = tcdao.getMember(ownerEmail);
 		
-//		System.out.println("TravelCompanyBean서가져온값: "+tcb.getEmail());
 		if(tcb != null) {
 			if(ownerEmail.equals(tcb.getEmail())) {
 				//0~9까지 랜덤숫자 6개 생성 verification_code = Vcode
@@ -110,16 +106,14 @@ public class TravelPwdFindByMailController {
 				for(int i =0;i<6;i++) {
 					vcode += (int)(Math.random()*10);
 				}
-//				System.out.println("Vcode의 갯수:"+vcode.length());
-//				System.out.println("Vcode:"+vcode);
 				try {
 					
 					MimeMessage mimeMessage = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 					
-					messageHelper.setFrom("admin"); 						// 보내는사람 이메일 여기선 google 메일서버 사용하는 아이디를 작성하면됨
-					messageHelper.setTo(tcb.getEmail());					// 받는사람 이메일
-					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );	// 메일제목
+					messageHelper.setFrom("admin");
+					messageHelper.setTo(tcb.getEmail());
+					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );
 					messageHelper.setText(
 							"text/html","비밀번호 찾기에 관한 인증 번호는 다음과 같습니다.<br><hr>"
 									+ "<br>"+vcode+"<br><hr><br>");

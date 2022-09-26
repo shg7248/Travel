@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sidebar.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -35,12 +36,8 @@
 		<li class="list"><a href="noticelist.brd">공지사항</a></li>
 		<li class="list"><a href="eventlist.brd">이벤트</a></li>
 		<li class="list"><a href="faqlist.brd">자주묻는 질문</a></li>
-		<li class="list"><a href="inqlist.brd">1대1 문의</a></li>
+		<c:if test='<%=session.getAttribute("loginInfo")==null%>'>
+			<li class="list"><a href="inqlist.brd">1대1 문의</a></li>
+		</c:if>
 	</ul>
 </div>
-
-
-
-
-
-

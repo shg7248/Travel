@@ -45,7 +45,6 @@
 				and
 				<![CDATA[to_date(endDate, 'yyyyMMdd') >= to_date(#{start}, 'yyyyMMdd')]]>
 			)
-
 			<if test="count != 0">
 			<![CDATA[and r.max >= #{count}]]>
 			</if>
@@ -55,11 +54,19 @@
 			<if test="canum != null">
 			<![CDATA[and a.canum = #{canum}]]>
 			</if>
-			<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
-				and substr(re.rcode, 0, 5) = #{rcode}
+			<if test='rcode != null'>
+				and re.rcode like #{rcode}||'%'
 			</if>
-			<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
-				and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
+			<if test="lat != null and lng != null">
+				and (	SELECT (
+						6371*ACOS(COS(RADIANS(latitude))
+					    *COS(RADIANS(#{lat}))
+				     	*COS(radians(#{lng})-RADIANS(longitude))
+				        +SIN(RADIANS(latitude))*SIN(RADIANS(#{lat}))))
+						AS DISTANCE
+						FROM accom a2
+						where a2.anum = a.anum
+						<![CDATA[) <= 5]]>
 			</if>
 			group by a.anum
 		) z

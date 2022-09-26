@@ -52,7 +52,7 @@ public class TravelLoginController {
 		String history = request.getHeader("Referer");
 		System.out.println("history: "+history);
 		
-		if(history != null && !history.contains(getPage)) {
+		if(history != null && !history.contains(getPage) && !history.contains("Register")) {
 			request.getSession().setAttribute("history", history);
 			System.out.println("전페이지 저장됨");
 		}
@@ -179,8 +179,8 @@ public class TravelLoginController {
 				System.out.println("login.getPwd(): " + login.getPwd());
 				if(tcbean.getPwd().equals(login.getPwd())) {
 					//가입승인이 안낫을때.
-					
-					if(tcbean.getApproyn()==10) {
+					System.out.println("tcbean.getApproyn() : " + tcbean.getApproyn());
+					if(login.getApproyn()==0) {
 						System.out.println("가입승인이 안난 회원");
 
 						writer.println("<script type='text/javascript'>");
@@ -195,7 +195,7 @@ public class TravelLoginController {
 						session.setAttribute("email", login.getEmail());
 						
 						//로그인성공시 이동할 위치
-					return "redirect:/";
+					return "redirect:comp/accom/detail.comp";
 					}
 					
 				}

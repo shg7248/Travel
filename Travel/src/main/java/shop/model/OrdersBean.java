@@ -17,6 +17,8 @@ public class OrdersBean {
 	private String startDate;
 	private String endDate;
 	private String oDate;
+	private String reviewCount;
+	private String resStatus;
 	
 	
 	
@@ -109,5 +111,17 @@ public class OrdersBean {
 	}
 	public void setAccnum(String accnum) {
 		this.accnum = accnum;
+	}
+	public String getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+	public String getResStatus() {
+		return resStatus;
+	}
+	public void setResStatus(String resStatus) {
+		this.resStatus = resStatus;
 	}
 }

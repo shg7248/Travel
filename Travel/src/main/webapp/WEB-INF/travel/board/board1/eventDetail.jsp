@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
 <div class="default">
+<%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 <table>
 	<tr>
@@ -26,3 +27,4 @@
 </table>
 </div>
 </div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
