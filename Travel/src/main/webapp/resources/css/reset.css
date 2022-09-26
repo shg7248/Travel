@@ -70,3 +70,9 @@ button, input, optgroup, select, textarea {
     font: inherit;
     color: inherit;
 }
+
+h2 {
+	font-size: 26px;
+	font-weight: bold;
+	margin: 0 0 20px;
+}
