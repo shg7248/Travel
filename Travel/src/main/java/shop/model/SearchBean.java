@@ -18,11 +18,13 @@ public class SearchBean {
 	private String sort;
 	private String lat;	// 위도
 	private String lng;	// 적도
+	private String around;
 	
 	SearchBean() {
 		this.price = 300000;
 		this.count = 2;
 		this.sort = "LOWPRICE";
+		this.around = "30";
 	}
 	
 	public int getAnum() {
@@ -123,4 +125,13 @@ public class SearchBean {
 	public void setLng(String lng) {
 		this.lng = lng;
 	}
+
+	public String getAround() {
+		return around;
+	}
+
+	public void setAround(String around) {
+		this.around = around;
+	}
+	
 }

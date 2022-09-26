@@ -93,6 +93,11 @@
 .search-wrap__fac {
 	padding: 20px;
 }
+
+.search-wrap__around {
+	padding: 20px;
+}
+
 .fac__select-wrap {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
