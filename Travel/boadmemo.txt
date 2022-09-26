@@ -252,9 +252,6 @@ create table company (
    reg_date date
 ) ;
 
-insert into company 
-values('12345689123', 'abc.img', 'qrzv13@gmail.com', '1234', '01012345678', 1, sysdate);
-
 select * from company;
 commit;
 ---------------------------테스트공간---------------------------
