@@ -58,19 +58,20 @@ window.location.search
 DROP TABLE FACILITY;
  
 CREATE TABLE FACILITY(
-	FNUM	 VARCHAR2(10) PRIMARY KEY,
+	fno	 VARCHAR2(10) PRIMARY KEY,
+	FNUM	 VARCHAR2(10) ,
 	NAME	 VARCHAR2(50),
 	FGROUP	  VARCHAR2(10)
 ); 
 
-INSERT INTO FACILITY VALUES ('F1', '공용시설', NULL);
-INSERT INTO FACILITY VALUES ('F2', '객실 내 시설', NULL);
-INSERT INTO FACILITY VALUES ('F101', '노래방', 'F1');
-INSERT INTO FACILITY VALUES ('F102', '편의점', 'F1');
-INSERT INTO FACILITY VALUES ('F201', '와이파이', 'F2');
-INSERT INTO FACILITY VALUES ('F202', '전기밥솥', 'F2');
-INSERT INTO FACILITY VALUES ('F203', '냉장고', 'F2');
-INSERT INTO FACILITY VALUES ('F204', '청소기', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F1', '공용시설', NULL);
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '객실 내 시설', NULL);
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F101', '노래방', 'F1');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F102', '편의점', 'F1');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F201', '와이파이', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F202', '전기밥솥', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F203', '냉장고', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F204', '청소기', 'F2');
 
 COMMIT; 
 SELECT * FROM FACILITY; 
@@ -179,12 +180,13 @@ CREATE TABLE ORDERS (
 	ODATE		 DATE DEFAULT SYSDATE
 );
 
+
 --------------------------------------------
 
 -- 사업자 테이블
 drop table company CASCADE CONSTRAINTS;
 create table company (
-   cnum varchar2(12) primary key,
+   cnum varchar2(20) primary key,
    image varchar2(50),
    email varchar2(40),
    pwd varchar2(15),
@@ -195,6 +197,13 @@ create table company (
 
 insert into company 
 values('123456789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+
+insert into company 
+values('4567123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 1, sysdate);
+
+insert into company 
+values('3746789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+
 
 select * from company;
 commit;
