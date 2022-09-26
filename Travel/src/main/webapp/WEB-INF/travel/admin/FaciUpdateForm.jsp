@@ -66,10 +66,7 @@ function checkFaci(){
 	<p>
 		<label for="name">시설 이름</label>
 		<input type="text" name="name" id="name" value="${faci.name }">
-<<<<<<< HEAD
 		<font id="checkname" class="err" ></font>
-=======
->>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 	</p>
 	
 	

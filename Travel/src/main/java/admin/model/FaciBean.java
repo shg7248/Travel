@@ -21,18 +21,10 @@ public class FaciBean {
 	public void setFnum(String fnum) {
 		this.fnum = fnum;
 	}
-<<<<<<< HEAD
-	public String getname() {
-=======
 	public String getName() {
->>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 		return name;
 	}
-<<<<<<< HEAD
-	public void setFname(String name) {
-=======
 	public void setName(String name) {
->>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 		this.name = name;
 	}
 	public String getFgroup() {

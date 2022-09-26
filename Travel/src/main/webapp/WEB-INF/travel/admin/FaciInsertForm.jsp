@@ -8,17 +8,12 @@ FaciInsertForm.jsp<br>
 	<h1><span>시설 추가 화면</span></h1>
 
 	<p>
-		<select class="option" name="fgroup">
+		<select name="fgroup">
 			<c:forEach var="item" items="${lists }">
-<<<<<<< HEAD
-				<option class="option" value="${item.fnum }">${item.name } (${item.fnum })</option>
-=======
 				<option value="${item.fnum }">${item.name } (${item.fnum })</option>
->>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 			</c:forEach>
 		</select>
 	</p>
-	
 	
 	<p>
 		<label for="fnum">시설번호</label>
