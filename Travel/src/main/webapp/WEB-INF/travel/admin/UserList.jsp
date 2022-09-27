@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 memberList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
-<%@ include file ="Main.jsp" %>
 
 <style>
 	table {
 		border: 1px solid black;
 	}
 </style>
+
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="contents">
 <h2>회원관리(사용자)</h2>
-<center>
 <form action="Ulist.admin" method="get">
 	   	<select name="whatColumn">
 	   		<option value="">전체검색</option>
@@ -50,8 +53,8 @@ memberList.jsp<br>
 		</c:forEach>
 	</table>
 	${pageInfo.pagingHtml}
-	</center>
-	
+	</div>
+</div>
 	
 	
 	
