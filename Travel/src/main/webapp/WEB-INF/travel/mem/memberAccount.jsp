@@ -71,3 +71,5 @@ function checkAll(){
 </div>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

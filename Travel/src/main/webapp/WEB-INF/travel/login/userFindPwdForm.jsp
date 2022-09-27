@@ -15,7 +15,7 @@ $(document).ready(function(){
 </script>
 <body>
 <div class="all">
-<div class="one">
+<div class="one height">
 	<h2>비밀번호 찾기</h2>
 	<div class="div email">
 		<label for="email">이메일</label>
@@ -25,3 +25,5 @@ $(document).ready(function(){
 </div>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
