@@ -3,7 +3,12 @@
 <%@include file="/WEB-INF/travel/common/common.jsp"%>
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
-
+<style>
+.eventimg{
+	width: 700px;
+	height: auto;
+}
+</style>
 <div class="default">
 <%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
@@ -12,7 +17,7 @@
 		<td>${bb.subject }</td>
 	</tr>
 	<tr>
-		<td><img src="<%=request.getContextPath()%>/resources/board1/${bb.content}"></td>
+		<td><img class="eventimg" src="<%=request.getContextPath()%>/resources/board1/${bb.content}"></td>
 	</tr>
 	<tr align="right">
 		<td>

@@ -22,5 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="travel" />
+	<context:component-scan base-package="board" />
 	
 </beans:beans>
