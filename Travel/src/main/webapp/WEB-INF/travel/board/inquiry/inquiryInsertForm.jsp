@@ -50,6 +50,11 @@ var oEditors = [];
    
    $("#submit").click(function() {
 	   oEditors.getById["question"].exec("UPDATE_CONTENTS_FIELD", []);
+	   var question = $("#question").val();
+	   if( question == ""  || question == null || question == '&nbsp;' || question == '<p>&nbsp;</p>' || question =='<br>')  {
+           alert("내용을 입력하세요.");
+           return false;
+      }
 	});
 });
 </script>

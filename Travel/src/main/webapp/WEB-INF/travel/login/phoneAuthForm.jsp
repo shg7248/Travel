@@ -52,7 +52,7 @@ function subNum(){
 	})
 }
 </script>
-<div class="all">
+<div class="all height">
 <form method="post" action="phoneAuthForm.log" name="myform">
 	<input type="hidden" name="email" value="${param.email }">
 	<input type="hidden" name="flatform" value="${param.flatform }">
@@ -69,3 +69,5 @@ function subNum(){
 	</div>
 </form>
 </div>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

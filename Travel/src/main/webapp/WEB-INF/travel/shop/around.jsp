@@ -60,9 +60,12 @@
 						</c:forEach>
 					</div>
 				</div>
-				<div>
+				<div class="search-wrap__around">
 					<p class="title">범위</p>
-					<input type="text" name="around"/>
+					<input type="radio" name="around" value="30" <c:if test="${searchBean.around eq '30'}">checked</c:if>>30Km
+					<input type="radio" name="around" value="40" <c:if test="${searchBean.around eq '40'}">checked</c:if>>40Km
+					<input type="radio" name="around" value="50" <c:if test="${searchBean.around eq '50'}">checked</c:if>>50Km
+					<input type="radio" name="around" value="60" <c:if test="${searchBean.around eq '60'}">checked</c:if>>60Km
 				</div>
 			</form>
 		</article>
@@ -95,7 +98,7 @@
 	searchDetailAddrFromCoords(function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
 			const region = document.querySelector('.search-wrap__region');
-			region.append(result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
+			region.append( result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
 		}
 	});
 	
@@ -105,5 +108,5 @@
 	    });
 	}
 </script>
-<%-- <script src="${contextPath }/resources/js/shop/shop.js"></script> --%>
+<script src="${contextPath }/resources/js/shop/shop.js"></script>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

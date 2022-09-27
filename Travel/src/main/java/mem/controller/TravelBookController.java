@@ -25,10 +25,17 @@ public class TravelBookController {
 	
 	@RequestMapping(value = command,method = RequestMethod.GET)
 	public ModelAndView book(HttpSession session) {
-		int mnum = (Integer) session.getAttribute("mnum");
+		ModelAndView mav = new ModelAndView();
+		Integer mnum = (Integer) session.getAttribute("mnum");
+		System.out.println("mnum: " + mnum);
+		
+		if(mnum == null) {
+			mav.setViewName("redirect:userLoginForm.log");
+			
+			return mav;
+		}
 		List<OrdersBean> lists = tmdao.orderList(mnum);
 		
-		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		mav.addObject("lists", lists);
 		
