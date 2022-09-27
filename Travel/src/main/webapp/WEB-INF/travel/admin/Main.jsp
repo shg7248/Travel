@@ -10,7 +10,6 @@
 		arr[1] = "Hlist.admin";
 		arr[2] = "Catelist.admin";
 		arr[3] = "Facilist.admin";
-
 		//현재주소
 		url = location.href;
 		
@@ -25,11 +24,11 @@
 				$('.list:eq('+index+') a').css('color', '#ff8080');
 			}
 		});
-
 	}
 </script>
 
 <div class="sidebar">
+<h2>회원|시설 관리</h2>[관리자 모드]
 	<ul>
 		<li class="list"><a href="Ulist.admin">사용자</a></li>
 		<li class="list"><a href="Hlist.admin">사업자</a></li>
@@ -37,11 +36,6 @@
 		<li class="list"><a href="Facilist.admin">시설목록</a></li>
 	</ul>
 </div>
-
-
-
-
-
 
 
 

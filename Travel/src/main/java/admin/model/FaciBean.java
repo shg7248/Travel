@@ -1,5 +1,7 @@
 package admin.model;
 
+
+
 public class FaciBean {
 	private String fno;
 	private String fnum;

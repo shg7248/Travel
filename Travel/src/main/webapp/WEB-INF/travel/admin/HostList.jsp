@@ -7,8 +7,9 @@
 	table {
 		border: 1px solid black;
 	}
+	
+	
 </style>    
-
 <script>
 	
 </script>
@@ -18,6 +19,7 @@
 	   	<select name="whatColumn">
 	   		<option value="">전체검색</option>
 	   		<option value="cnum">사업자등록번호</option>
+	   		<option value="email">이메일</option>
 	   	</select>
 	   	<input type="text" name="keyword">
 	   	<input type="submit" value="검색">
@@ -65,7 +67,7 @@
    				
    				</td>
    				<td><a href="Hdele.admin?cnum=${h.cnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
-   		</tr>
+   			</tr>
    	
 	</c:forEach>
 	

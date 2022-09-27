@@ -55,6 +55,8 @@ window.location.search
 -- 1. 공용시설
 -- 2. 객실 내 시설
 
+DROP SEQUENCE faci_SEQ;
+
 CREATE SEQUENCE faci_SEQ
 START WITH 1
 INCREMENT BY 1
@@ -63,20 +65,20 @@ MINVALUE 1;
 DROP TABLE FACILITY;
  
 CREATE TABLE FACILITY(
-	FNO		 VARCHAR2(10) PRIMARY KEY,
-	FNUM	 VARCHAR2(10),
+	fno	 VARCHAR2(10) PRIMARY KEY,
+	FGROUP	  VARCHAR2(10),
 	NAME	 VARCHAR2(50),
-	FGROUP	  VARCHAR2(10)
+	FNUM	 VARCHAR2(15)
 ); 
 
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F1', '공용시설', NULL);
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F2', '객실 내 시설', NULL);
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F101', '노래방', 'F1');
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F102', '편의점', 'F1');
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F201', '와이파이', 'F2');
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F202', '전기밥솥', 'F2');
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F203', '냉장고', 'F2');
-INSERT INTO FACILITY VALUES (faci_SEQ.NEXTVAL, 'F204', '청소기', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,NULL, '공용시설','F1' );
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,NULL, '객실 내 시설', 'F2');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F1', '노래방', 'F101');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F1', '편의점', 'F102');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '와이파이', 'F201');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '전기밥솥', 'F202');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '냉장고', 'F203');
+INSERT INTO FACILITY VALUES (faci_SEQ.nextval,'F2', '청소기', 'F204');
 
 COMMIT; 
 SELECT * FROM FACILITY; 
@@ -185,12 +187,13 @@ CREATE TABLE ORDERS (
 	ODATE		 DATE DEFAULT SYSDATE
 );
 
+
 --------------------------------------------
 
 -- 사업자 테이블
 drop table company CASCADE CONSTRAINTS;
 create table company (
-   cnum varchar2(12) primary key,
+   cnum varchar2(20) primary key,
    image varchar2(50),
    email varchar2(40),
    pwd varchar2(15),
@@ -201,6 +204,13 @@ create table company (
 
 insert into company 
 values('123456789123', 'abc.img', 'company', '1234', '01012345678', 1, sysdate);
+
+insert into company 
+values('4567123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 1, sysdate);
+
+insert into company 
+values('3746789123', 'abc.img', 'vwlsghks@naver.com', '1234', '01012345678', 0, sysdate);
+
 
 select * from company;
 commit;
@@ -224,7 +234,11 @@ create table member(
 ) ;
 
 insert into member 
-values(seq_member.nextval,'abc@naver.com','test','1234','01012345678','home',sysdate,200);
+values(seq_member.nextval,'dadvbsxf@naver.com','홍길동','1234','01012345678','home',sysdate,200);
+insert into member 
+values(seq_member.nextval,'gcxzcfg@daum.com','이순신','1234','01012345678','home',sysdate,200);
+insert into member 
+values(seq_member.nextval,'hghcv@leemv.com','비디비','1234','01012345678','home',sysdate,200);
 
 select * from member;
 commit;
@@ -263,4 +277,3 @@ CREATE TABLE REVIEW(
 	REG_DATE	 DATE DEFAULT SYSDATE
 );
 
--- 

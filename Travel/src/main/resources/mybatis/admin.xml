@@ -27,21 +27,30 @@
 	</select>
 	
 	<select id="GetComTotalCount" resultType="int">
-		select count(*) from company
+		select count(*) from company 
 		<if test="whatColumn=='cnum'">
 			where cnum like #{keyword}
 		</if>
-	</select>
-	
-	<select id="GetCompanyList" resultType="admin.model.CompanyBean">
-		select * from company order by approyn
-		<if test="whatColumn == 'cnum'">
-		where cnum like #{keyword}
+		<if test="whatColumn=='email'">
+			where email like #{keyword}
 		</if>
 	</select>
 	
+	
+	<select id="GetCompanyList" resultType="admin.model.CompanyBean">
+		select * from company 
+		
+		<if test="whatColumn == 'cnum'">
+			where cnum like #{keyword}
+		</if>
+		<if test="whatColumn=='email'">
+			where email like #{keyword}
+		</if>
+		order by approyn
+	</select>
+	
 	<select id="GetAppr" resultType="admin.model.CompanyBean">
-		select * from company
+		select * from company 
 		where cnum = #{cnum}
 	</select>
 	
@@ -60,7 +69,7 @@
 	</select>
 	
 	<select id="GetCate" resultType="admin.model.CateBean">
-		select * from category
+		select * from category 
 		where CANUM = #{CANUM}
 	</select>
 	
