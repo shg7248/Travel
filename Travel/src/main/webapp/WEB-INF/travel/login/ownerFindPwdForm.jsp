@@ -27,3 +27,6 @@ $(document).ready(function(){
 	</select>
 	<input type="button" name="sendVcode" value="인증번호 발송하기">
 </body>
+
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

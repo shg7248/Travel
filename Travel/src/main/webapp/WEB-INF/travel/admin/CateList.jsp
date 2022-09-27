@@ -1,28 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-CategoryList.jsp<br>
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
+<div class="all">
 <%@ include file ="Main.jsp" %>
-
-
-<style>
-	table {
-		border: 1px solid black;
-	}
-</style> 
-
-
+<div class="contents">
 <h2>코드관리(카테고리)</h2>
-<center>
 <table border="1">
 
 <tr>
-	<td>카테고리 번호</td>
-	<td>카테고리 이름</td>
-	<td>카테고리 그룹</td>
-	<td>URL</td>
-	<td>수정</td>
-	<td>삭제</td>
+	<th>카테고리 번호</th>
+	<th>카테고리 이름</th>
+	<th>카테고리 그룹</th>
+	<th>URL</th>
+	<th>수정</th>
+	<th>삭제</th>
 </tr>
 
 <c:forEach items="${lists }" var="c" >
@@ -39,9 +32,11 @@ CategoryList.jsp<br>
 </c:forEach>
 
 </table>
-${pageInfo.pagingHtml}
+	<div class="garo">
+	${pageInfo.pagingHtml}
+	</div>
 <input type="button" value="추가" onclick="location.href='Cateinsert.admin'">
-</center>
-
+</div>
+</div>
 
 

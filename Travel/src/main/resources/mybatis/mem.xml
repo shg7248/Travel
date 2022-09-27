@@ -68,4 +68,9 @@
 		delete account 
 		where accnum = #{accnum}
 	</delete>
+	
+	<delete id="DeleteOrder">
+		delete orders
+		where onum = #{onum}
+	</delete>
 </mapper>

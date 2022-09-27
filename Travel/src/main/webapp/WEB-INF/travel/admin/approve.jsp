@@ -7,7 +7,7 @@ approve.jsp<br>
 ${appr.image }
 </td>
 
-<br><br>
+
 
 <form:form commandName="ApprUpdate" method="post" action="Comapprove.admin?cnum=${appr.cnum}" enctype="multipart/form-data">
 

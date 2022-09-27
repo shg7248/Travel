@@ -66,7 +66,7 @@ function subNum2() {
 	})
 }
 </script>
-<div class="all">
+<div class="all height">
 <form method="post" action="phoneAuthForm2.log" name="myform">
 	<div class="div">
 	<label for="phone">휴대폰번호</label> 
@@ -81,3 +81,5 @@ function subNum2() {
 	</div>
 </form>
 </div>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
