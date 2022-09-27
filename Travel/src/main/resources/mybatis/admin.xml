@@ -141,6 +141,27 @@
 	<select id="GetFacGroupList" resultType="admin.model.FaciBean">
 		select fnum, name from facility where fgroup is null
 	</select>
+	
+	<select id="AdList" resultType="admin.model.AdBean">
+		select * from advertise
+	</select>
+	
+	<insert id="AdInsert" parameterType="admin.model.AdBean">
+		insert into advertise
+		values(#{adname},#{adimage},#{adcontents}
+		)
+	</insert>
+	
+	<update id="AdUpdate" parameterType="admin.model.AdBean">
+		update advertise set aimage=#{aimage},adcontents=#{adcontents}
+  		where adname=#{adname}
+	</update>
+	
+	<delete id="AdDelete">
+  		delete advertise
+  		where adname=#{adname}
+  	</delete>
+	
 </mapper>
 
 
