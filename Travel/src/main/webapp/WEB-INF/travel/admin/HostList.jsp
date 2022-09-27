@@ -1,41 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    HostList.jsp<br>
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
+<div class="all">
 <%@ include file ="Main.jsp" %>
-<style>
-	table {
-		border: 1px solid black;
-	}
-	
-	
-</style>    
-<script>
-	
-</script>
-<h2>회원관리(사업자)</h2>
-<center>
-<form action="Hlist.admin" method="get">
-	   	<select name="whatColumn">
-	   		<option value="">전체검색</option>
-	   		<option value="cnum">사업자등록번호</option>
-	   		<option value="email">이메일</option>
-	   	</select>
-	   	<input type="text" name="keyword">
-	   	<input type="submit" value="검색">
-</form>
+<div class="contents">
+	<div class="div">
+	<h2>회원관리(사업자)</h2>
+	<form action="Hlist.admin" method="get">
+		   	<select name="whatColumn">
+		   		<option value="">전체검색</option>
+		   		<option value="cnum">사업자등록번호</option>
+		   		<option value="email">이메일</option>
+		   	</select>
+		   	<input type="text" name="keyword">
+		   	<input type="submit" value="검색">
+	</form>
+	</div>
    총 사업체수 : ${fn:length(lists) }
    
    	<table border="1">
    		
    		<tr>
-   			<td>사업자등록번호</td>
-   			<td>사업자등록증</td>
-   			<td>이메일</td>
-   			<td>핸드폰번호</td>
-   			<td>등록일</td>
-   			<td>승인</td>
-   			<td>삭제</td>
+   			<th>사업자등록번호</th>
+   			<th>사업자등록증</th>
+   			<th>이메일</th>
+   			<th>핸드폰번호</th>
+   			<th>등록일</th>
+   			<th>승인</th>
+   			<th>삭제</th>
    		</tr>
    		
    		
@@ -70,11 +64,13 @@
    			</tr>
    	
 	</c:forEach>
-	
 	</table>
-	${pageInfo.pagingHtml}
-	</center>
 	
+	<div class="garo">
+	${pageInfo.pagingHtml}
+	</div>
+</div>
+</div>
 	
 	
 	

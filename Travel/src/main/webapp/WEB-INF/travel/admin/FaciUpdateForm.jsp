@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ include file ="../common/common.jsp" %>
-FaciUpdateForm.jsp<br>
-   
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
+<%@ include file ="../common/common.jsp" %>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -51,29 +49,31 @@ font-size:15px;
 
 } 
 </style>
-
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="one height">
 <form name="f" method="post" action="Faciupdate.admin" enctype="multipart/form-data">
-	<h1><span>시설 수정 화면</span></h1>
+	<h2>시설 수정 화면</h2>
 	<input type="hidden" name="fno" value="${faci.fno }">
 	<input type="hidden" name="pageNumber" value="${pageNumber }">
 	
-	<p>
+	<div class="div">
 		<label for="fgroup">시설 그룹</label>
 		<input type="text" name="fgroup" id="fgroup" value="${faci.fgroup }">
 		<font id="checkFgroup" class="err" ></font>
-	</p>
+	</div>
 	
-	<p>
+	<div class="div">
 		<label for="fnum">시설 번호</label>
 		<input type="text" name="fnum" id="fnum" value="${faci.fnum }">
 		<font id="checkFnum" class="err" ></font>
-	</p>
+	</div>
 	
-	<p>
+	<div class="div">
 		<label for="name">시설 이름</label>
 		<input type="text" name="name" id="name" value="${faci.name }">
 		<font id="checkName" class="err" ></font>
-	</p>
+	</div>
 	
 	
 	
@@ -82,4 +82,5 @@ font-size:15px;
 	</p>
 	
 </form>
-	
+</div>
+</div>

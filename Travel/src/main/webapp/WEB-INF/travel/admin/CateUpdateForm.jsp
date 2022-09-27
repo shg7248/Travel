@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
-CateUpdateForm.jsp<br>
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <script type="text/javascript">
 $(document).ready(function(){
@@ -36,33 +36,38 @@ function checkAdmin(){
  font-weight: bold;
 }
 </style>
+
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="one height">
 <form name="c"  method="post" action="Cateupdate.admin" enctype="multipart/form-data">
-	<h1><span>카테고리 수정 화면</span></h1>
+	<h2>카테고리 수정 화면</h2>
 	<input type="hidden" name="canum" value="${cate.canum }">
 	<input type="hidden" name="pageNumber" value="${pageNumber }">
 	
 	
-	<p>
+	<div class="div">
 		<label for="caname">카테고리 이름</label>
 		<input type="text" name="caname" id="caname" value="${cate.caname }">
 		<font id="checkCname" class="err" ></font>
-	</p>
+	</div>
 	
-	<p>
+	<div class="div">
 	<label for="url">URL</label>
 	<input type="text" name="url" id="url" value="${cate.url}">
 	<font id="checkUrl" class="err" ></font>
-	</p>
+	</div>
 		
-	<p>
+	<div class="div">
 		<label for="cagroup">카테고리 그룹</label>
 		<input type="text" name="cagroup" id="cagroup" value="${cate.cagroup}">
 		<font id="checkCagroup" class="err" ></font>
-	</p>
+	</div>
 		
 	<p>
 		<input type="submit" value="수정하기" id="BtnSubmit" onclick="return checkAdmin()">		
 	</p>
-	
+
 </form>
-	
+</div>
+</div>	
