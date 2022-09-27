@@ -3,16 +3,24 @@
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 memberList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 <style>
 	table {
 		border: 1px solid black;
 	}
 </style>
 
+<<<<<<< HEAD
 <div class="all">
 <%@ include file ="Main.jsp" %>
 <div class="contents">
+=======
+<%@ include file ="Main.jsp" %>
+<center>
+>>>>>>> branch 'dev' of https://github.com/shg7248/Travel.git
 <h2>회원관리(사용자)</h2>
 <form action="Ulist.admin" method="get">
 	   	<select name="whatColumn">
@@ -55,7 +63,5 @@ memberList.jsp<br>
 	${pageInfo.pagingHtml}
 	</div>
 </div>
-	
-	
 	
 	
