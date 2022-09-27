@@ -45,6 +45,9 @@
 		where type = 'event'
 	</select>
 	
+	<select id="GetBoard1FirstEvent" resultType="board.board1.model.Board1Bean">
+		select * from (select * from board1 where type='event' order by rownum desc) where rownum=1
+	</select>
 	
 	
 	<insert id="InsertInquiry">
@@ -117,7 +120,7 @@
 		<if test="whatColumn =='answer'">
 		where answer like #{keyword}
 		</if>
-		order by fnum
+		order by fnum desc
 	</select>
 	
 	<delete id="DeleteFaqByInum">

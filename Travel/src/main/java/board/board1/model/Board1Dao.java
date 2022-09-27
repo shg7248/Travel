@@ -57,6 +57,11 @@ public class Board1Dao {
 		int result = sqlSessionTemplate.selectOne(namespace+".GetTotalEventCount");
 		return result;
 	}
+
+	public Board1Bean getBoard1FirstEvent() {
+		Board1Bean bb = sqlSessionTemplate.selectOne(namespace+".GetBoard1FirstEvent");
+		return bb;
+	}
 	
 	
 	

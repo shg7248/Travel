@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 				<div class="accom-detail__btns">
-			    	<%-- <c:if test="${empty requestScope.accom }"> --%>
+			    	<c:if test="${empty requestScope.accom }">
 			        	<input type="button" value="등록하기" class="accom-detail__btn accom-detail__btn--insert" onclick="location.href='${contextPath }/comp/accom/insert.comp'">
-			        <%-- </c:if> --%>
-			        <%-- <c:if test="${!empty requestScope.accom }"> --%>
+			        </c:if>
+			        <c:if test="${!empty requestScope.accom }">
 			        	<input type="button" value="수정하기" class="accom-detail__btn accom-detail__btn--update" onclick="location.href='${contextPath }/comp/accom/update.comp?anum=${requestScope.accom.anum }'">
-					<%-- </c:if> --%>
+					</c:if>
 				</div>
 		        
 		        <table class="accom-detail__info">
@@ -35,14 +35,6 @@
 			        	<tr>
 			        		<td>숙박지 이름</td>
 			        		<td>${requestScope.accom.name }</td>
-			        	</tr>
-			        	<tr>
-			        		<td>숙박지 주변 편의시설</td>
-			        		<td>${requestScope.accom.fac1 }</td>
-			        	</tr>
-			        	<tr>
-			        		<td>객실 편의시설</td>
-			        		<td>${requestScope.accom.fac2 }</td>
 			        	</tr>
 			        	<tr>
 			        		<td>입실시간</td>

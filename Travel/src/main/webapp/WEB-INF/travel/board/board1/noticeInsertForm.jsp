@@ -47,6 +47,11 @@ var oEditors = [];
    
    $("#submit").click(function() {
 	   oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	   var content = $("#content").val();
+	   if( content == ""  || content == null || content == '&nbsp;' || content == '<p>&nbsp;</p>' || content =='<br>')  {
+           alert("내용을 입력하세요.");
+           return false;
+      }
 	});
 });
 </script>

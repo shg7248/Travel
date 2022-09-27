@@ -1,5 +1,8 @@
 package comp.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +36,9 @@ public class RoomInsertController {
 	}
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doPostAction(HttpSession session, RoomBean roomBean) {
+	public String doPostAction(HttpSession session, RoomBean roomBean) throws IllegalStateException, IOException {
+		
+		String realPath = servletContext.getRealPath("/resources/images/room");
 		
 		TravelCompanyBean tcb = (TravelCompanyBean) session.getAttribute("loginInfo");
 		String cnum = tcb.getCnum();
@@ -43,6 +48,15 @@ public class RoomInsertController {
 		roomBean.setImage(mf.getOriginalFilename());
 		
 		int cnt = compDao.insertRoom(roomBean);
+		
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdir();
+		}
+		
+		File updateImage = new File(realPath, mf.getOriginalFilename());
+		mf.transferTo(updateImage);
+		
 		
 		return gotoPage;
 	}

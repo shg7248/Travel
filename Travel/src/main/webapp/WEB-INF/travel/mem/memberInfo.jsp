@@ -26,3 +26,5 @@
 <input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='confirm.mem'">
 </div>
 </div>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
