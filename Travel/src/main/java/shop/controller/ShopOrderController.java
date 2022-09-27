@@ -64,6 +64,7 @@ public class ShopOrderController {
 		TravelUserBean tub = (TravelUserBean) session.getAttribute("userInfo");
 		int mnum = tub.getMnum();
 		
+		
 		ordersBean.setMnum(mnum);
 		
 		int cnt = shopDao.insertOrders(ordersBean);

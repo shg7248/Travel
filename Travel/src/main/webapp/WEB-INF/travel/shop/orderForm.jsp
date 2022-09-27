@@ -20,23 +20,81 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("select[name='accnum']").change(function(){
-		accArr = $(this).val().split("/");
-		$("input[name='bank']").attr("value",accArr[0]);
-		$("input[name='accnum']").attr("value",accArr[1]);
-	});
+	//예약자 이름 정규식
+	rexname = /^[^0-9]{1,4}$/;
+	//휴대폰 정규식
+	rexphone =  /^[0-9]{1,11}$/;
+	//계좌 정규식
+	rexacc = /^[0-9]{1,12}$/;
 	
 	$("input[name='info']").change(function(){
 		accArr = $(this).val().split("/");
 		$("input[name='resName']").attr("value",accArr[0]);
 		$("input[name='resPhone']").attr("value",accArr[1]);
 	});
-});
+	
+	$("select[name='acclist']").change(function(){
+		accArr = $(this).val().split("/");
+		$("input[name='bank']").attr("value",accArr[0]);
+		$("input[name='accnum']").attr("value",accArr[1]);
+	});
+	
+	$('#resName').keyup(function(){
+		if(!rexname.test($(this).val()) && !($(this).val() == "")){
+			$(this).siblings('font').text('4글자이하만 입력가능합니다.');
+		}else{
+			$(this).siblings('font').text('');
+		}
+	});
+	
+	$('#resPhone').keyup(function(){
+		if(!rexphone.test($(this).val()) && !($(this).val() == "")){
+			$(this).siblings('font').text('11자리이하 숫자만 입력가능합니다.');
+		}else{
+			$(this).siblings('font').text('');
+		}
+	});
+	
+	$('#accnum').keyup(function(){
+		if(!rexacc.test($(this).val()) && !($(this).val() == "")){
+			$(this).siblings('font').text('12자리이하 숫자만 입력가능합니다.');
+		}else{
+			$(this).siblings('font').text('');
+		}
+	});
+	
+});//ready
 
+function checkAll(){
+	//공백체크
+	if($('#resName').val()== "" ){
+		$('#resName').siblings('font').text("이름을 입력해주세요.");
+		$('#resName').focus();
+		return false;
+	}
+	
+	if($('#resPhone').val()== "" ){
+		$('#resPhone').siblings('font').text("휴대폰 번호를 입력해주세요.");
+		$('#resPhone').focus();
+		return false;
+	}
+	
+	if($('#bank').val()== "" ){
+		$('#bank').siblings('font').text("은행을 입력해주세요.");
+		$('#bank').focus();
+		return false;
+	}
+	
+	if($('#accnum').val()== "" ){
+		$('#accnum').siblings('font').text("계좌번호를 입력해주세요.");
+		$('#accnum').focus();
+		return false;
+	}
+}
 </script>
 <div class="all">
 	<div class="contents">
-		<form method="post" action="${contextPath }/shop/order.shop">
+		<form name="f" method="post" action="${contextPath }/shop/order.shop">
 			<input type="hidden" name="rnum" value="${rnum }">
 			<input type="hidden" name="startDate" value="${startDate }">
 			<input type="hidden" name="endDate" value="${endDate }">
@@ -51,19 +109,21 @@ $(document).ready(function(){
 			<div class="div">
 				<label for="resName">예약자 이름</label>
 				<input type="text" name="resName" id="resName"/>
+				<font></font>
 			</div>
 			
 			<div class="div">
 				<label for="resPhone">휴대폰 번호</label>
 				<input type="text" name="resPhone" id="resPhone"/>
+				<font></font>
 			</div>
 			
 			<div class="div">
-	 			<label>계좌번호</label>
-				<select name="accnum">
+	 			<label>등록된 계좌번호</label>
+				<select name="acclist">
 					<option value="/">직접입력</option>
 				<c:forEach items="${lists }" var="list">
-					<option value="${list.bank }/${list.accnum }">${list.bank } ${list.accnum }</option>
+					<option value="${list.bank }/${list.accnum }">${list.bank }${list.accnum }</option>
 					</c:forEach>
 				</select><br> 
 			</div>
@@ -71,13 +131,15 @@ $(document).ready(function(){
 			<div class="div">
 				<label for="bank">은행</label>
 				<input type="text" name="bank" id="bank">
-				</div>
-				<div class="div">
+				<font></font>
+			</div>
+			<div class="div">
 				<label for="accnum">계좌번호</label>
 				<input type="text" name="accnum" id="accnum">
+				<font></font>
 			</div>
 			
-			<input type="submit" value="예약하기">
+			<input type="submit" value="예약하기" onclick="return checkAll()">
 		</form>
 	</div>
 	<div class="sidebar">
