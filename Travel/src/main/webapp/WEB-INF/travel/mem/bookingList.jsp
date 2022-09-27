@@ -58,7 +58,6 @@ function check(onum){
 					</c:when>
 					<c:when test="${list.reviewCount == 0 && list.resStatus == 2}">
 						<form action="${contextPath}/shop/detail.shop" method="post">
-							${list.anum }
 							<input type="hidden" name="onum" value="${list.onum }"/>
 							<input type="hidden" name="anum" value="${list.anum }"/>
 							<input type="submit" value="리뷰쓰기" style="width: 70px;"/>
