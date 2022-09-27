@@ -49,7 +49,8 @@
    				<td>
    				<c:choose>
    					<c:when test="${h.approyn==0 }">
-   						<input type="button" value="승인확인" onclick="location.href='Comapprove.admin?cnum=${h.cnum}'">
+   						<%-- <input type="button" value="승인확인" onclick="location.href='Comapprove.admin?cnum=${h.cnum}'"> --%>
+   						<a href="='Comapprove.admin?cnum=${h.cnum}'">승인확인</a>
    					</c:when>
    				</c:choose>
    				
