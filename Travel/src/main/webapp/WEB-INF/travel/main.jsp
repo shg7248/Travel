@@ -28,7 +28,7 @@
 	width: 100%;
 }
 .noticesubjectlist{
-	font-size : 20px;
+	font-size : 18px;
 	color: #747474;
 }
 .event-default{
@@ -39,10 +39,11 @@
 .notice-default{
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	padding: 10px 10px 10px 25px;
+	background-color: rgb(192,192,192);
 }
 .notice-title{
-	font-size:24pt;
+	font-size:22pt;
 	padding: 15px;
 	padding-left: 0px;
 }
@@ -56,6 +57,7 @@
 	justify-content: center;
 	padding: 10px;
 	border: 1px solid rgb(192,192,192);
+	border-collapse: collapse;
 	
 }
 </style>
@@ -72,7 +74,7 @@
 	    <c:if test="${fn:length(elists) < 5 }">
 		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="${fn:length(elists)-1}">
 		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
-		    </c:forEach>
+		</c:forEach>
 	    </c:if>
 	  </div>
 	  
@@ -99,11 +101,20 @@
 
 <section class="default-section">
 <div class="notice-title">공지사항</div>
-<div class="notice-default">
 	<c:forEach var="nlists" items="${nlists }" varStatus="status" end="2">
-		<div class="noticesubjectlist"><a href="noticelist.brd">${nlists.subject }</a></div>
+	<div class="notice-default">
+			<div class="noticesubjectlist">
+				<a href="noticedetail.brd?nnum=${nlists.nnum }">
+					<c:if test="${fn:length(nlists.subject)>=60 }">
+					${fn:substring(nlists.subject,0,60)}...
+					</c:if>
+					<c:if test="${fn:length(nlists.subject)<60 }">
+					${nlists.subject }
+					</c:if>
+				</a>
+			</div>
+	</div>
 	</c:forEach>
-</div>
 </section>
 
 <section class="default-section">
