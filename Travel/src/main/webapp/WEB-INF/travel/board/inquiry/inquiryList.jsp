@@ -11,12 +11,12 @@
 <table>
 	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 <c:if test="${email ne 'null'}">
-	<tr>
-		<td class="title_td" align="center" width="10%">번호</td>
-		<td class="title_td" align="center" width="50%">제목</td>
-		<td class="title_td" align="center" width="10%">작성자</td>
-		<td class="title_td" align="center" width="15%">작성일</td>
-		<td class="title_td" align="center" width="15%">답변상황</td>
+	<tr class="inquiry_title">
+		<td align="center" width="12%">번호</td>
+		<td align="center" width="45%">제목</td>
+		<td align="center" width="10%">작성자</td>
+		<td align="center" width="15%">작성일</td>
+		<td align="center" width="18%">답변상황</td>
 	</tr>
 	<c:if test="${empty lists }">
 		<tr>
@@ -27,7 +27,16 @@
 		<c:forEach items="${lists }" var="inquiry" varStatus="status">
 			<tr align="center">
 				<td>${(pageInfo.totalCount-(pageInfo.pageNumber-1)*pageInfo.pageSize)-status.index }</td>
-				<td align="left"><a href="inqdetail.brd?inum=${inquiry.inum }&pageNumber=${pageInfo.pageNumber}">${inquiry.subject }</a></td>
+				<td align="left">
+					<a href="inqdetail.brd?inum=${inquiry.inum }&pageNumber=${pageInfo.pageNumber}">
+						<c:if test="${fn:length(inquiry.subject)>=30 }">
+						${fn:substring(inquiry.subject,0,30)}...
+						</c:if>
+						<c:if test="${fn:length(inquiry.subject)<30 }">
+						${inquiry.subject }
+						</c:if>
+					</a>
+				</td>
 				<td>${inquiry.email}</td>
 				<td>
 					<fmt:parseDate var="date" value="${inquiry.reg_date1 }" pattern="yyyy-MM-dd" />

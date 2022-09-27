@@ -232,6 +232,14 @@ create table member(
    reg_date date,
    point number default 200
 ) ;
+insert into member(mnum,email,name,pwd)
+values(0,'admin','test','1234');
+
+insert into member 
+values(seq_member.nextval,'qrzv123@naver.com','test','1234','01012345678','kakao',sysdate,200);
+
+insert into member 
+values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao',sysdate,200);
 
 insert into member 
 values(seq_member.nextval,'dadvbsxf@naver.com','홍길동','1234','01012345678','home',sysdate,200);
@@ -277,7 +285,8 @@ CREATE TABLE REVIEW(
 	REG_DATE	 DATE DEFAULT SYSDATE
 );
 
----------------------------------------------
+
+-------------------------------------------
 
 CREATE SEQUENCE POINT_SEQ
 START WITH 1
@@ -292,3 +301,14 @@ CREATE TABLE POINT (
 );
 
 insert into point values (point_seq.nextval, 4, 200, '객실예약', sysdate);
+
+-------------------------------------------
+
+DROP TABLE advertise;
+
+CREATE TABLE advertise(
+	RVNUM	 	 String PRIMARY KEY,
+	MNUM	 	 NUMBER,
+);
+
+

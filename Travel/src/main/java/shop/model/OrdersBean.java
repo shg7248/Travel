@@ -19,8 +19,8 @@ public class OrdersBean {
 	private String oDate;
 	private String reviewCount;
 	private String resStatus;
-	
-	
+	private int totalPrice;
+	private int point;
 	
 	public String getAname() {
 		return aname;
@@ -123,5 +123,17 @@ public class OrdersBean {
 	}
 	public void setResStatus(String resStatus) {
 		this.resStatus = resStatus;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
 	}
 }

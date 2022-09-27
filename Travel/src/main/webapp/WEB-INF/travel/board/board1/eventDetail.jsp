@@ -12,9 +12,16 @@
 <div class="default">
 <%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
+<h2>이벤트</h2>
 <table>
 	<tr>
-		<td>${bb.subject }</td>
+		<td class="title_td title" >
+			${bb.subject }
+			<span class="written-date">
+				<fmt:parseDate var="date" value="${bb.reg_date }" pattern="yyyy-MM-dd" />
+				<fmt:formatDate var="reg_date" value="${date }" pattern="yyyy.MM.dd" /> ${reg_date }
+			</span>
+		</td>
 	</tr>
 	<tr>
 		<td><img class="eventimg" src="<%=request.getContextPath()%>/resources/board1/${bb.content}"></td>
@@ -26,7 +33,7 @@
 				<input type="button" value="수정" onclick="location.href='eventupdate.brd?nnum=${bb.nnum}&pageNumber=${pageNumber}'">
 				<input type="button" value="삭제" onclick="location.href='eventdelete.brd?nnum=${bb.nnum}'">
 			</c:if>
-			<input type="button" value="목록보기" onclick="location.href='eventlist.brd?pageNumber=${pageNumber}'">
+			<input type="button" value="목록보기" class="button1" onclick="location.href='eventlist.brd?pageNumber=${pageNumber}'">
 		</td>
 	</tr>
 </table>
