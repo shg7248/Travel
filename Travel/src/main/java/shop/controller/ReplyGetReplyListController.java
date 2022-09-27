@@ -33,16 +33,13 @@ public class ReplyGetReplyListController {
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public JSONObject doPostAction(Model model, @RequestBody Map<String, Object> param) throws JsonProcessingException, ParseException {
 		
-		System.out.println("anum : " + param.get("anum"));
-		System.out.println("start : " + param.get("start"));
-		System.out.println("end : " + param.get("end"));
-		System.out.println("order : " + param.get("order"));
 		
 		JSONObject obj1 = new JSONObject();
 		JSONParser parser = new JSONParser();
 		ObjectMapper om = new ObjectMapper();
 		
 		List<ReplyBean> replyBean = replyDao.getReplyListByAnum(param);
+		
 		int totalCount = replyDao.getReplyTotalCountByRnum(param);
 		
 		JSONArray ja1 = new JSONArray();
@@ -53,8 +50,6 @@ public class ReplyGetReplyListController {
 		
 		obj1.put("totalCount", totalCount);
 		obj1.put("lists", ja1);
-		
-		System.out.println(obj1.toString());
 		
 		return obj1;
 	}
