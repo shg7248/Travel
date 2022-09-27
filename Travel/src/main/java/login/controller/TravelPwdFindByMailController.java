@@ -27,7 +27,8 @@ import login.model.TravelUserDao;
 public class TravelPwdFindByMailController {
 	private final String command1="userFindPwd.log";
 	private final String command2="ownerFindPwd.log";
-	private String getPage="/ownerFindPwdForm";
+	private String getPage1="/userFindPwdForm";
+	private String getPage2="/ownerFindPwdForm";
 	private String gotoPage="redirect:/checkVcode.log";
 	
 	@Autowired
@@ -70,6 +71,11 @@ public class TravelPwdFindByMailController {
 									+ "<br>"+vcode+"<br><hr><br>");
 					//메일보내기
 					mailSender.send(mimeMessage);
+					writer.println("<script type='text/javascript'>");
+					writer.println("alert('인증번호를 발송하였습니다.'); ");
+					writer.println("location.href='checkVcode.log'");
+					writer.println("</script>");
+					writer.flush();
 				} catch (MessagingException e) {
 					System.out.println("메일 발송 실패");
 				}
@@ -84,8 +90,8 @@ public class TravelPwdFindByMailController {
 		writer.println("alert('해당하는 이메일의 회원이 없습니다.'); ");
 		writer.println("</script>");
 		writer.flush();
-		return getPage;
-		}
+		return getPage1;
+	}
 	
 	//ownerPwdForm.jsp > codeCheck.jsp
 	@RequestMapping(value = command2)
@@ -119,6 +125,11 @@ public class TravelPwdFindByMailController {
 									+ "<br>"+vcode+"<br><hr><br>");
 					//메일보내기
 					mailSender.send(mimeMessage);
+					writer.println("<script type='text/javascript'>");
+					writer.println("alert('인증번호를 발송하였습니다.'); ");
+					writer.println("location.href='checkVcode.log'");
+					writer.println("</script>");
+					writer.flush();
 				} catch (MessagingException e) {
 					System.out.println("메일 발송 실패");
 				}
@@ -133,6 +144,6 @@ public class TravelPwdFindByMailController {
 		writer.println("alert('해당하는 이메일의 회원이 없습니다.'); ");
 		writer.println("</script>");
 		writer.flush();
-		return getPage;
+		return getPage2;
 	}
 }

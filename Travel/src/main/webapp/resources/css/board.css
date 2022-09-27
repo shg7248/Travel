@@ -23,7 +23,9 @@ td input[type=text],input[type=text]{
 }
 h2{
 	font-size:20pt;
+	color: black;
 	padding: 15px;
+	margin: auto;
 }
 td img{
 	max-width: 700px;
@@ -42,7 +44,15 @@ td img{
 .title_td{
 	border: 1px solid rgb(192,192,192);
 	border-collapse: collapse;
-	padding: 15px 10px 15px 10px;
+	padding: 20px 10px 20px 25px;
+}
+.inquiry_title td{
+	border: 1px solid rgb(192,192,192);
+	border-collapse: collapse;
+	padding: 10px;
+}
+.title{
+	font-size: 16px;
 }
 .inner_td{
 	border: 0px;
@@ -54,4 +64,33 @@ td img{
 }
 .search>input[type=text]{
 	margin: 0 5 0 5;
+}
+.written-date{
+	display: block;
+	color: rgb(192,192,192);
+	font-size: 14px;
+}
+input[type=button],input[type=submit]{
+	width : 100px;
+	height : 32px;
+	padding : 5px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    background: #FF1A38;
+    cursor: pointer;
+}
+.bottom_td_with_button{
+	text-align: right;
+	border: none;
+}
+.pre_content{
+	background-color: #e4e4e4;
+	padding: 20px;
+}
+pre{
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
