@@ -277,3 +277,19 @@ CREATE TABLE REVIEW(
 	REG_DATE	 DATE DEFAULT SYSDATE
 );
 
+
+DROP TABLE advertise;
+
+CREATE TABLE advertise(
+	RVNUM	 	 String PRIMARY KEY,
+	MNUM	 	 NUMBER,
+);
+
+
+
+
+
+
+
+
+
