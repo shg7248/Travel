@@ -41,13 +41,19 @@ public class RoomUpdateController {
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String doPostAction(Model model, RoomBean roomBean) throws IllegalStateException, IOException {
 		
-		String realPath = servletContext.getRealPath("/images");
+		String realPath = servletContext.getRealPath("/resources/images/room");
+		System.out.println("realPath : " + realPath);
 		MultipartFile mf = roomBean.getUpload();
+		
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdir();
+		}
 		
 		if(!mf.isEmpty()) {
 			roomBean.setImage(mf.getOriginalFilename());
-			File file = new File(realPath, mf.getOriginalFilename());
-			mf.transferTo(file);
+			File file2 = new File(realPath, mf.getOriginalFilename());
+			mf.transferTo(file2);
 		}
 		
 		compDao.updateRoom(roomBean);
