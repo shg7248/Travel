@@ -12,6 +12,7 @@
 		<typeAlias type="shop.model.SearchBean" alias="SearchBean"/>
 		<typeAlias type="shop.model.DetailBean" alias="DetailBean"/>
 		<typeAlias type="shop.model.OrdersBean" alias="OrdersBean"/>
+		<typeAlias type="shop.model.PointBean" alias="PointBean"/>
 		
 		<typeAlias type="login.model.TravelBookBean" alias="MyBook"/>
 		<typeAlias type="login.model.TravelUserBean" alias="MyMember"/>
@@ -21,6 +22,9 @@
 		<typeAlias type="board.faq.model.FaqBean" alias="FaqBean"/>
 		
 		<typeAlias type="reply.model.ReplyBean" alias="ReplyBean"/>
+		
+		
+		
 
 	</typeAliases>
 	<mappers>
