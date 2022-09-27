@@ -7,16 +7,15 @@
 	window.onload = function start() {
 		var arr = new Array;
 		arr[0] = "noticelist.brd";
-		arr[1] = "eventlist.brd";
+		arr[1] = "event";
 		arr[2] = "faqlist.brd";
 		arr[3] = "inqlist.brd";
 
 		//현재주소
 		url = location.href;
-		
 		//주소에 맞게 백그라운드
-		$.each(arr,function(index){
-			if (url.indexOf(arr[index]) != -1) {
+		for(index=0; index<arr.length; index++){
+			if (url.includes(arr[index])) {
 				//해당주소 css
 				$('.list:eq('+index+')').css('background-color', '#ff0000');
 				$('.list:eq('+index+')').css('color', '#ffffff');
@@ -25,7 +24,8 @@
 				//나머지 css
 				$('.list:eq('+index+') a').css('color', '#ff8080');
 			}
-		});
+		}
+			
 
 	}
 </script>

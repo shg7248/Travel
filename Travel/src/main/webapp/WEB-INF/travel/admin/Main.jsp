@@ -6,10 +6,10 @@
 <script type="text/javascript">
 	window.onload = function start() {
 		var arr = new Array;
-		arr[0] = "Ulist.admin";
-		arr[1] = "Hlist.admin";
-		arr[2] = "Catelist.admin";
-		arr[3] = "Facilist.admin";
+		arr[0] = "U";
+		arr[1] = "H";
+		arr[2] = "Cate";
+		arr[3] = "Faci";
 		//현재주소
 		url = location.href;
 		
