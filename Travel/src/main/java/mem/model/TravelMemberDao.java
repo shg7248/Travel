@@ -60,6 +60,12 @@ public class TravelMemberDao {
 		cnt = sst.delete(namespace+".DeleteAccnum", accnum);
 		System.out.println("cnt: "+cnt);
 	}
+
+	public void deleteOrder(String onum) {
+		int cnt = -1;
+		cnt = sst.delete(namespace+".DeleteOrder", onum);
+		System.out.println("cnt: "+cnt);
+	}
 	
 	
 }

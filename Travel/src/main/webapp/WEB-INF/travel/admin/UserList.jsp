@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-memberList.jsp<br>
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
-<%@ include file ="Main.jsp" %>
 
-<style>
-	table {
-		border: 1px solid black;
-	}
-</style>
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="contents">
+<div class="div">
 <h2>회원관리(사용자)</h2>
-<center>
 <form action="Ulist.admin" method="get">
 	   	<select name="whatColumn">
 	   		<option value="">전체검색</option>
@@ -20,17 +18,17 @@ memberList.jsp<br>
 	   	<input type="text" name="keyword">
 	   	<input type="submit" value="검색">
    </form>
-   
+</div>
    총회원수 : ${fn:length(lists) }
    
    	<table border="1">
    		<tr>
-   			<td>번호</td>
-   			<td>이름</td>
-   			<td>이메일</td>
-   			<td>핸드폰번호</td>
-   			<td>등록일</td>
-   			<td>삭제</td>
+   			<th>번호</th>
+   			<th>이름</th>
+   			<th>이메일</th>
+   			<th>핸드폰번호</th>
+   			<th>등록일</th>
+   			<th>삭제</th>
    		</tr>
    		<c:forEach items="${lists}" var="u">
 	   		<tr>
@@ -49,10 +47,10 @@ memberList.jsp<br>
 	   		</tr>
 		</c:forEach>
 	</table>
+	<div class="garo">
 	${pageInfo.pagingHtml}
-	</center>
+	</div>
+	</div>
+</div>
 	
-	
-	
-	
-	
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

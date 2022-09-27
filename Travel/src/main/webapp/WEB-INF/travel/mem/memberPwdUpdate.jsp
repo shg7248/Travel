@@ -70,8 +70,8 @@ function allCheck(mypwd){
 <div class="div">
 <label for="pwd">현재 비밀번호</label>  
 <input type="text" name="pwd" id="pwd" value="${param.pwd }" placeholder="현재 비밀번호를 입력하세요." >
-</div>
 <font id="checkPwd" class="err"></font>
+</div>
 
 <div class="div">
 <label for="pwd_update">변경할 비밀번호</label>  
@@ -81,8 +81,8 @@ function allCheck(mypwd){
 <div class="div">
 <label for="pwd_update2">변경할 비밀번호 확인</label>  
 <input type="text" name="pwd_update2" id="pwd_update2" value="${param.pwd_update2 }" placeholder="변경할 비밀번호를 입력하세요." >
-</div>
 <font id="pwdMsg" class="err"></font>
+</div>
 
 <input type="submit" value="변경" onclick="return allCheck(${userInfo.pwd})" >
 </form>
@@ -94,3 +94,5 @@ function allCheck(mypwd){
 </div>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

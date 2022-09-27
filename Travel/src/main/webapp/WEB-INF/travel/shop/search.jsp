@@ -75,7 +75,7 @@
 		</article>
 		<article class="article search-wrap__result">
 			<div class="search-wrap__sort">
-				<a class="sort__link sort__link--hit" href="javascript:sort('HIT')">추천 높은순</a>
+				<a class="sort__link sort__link--hit" href="javascript:sort('HIT')">별점 높은순</a>
 				<a class="sort__link sort__link--heghPrice" href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
 				<a class="sort__link sort__link--lowPrice" href="javascript:sort('LOWPRICE')">가격 낮은순</a>
 			</div>
@@ -86,6 +86,7 @@
 				<c:if test="${!empty sLists }">
 					<c:forEach var="search" items="${sLists }">
 						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
+							<span class="room__info room__info--average">★&nbsp;${search.average }</span>
 							<span class="room__info room__info--name">${search.name }</span>
 							<span class="room__info room__info--region">${search.region }</span>
 							<span class="room__info room__info--price"><fmt:formatNumber value="${search.price }" />원</span>
