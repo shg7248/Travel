@@ -73,4 +73,15 @@
 		delete orders
 		where onum = #{onum}
 	</delete>
+	
+	<select id="GetMemberPointTotalCountByMnum" resultType="int">
+		select count(*) from point
+		where mnum = #{mnum}
+	</select>
+	
+	<select id="GetMemberPointListByMnum" resultType="PointBean">
+		select * from point
+		where mnum = #{mnum}
+		order by pnum desc
+	</select>
 </mapper>
