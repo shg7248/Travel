@@ -66,18 +66,18 @@ h2{
 	margin-top: 10;
 }
 
-.email input, .password input{
+#login_email, #login_pwd{
 	background: white;
 	background-position: 10px center;
 	background-repeat: no-repeat;
 	padding-left: 40;
 }
 
-.email input{
+#login_email{
   background-image: url(../images/email.PNG);
 }
 
-.password input{
+#login_pwd{
   background-image: url(../images/password.PNG);
 }
 

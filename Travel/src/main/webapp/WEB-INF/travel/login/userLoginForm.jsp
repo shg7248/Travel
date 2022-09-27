@@ -90,11 +90,11 @@ function checkAll(){
 <div class="one"> 
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
-<input type="text" name="email" id="email" placeholder="Email">
+<input type="text" name="email" id="login_email" placeholder="Email">
 </div>
 <font id="checkEmail" class="err"></font>
 <div class="div password">
-<input type="text" name="pwd" id="pwd" placeholder="PassWord">
+<input type="text" name="pwd" id="login_pwd" placeholder="PassWord">
 </div>
 <font id="checkPwd" class="err"></font>
 <div>
