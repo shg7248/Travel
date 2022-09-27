@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function check(onum){
+	if(confirm("예약을 취소하시겠습니까?")){
+		location.href='bookingCancel.mem?onum='+onum;
+	}
+}
+</script>
+
 <div class="all">
 <%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
@@ -16,6 +25,7 @@
 		<th>결제일</th>
 		<th>예약상태</th>
 		<th>리뷰쓰기</th>
+		<th>예약취소</th>
 	</tr>
 	<c:forEach items="${lists }" var="list">
 		<tr>
@@ -59,8 +69,21 @@
 					</c:otherwise>
 				</c:choose>
 			</td>
+			<td>
+				<c:choose>
+					<c:when test="${list.resStatus eq 0}">
+						<a href="#" onclick="return check(${list.onum})">취소하기</a>
+					</c:when>
+					<c:when test="${list.resStatus ne 0}">
+						취소불가
+					</c:when>
+				</c:choose>
+				
+			</td>
 		</tr>
 	</c:forEach>
 </table>
 </div>
 </div>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
