@@ -277,3 +277,18 @@ CREATE TABLE REVIEW(
 	REG_DATE	 DATE DEFAULT SYSDATE
 );
 
+---------------------------------------------
+
+CREATE SEQUENCE POINT_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+CREATE TABLE POINT (
+	PNUM NUMBER PRIMARY KEY,
+	MNUM NUMBER,
+	POINT NUMBER,
+	CHARGETYPE VARCHAR2(30),
+	REG_DATE DATE DEFAULT SYSDATE
+);
+
+insert into point values (point_seq.nextval, 4, 200, '객실예약', sysdate);
