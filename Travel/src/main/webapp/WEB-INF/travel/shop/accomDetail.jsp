@@ -243,12 +243,12 @@
 		    	</c:if>
 	   		<a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
 	   		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
+	   		<hr>
 	    	</div>
 	    </div>
 	</div>
 </article>
 <script type="text/javascript">
-		
 	let defaults = {
 		pageNumber: 1,
 		pageSize: 5,
@@ -257,11 +257,8 @@
 			this.pageNumber += 1;
 		}
 	};
-	
 	function reply() {
-		
 		const reply = document.querySelector('.reply');
-		
 		fetch("${contextPath}/getReply.shop", {
 			method: 'post',
 			headers: {
@@ -276,21 +273,16 @@
 		})
 		.then((data)=> data.json())
 		.then((data)=> {
-		
-				
 			defaults.addPageNumber();
-			
 			const addInfo = document.querySelector('.reply__info--addInfo');
 			if(addInfo) {
 				document.querySelector('.reply__info--addInfo').remove();
 			}
-			
 			const reply__list = document.createElement('div');
 			reply__list.classList.add('reply__list');
-			
 			let reply__item = ``;
-			
 			if(data.totalCount == 0) {
+				reply.innerHTML = "";
 				reply_item = "등록된 리뷰가 없습니다";
 				reply.append(reply_item);
 			}
@@ -319,29 +311,20 @@
 						reply__item += `</div></div>`						
 					}
 				});
-				
-				
 				reply__list.innerHTML = reply__item;
 				reply.append(reply__list);
-				
 				const item__length = document.querySelectorAll('.reply__item');
-				
 				const makeAddInfo = document.createElement('div');
 				makeAddInfo.classList.add('reply__info--addInfo');
 				makeAddInfo.setAttribute('onclick', 'reply()');
 				makeAddInfo.innerHTML = "더보기";
-				
 				if(data.totalCount !== item__length.length) {
 					reply.append(makeAddInfo);
 				}
 			}
-			
-		
-		})
+		});
 	}
-	
 	reply();
-	
 	function replyOrder(order) {
 		const r = document.querySelectorAll('.reply__list');
 		r.forEach((elem)=> {
@@ -350,7 +333,6 @@
 		defaults = {...defaults, pageNumber: 1, order: order};
 		reply();
 	}
-	
 	function replySubmit() {
 		const form = replyForm;
 		

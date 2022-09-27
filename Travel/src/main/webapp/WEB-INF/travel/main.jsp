@@ -64,19 +64,7 @@
 <section class="default-section">
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 	
-	  <div class="carousel-indicators">
-	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
-	    <c:if test="${fn:length(alists) >= 5 }">
-		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="4">
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
-		    </c:forEach>
-	    </c:if>
-	    <c:if test="${fn:length(alists) < 5 }">
-		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="${fn:length(alists)-1}">
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
-		</c:forEach>
-	    </c:if>
-	  </div>
+	  
 	  
 	  <div class="carousel-inner">
 		<div class="carousel-item active">

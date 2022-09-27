@@ -1,0 +1,16 @@
+CREATE TABLE "COMPANY" 
+   (	
+    "CNUM" VARCHAR2(12), 
+	"IMAGE" VARCHAR2(50), 
+	"EMAIL" VARCHAR2(40), 
+	"PWD" VARCHAR2(15), 
+	"PHONE" VARCHAR2(11), 
+	"APPROYN" NUMBER, 
+	"REG_DATE" DATE
+   );
+   
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1298116573','sa01.png','abc@gmail.com','1234','01012345678',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('3101266130','sa02.png','bcd@gmail.com','1234','01023456789',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1138621886','sa03.png','cde@gmail.com','1234','01034567890',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('2128173385','sa04.png','def@gmail.com','1234','01045678901',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('4568601480','sa05.png','efg@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));

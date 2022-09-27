@@ -3,172 +3,7 @@
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
 <script src="${contextPath }/resources/js/calendar.js"></script>
 <link rel="stylesheet" href="${contextPath }/resources/css/calendar.css">
-<style>
-	input[type='text'] {
-		width: 100%;
-		height: 40px;
-		border-radius: 5px;
-		border: 1px solid #d1d1d1;
-		padding-left: 20px;			
-	}
-	.title {
-		text-align: left;
-		font-size: 16px;
-	}
-	.cate-nav__list {
-		display: flex;
-	}
-	.cate-nev__item {
-		margin-right: 20px;
-		font-weight: bold;
-	}
-	.search__item {
-		padding: 20px;
-	}
-	.search-grid {
-		display: grid;
-		grid-template-columns: repeat(16, 1fr);
-		column-gap: 10px;		
-	}
-	.search-grid__search {
-		grid-column: 1 / 5;
-	}
-	.search-grid__result {
-		grid-column: 5 / 17;
-	}
-	
-	/* region */
-	.region__name {
-		font-weight: bold;
-		font-size: 20px;
-		text-align: center;
-		color: #666666;
-	}
-	
-	/* submit-btn */
-	.search__submit {
-		width: 100%;
-		height: 40px;
-		background: #ff6060;
-		border-radius: 10px;
-		border: none;
-		color: white;
-		font-weight: bold;	
-	}
-	
-	/* calendar */
-	.s-calendar__btn {
-		width: 100%;
-		height: 40px;
-		border-radius: 10px;
-		border: 1px solid #ff6060;	
-	}
-	.calendar {
-		overflow: hidden;
-	    height: 0px;
-	    margin-top: 10px;
-	    transition: all ease-in 0.3s;
-	}
-	.calendar.on {
-		height: 270px;
-	}
-	
-	/* count */
-	.count__text {
-		width: 50% !important;
-	}
-	.count__btn {
-		width: 23%;
-		height: 40px;
-		border-radius: 5px;
-		border: 1px solid #d1d1d1;
-		background: #ff6060;
-		color: white;
-		font-weight: bold;
-	}
-	
-	/* fac */
-	.facility__list {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		row-gap: 10px;
-	}
-	
-	/* result */
-	.search-wrap__sort {
-		padding: 20px;
-		text-align: right;
-	}
-	.sort__link {
-		font-size: 11px;
-		margin-left: 20px;
-		color: black;
-	}
-	.result__room {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: flex-end;
-		padding: 20px;
-		height: 250px;
-		cursor: pointer;
-		margin-bottom: 10px;
-		transition: all .2s;
-	}
-	
-	.result__room:hover {
-		background-size: 120% 120%!important;
-	}
-	.result__room::before {
-		content: '';
-		opacity: 0.5;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		right: 0px;
-		left: 0px;
-		background-color: #000;
-	}
-	.room__info {
-		color: white;
-		font-weight: bold;
-		font-size: 1.4em;
-		z-index: 999;
-	}
-	
-	/* modal */
-	.map-modal {
-		position: fixed;		
-		width: 100vw;
-		height: 100vh;
-		left: 0px;
-		top: 0px;
-		z-index: 999;
-		visibility: hidden;
-	}
-	.map-modal.on {
-		visibility: visible;
-	}
-	.map-modal::before {
-		content: '';
-		position: absolute;
-		width: 100vw;
-		height: 100vh;
-		left: 0px;
-		top: 0px;
-		background: black;
-		opacity: .7;
-	}
-	#map {
-		position: absolute;
-		width: 700px;
-		height: 500px;
-		left: 50%;
-		top: 50%;
-		transform: translateX(-50%) translateY(-50%); 		
-	}
-</style>
+<link rel="stylesheet" href="${contextPath }/resources/css/search2.css">
 <section class="section">
 	<nav class="cate-nav">
 		<ul class="cate-nav__list">
@@ -291,21 +126,14 @@
 	<div id="map"></div>
 </div>
 <script>
-
 	// 모달
+	const modal = document.querySelector('.map-modal');
 	function showMap() {
-		const modal = document.querySelector('.map-modal');
-		map-modal.classList.toggle('on');
+		modal.classList.toggle('on');
 	}
-
-	// 인원수
-	function calccount(number) {
-		const count__text = document.querySelector('.count__text');
-		if(Number(count__text.value) + Number(number) < 1) {
-			return;
-		}
-		count__text.value = Number(count__text.value) + Number(number);
-	}
+	modal.addEventListener('click', function(e) {
+		modal.classList.toggle('on');
+	});
 
 	var container = document.getElementById('map'),
 	map = new kakao.maps.Map(container, { // 지도를 표시할 div
@@ -314,6 +142,53 @@
 	});
 	
 	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var bounds = new kakao.maps.LatLngBounds();
+	
+	const mapinfo = [];
+
+	<c:forEach var="search" items="${sLists }" varStatus="s">
+		mapinfo.push({
+			name: "${search.name }",
+			lat: "${search.lat }",
+			lng: "${search.lng}"
+		});
+	</c:forEach>
+	
+	for(var i = 0; i < mapinfo.length; i++) {
+		
+		var position = new kakao.maps.LatLng(mapinfo[i].lat, mapinfo[i].lng);
+		
+		var marker = new kakao.maps.Marker({
+			map: map,
+			position: position
+		});
+		
+		var infowindow = new kakao.maps.InfoWindow({
+	        content: mapinfo[i].name 
+	    });
+		
+	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		
+		bounds.extend(position);
+	}
+	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function makeOverListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
+
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+	    return function() {
+	        infowindow.close();
+	    };
+	}
+	
+	map.setBounds(bounds);
 	
 	searchDetailAddrFromCoords(function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
