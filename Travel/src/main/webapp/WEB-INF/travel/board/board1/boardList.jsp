@@ -6,13 +6,14 @@
 <script type="text/javascript">
 	window.onload = function start() {
 		var arr = new Array;
-		arr[0] = "noticelist.brd";
+		arr[0] = "notice";
 		arr[1] = "event";
 		arr[2] = "faqlist.brd";
 		arr[3] = "inqlist.brd";
 
 		//현재주소
 		url = location.href;
+		
 		//주소에 맞게 백그라운드
 		for(index=0; index<arr.length; index++){
 			if (url.includes(arr[index])) {

@@ -271,7 +271,7 @@
 			</div>
 			<div class="result__rooms">
 				<c:if test="${empty sLists }">
-					<h2>찾으시는 정보가 존재하지 않습니다.</h2>
+					<h2 align="center">찾으시는 정보가 존재하지 않습니다.</h2>
 				</c:if>
 				<c:if test="${!empty sLists }">
 					<c:forEach var="search" items="${sLists }">

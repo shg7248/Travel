@@ -14,8 +14,15 @@
 	</select>
 	
 	<select id="UserLogin" resultType="MyMember">
-		select * from member
-		where email = #{email}
+		select m.mnum, email, name, pwd, phone, flatform, reg_date, p.point
+		from member m
+		inner join (
+			select mnum, sum(point) point
+			from point
+			group by mnum
+		) p
+		on m.mnum = p.mnum
+		where m.email = #{email}
 	</select>
 	
 	<insert id="CompanyInsert">
