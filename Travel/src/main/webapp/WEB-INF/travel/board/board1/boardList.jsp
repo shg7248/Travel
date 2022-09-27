@@ -6,8 +6,8 @@
 <script type="text/javascript">
 	window.onload = function start() {
 		var arr = new Array;
-		arr[0] = "noticelist.brd";
-		arr[1] = "eventlist.brd";
+		arr[0] = "notice";
+		arr[1] = "event";
 		arr[2] = "faqlist.brd";
 		arr[3] = "inqlist.brd";
 
