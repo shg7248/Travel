@@ -99,3 +99,12 @@ function sort(sort) {
 	ele.value = sort;
 	ele.parentElement.submit();
 }
+
+// 인원수
+function calccount(number) {
+	const count__text = document.querySelector('.count__text');
+	if(Number(count__text.value) + Number(number) < 1) {
+		return;
+	}
+	count__text.value = Number(count__text.value) + Number(number);
+}

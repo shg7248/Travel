@@ -1,8 +1,11 @@
 package shop.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ import shop.model.ShopOrderDao;
 public class ShopOrderController {
 
 	@Autowired
+	private ServletContext servletContext;
+	
+	@Autowired
 	private ShopOrderDao shopOrderDao;
 	
 	@Autowired
@@ -38,10 +44,17 @@ public class ShopOrderController {
 	private String gotoPage = "completeOrder";
 	
 	@RequestMapping(value = command, method=RequestMethod.GET)
-	public String doGetAction(@ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model,
-			HttpSession session) {
+	public String doGetAction(HttpServletResponse response, @ModelAttribute("rnum") String rnum, @ModelAttribute("startDate") String startDate, @ModelAttribute("endDate") String endDate, Model model,
+			HttpSession session) throws IOException {
 		
-		int mnum = (Integer) session.getAttribute("mnum");
+		String contextPath = servletContext.getContextPath();
+		
+		Object obj = session.getAttribute("mnum");
+		if(obj == null) {
+			response.sendRedirect(contextPath + "/userLoginForm.log");
+		}
+		
+		int mnum = (Integer) obj;
 		
 		List<TravelAccountBean> lists = new ArrayList<TravelAccountBean>();
 		lists = tmdao.accountList(mnum);
