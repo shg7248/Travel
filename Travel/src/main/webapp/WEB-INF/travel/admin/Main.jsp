@@ -10,6 +10,7 @@
 		arr[1] = "H";
 		arr[2] = "Cate";
 		arr[3] = "Faci";
+		arr[4] = "advert";
 		//현재주소
 		url = location.href;
 		
@@ -34,6 +35,7 @@
 		<li class="list"><a href="Hlist.admin">사업자</a></li>
 		<li class="list"><a href="Catelist.admin">카테고리</a></li>
 		<li class="list"><a href="Facilist.admin">시설목록</a></li>
+		<li class="list"><a href="advertisementlist.admin">광고목록</a></li>
 	</ul>
 </div>
 

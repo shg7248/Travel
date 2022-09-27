@@ -286,18 +286,3 @@ CREATE TABLE REVIEW(
 );
 
 
-DROP TABLE advertise;
-
-CREATE TABLE advertise(
-	RVNUM	 	 String PRIMARY KEY,
-	MNUM	 	 NUMBER,
-);
-
-
-
-
-
-
-
-
-
