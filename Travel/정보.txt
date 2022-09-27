@@ -232,6 +232,14 @@ create table member(
    reg_date date,
    point number default 200
 ) ;
+insert into member(mnum,email,name,pwd)
+values(0,'admin','test','1234');
+
+insert into member 
+values(seq_member.nextval,'qrzv123@naver.com','test','1234','01012345678','kakao',sysdate,200);
+
+insert into member 
+values(seq_member.nextval,'qrzv13@gmail.com','test','1234','01012345678','kakao',sysdate,200);
 
 insert into member 
 values(seq_member.nextval,'dadvbsxf@naver.com','홍길동','1234','01012345678','home',sysdate,200);

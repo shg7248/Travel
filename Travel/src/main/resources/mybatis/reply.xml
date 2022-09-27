@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply.model.Reply">
 	<insert id="InsertReply">
-		insert into review (rvnum, mnum, onum, content<if test="image neq null">, image</if>, rating, reg_date)
-		values (review_seq.nextval, #{mnum}, #{onum}, #{content}<if test="image neq null">, #{image}</if>, #{rating}, sysdate)
+		insert into review (rvnum, mnum, onum, content <if test="image != null">, image</if>, rating, reg_date)
+		values (review_seq.nextval, #{mnum}, #{onum}, #{content} <if test="image != null">, #{image}</if>, #{rating}, sysdate)
 	</insert>
 	
 	<select id="GetReplyListByRnum" parameterType="java.util.Map" resultType="ReplyBean">
