@@ -3,37 +3,53 @@ package admin.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AdBean {
-	private String adname;
-	private String aimage;
-	private String adcontents;
+	private int adnum;
+	private String subject;
+	private String adimage;
+	private String reg_date;
+	private String status;
 	private MultipartFile upload;
 	
-	public String getAdname() {
-		return adname;
-	}
-	public void setAdname(String adname) {
-		this.adname = adname;
-	}
-	public String getAimage() {
-		return aimage;
-	}
-	public void setAimage(String aimage) {
-		this.aimage = aimage;
-	}
-	public String getAdcontents() {
-		return adcontents;
-	}
-	public void setAdcontents(String adcontents) {
-		this.adcontents = adcontents;
-	}
+	
 	public MultipartFile getUpload() {
 		return upload;
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+		this.adimage = upload.getOriginalFilename();
 	}
 	
+	public int getAdnum() {
+		return adnum;
+	}
+	public void setAdnum(int adnum) {
+		this.adnum = adnum;
+	}
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getAdimage() {
+		return adimage;
+	}
+	public void setAdimage(String adimage) {
+		this.adimage = adimage;
+	}
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	
 }

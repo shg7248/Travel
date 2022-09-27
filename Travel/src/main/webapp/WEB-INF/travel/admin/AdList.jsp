@@ -1,30 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<h2>광고 리스트</h2>
-<center>
-<table border="1">
+	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/travel/common/common.jsp"%>
+<%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-<tr>
-	<td>광고 이름</td>
-	<td>광고 이미지</td>
-	<td>광고 컨텐츠</td>
-	<td>수정</td>
-	<td>삭제</td>
-</tr>
-
-<c:forEach items="${lists }" var="a" >
-
-<tr>
-	<td>${a.adname }</td>
-	<td>${a.adimage }</td>
-	<td>${a.adcontents }</td>
-	<td><a href="Adupdate.admin?adname=${a.adname }">수정</a></td>
-	<td><a href="Addele.admin?adname=${a.adname }">삭제</a></td>
-</tr>
-
-</c:forEach>
-
-</table>
-${pageInfo.pagingHtml}
-<input type="button" value="추가" onclick="location.href='Adinsert.admin'">
-</center>
+<div class="default">
+<%@ include file ="Main.jsp" %>
+<div class="contents">
+	<h2>광고 목록</h2>
+	<table>
+		<c:forEach items="${lists }" var="advertisement">
+		<tr>
+			<td class="title_td">
+				<a class="title" href="advertisementdetail.admin?adnum=${advertisement.adnum }&pageNumber=${pageInfo.pageNumber}">
+				<c:if test="${fn:length(advertisement.subject)>=60 }">
+					${fn:substring(advertisement.subject,0,60)}...
+					</c:if>
+					<c:if test="${fn:length(advertisement.subject)<60 }">
+					${advertisement.subject }
+					</c:if>
+				</a>
+				<span class="written-date">
+					<fmt:parseDate var="date" value="${advertisement.reg_date }" pattern="yyyy-MM-dd" />
+					<fmt:formatDate var="reg_date" value="${date }" pattern="yyyy.MM.dd" /> ${reg_date }
+				</span>
+			</td>
+		</tr>
+		</c:forEach>
+		<c:if test="${email eq 'admin' }">
+		<tr>
+			<td class="bottom_td_with_button">
+				<input type="button" value="추가하기" onclick="location.href='insertadvertisement.admin'">
+			</td>
+		</tr>
+		</c:if>
+	</table>
+${pageInfo.pagingHtml }
+</div>
+</div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
