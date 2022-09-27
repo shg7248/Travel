@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mem.model.TravelMemberDao;
@@ -18,6 +19,8 @@ public class TravelBookController {
 	private final String command = "/bookingList.mem"; 
 	private String getPage = "bookingList";
 	private String gotoPage = "리뷰쓰기버튼";
+	
+	private final String cancel = "/bookingCancel.mem";
 	
 	@Autowired
 	TravelMemberDao tmdao;
@@ -46,5 +49,13 @@ public class TravelBookController {
 	public String book2() {
 		
 		return gotoPage;
+	}
+	
+	@RequestMapping(value = cancel,method = RequestMethod.GET)
+	public String book(@RequestParam String onum) {
+		
+		tmdao.deleteOrder(onum);
+		
+		return getPage;
 	}
 }

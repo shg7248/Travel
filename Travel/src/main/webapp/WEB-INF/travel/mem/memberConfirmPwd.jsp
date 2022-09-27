@@ -39,10 +39,10 @@ $(document).ready(function(){
 <%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
 	<form action="confirm.mem" method="post" name="f" class="center">
-	<h2>회원 탈퇴</h2>
 		<!-- 소셜로그인이 아니면 -->
 		<c:if test="${userInfo.flatform eq 'home' }">
 			<div class="div">
+			<h2>회원 탈퇴</h2>
 				<label for="">비밀번호 확인</label>
 				<input type="text" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
 				<font class="checkMsg"></font>
