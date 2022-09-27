@@ -2,15 +2,14 @@
     pageEncoding="UTF-8"%>
 memberList.jsp<br>
 <%@ include file ="../common/common.jsp" %>
-<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <style>
 	table {
 		border: 1px solid black;
 	}
 </style>
 
-<div class="all">
 <%@ include file ="Main.jsp" %>
+<center>
 <h2>회원관리(사용자)</h2>
 <form action="Ulist.admin" method="get">
 	   	<select name="whatColumn">
@@ -51,8 +50,7 @@ memberList.jsp<br>
 		</c:forEach>
 	</table>
 	${pageInfo.pagingHtml}
-</div>
-	
+	</center>
 	
 	
 	
