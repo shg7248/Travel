@@ -19,6 +19,7 @@ public class SearchBean {
 	private String lat;	// 위도
 	private String lng;	// 적도
 	private String around;
+	private double average;
 	
 	SearchBean() {
 		this.price = 300000;
@@ -133,5 +134,12 @@ public class SearchBean {
 	public void setAround(String around) {
 		this.around = around;
 	}
-	
+
+	public double getAverage() {
+		return average;
+	}
+
+	public void setAverage(double average) {
+		this.average = average;
+	}
 }

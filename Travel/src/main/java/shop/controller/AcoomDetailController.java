@@ -78,6 +78,9 @@ public class AcoomDetailController {
 	public String doPostAction(	@RequestParam(required = false) String anum, 
 			@RequestParam(required = false) String onum, Model model) {
 		
+		System.out.println("anum : " + anum);
+		System.out.println("onum : " + onum);
+		
 		doGetAction(anum, onum, model, "", "");	
 		
 		return getPage;

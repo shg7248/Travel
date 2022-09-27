@@ -44,6 +44,7 @@ public class TravelPhoneController {
 		System.out.println("flatform"+ flatform);
 
 		return mav;
+		
 	}
 
 	//companyLoginForm.jsp >> phoneAuthForm2.jsp

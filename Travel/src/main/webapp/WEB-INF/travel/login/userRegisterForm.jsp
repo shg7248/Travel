@@ -201,3 +201,4 @@ function allCk(){
 </form>
 </div>
 </body>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

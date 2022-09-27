@@ -59,11 +59,11 @@ function checkAll(){
 <li>계좌번호</li>
 <li>　</li>
 </ul>
-<c:forEach items="${lists }" var="tabean">
+<c:forEach items="${lists }" var="list">
 <ul class="normal">
-<li>${tabean.bank }</li>
-<li>${tabean.accnum }</li>
-<li><a href="accDelete.mem?accnum=${tabean.accnum }">삭제</a></li>
+<li>${list.bank }</li>
+<li>${list.accnum }</li>
+<li><a href="accDelete.mem?accnum=${list.accnum }">삭제</a></li>
 </ul>
 </c:forEach>
 </div>
@@ -71,3 +71,5 @@ function checkAll(){
 </div>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
