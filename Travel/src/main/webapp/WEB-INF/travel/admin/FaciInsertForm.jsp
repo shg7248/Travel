@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
-FaciInsertForm.jsp<br>
-   
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <script type="text/javascript">
@@ -45,10 +44,14 @@ font-size:15px;
 
 } 
 </style>
-
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="contents">
 <form name="f" method="post" action="Faciinsert.admin" enctype="multipart/form-data">
-	<h1>시설 추가 화면</h1>
-	<p>
+	<div class="div">
+	<h2>시설 추가 화면</h2>
+	</div>
+	<div class="div">
 		<select class="option"  name="fgroup">
 		<option  value="">시설그룹 선택</option>
 			<c:forEach var="item" items="${lists }">
@@ -56,26 +59,25 @@ font-size:15px;
 			</c:forEach>
 		</select>
 		<font id="checkFgroup" class="err" ></font>
-	</p>
+	</div>
 	
 	
-	<p>
+	<div class="div">
 		<label for="fnum">시설번호</label>
 		<input type="text" name="fnum" id="fnum" value="${faci.fnum }">
 		<font id="checkFnum" class="err" ></font>
-	</p>
-	<p>
+	</div>
+	<div class="div">
 		<label for="name">시설이름</label>
 		<input type="text" name="name" id="name" value="${faci.name}">
 		<font id="checkName" class="err" ></font>
-	</p>
+	</div>
 		
 			
 	
 		
-	<p>
 		<input type="submit" value="추가하기" id="BtnSubmit" onclick="return checkFaci()">		
-	</p>
 
 </form>
-
+</div>
+</div>

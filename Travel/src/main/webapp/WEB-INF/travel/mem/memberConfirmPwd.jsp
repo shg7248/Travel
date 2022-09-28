@@ -43,8 +43,8 @@ $(document).ready(function(){
 		<c:if test="${userInfo.flatform eq 'home' }">
 			<div class="div">
 			<h2>회원 탈퇴</h2>
-				<label for="">비밀번호 확인</label>
-				<input type="text" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
+				<label for="pwd">비밀번호 확인</label>
+				<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
 				<font class="checkMsg"></font>
 			</div>
 			<input type="button" value="확인" onclick="checkPwd()">

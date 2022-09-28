@@ -29,7 +29,7 @@ function checkAll(){
 <font id="checkEmail"></font>
 </div>
 <div class="div password">
-<input type="text" name="pwd" id="login_pwd" placeholder="PassWord">
+<input type="password" name="pwd" id="login_pwd" placeholder="PassWord">
 <font id="checkPwd"></font>
 </div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
