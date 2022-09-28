@@ -3,11 +3,17 @@
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <%@ include file="/WEB-INF/travel/common/common.jsp" %>
 
-<a href="ownerLoginForm.log">사업자 로그인</a>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <style>
-
+.default{
+	width: 940px;
+	height: 300px;
+	display: flex;
+	justify-content: space-around;
+	vertical-align: middle;
+	background-color: rgb(192,192,192);
+}
 .carousel-inner img{
 	width: 100%;
 	height: 300px;
@@ -15,6 +21,7 @@
 }
 .inner{
 	width:100%;
+	border: 1px solid rgb(192,192,192);
 }
 .inner img{
 	width: 100%;
@@ -56,15 +63,26 @@
 	display: flex;
 	justify-content: center;
 	padding: 10px;
-	border: 1px solid rgb(192,192,192);
-	border-collapse: collapse;
 	
 }
 </style>
+<c:if test="${ab ne null }">
 <section class="default-section">
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 	
-	  
+	  <div class="carousel-indicators">
+	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+	    <c:if test="${fn:length(alists) >= 5 }">
+		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="4">
+		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
+		    </c:forEach>
+	    </c:if>
+	    <c:if test="${fn:length(alists) < 5 }">
+		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="${fn:length(alists)-1}">
+		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
+		</c:forEach>
+	    </c:if>
+	  </div>
 	  
 	  <div class="carousel-inner">
 		<div class="carousel-item active">
@@ -86,7 +104,14 @@
 	  </button>
 	</div>
 </section>
-
+</c:if>
+<c:if test="${ab eq null }">
+<section class="default-section">
+<div class="default">
+광고 게재 준비중입니다.
+</div>
+</section>
+</c:if>
 <section class="default-section">
 <div class="notice-title">공지사항</div>
 	<c:forEach var="nlists" items="${nlists }" varStatus="status" end="2">

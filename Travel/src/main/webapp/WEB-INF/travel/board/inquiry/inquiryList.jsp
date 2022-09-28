@@ -12,11 +12,11 @@
 	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 <c:if test="${email ne 'null'}">
 	<tr class="inquiry_title">
-		<td align="center" width="12%">번호</td>
-		<td align="center" width="45%">제목</td>
-		<td align="center" width="10%">작성자</td>
-		<td align="center" width="15%">작성일</td>
-		<td align="center" width="18%">답변상황</td>
+		<td align="center" width="70px">번호</td>
+		<td align="center" width="300px">제목</td>
+		<td align="center" width="">작성자</td>
+		<td align="center" width="">작성일</td>
+		<td align="center" width="100px">답변상황</td>
 	</tr>
 	<c:if test="${empty lists }">
 		<tr>
