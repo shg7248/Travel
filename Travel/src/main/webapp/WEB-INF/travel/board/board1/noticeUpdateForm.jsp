@@ -18,7 +18,7 @@
 	<h2 align="center">공지사항 수정</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
 	
-	<input type="text" name="subject" placeholder="제목을 입력하세요." value=${board1.subject }>
+	<input type="text" name="subject" placeholder="제목을 입력하세요." value="${board1.subject }">
 	<form:errors cssClass="err" path="subject"/><br>
 	
 	<textarea name="content" id="content"><c:out value="${board1.content}" /></textarea><br>

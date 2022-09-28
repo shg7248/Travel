@@ -9,8 +9,11 @@ table{
 td,tr {
 	border: 1px solid rgb(192,192,192);
 	border-collapse: collapse;
+}
+.inquirytable td,tr {
+	border: 1px solid rgb(192,192,192);
+	border-collapse: collapse;
 	padding: 5px;
-/* 	vertical-align: middle; */
 }
 textarea{
 	width:100%; 
@@ -40,6 +43,7 @@ td img{
 	margin: 0px 20 0 20;
 	text-align: center;
 	justify-content: center;
+	
 }
 .title_td{
 	border: 1px solid rgb(192,192,192);
@@ -82,13 +86,14 @@ input[type=button],input[type=submit]{
     background: #FF1A38;
     cursor: pointer;
 }
-.bottom_td_with_button{
+.right_button{
+	padding:5px 0px;
 	text-align: right;
-	border: none;
 }
 .pre_content{
 	background-color: #e4e4e4;
 	padding: 20px;
+	height: 100%;
 }
 pre{
 	word-wrap: break-word;

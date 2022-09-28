@@ -33,7 +33,7 @@ public class Board1DeleteController {
 	@RequestMapping(value=command2)
 	public String eventdelete(@RequestParam("nnum") String nnum) {
 		Board1Bean bb = bdao.getBoard1ByNnum(nnum);
-		String deletePath = servletContext.getRealPath("/resources/board1");
+		String deletePath = servletContext.getRealPath("/resources/images/event");
 		System.out.println(deletePath);
 		File delFile = new File(deletePath+"/"+bb.getContent());
 		delFile.delete();

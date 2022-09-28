@@ -8,7 +8,7 @@
 <%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 <h2>1:1 문의사항</h2>
-<table>
+<table class="inquirytable">
 	<c:set var="email" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
 <c:if test="${email ne 'null'}">
 	<tr class="inquiry_title">

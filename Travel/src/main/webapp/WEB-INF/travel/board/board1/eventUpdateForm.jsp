@@ -21,27 +21,23 @@
 	<table>
 		<tr>
 			<td>
-				<input type="text" name="subject" placeholder="제목을 입력하세요." value=${board1.subject }>
+				<input type="text" name="subject" placeholder="제목을 입력하세요." value="${board1.subject }">
 				<form:errors cssClass="err" path="subject"/><br>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				이미지 파일 :
-				<img src="<%=application.getContextPath()%>/resources/board1/${board1.content}"><br>
+				<img src="<%=application.getContextPath()%>/resources/images/event/${board1.content}"><br>
 				수정할 파일 :
 				<input type="file" name="upload"><br><br>
 				<form:errors cssClass="err" path="content"/><br>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<div align="right">
-				<input type="submit" id="submit" value="수정하기">
-				</div>
-			</td>
-		</tr>
 	</table>
+	<div class="right_button">
+	<input type="submit" id="submit" value="수정하기">
+	</div>
 </form:form>
 </div>
 </div>

@@ -41,14 +41,12 @@ $(document).ready(function(){
 	<input type="submit" value="검색">
 </div>
 </form><br>
+	<c:if test="${email eq 'admin' }">
+		<div class="right_button">
+			<input type="button" value="추가하기" onclick="location.href='faqinsert.brd'">
+		</div>
+	</c:if>
 	<table>
-		<c:if test="${email eq 'admin' }">
-		<tr>
-			<td align="right">
-				<input type="button" value="추가하기" onclick="location.href='faqinsert.brd'">
-			</td>
-		</tr>
-		</c:if>
 		<c:forEach var="faq" items="${lists }">
 		<tr height="50" class="fq">
 			<td class="title_td title">

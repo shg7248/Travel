@@ -1,5 +1,5 @@
 --board1은 공지사항과 이벤트 board 처리
-drop table board1;
+drop table board1 cascade constraints;
 
 create table board1( 
 	nnum number not null primary key,	--일련번호
@@ -96,17 +96,23 @@ values(board1_seq.nextval, '휴대폰 결제서비스 일시 중단에 관한 �
 ------------------------------------------------------------------
 --이벤트 데이터-------------------------------------------------------
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트1','이벤트1파일','event');
+values(board1_seq.nextval, '하나카드 이벤트','event1_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트2','이벤트2파일','event');
+values(board1_seq.nextval, '대한민국 숙박대전2022','event4_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '이벤트3','이벤트3파일','event');
+values(board1_seq.nextval, '농협카드 이벤트','event2_thumb.jpg','event');
+
+insert into board1(nnum, subject, content, type)
+values(board1_seq.nextval, '우리카드 이벤트','event3_thumb.jpg','event');
+
+insert into board1(nnum, subject, content, type)
+values(board1_seq.nextval, '다시한번 대한민국 숙박대전2022','event5_thumb.jpg','event');
 ------------------------------------------------------------------
   
 --inquiry은 1대1문의 처리
-drop table inquiry;
+drop table inquiry cascade constraints;
 
 create table inquiry( 
 	inum number primary key,				--문의일련번호
@@ -139,7 +145,7 @@ commit;
 -------------------------------------------------------------------
 
 --faq는 자주 묻는 질문
-drop table faq;
+drop table faq cascade constraints;
 
 create table faq( 
 	fnum number not null primary key,	--faq일련번호
@@ -203,7 +209,7 @@ values(faq_seq.nextval,'1:1문의를 하였는데 아직도 답변이 오지 않
 drop sequence seq_member;
 create sequence seq_member start with 1 increment by 1 nocache ;
 
-drop table member CASCADE CONSTRAINTS;
+drop table member cascade constraints;
 create table member(
    mnum number primary key,
    email varchar2(40),
@@ -230,7 +236,7 @@ select * from member;
 commit;
 
 -- 사업자 테이블
-drop table company CASCADE CONSTRAINTS;
+drop table company cascade constraints;
 create table company (
    cnum varchar2(12) primary key,
    image varchar2(50),
@@ -244,7 +250,7 @@ create table company (
 select * from company;
 commit;
 ------------------------------------------------------------------
-drop table advertisement;
+drop table advertisement cascade constraints;
 
 create table advertisement( 
 	adnum number not null primary key,	--일련번호
