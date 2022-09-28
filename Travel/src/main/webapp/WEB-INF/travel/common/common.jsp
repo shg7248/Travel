@@ -5,8 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <head>
-	<meta http-equiv="page-enter" content="blendTrans(duration=3)">
-	<meta http-equiv="page-exit" content="blendTrans(duration=3)">
+	<meta http-equiv="page-enter" content="blendTrans(duration=1000000)">
+	<meta http-equiv="page-exit" content="blendTrans(duration=1000000)">
 </head>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
@@ -48,11 +48,15 @@
 	    z-index: 100;
 	}
 </style>
-<%-- <div id="load">
+<%-- 
+<div id="load">
     <img src="${contextPath }/resources/images/loading.gif" alt="loading">
-</div> --%>
-<!-- <script>
+</div>
+<script>
 	window.onload = function() {
 		document.querySelector('#load').style.display = 'none';
+		//$('#load').hide();    
+		//$('#load').empty();  
 	}
-</script> -->
+</script>
+ --%>

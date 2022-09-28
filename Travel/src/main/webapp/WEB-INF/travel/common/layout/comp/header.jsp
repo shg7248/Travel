@@ -17,8 +17,8 @@
 	                <li class="nav__item">
 	                	<a href="${contextPath }/comp/compInfo.comp" class="nav__link">사업자 정보</a>
 	            		<ul class="nav__list">
-	            			<li class="nav__item"><a href="" class='nav-2dept__link'>수정</a></li>
-	            			<li class="nav__item"><a href="" class='nav-2dept__link'>탈퇴</a></li>
+<!-- 	            			<li class="nav__item"><a href="" class='nav-2dept__link'>수정</a></li>
+	            			<li class="nav__item"><a href="" class='nav-2dept__link'>탈퇴</a></li> -->
 	            		</ul>
 	                </li>
 	            	<li class="nav__item">

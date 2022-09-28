@@ -74,7 +74,7 @@
 					<div class="search-wrap__item" style="background: url('${contextPath }/resources/images/room/${room.image }') center;">
 						<p class="search-wrap__link search-wrap__link--name">${room.name }</p>
 						<a class="search-wrap__link search-wrap__link--info" href="${contextPath }/comp/room/detail.comp?rnum=${room.rnum }">상세/수정</a>
-						<a class="search-wrap__link search-wrap__link--delete" href="">삭제</a>
+						<!-- <a class="search-wrap__link search-wrap__link--delete" href="">삭제</a> -->
 					</div>
 				</div>
 			</c:forEach>
