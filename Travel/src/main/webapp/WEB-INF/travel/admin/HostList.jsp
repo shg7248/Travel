@@ -65,11 +65,14 @@
    			</tr>
    	
 	</c:forEach>
+	<tr>
+	<td colspan="100%">
+		${pageInfo.pagingHtml }
+	</td>
+	</tr>
 	</table>
 	
-	<div class="garo">
-	${pageInfo.pagingHtml}
-	</div>
+	
 </div>
 </div>
 	
