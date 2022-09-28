@@ -14,7 +14,7 @@ $(document).ready(function(){
 	//사업자번호일치체크
 	checkCnum = false;
 	//정규표현식(숫자만)
-	var rex = /^\d{2,10}$/;
+	var rex = /^\d{2,12}$/;
 
 $("input[name='confirm']").click(function(){
 	$.ajax({
