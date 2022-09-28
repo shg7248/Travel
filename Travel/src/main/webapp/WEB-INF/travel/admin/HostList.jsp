@@ -8,7 +8,9 @@
 <div class="contents">
 	<div class="div">
 	<h2>회원관리(사업자)</h2>
+	</div>
 	<form action="Hlist.admin" method="get">
+	<div id="right">
 		   	<select name="whatColumn">
 		   		<option value="">전체검색</option>
 		   		<option value="cnum">사업자등록번호</option>
@@ -16,8 +18,8 @@
 		   	</select>
 		   	<input type="text" name="keyword">
 		   	<input type="submit" value="검색">
-	</form>
 	</div>
+	</form>
    총 사업체 수 : ${pageInfo.totalCount }
    
    	<table border="1">

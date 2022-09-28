@@ -34,8 +34,8 @@
 			</td>
 		</tr>
 		</c:if>
-		<tr colspan="100%">
-			<td>
+		<tr>
+			<td colspan="100%">
 				${pageInfo.pagingHtml }
 			</td>
 		</tr>

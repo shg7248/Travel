@@ -52,6 +52,33 @@ h2{
 	justify-content: center;
 }
 
+
+#right{
+	float: right;
+	display: flex;
+	justify-content: center;
+	height: 40;
+	width: 400px;
+	margin-bottom: 10;
+}
+
+#right select{
+	width: 30%;
+}
+
+#right input{
+	margin: 0;
+}
+
+#right input[type=text]{
+	width: 50%;
+	margin: 0 10;
+}
+
+#right input[type=submit]{
+	width: 20%;
+}
+
 .div{
 	width: 300px;
 	margin: 20 auto;

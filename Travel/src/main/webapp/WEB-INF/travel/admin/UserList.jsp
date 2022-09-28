@@ -9,16 +9,20 @@
 <div class="contents">
 <div class="div">
 <h2>회원관리(사용자)</h2>
-<form action="Ulist.admin" method="get">
-	   	<select name="whatColumn">
-	   		<option value="">전체검색</option>
-	   		<option value="name">이름</option>
-	   		<option value="phone">핸드폰 번호</option>
-	   	</select>
-	   	<input type="text" name="keyword">
-	   	<input type="submit" value="검색">
-   </form>
 </div>
+			<form action="Ulist.admin" method="get">
+		<div id="right">
+		
+			   	<select name="whatColumn">
+			   		<option value="">전체검색</option>
+			   		<option value="name">이름</option>
+			   		<option value="phone">핸드폰 번호</option>
+			   	</select>
+			   	<input type="text" name="keyword">
+			   	<input type="submit" value="검색">
+	   	</div>
+		   </form>
+
 	
    총 사용자 수 : ${pageInfo.totalCount}
    
