@@ -282,7 +282,6 @@
 			reply__list.classList.add('reply__list');
 			let reply__item = ``;
 			if(data.totalCount == 0) {
-				reply.innerHTML = "";
 				reply_item = "등록된 리뷰가 없습니다";
 				reply.append(reply_item);
 			}
