@@ -10,6 +10,7 @@
 		arr[1] = "pwdUpdate.mem";
 		arr[2] = "memberAccount.mem";
 		arr[3] = "bookingList.mem";
+		arr[4] = "memberPoint.mem";
 
 		//현재주소
 		url = location.href;
@@ -22,7 +23,7 @@
 				$('.list:eq('+index+') a').css('color', '#ffffff');
 			}else{
 				//나머지 css
-				$('.list:eq('+index+') a').css('color', '#ff8080');
+				$('.list:eq('+index+') a').css('color', 'black');
 			}
 		});
 
