@@ -9,10 +9,8 @@ public class TravelUserDao {
 	@Autowired
 	private SqlSessionTemplate sst;
 	
-	public void insert(TravelUserBean tubean) {
-		int cnt = -1;
-		cnt = sst.insert(namespace+".UserInsert", tubean);
-		System.out.println("cnt: " + cnt);
+	public int insert(TravelUserBean tubean) {
+		return sst.insert(namespace+".UserInsert", tubean);
 	}
 
 	public int emailCheck(String email) {

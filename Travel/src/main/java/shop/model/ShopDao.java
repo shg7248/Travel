@@ -36,4 +36,8 @@ public class ShopDao {
 	public void insertPoint(PointBean pointBean) {
 		sqlSessionTemplate.insert(namespace + ".InsertPoint", pointBean);
 	}
+
+	public int getTotalPointByMnum(int mnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetTotalPointByMnum", mnum);
+	}
 }

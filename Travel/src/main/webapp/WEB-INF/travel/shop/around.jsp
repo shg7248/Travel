@@ -11,6 +11,7 @@
 			<li class="cate-nev__item"><a href="${contextPath }/shop/around/2.shop">호텔</a></li>
 			<li class="cate-nev__item"><a href="${contextPath }/shop/around/3.shop">펜션</a></li>
 		</ul>
+		<a onclick="showMap()" style="position: absolute; right: 0; top: 0;"><img src="${contextPath }/resources/images/map.png"></a>
 	</nav>
 	<hr>
 	<div class="search-grid">
@@ -102,7 +103,6 @@
 				<a class="sort__link sort__link--hit" href="javascript:sort('HIT')">별점 높은순</a>
 				<a class="sort__link sort__link--heghPrice" href="javascript:sort('HIGHPRICE')" class="order">가격 높은순</a>
 				<a class="sort__link sort__link--lowPrice" href="javascript:sort('LOWPRICE')">가격 낮은순</a>
-				<a onclick="showMap()">지도</a>
 			</div>
 			<div class="result__rooms">
 				<c:if test="${empty sLists }">

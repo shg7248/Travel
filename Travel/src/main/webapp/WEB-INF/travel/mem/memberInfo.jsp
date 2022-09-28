@@ -7,19 +7,19 @@
 <div class="contents">
 <div class="div">
 <label for="name">이름</label>
-<input type="text" name="name" id="name" value="${userInfo.name }"  disabled="disabled">
+<input type="text" name="name" id="name" value="${myInfo.name }"  disabled="disabled">
 </div>
 
 <div class="div">
 <label for="email">이메일</label> 
-<input type="text" name="email" id="email" value="${userInfo.email }" disabled="disabled">
+<input type="text" name="email" id="email" value="${myInfo.email }" disabled="disabled">
 <font id="checkMsg"></font>
 </div>
 
 
 <div class="div">
 <label for="point">포인트</label>  
-<input type="text" name="point" id="point" value="${userInfo.point }" disabled="disabled">
+<input type="text" name="point" id="point" value="${myInfo.point }" disabled="disabled">
 </div>
 
 <input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.log'">

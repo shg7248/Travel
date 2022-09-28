@@ -98,7 +98,7 @@ function checkAll(){
 			<input type="hidden" name="rnum" value="${rnum }">
 			<input type="hidden" name="startDate" value="${startDate }">
 			<input type="hidden" name="endDate" value="${endDate }">
-			<input type="hidden" name="myPoint" value="${userInfo.point }"/>
+			<input type="hidden" name="myPoint" value="${point }"/>
 			<input type="hidden" name="totalPrice" value="${rb.totalDate * rb.price }"/>
 			<div class="div">
 				<label>예약자 정보</label>
@@ -141,9 +141,9 @@ function checkAll(){
 				<font></font>
 			</div>
 			
-			<div class="point-form">
-				<p>사용 가능한 포인트 ${userInfo.point }point</p>
-				<input class="point-form__text" type="text" name="point"/>
+			<div class="point-form div">
+				<label for="point">사용 가능한 포인트 ${point }point</label>
+				<input class="point-form__text" type="text" name="point" id="point"/>
 			</div>
 			
 			<input type="submit" value="예약하기" onclick="return checkAll()">
@@ -177,41 +177,39 @@ function checkAll(){
 	const point = document.querySelector('input[name="myPoint"]');
 	let price = document.querySelector('.sidebar__price');
 	const value = String(price.innerHTML);
-	const stack = [];
-	inputPoint.addEventListener('keydown', (event)=> {
-
-		console.log(stack);
-		console.log(value);
+	inputPoint.addEventListener('keyup', (e)=> {
 		
-		if(event.keyCode == 8) {
-			stack.pop()
+		let calcPrice = Number(value.replaceAll(',',''));
+
+		if(inputPoint.value === '') {
 			calcPoint();
 			return;
 		}
 		
-		if(!/^\d+$/.test(inputPoint.value)) {
+ 		if(!/^\d+$/.test(inputPoint.value)) {
 			alert('숫자만 입력이 가능합니다.');
 			inputPoint.value = "";
 			return;
+		} 
+ 		
+		if(Number(inputPoint.value) > Number(calcPrice)) {
+			inputPoint.value = "";
+			inputPoint.value = calcPrice;
+			calcPoint();	
 		}
 		
 		if(Number(inputPoint.value) > Number(point.value)) {
 			inputPoint.value = "";
 			inputPoint.value = point.value;
+			calcPoint();
 			return;
 		}
 		
-		stack.push(Number(inputPoint.value));
 		calcPoint();
-	});
-	
-	function calcPoint() {
-		if(stack.length === 0){
-			return;
+		
+		function calcPoint() {
+			price.innerHTML = String(calcPrice - Number(inputPoint.value)).replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
 		}
-		const sum = stack.reduce((accumulator, currentNumber) => accumulator + currentNumber);
-		let calcPrice = Number(value.replace(',', ''));
-		price.innerHTML = String(calcPrice - sum).replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
-	}
+	});
 </script>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
