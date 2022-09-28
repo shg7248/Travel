@@ -62,7 +62,7 @@ $(document).ready(function(){
 			<td width="800" class="inner_td">
 			<pre class="pre_content" style="word-wrap: break-word; white-space: pre-wrap;">${faq.answer }</pre><br>
 			<c:if test="${email eq 'admin' }">
-			<div align="right">
+			<div class="right_button">
 			<input type="button" value="수정하기" onclick="location.href='faqupdate.brd?fnum=${faq.fnum}'">
 			<input type="button" value="삭제하기" onclick="location.href='faqdelete.brd?fnum=${faq.fnum}'">
 			</div>

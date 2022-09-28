@@ -2,18 +2,18 @@
 
 table{
 	width : 100%;
-	border-collapse: collapse;
-	border: 1px solid rgb(192,192,192);
 	margin: auto;
 }
-td,tr {
-	border: 1px solid rgb(192,192,192);
-	border-collapse: collapse;
-}
-.inquirytable td,tr {
+.inquirytable td {
 	border: 1px solid rgb(192,192,192);
 	border-collapse: collapse;
 	padding: 5px;
+}
+.title_td{
+	padding: 20px 10px 20px 25px;
+}
+.inquiry_title td{
+	padding: 10px;
 }
 textarea{
 	width:100%; 
@@ -44,16 +44,6 @@ td img{
 	text-align: center;
 	justify-content: center;
 	
-}
-.title_td{
-	border: 1px solid rgb(192,192,192);
-	border-collapse: collapse;
-	padding: 20px 10px 20px 25px;
-}
-.inquiry_title td{
-	border: 1px solid rgb(192,192,192);
-	border-collapse: collapse;
-	padding: 10px;
 }
 .title{
 	font-size: 18px;

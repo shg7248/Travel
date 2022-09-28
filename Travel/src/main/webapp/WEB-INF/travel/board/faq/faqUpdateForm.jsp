@@ -27,12 +27,12 @@
 		<td colspan="2">
 			<textarea name="answer" id="answer">${faq.answer }</textarea><br>
 			<form:errors cssClass="err" path="answer"/><br>
-			<div align="right">
-			<input type="submit" id="submit" value="수정하기">
-			</div>
 		</td>
 	</tr>
 </table>
+<div class="right_button">
+<input type="submit" id="submit" value="수정하기">
+</div>
 </form:form>
 </div>
 </div>
