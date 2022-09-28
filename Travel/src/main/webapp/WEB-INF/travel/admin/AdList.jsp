@@ -34,8 +34,13 @@
 			</td>
 		</tr>
 		</c:if>
+		<tr colspan="100%">
+			<td>
+				${pageInfo.pagingHtml }
+			</td>
+		</tr>
+		
 	</table>
-${pageInfo.pagingHtml }
 </div>
 </div>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

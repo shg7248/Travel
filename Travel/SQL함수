@@ -6,7 +6,7 @@ begin
 	with a as (
 	    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac
 		from dual
-		connect by level <= length(regexp_subst(vcolumn, '[^,]+', 1, level)) + 1
+		connect by level <= length(regexp_substr(vcolumn, '[^,]+', 1, level)) + 1
 	),
 	b as (
 	    select fnum, name, fgroup 
@@ -24,8 +24,16 @@ begin
 end;
 --------------------
 
+CREATE OR REPLACE FUNCTION RADIANS(VNUM VARCHAR2)
+RETURN VARCHAR2
+AS
+  RENUM VARCHAR2(50);
+BEGIN
+SELECT ASIN(1) * 2 / 180 * VNUM INTO RENUM FROM DUAL;
+RETURN RENUM;
+END;
 
-		
+--------------------	
 			
 	(function() {
 	

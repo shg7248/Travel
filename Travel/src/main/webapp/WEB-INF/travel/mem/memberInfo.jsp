@@ -22,6 +22,16 @@
 <input type="text" name="point" id="point" value="${myInfo.point }" disabled="disabled">
 </div>
 
+<div class="div">
+<label for="phone">핸드폰</label>  
+<input type="text" name="phone" id="phone" value="${userInfo.phone }" disabled="disabled">
+</div>
+
+<div class="div">
+<label for="reg_date">가입일</label>  
+<input type="text" name="reg_date" id="reg_date" value="${userInfo.reg_date }" disabled="disabled">
+</div>
+
 <input type="button" name="logout" id="logout" value="로그아웃" onclick="location.href='logout.log'">
 <input type="button" name="memDelete" id="memDelete" value="회원탈퇴" onclick="location.href='confirm.mem'">
 </div>

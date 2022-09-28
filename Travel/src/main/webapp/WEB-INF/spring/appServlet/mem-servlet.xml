@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="mem" />
+	<context:component-scan base-package="login" />
 	
 	
 	

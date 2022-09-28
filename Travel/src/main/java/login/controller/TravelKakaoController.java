@@ -34,10 +34,13 @@ public class TravelKakaoController {
 		
 		//이메일과 플렛폼 체크
 		int cnt = tudao.emailCheck(email);
+		System.out.println("kakao email: " + email);
+		
 		//이메일이 있으면
 		if (cnt == 1) {
 			//플렛폼체크
 			TravelUserBean login = tudao.getMember(email);
+			System.out.println("login정보: " + login);
 			if (login.getFlatform().equalsIgnoreCase("kakao")) {
 				//카카오로 로그인
 				System.out.println("가입한 회원");

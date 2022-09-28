@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import login.model.TravelUserBean;
 import mem.model.TravelMemberDao;
+import login.model.TravelUserDao;
+
 
 @Controller
 public class TravelMemberInfoController {
@@ -19,6 +21,8 @@ public class TravelMemberInfoController {
 	
 	@Autowired
 	private TravelMemberDao dao;
+	@Autowired
+	TravelUserDao tudao;
 	
 	@RequestMapping(value = command,method = RequestMethod.GET)
 	public String memberInfo(Model model, HttpSession session) {
@@ -32,9 +36,15 @@ public class TravelMemberInfoController {
 			return gotoPage;
 		}
 		
+
 		int mnum = userInfo.getMnum();
 		TravelUserBean newUserInfo = dao.getUserInfoByMnum(mnum);
 		model.addAttribute("myInfo", newUserInfo);
+
+		//갱신
+		userInfo = tudao.getMember(userInfo.getEmail());
+		
+		session.setAttribute("userInfo", userInfo);
 		
 		return getPage;
 	}
