@@ -18,7 +18,7 @@
 			</c:if>
 			<!-- 사업자 로그인 -->
 			<c:if test="${!empty loginInfo }">
-				<li class="sub-menu__item"><a href="${contextPath }/comp/accom/detail.comp">숙소정보</a></li>
+				<li class="sub-menu__item"><a href="${contextPath }/comp/accom/detail.comp">사업자페이지</a></li>
 			</c:if>
 			<c:if test="${!empty userInfo or !empty loginInfo }">
 				<li class="sub-menu__item"><a href="${contextPath }/logout.log">로그아웃</a></li>
