@@ -7,7 +7,7 @@ FaciInsertForm.jsp<br>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <script type="text/javascript">
-$(document).ready(function(){
+/* $(document).ready(function(){
 	
 });
 
@@ -27,7 +27,7 @@ function checkFaci(){
 		f.name.focus();
 		return false;
 	} 
-};
+}; */
 
 </script>
 
