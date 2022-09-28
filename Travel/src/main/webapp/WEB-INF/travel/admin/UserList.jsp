@@ -19,7 +19,8 @@
 	   	<input type="submit" value="검색">
    </form>
 </div>
-   총회원수 : ${fn:length(lists) }
+	
+   총 사용자 수 : ${pageInfo.totalCount}
    
    	<table border="1">
    		<tr>

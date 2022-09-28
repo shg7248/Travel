@@ -30,3 +30,8 @@ a:hover{
 	color: white!important;
     background:#ff0000;
 }
+
+.sidebar h2 a{
+	font-size: 18px;
+	font-weight: bolder;
+}
