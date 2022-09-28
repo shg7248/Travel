@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import login.model.TravelUserDao;
 import login.model.TravelCompanyBean;
 import login.model.TravelCompanyDao;
 import login.model.TravelUserBean;
+import login.model.TravelUserDao;
+import shop.model.PointBean;
+import shop.model.ShopDao;
 
 @Controller
 public class TravelRegisterController {
@@ -89,6 +90,10 @@ public class TravelRegisterController {
 		
 		mav.setViewName(gotoPage);
 
+//		PointBean pointBean = new PointBean();
+//		pointBean.set
+//		shopDao.insertPoint(pointBean);
+		
 		return mav;
 	}
 

@@ -243,6 +243,24 @@ create table company (
 
 select * from company;
 commit;
+------------------------------------------------------------------
+drop table advertisement;
+
+create table advertisement( 
+	adnum number not null primary key,	--일련번호
+	subject varchar2(100),				--광고제목
+	adimage varchar2(100),				--광고이미지
+	reg_date date default sysdate,		--광고삽입일
+	status varchar2(20) default '0'		--상태
+);
+
+drop sequence advertisement_seq;
+create sequence advertisement_seq
+increment by 1
+start with 1
+nocache;
+
+commit;
 ---------------------------테스트공간---------------------------
 
 

@@ -90,7 +90,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" align="right">
 					<input type="submit" value="등록" onclick='return submitAccom()'>
 				</td>
 			</tr>

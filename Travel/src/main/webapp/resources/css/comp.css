@@ -121,6 +121,15 @@ input[type='button'], input[type='submit'], button {
 	cursor: pointer;
 	margin: 10px 2px;
 	font-size: 16px;
+	
+}
+
+select, 
+input[type='text'],
+input[type='button'],
+input[type='submit'],
+button {
+	height: 30px;
 }
 
 .msg--import {

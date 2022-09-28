@@ -143,26 +143,40 @@
 		select fnum, name from facility where fgroup is null
 	</select>
 	
-	<select id="AdList" resultType="admin.model.AdBean">
-		select * from advertise
-	</select>
 	
-	<insert id="AdInsert" parameterType="admin.model.AdBean">
-		insert into advertise
-		values(#{adname},#{adimage},#{adcontents}
-		)
+	
+	<insert id="InsertAdvertisement" parameterType="admin.model.AdBean">
+		insert into advertisement(adnum,subject,adimage)
+		values(advertisement_seq.nextval,#{subject},#{adimage})
 	</insert>
 	
-	<update id="AdUpdate" parameterType="admin.model.AdBean">
-		update advertise set aimage=#{aimage},adcontents=#{adcontents}
-  		where adname=#{adname}
-	</update>
+	<select id="GetTotalAdvertisementCount" resultType="int">
+		select count(*) from advertisement
+	</select>
 	
-	<delete id="AdDelete">
-  		delete advertise
-  		where adname=#{adname}
+	<select id="GetAdvertisementList" resultType="admin.model.AdBean">
+		select * from advertisement
+		order by adnum desc
+	</select>
+	
+	<select id="GetAdvertisementByAdnum" resultType="admin.model.AdBean">
+		select * from advertisement
+		where adnum = #{adnum}
+	</select>
+	
+	<delete id="DeleteAdvertisementByNnum">
+  		delete advertisement
+  		where adnum=#{adnum}
   	</delete>
-	
+  	
+  	<update id="UpdateAdvertisementByNnum">
+  		update advertisement set subject = #{subject}, adimage = #{adimage}
+  		where adnum=#{adnum}
+  	</update>
+  	
+  	<select id="GetAdvertisementFirst" resultType="admin.model.AdBean">
+  		select * from (select * from advertisement order by rownum desc) where rownum=1
+  	</select>	
 </mapper>
 
 

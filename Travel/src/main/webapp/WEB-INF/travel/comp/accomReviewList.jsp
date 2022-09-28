@@ -29,7 +29,7 @@
 		<form method="get" action="${contextPath }/comp/review/list.comp">
 			<select name="whatColumn">
 				<option>전체</option>
-				<option value="room" <c:if test="${whatColumn eq 'room'}">selected</c:if>>객실</option>
+				<option value="room" <c:if test="${whatColumn eq 'room'}">selected</c:if>>객실명</option>
 			</select>
 			<input type="text" name="keyword" value="${keyword }"/>
 			<input type="submit" value="검색"/>

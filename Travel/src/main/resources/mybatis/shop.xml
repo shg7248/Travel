@@ -77,7 +77,7 @@
 		on z.anum = a.anum
 		inner join region re
 		on a.rcode = re.rcode
-		inner join (
+		left outer join (
 			select a.anum, avg(rating) average
 			from review rev
 			inner join orders o
@@ -144,4 +144,8 @@
 		inner join room r
 		on a.rnum = r.rnum
 	</select>
+	
+	<insert id="InsertPoint">
+		insert into point values (point_seq.nextval, #{mnum}, #{point}, #{chargeType}, sysdate)
+	</insert>
 </mapper>

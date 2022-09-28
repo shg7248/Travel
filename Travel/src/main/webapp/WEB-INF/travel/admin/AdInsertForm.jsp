@@ -1,25 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<form name="c"  method="post" action="Adinsert.admin" enctype="multipart/form-data">
-	<h1><span>광고 추가 화면</span></h1>
-	<p>
-		<label for="adname">광고 이름</label>
-		<input type="text" name="adname" id="adname" value="${a.adname }" >
-	</p>
+	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/travel/common/common.jsp"%>
+<%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
+<link rel="stylesheet" href="${contextPath }/resources/css/board.css">
+
+<script type="text/javascript">
+$(document).ready(function(){
 	
-	<p>
-		<label for="adimage">광고 이미지</label>
-		<input type="text" name="adimage" id="adimage" value="${a.adimage}">
-	</p>
-		
-	<p>
-		<label for="adcontents">광고 컨텐츠</label>
-		<input type="text" name="adcontents" id="adcontents" value="${a.adcontents}">
-	</p>
-	
-	<p>
-		<input type="submit" value="추가하기" id="BtnSubmit">		
-	</p>
-	
+});
+
+function check(){
+ 	if($('input[name="subject"]').val()==""){
+ 		$('#subjectCheck').text('제목을 입력해주세요');
+		f.subject.focus();
+		return false;
+	} 
+ 	if($('input[name="upload"]').val()==""){
+ 		$('#uploadCheck').text('이미지파일을 삽입해주세요');
+		return false;
+	} 
+};
+</script>
+
+<style>
+.err {
+	font-weight: bold;
+	color: red;
+}
+</style>
+
+<div class="default">
+<div class="contents">
+<form name="f" method="post" action="insertadvertisement.admin" enctype="multipart/form-data">
+	<h2 align="center">광고삽입</h2>
+	<table>
+		<tr>
+			<td>
+				<input type="text" name="subject" placeholder="제목을 입력하세요"value=${board1.subject }><br>
+				<font id="subjectCheck" class="err" ></font>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				이미지 파일 :
+				<input type="file" name="upload"><br><br>
+				<font id="uploadCheck" class="err" ></font>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div align="right">
+				<input type="submit" value="입력하기" onclick="return check()">
+				</div>
+			</td>
+		</tr>
+	</table>
 </form>
+</div>
+</div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
