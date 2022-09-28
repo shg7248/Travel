@@ -38,14 +38,10 @@
 				<form:errors cssClass="err" path="content"/><br>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<div align="right">
-				<input type="submit" value="입력하기">
-				</div>
-			</td>
-		</tr>
 	</table>
+	<div class="right_button">
+	<input type="submit" value="입력하기">
+	</div>
 </form:form>
 </div>
 </div>

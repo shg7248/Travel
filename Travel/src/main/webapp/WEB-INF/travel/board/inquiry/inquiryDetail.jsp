@@ -6,7 +6,7 @@
 
 <div class="default">
 <div class="contents">
-<h2>1:1 문의사항 답변하기</h2>
+<h2>1:1 문의사항</h2>
 <table class="inquirytable">
 	<tr>
 		<td align="center" width="12%">제목</td>

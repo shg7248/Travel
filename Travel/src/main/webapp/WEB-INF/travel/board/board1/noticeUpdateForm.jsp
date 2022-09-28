@@ -23,7 +23,7 @@
 	
 	<textarea name="content" id="content"><c:out value="${board1.content}" /></textarea><br>
 	<form:errors cssClass="err" path="content"/><br>
-	<div align="right">
+	<div class="right_button">
 	<input type="submit" id="submit" value="수정하기">
 	</div>
 </form:form>

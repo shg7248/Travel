@@ -37,7 +37,14 @@
 						</c:if>
 					</a>
 				</td>
-				<td>${inquiry.email}</td>
+				<td>
+					<c:if test="${fn:length(inquiry.email)>=15 }">
+					${fn:substring(inquiry.email,0,15)}...
+					</c:if>
+					<c:if test="${fn:length(inquiry.email)<15 }">
+					${inquiry.email }
+					</c:if>
+				</td>
 				<td>
 					<fmt:parseDate var="date" value="${inquiry.reg_date1 }" pattern="yyyy-MM-dd" />
 					<fmt:formatDate var="reg_date" value="${date }" pattern="yyyy-MM-dd" /> ${reg_date }
