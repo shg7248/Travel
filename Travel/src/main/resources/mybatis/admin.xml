@@ -89,6 +89,7 @@
 		<if test="whatColumn == 'fnum'">
 		where fnum like #{keyword}
 		</if>
+		order by fno
 	</select>
 	
   	<select id="GetFaci" resultType="admin.model.FaciBean">
@@ -113,7 +114,7 @@
 	
 	<insert id="InsertFaci" parameterType="admin.model.FaciBean">
 		insert into facility
-		values(faci_SEQ.nextval,#{fnum},#{name},#{fgroup,jdbcType=VARCHAR}
+		values(faci_SEQ.nextval,#{fgroup,jdbcType=VARCHAR},#{fnum},#{name}
 		)
 	</insert>
 	

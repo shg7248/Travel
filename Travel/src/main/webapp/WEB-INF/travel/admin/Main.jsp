@@ -28,7 +28,7 @@
 </script>
 
 <div class="sidebar">
-<h2>회원|시설 관리</h2>[관리자 모드]
+<h2>회원 | 시설 관리</h2>[관리자 모드]<br><br>
 	<ul>
 		<li class="list"><a href="Ulist.admin">사용자</a></li>
 		<li class="list"><a href="Hlist.admin">사업자</a></li>

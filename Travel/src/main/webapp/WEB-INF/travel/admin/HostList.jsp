@@ -18,7 +18,7 @@
 		   	<input type="submit" value="검색">
 	</form>
 	</div>
-   총 사업체수 : ${fn:length(lists) }
+   총 사업체 수 : ${pageInfo.totalCount }
    
    	<table border="1">
    		
@@ -50,13 +50,13 @@
    				<c:choose>
    					<c:when test="${h.approyn==0 }">
    						<%-- <input type="button" value="승인확인" onclick="location.href='Comapprove.admin?cnum=${h.cnum}'"> --%>
-   						<a href="='Comapprove.admin?cnum=${h.cnum}'">승인확인</a>
+   						<a href="Comapprove.admin?cnum=${h.cnum}">승인확인</a>
    					</c:when>
    				</c:choose>
    				
    				<c:choose>
    					<c:when test="${h.approyn==1 }">
-   						승인
+   						승인완료
    					</c:when>
    				</c:choose>
    				
