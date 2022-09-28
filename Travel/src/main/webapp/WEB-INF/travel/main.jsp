@@ -145,7 +145,7 @@
 	<c:forEach var="elists" items="${elists }" varStatus="status" end="2">
 		<section class="small-section">
 		<div class="inner">
-			<a href="eventdetail.brd?nnum=${elists.nnum }"><img src="<%= request.getContextPath() %>/resources/images/event/${elists.content}"></a>
+			<a href="eventdetail.brd?nnum=${elists.nnum }"><img src="<%= request.getContextPath() %>/resources/images/event/${elists.thumbnail}"></a>
 		</div>
 		</section>
 	</c:forEach>

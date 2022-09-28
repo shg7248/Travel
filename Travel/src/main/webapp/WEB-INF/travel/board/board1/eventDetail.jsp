@@ -15,15 +15,6 @@
 <h2>이벤트</h2>
 <table>
 	<tr>
-		<td class="title_td title" >
-			<pre>${bb.subject }</pre>
-			<span class="written-date">
-				<fmt:parseDate var="date" value="${bb.reg_date }" pattern="yyyy-MM-dd" />
-				<fmt:formatDate var="reg_date" value="${date }" pattern="yyyy.MM.dd" /> ${reg_date }
-			</span>
-		</td>
-	</tr>
-	<tr>
 		<td><img class="eventimg" src="<%=request.getContextPath()%>/resources/images/event/${bb.content}"></td>
 	</tr>
 </table>

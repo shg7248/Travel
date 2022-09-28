@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.model.Board">
 	<insert id="Insert">
-		insert into board1(nnum,subject,content,type)
-		values(board1_seq.nextval, #{subject}, #{content}, #{type})
+		insert into board1(nnum,subject,content,type,thumbnail)
+		values(board1_seq.nextval, #{subject}, #{content}, #{type},#{thumbnail})
 	</insert>
 	
 	<select id="GetBoard1NoticeList" resultType="board.board1.model.Board1Bean">
@@ -31,7 +31,7 @@
 	</select>
 	
 	<update id="UpdateBoard1ByNnum">
-		update board1 set subject = #{subject}, content = #{content}
+		update board1 set subject = #{subject}, content = #{content}, thumbnail = #{thumbnail}
 		where nnum = #{nnum}
 	</update>
 	
