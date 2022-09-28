@@ -36,7 +36,9 @@ public class Board1DeleteController {
 		String deletePath = servletContext.getRealPath("/resources/images/event");
 		System.out.println(deletePath);
 		File delFile = new File(deletePath+"/"+bb.getContent());
+		File delFile1 = new File(deletePath+"/"+bb.getThumbnail());
 		delFile.delete();
+		delFile1.delete();
 		
 		bdao.deleteBoard1ByNnum(nnum);
 		return gotoPage2;

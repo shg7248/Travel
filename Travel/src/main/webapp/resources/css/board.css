@@ -56,7 +56,9 @@ td img{
 	padding: 10px;
 }
 .title{
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #747474;
 }
 .inner_td{
 	border: 0px;
@@ -98,4 +100,9 @@ input[type=button],input[type=submit]{
 pre{
 	word-wrap: break-word;
 	white-space: pre-wrap;
+}
+.eventthumbimg{
+	width: 100%;
+	height: 200px;
+	padding: 3px 0px;;
 }

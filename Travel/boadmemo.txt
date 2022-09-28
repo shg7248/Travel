@@ -4,6 +4,7 @@ drop table board1 cascade constraints;
 create table board1( 
 	nnum number not null primary key,	--일련번호
 	subject varchar2(100),				--제목--
+	thumbnail clob,						--섬네일이미지파일
 	content clob not null,				--내용/이미지파일
 	reg_date date default sysdate,		--공지사항작성일
 	type varchar2(20)					--공지사항/이벤트구분
@@ -95,20 +96,20 @@ values(board1_seq.nextval, '휴대폰 결제서비스 일시 중단에 관한 �
 'notice');
 ------------------------------------------------------------------
 --이벤트 데이터-------------------------------------------------------
-insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '하나카드 이벤트','event1_thumb.jpg','event');
+insert into board1(nnum, subject, content, thumbnail, type)
+values(board1_seq.nextval, '하나카드 이벤트','event1_content.jpg','event1_thumb.jpg','event');
 
-insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '대한민국 숙박대전2022','event4_thumb.jpg','event');
+insert into board1(nnum, subject, content, thumbnail, type)
+values(board1_seq.nextval, '대한민국 숙박대전2022','event4_content.jpg','event4_thumb.jpg','event');
 
-insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '농협카드 이벤트','event2_thumb.jpg','event');
+insert into board1(nnum, subject, content, thumbnail, type)
+values(board1_seq.nextval, '농협카드 이벤트','event2_content.jpg','event2_thumb.jpg','event');
 
-insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '우리카드 이벤트','event3_thumb.jpg','event');
+insert into board1(nnum, subject, content, thumbnail, type)
+values(board1_seq.nextval, '우리카드 이벤트','event3_content.jpg','event3_thumb.jpg','event');
 
-insert into board1(nnum, subject, content, type)
-values(board1_seq.nextval, '다시한번 대한민국 숙박대전2022','event5_thumb.jpg','event');
+insert into board1(nnum, subject, content, thumbnail, type)
+values(board1_seq.nextval, '다시한번 대한민국 숙박대전2022','event5_content.jpg','event5_thumb.png','event');
 ------------------------------------------------------------------
   
 --inquiry은 1대1문의 처리

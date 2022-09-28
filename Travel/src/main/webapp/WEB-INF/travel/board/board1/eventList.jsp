@@ -19,6 +19,7 @@
 					<c:if test="${fn:length(board1.subject)<60 }">
 					${board1.subject }
 					</c:if>
+					<img class="eventthumbimg" src="<%=request.getContextPath()%>/resources/images/event/${board1.thumbnail}">
 				</a>
 				<span class="written-date">
 					<fmt:parseDate var="date" value="${board1.reg_date }" pattern="yyyy-MM-dd" />

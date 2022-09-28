@@ -26,6 +26,13 @@
 		</tr>
 		<tr>
 			<td>
+				섬네일 파일 :
+				<input type="file" name="uploadthumbnail"><br><br>
+				<form:errors cssClass="err" path="thumbnail"/><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				이미지 파일 :
 				<input type="file" name="upload"><br><br>
 				<form:errors cssClass="err" path="content"/><br>
