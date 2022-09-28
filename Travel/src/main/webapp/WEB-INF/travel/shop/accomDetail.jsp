@@ -27,7 +27,7 @@
             display: inline-block;
             background-color: white;
             width: 100%;
-            font-size: 20px;
+            font-size: 14px;
         }
         .tab__link.on {
             color: red;
@@ -143,6 +143,7 @@
         	display: grid;
         	grid-template-columns: 1fr 1fr;
         	column-gap: 20px;
+        	row-gap: 20px;
         }
         .room__item {
         	height: 200px;
@@ -203,6 +204,7 @@
 	    <ul class="tab__list">
 	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--1 <c:if test="${onum eq null }">on</c:if>">객실목록</a></li>
 	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--2 <c:if test="${onum ne null }">on</c:if>">리뷰</a></li>
+	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--3">지도</a></li>
 	    </ul>
 	    <div class="tab__content <c:if test="${onum eq null }">on</c:if>">
 			<div class="room">
@@ -244,10 +246,12 @@
 				    	</form>
 	    			</div>
 		    	</c:if>
-		    	   		<hr>
-   		<a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
-   		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
+		   		<a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
+		   		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
 	    	</div>
+	    </div>
+	    <div class="tab__content">
+	    	
 	    </div>
 	</div>
 	<c:if test="${sessionScope.userInfo.email eq 'admin' }">

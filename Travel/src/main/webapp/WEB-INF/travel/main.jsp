@@ -67,9 +67,6 @@
 	justify-content: center;
 	padding: 10px;
 }
-.main{
-	background-color: #F1F1F1;
-}
 </style>
 	<c:if test="${ab ne null }">
 	<section class="default-section">

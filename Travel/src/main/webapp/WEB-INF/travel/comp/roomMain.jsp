@@ -6,6 +6,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: 10px;
+		row-gap: 10px;
 	}
 	.search-wrap__search {
 		display: flex;
@@ -25,6 +26,7 @@
 		width: 100%;
 		height: 100%;
 		padding: 10px;
+		border-radius: 10px;
 	}
 	.search-wrap__item::before {
 		content: '';
@@ -35,6 +37,7 @@
 		right: 0px;
 		left: 0px;
 		background-color: #000;
+		border-radius: 10px;
 		z-index: 998;
 	}
 	.search-wrap__link {

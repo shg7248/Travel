@@ -21,31 +21,31 @@
 			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/${requestScope.accom.image }"></td>
 			        	</tr>
 			        	<tr>
-			        		<td>사업자 등록번호</td>
+			        		<th>사업자 등록번호</th>
 			        		<td>${requestScope.accom.cnum }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박 지역</td>
+			        		<th>숙박 지역</th>
 			        		<td>${requestScope.accom.sido } ${requestScope.accom.sigungu }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박지 상세주소</td>
+			        		<th>숙박지 상세주소</th>
 			        		<td>${requestScope.accom.etcAddr }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박지 이름</td>
+			        		<th>숙박지 이름</th>
 			        		<td>${requestScope.accom.name }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>입실시간</td>
+			        		<th>입실시간</th>
 			        		<td>${requestScope.accom.startTime }시</td>
 			        	</tr> 
 			        	<tr>
-			        		<td>퇴실시간</td>
+			        		<th>퇴실시간</th>
 			        		<td>${requestScope.accom.endTime }시</td>
 			        	</tr> 
 			        	<tr>
-			        		<td colspan="2">숙박지 기본정보</td>
+			        		<th colspan="2">숙박지 기본정보</th>
 			        	</tr> 
 			        	<tr>
 			        		<td colspan="2">${requestScope.accom.info }</td>
