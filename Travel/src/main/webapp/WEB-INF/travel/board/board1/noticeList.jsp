@@ -27,15 +27,13 @@
 			</td>
 		</tr>
 		</c:forEach>
-		<c:if test="${email eq 'admin' }">
-		<tr>
-			<td align="right">
-				<input type="button" value="추가하기" onclick="location.href='insertnotice.brd'">
-			</td>
-		</tr>
-		</c:if>
 	</table>
 ${pageInfo.pagingHtml }
+<div class="right_button">
+<c:if test="${email eq 'admin' }">
+		<input type="button" value="추가하기" onclick="location.href='insertnotice.brd'">
+</c:if>
+</div>
 </div>
 </div>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

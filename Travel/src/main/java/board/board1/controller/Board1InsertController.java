@@ -69,7 +69,7 @@ public class Board1InsertController {
 		MultipartFile multi = bb.getUpload();
 		bdao.insert(bb);
 		
-		String uploadPath = servletContext.getRealPath("/resources/board1");
+		String uploadPath = servletContext.getRealPath("/resources/images/event");
 		System.out.println("uploadPath: "+uploadPath);
 		
 		File file = new File(uploadPath+"/"+multi.getOriginalFilename());

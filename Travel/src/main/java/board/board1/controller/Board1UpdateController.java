@@ -77,13 +77,13 @@ public class Board1UpdateController {
 		}
 		
 		//기존 이미지 삭제
-		String originalPath = servletContext.getRealPath("/resources/board1")+"/"+originalContent;
+		String originalPath = servletContext.getRealPath("/resources/images/event")+"/"+originalContent;
 		File file1 = new File(originalPath);
 		file1.delete();
 		
 		//새로운 이미지 등록
 		MultipartFile multi = bb.getUpload();
-		String newPath = servletContext.getRealPath("/resources/board1")+"/"+bb.getContent(); //업로드 위치 설정
+		String newPath = servletContext.getRealPath("/resources/images/event")+"/"+bb.getContent(); //업로드 위치 설정
 		File file2 = new File(newPath);
 		
 		try {

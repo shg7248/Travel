@@ -30,7 +30,7 @@
 		</tr>
 		<tr height="300">
 			<td align="center" width="10%">내용</td>
-			<td width="90%" colspan="5">${ib.question }</td>
+			<td width="90%" colspan="5"><pre class="pre_content">${ib.question }</pre></td>
 		</tr>
 		<tr height="300">
 			<td align="center" width="10%">답변</td>

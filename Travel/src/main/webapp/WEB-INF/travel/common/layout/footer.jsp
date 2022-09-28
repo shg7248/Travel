@@ -9,17 +9,11 @@
 			<img alt="" src="<%= request.getContextPath() %>/resources/images/Logo.png">
 		</div>
 		<div class="ul_content">
-			<ul class="ul_box">
-				<li>(주)TRAVEL MAKER<span>|</span></li>
-				<li>팀원 : 김찬우, 송학관, 장현세, 전진환<span>|</span></li>
-				<li>주소 : 서울 마포구 신촌로 176<span>|</span></li>
-				<li>메일 : admin@naver.com<span>|</span></li>
-				<li>메일 : admin@naver.com<span>|</span></li>
-				<li>메일 : admin@naver.com<span>|</span></li>
-		       </ul>
-			<ul class="ul_box">
-				<li>고객센터 1234-5678(평일 오전 9시 - 오후 6시)</li>
-			</ul>
+			<div class="ul_box">
+				<p>(주)TRAVEL MAKER<span>|</span>팀원 : 김찬우, 송학관, 장현세, 전진환<span>|</span>주소 : 서울 마포구 신촌로 176</p>
+				<p>메일1 : admin@naver.com<span>|</span>메일2 : admin@naver.com<span>|</span>메일3 : admin@naver.com</p>
+		       	<p>고객센터 1234-5678(평일 오전 9시 - 오후 6시)</p>
+			</div>
 		</div>
 	</div>
 </footer>
