@@ -1,6 +1,7 @@
 package shop.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,12 @@ public class ShopOrderController {
 		
 		Object obj = session.getAttribute("mnum");
 		if(obj == null) {
-			response.sendRedirect(contextPath + "/userLoginForm.log");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('로그인이 필요합니다'); location.href='" + contextPath + "/userLoginForm.log'</script>");
+			out.flush();
+			out.close();
+			return null;
 		}
 		
 		int mnum = (Integer) obj;
