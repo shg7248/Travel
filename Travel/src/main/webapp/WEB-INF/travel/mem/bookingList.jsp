@@ -77,7 +77,6 @@ function check(onum){
 						취소불가
 					</c:when>
 				</c:choose>
-				
 			</td>
 		</tr>
 	</c:forEach>

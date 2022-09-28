@@ -179,6 +179,9 @@
         	left: -20px;
         	transform:scale(0.7);
         }
+        .reply__remove {
+        	cursor: pointer;
+        }
 </style>
 <article>
 	<div class="accom">
@@ -241,12 +244,15 @@
 				    	</form>
 	    			</div>
 		    	</c:if>
-	   		<a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
-	   		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
-	   		<hr>
+		    	   		<hr>
+   		<a class="reply__order reply__order-asc" onclick="replyOrder(0)">오래된순</a>
+   		<a class="reply__order reply__order-desc" onclick="replyOrder(1)">최신순</a>
 	    	</div>
 	    </div>
 	</div>
+	<c:if test="${sessionScope.userInfo.email eq 'admin' }">
+	
+	</c:if>
 </article>
 <script type="text/javascript">
 	let defaults = {
@@ -282,9 +288,7 @@
 			reply__list.classList.add('reply__list');
 			let reply__item = ``;
 			if(data.totalCount == 0) {
-				reply.innerHTML = "";
-				reply_item = "등록된 리뷰가 없습니다";
-				reply.append(reply_item);
+				
 			}
 			else {
 				data.lists.forEach((obj, i)=> {
@@ -299,6 +303,9 @@
 					reply__item += `<span>`+ obj.rname +`</span>`;
 					reply__item += `<span>` + obj.email + `</span>`;
 					reply__item += `<span><img class="reply__starImage" src='/travel/resources/images/star/` + obj.rating + `.png'/></span>`;
+					<c:if test="${sessionScope.userInfo.email eq 'admin' }">
+						reply__item += '<span class="reply__remove" onclick="deleteReply(\'' + obj.rvnum +'\')">삭제</span>';
+					</c:if>
 					reply__item += `</div></div>`
 					
 					if(obj.reply !== null) {
@@ -356,6 +363,25 @@
 			reply(window); 
 		}); 
 		return false;
+	}
+	function deleteReply(rvnum) {
+
+		
+		fetch("${contextPath}/deleteReply.shop", {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			body: JSON.stringify({rvnum: rvnum})
+		})
+		.then(()=> {
+			const r = document.querySelectorAll('.reply__list');
+			r.forEach((elem)=> {
+				elem.remove();
+			});
+			defaults = {...defaults, pageNumber: 1};
+			reply(window);
+		});
 	}
 	
 	(function() {

@@ -79,6 +79,10 @@ public class TravelMemberDao {
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		return sst.selectList(namespace + ".GetMemberPointListByMnum", mnum, rowBounds);
 	}
+
+	public TravelUserBean getUserInfoByMnum(int mnum) {
+		return sst.selectOne(namespace + ".GetUserInfoByMnum", mnum);
+	}
 	
 	
 }

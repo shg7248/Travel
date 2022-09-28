@@ -12,6 +12,11 @@
 				<th>포인트</th>
 				<th>날짜</th>
 			</tr>
+			<c:if test="${fn:length(pointBean) == 0 }">
+				<tr>
+					<td colspan="4" align="center">포인트가 없습니다</td>
+				</tr>
+			</c:if>
 			<c:forEach var="item" items="${pointBean }">
 				<tr>
 					<td>${item.pnum }</td>

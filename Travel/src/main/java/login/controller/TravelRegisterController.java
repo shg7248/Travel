@@ -39,6 +39,8 @@ public class TravelRegisterController {
 	private final String command3 = "/ajax.log";
 	private final String command4 = "/ajax2.log";
 	@Autowired
+	ShopDao shopDao;
+	@Autowired
 	TravelUserDao tudao;
 	@Autowired
 	TravelCompanyDao tcdao;
@@ -87,6 +89,15 @@ public class TravelRegisterController {
 		System.out.println("변경된 비밀번호:"+tubean.getPwd());
 		//user회원가입
 		tudao.insert(tubean);
+		
+		System.out.println("mnum : " + tubean.getMnum());
+		
+		PointBean pointBean = new PointBean();
+		pointBean.setMnum(tubean.getMnum());
+		pointBean.setChargeType("회원가입");
+		pointBean.setPoint(200);
+		
+		shopDao.insertPoint(pointBean);
 		
 		mav.setViewName(gotoPage);
 

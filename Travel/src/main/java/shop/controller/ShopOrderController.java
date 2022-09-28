@@ -70,9 +70,12 @@ public class ShopOrderController {
 		orderBean.setStartDate(startDate);
 		orderBean.setEndDate(endDate);
 		
+		int point = shopDao.getTotalPointByMnum(mnum);
+		
 		DetailBean rb = shopDao.getOrderInfoByRnum(orderBean);
 		model.addAttribute("rb", rb);
 		model.addAttribute("lists", lists);
+		model.addAttribute("point", point);
 		
 		return getPage;
 	}

@@ -54,4 +54,8 @@ public class ReplyDao {
 	public int updateReplyByRvnum(ReplyBean replyBean) {
 		return sqlSessionTemplate.update(namespace + ".UpdateReplyByRvnum", replyBean);
 	}
+
+	public void deleteReplyByRvnum(String rvnum) {
+		sqlSessionTemplate.update(namespace + ".DeleteReplyByRvnum", rvnum);
+	}
 }

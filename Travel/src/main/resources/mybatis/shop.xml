@@ -148,4 +148,12 @@
 	<insert id="InsertPoint">
 		insert into point values (point_seq.nextval, #{mnum}, #{point}, #{chargeType}, sysdate)
 	</insert>
+	
+	<select id="GetTotalPointByMnum" resultType="int">
+		select nvl(sum(p.point), 0) as point
+		from member m
+		inner join point p
+		on m.mnum = p.mnum
+		where m.mnum = #{mnum}
+	</select>
 </mapper>

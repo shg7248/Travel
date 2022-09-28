@@ -84,4 +84,16 @@
 		where mnum = #{mnum}
 		order by pnum desc
 	</select>
+	
+	<select id="GetUserInfoByMnum" resultType="MyMember">
+		select m.mnum, email, name, pwd, phone, flatform, reg_date, p.point
+		from member m
+		left outer join (
+			select mnum, sum(point) point
+			from point
+			group by mnum
+		) p
+		on m.mnum = p.mnum
+		where m.mnum = #{mnum}
+	</select>
 </mapper>
