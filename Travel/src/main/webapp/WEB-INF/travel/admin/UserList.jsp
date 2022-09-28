@@ -19,7 +19,8 @@
 	   	<input type="submit" value="검색">
    </form>
 </div>
-   총회원수 : ${fn:length(lists) }
+	
+   총 사용자 수 : ${pageInfo.totalCount}
    
    	<table border="1">
    		<tr>
@@ -46,10 +47,13 @@
 	   			<td><a href="Udele.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
 	   		</tr>
 		</c:forEach>
+<tr>
+	<td colspan="100%">
+		${pageInfo.pagingHtml }
+	</td>
+</tr>
 	</table>
-	<div class="garo">
-	${pageInfo.pagingHtml}
-	</div>
+	
 	</div>
 </div>
 	

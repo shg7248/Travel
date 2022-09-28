@@ -30,11 +30,12 @@
 </tr>
 
 </c:forEach>
-
+		<tr>
+			<td colspan="100%">
+				${pageInfo.pagingHtml }
+			</td>
+		</tr>
 </table>
-	<div class="garo">
-	${pageInfo.pagingHtml}
-	</div>
 <input type="button" value="추가" onclick="location.href='Cateinsert.admin'">
 </div>
 </div>

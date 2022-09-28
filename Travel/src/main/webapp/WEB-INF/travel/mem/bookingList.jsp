@@ -9,6 +9,10 @@ function check(onum){
 		location.href='bookingCancel.mem?onum='+onum;
 	}
 }
+
+function sub(){
+	f.submit();
+}
 </script>
 
 <div class="all">
@@ -57,10 +61,10 @@ function check(onum){
 						리뷰작성 완료
 					</c:when>
 					<c:when test="${list.reviewCount == 0 && list.resStatus == 2}">
-						<form action="${contextPath}/shop/detail.shop" method="post">
+						<form action="${contextPath}/shop/detail.shop" method="post" name="f">
 							<input type="hidden" name="onum" value="${list.onum }"/>
 							<input type="hidden" name="anum" value="${list.anum }"/>
-							<input type="submit" value="리뷰쓰기" style="width: 70px;"/>
+							<a href="#" onclick="sub()">리뷰쓰기</a>
 						</form>						
 					</c:when>
 					<c:otherwise>
@@ -79,6 +83,7 @@ function check(onum){
 				</c:choose>
 			</td>
 		</tr>
+		<tr><td></td></tr>
 	</c:forEach>
 </table>
 </div>
