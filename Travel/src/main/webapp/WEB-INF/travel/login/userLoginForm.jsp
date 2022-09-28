@@ -94,7 +94,7 @@ function checkAll(){
 </div>
 <font id="checkEmail" class="err"></font>
 <div class="div password">
-<input type="text" name="pwd" id="login_pwd" placeholder="PassWord">
+<input type="password" name="pwd" id="login_pwd" placeholder="PassWord">
 </div>
 <font id="checkPwd" class="err"></font>
 <div>
