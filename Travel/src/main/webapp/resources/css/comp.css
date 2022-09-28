@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    background: #E0E7E9;
 }
 
 .wrap {
@@ -9,7 +10,12 @@ html, body {
     padding-left: 200px;
     min-height: 100%;
 }
-
+.section {
+	background: white;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	min-height: 800px;
+}
 .header {
     position: absolute;
     left: 0;
@@ -18,6 +24,17 @@ html, body {
     min-height: inherit;
     background: #2e2e2e;
     color: white;
+}
+.logo {
+	text-align: center;
+	margin-top: 50px;
+}
+.bindclib {
+	position: absolute;
+	width: 40%;
+	left: 150px;
+	top: 0px;
+	transform: rotate(-45deg);
 }
 .nav__inner {
     margin-top: 20px;
@@ -29,7 +46,7 @@ html, body {
 .nav__link {
     display: inline-block;
     font-weight: bold;
-    width: 95%;
+    width: 100%;
     height: 60px;
     line-height: 60px;
     color: white;
@@ -50,10 +67,10 @@ html, body {
     display: inline-block;
     font-size: 14px;
     font-weight: normal;
-    width: 95%;
+    width: 90%;
     height: 30px;
     line-height: 30px;
-    color: white;	
+    color: white;
 }
 
 .main {
@@ -94,13 +111,20 @@ table tr:not(tr:last-child) {
 	border-bottom: 1px solid #ebebeb;
 }
 
+table th, table td {
+	padding: 10px;
+}
+
 table th {
 	font-weight: bold;
 	vertical-align: middle;
+	font-size: 13px;
 }
 
 table td {
-	padding: 20px 0px 5px 0px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 11px;
 }
 
 table.accom-insert__form th {

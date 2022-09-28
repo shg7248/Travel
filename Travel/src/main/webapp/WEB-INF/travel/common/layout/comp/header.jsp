@@ -4,10 +4,12 @@
 <link rel="stylesheet" href="${contextPath }/resources/css/comp.css">
 <c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" />
 <c:set var="page" value="${fn:substring(path, 6, 8) }" />
-
 <div class="wrap">
 	<header class="header">
-	    <div class="logo"></div>
+	    <div class="logo">
+	    	<img class="logo__image" src="${contextPath }/resources/images/Logo.png">
+	    </div>
+	    <img class="bindclib" src="${contextPath }/resources/images/bind.png">
 	    <nav class="nav">
 	        <div class="nav__inner">
 	            <ul class="nav__list">

@@ -38,11 +38,11 @@
 	<article>
 			<table>
 				<tr>
-					<th width="5%">번호</th>
+					<th width="10%">번호</th>
 					<th width="10%">객실명</th>
-					<th width="50%">내용</th>
+					<th width="40%">내용</th>
 					<th width="10%">작성자</th>
-					<th width="5%">평점</th>
+					<th width="10%">평점</th>
 					<th width="10%">등록일</th>
 					<th width="10%">답변여부</th>
 				</tr>

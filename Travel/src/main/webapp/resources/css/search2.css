@@ -16,6 +16,7 @@ input[type='text'] {
 }
 .cate-nav__list {
 	display: flex;
+	padding: 0px 20px;
 }
 .cate-nev__item {
 	margin-right: 20px;
@@ -55,6 +56,9 @@ input[type='text'] {
 }
 .search-wrap__region {
 	padding: 20px;
+}
+.region {
+	height: 100px;
 }
 .region__list {
 	width: 100%;
