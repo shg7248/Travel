@@ -142,7 +142,6 @@ h2{
 .board ul:not(ul:first-child) > li:last-child:hover { 
      background-color:#e4e4e4;
 }    
-
 label{
 	font-size:16px;
 	font-weight: bold;
@@ -188,6 +187,7 @@ table tr{
 table tr th {
     background-color:#ff8080;
     font-size:9pt;
+    font-weight:bold;
     color: white;
     min-height: 30px;
     line-height: 3;
@@ -199,7 +199,9 @@ table tr td:not(table tr:last-child td){
     vertical-align:middle;
     line-height: 2;
     color: black;
+    
 }
+
 
 select{
 	margin-top: 20;

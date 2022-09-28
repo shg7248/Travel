@@ -28,13 +28,15 @@
 	<td><a href="Faciupdate.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">수정</a></td>
 	<td><a href="Facidele.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
 </tr>
-
 </c:forEach>
+<tr>
+	<td colspan="100%">
+		${pageInfo.pagingHtml }
+	</td>
+</tr>
 
 </table>
-	<div class="garo">
-	${pageInfo.pagingHtml}
-	</div>
+	
 <input type="button" value="추가" onclick="location.href='Faciinsert.admin'">
 </div>
 </div>

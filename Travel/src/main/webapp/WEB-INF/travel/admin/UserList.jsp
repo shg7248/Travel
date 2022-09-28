@@ -47,10 +47,13 @@
 	   			<td><a href="Udele.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
 	   		</tr>
 		</c:forEach>
+<tr>
+	<td colspan="100%">
+		${pageInfo.pagingHtml }
+	</td>
+</tr>
 	</table>
-	<div class="garo">
-	${pageInfo.pagingHtml}
-	</div>
+	
 	</div>
 </div>
 	

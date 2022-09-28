@@ -84,6 +84,7 @@ function sub(){
 				
 			</td>
 		</tr>
+		<tr><td></td></tr>
 	</c:forEach>
 </table>
 </div>
