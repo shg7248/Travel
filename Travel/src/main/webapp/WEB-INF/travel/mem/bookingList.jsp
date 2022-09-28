@@ -83,7 +83,6 @@ function sub(){
 				</c:choose>
 			</td>
 		</tr>
-		<tr><td></td></tr>
 	</c:forEach>
 </table>
 </div>

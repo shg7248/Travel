@@ -303,6 +303,7 @@
 					reply__item += `<span>`+ obj.rname +`</span>`;
 					reply__item += `<span>` + obj.email + `</span>`;
 					reply__item += `<span><img class="reply__starImage" src='/travel/resources/images/star/` + obj.rating + `.png'/></span>`;
+					
 					<c:if test="${sessionScope.userInfo.email eq 'admin' }">
 						reply__item += '<span class="reply__remove" onclick="deleteReply(\'' + obj.rvnum +'\')">삭제</span>';
 					</c:if>
