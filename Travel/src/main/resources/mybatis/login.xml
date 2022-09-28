@@ -14,7 +14,8 @@
 	</select>
 	
 	<select id="UserLogin" resultType="MyMember">
-		select * from member
+		select *
+		from member
 		where email = #{email}
 	</select>
 	

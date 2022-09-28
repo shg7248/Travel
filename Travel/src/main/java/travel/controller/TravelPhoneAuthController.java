@@ -30,18 +30,20 @@ public class TravelPhoneAuthController {
 		int rannum = (int)(Math.random() * 900000) + 100000;
 		String rannum2 = String.valueOf(rannum);
 		
+		System.out.println("key : " + rannum2);
+		
 		redisAuth.setKeyValue(phone, rannum2, 300);
-		
-		Message coolsms = new Message(api_key, api_secret);
-		
-		HashMap<String, String> set = new HashMap<String, String>();
-	    set.put("to", "01077437248"); // 수신번호
-
-	    set.put("from", phone); // 발신번호
-	    set.put("text", "인증번호는 " + rannum2 + "입니다."); // 문자내용
-	    set.put("type", "sms"); // 문자 타입
-	    
-	    coolsms.send(set); // 보내기&전송결과받기
+//		
+//		Message coolsms = new Message(api_key, api_secret);
+//		
+//		HashMap<String, String> set = new HashMap<String, String>();
+//	    set.put("to", "01077437248"); // 수신번호
+//
+//	    set.put("from", phone); // 발신번호
+//	    set.put("text", "인증번호는 " + rannum2 + "입니다."); // 문자내용
+//	    set.put("type", "sms"); // 문자 타입
+//	    
+//	    coolsms.send(set); // 보내기&전송결과받기
 		
 		return "success";
 	}

@@ -64,27 +64,15 @@
 <section class="default-section">
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 	
-	  <div class="carousel-indicators">
-	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
-	    <c:if test="${fn:length(elists) >= 5 }">
-		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="4">
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
-		    </c:forEach>
-	    </c:if>
-	    <c:if test="${fn:length(elists) < 5 }">
-		    <c:forEach var="i" varStatus="status" step="1" begin="1" end="${fn:length(elists)-1}">
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i }" aria-label="Slide ${i }"></button>
-		</c:forEach>
-	    </c:if>
-	  </div>
+	  
 	  
 	  <div class="carousel-inner">
 		<div class="carousel-item active">
-			<img src="<%= request.getContextPath() %>/resources/board1/${bb.content}" class="d-block" alt="0 slide">
+			<img src="<%= request.getContextPath() %>/resources/images/advertisement/${ab.adimage}" class="d-block" alt="0 slide">
 		</div>
-	  <c:forEach var="elists" items="${elists }" varStatus="status" begin="1">
+	  <c:forEach var="alists" items="${alists }" varStatus="status" begin="1">
 		<div class="carousel-item">
-			<img src="<%= request.getContextPath() %>/resources/board1/${elists.content}" class="d-block" alt="${status.count} slide">               
+			<img src="<%= request.getContextPath() %>/resources/images/advertisement/${alists.adimage}" class="d-block" alt="${status.count} slide">               
 		</div>
 		</c:forEach>
 	  </div>

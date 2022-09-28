@@ -9,11 +9,13 @@
 	}
 	.search-wrap__search {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
+		align-items: center;
 		margin-bottom: 20px;
 	}
 	.search-wrap__submit {
 		margin: 0px 5px !important;
+		height: 30px;
 	}
 	.search-wrap__list {
 		position: relative;
@@ -51,12 +53,12 @@
 	}
 </style>
 <section class="search-wrap">
-	<input class="search-wrap__input" type="button" value="객실등록" onclick="location.href='${contextPath}/comp/room/insert.comp'"><br>
 	<article class="search-wrap__search">
+		<input class="search-wrap__input" type="button" value="객실등록" onclick="location.href='${contextPath}/comp/room/insert.comp'">
 		<form method="get" action="main.comp">
 			<select name="whatColumn" class="search-wrap__select">
 				<option value="">전체</option>
-				<option value="name" <c:if test="${whatColumn eq 'name' }">selected</c:if>>객실 이름</option>
+				<option value="name" <c:if test="${whatColumn eq 'name' }">selected</c:if>>객실명</option>
 			</select>
 			<input class="search-wrap__text" type="text" name="keyword" value="${keyword }">
 			<input class="search-wrap__submit" type="submit" value="검색">
