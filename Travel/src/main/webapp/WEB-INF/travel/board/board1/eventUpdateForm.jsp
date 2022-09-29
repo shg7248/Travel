@@ -28,18 +28,18 @@
 		</tr>
 		<tr>
 			<td>
-				썸네일 이미지 파일 :
+				<label class="upd_ins_label">기존 썸네일 이미지 파일</label>
 				<img src="<%=application.getContextPath()%>/resources/images/event/${board1.thumbnail}"><br>
-				수정할 썸네일 파일 :
+				<label class="upd_ins_label">수정할 썸네일 이미지 파일</label>
 				<input type="file" name="uploadthumbnail"><br><br>
 				<form:errors cssClass="err" path="thumbnail"/><br>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				이미지 파일 :
+				<label class="upd_ins_label">기존 이미지 파일</label>
 				<img src="<%=application.getContextPath()%>/resources/images/event/${board1.content}"><br>
-				수정할 파일 :
+				<label class="upd_ins_label">수정할 이미지 파일</label>
 				<input type="file" name="upload"><br><br>
 				<form:errors cssClass="err" path="content"/><br>
 			</td>

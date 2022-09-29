@@ -7,7 +7,6 @@ public class AdBean {
 	private String subject;
 	private String adimage;
 	private String reg_date;
-	private String status;
 	private MultipartFile upload;
 	
 	
@@ -44,12 +43,5 @@ public class AdBean {
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 	
 }
