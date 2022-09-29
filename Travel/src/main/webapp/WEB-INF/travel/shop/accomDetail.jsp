@@ -48,9 +48,18 @@
         .reply__form {
         	margin-bottom: 20px;
         }
+        .reply__rating-list {
+        	margin-bottom: 10px;
+        }
+        .reply__textarea {
+        	resize: none;
+        	margin-bottom: 10px;
+        }
         .reply__submit {
         	float: right;
-        	
+        	padding: 5px 10px;
+        	background: black;
+        	color: white;
         }
         .reply__list {
         	padding: 10px;
@@ -144,15 +153,36 @@
         	grid-template-columns: 1fr 1fr;
         	column-gap: 20px;
         	row-gap: 20px;
+        	z-index: 999;
         }
         .room__item {
+        	position: relative;
+        	display: flex;
         	height: 200px;
         	padding: 10px;
-        	display: flex;
         	color: white;
         	flex-direction: column;
         	justify-content: flex-end;
         	align-items: flex-end;
+        }
+        .room__item::before {
+        	content: '';
+        	position: absolute;
+        	bottom: 0px;
+        	right: 0px;
+        	width: 100%;
+        	height: 100%;
+        	background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 10%,
+            rgba(20, 20, 20, 0.25) 25%,
+            rgba(20, 20, 20, 0.5) 50%,
+            rgba(20, 20, 20, 0.75) 75%,
+            rgba(20, 20, 20, 1) 100% );
+            z-index: 800;
+        }
+        .room__name, .room__price {
+        	position: relative;
+        	z-index: 900;
+        	font-size: 16px;
         }
         .room-res__btn {
         	background: #B22222;
@@ -160,10 +190,14 @@
         	text-align: center;
         	border-radius: 10px;
         	padding: 10px 20px;
+        	z-index: 900;
         }
         
-        .room-res__btn-no {
-			background: #DCDCDC;    
+        .room-res__btn--yes {
+			background: #708090;    
+        }        
+        .room-res__btn--no {
+			background: #A9A9A9; 
         }
         
         /* accom */
@@ -202,9 +236,9 @@
 <article>
 	<div class="tab">
 	    <ul class="tab__list">
-	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--1 <c:if test="${onum eq null }">on</c:if>">객실목록</a></li>
-	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--2 <c:if test="${onum ne null }">on</c:if>">리뷰</a></li>
-	        <li class="tab__item"><a href="javascript: return false;" class="tab__link tab__link--3">지도</a></li>
+	        <li class="tab__item"><a href="javascript:return false;" class="tab__link tab__link--1 <c:if test="${onum eq null }">on</c:if>">객실목록</a></li>
+	        <li class="tab__item"><a href="javascript:return false;" class="tab__link tab__link--2 <c:if test="${onum ne null }">on</c:if>">리뷰</a></li>
+	        <li class="tab__item"><a href="javascript:return false;" class="tab__link tab__link--3">지도</a></li>
 	    </ul>
 	    <div class="tab__content <c:if test="${onum eq null }">on</c:if>">
 			<div class="room">
@@ -229,19 +263,21 @@
 		    	<c:if test="${onum ne null}">
 	    			<div class="reply__form">
 				    	<form action="reviewWrite.shop" method="post" name="replyForm" enctype="multipart/form-data">
-				    		<input type="hidden" name="onum" value="${onum }"/>
-					        <input type="radio" name="rating" id="1" value="1" checked>
-				    		<label for="1">★☆☆☆☆</label>
-					        <input type="radio" name="rating" id="2" value="2">
-					        <label for="2">★★☆☆☆</label>
-					        <input type="radio" name="rating" id="3" value="3">
-					        <label for="3">★★★☆☆</label>
-					        <input type="radio" name="rating" id="4" value="4">
-					        <label for="4">★★★★☆</label>
-					        <input type="radio" name="rating" id="5" value="5">
-					        <label for="5">★★★★★</label>
-					        <textarea rows="" cols="" style="width: 100%; height: 100px;" name="content"></textarea>
-					        <input type="file" name="upload"/>
+				    		<div class="reply__rating-list">
+					    		<input type="hidden" name="onum" value="${onum }"/>
+						        <input type="radio" name="rating" id="1" value="1">
+					    		<label for="1">★☆☆☆☆</label>
+						        <input type="radio" name="rating" id="2" value="2">
+						        <label for="2">★★☆☆☆</label>
+						        <input type="radio" name="rating" id="3" value="3">
+						        <label for="3">★★★☆☆</label>
+						        <input type="radio" name="rating" id="4" value="4">
+						        <label for="4">★★★★☆</label>
+						        <input type="radio" name="rating" id="5" value="5" checked>
+						        <label for="5">★★★★★</label>
+				    		</div>
+					        <textarea class="reply__textarea" rows="" cols="" style="width: 100%; height: 100px;" name="content"></textarea>
+					        <input class="reply__file" type="file" name="upload"/>
 					        <input class="reply__submit" type="submit" value="등록" onclick="return replySubmit()"/>
 				    	</form>
 	    			</div>
@@ -251,14 +287,18 @@
 	    	</div>
 	    </div>
 	    <div class="tab__content">
-	    	
+			<div id="map"></div>
 	    </div>
 	</div>
-	<c:if test="${sessionScope.userInfo.email eq 'admin' }">
-	
-	</c:if>
 </article>
 <script type="text/javascript">
+	var container = document.getElementById('map'),
+	map = new kakao.maps.Map(container, { // 지도를 표시할 div
+	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
+	    level : 3 // 지도의 확대 레벨 
+	});
+	
+
 	let defaults = {
 		pageNumber: 1,
 		pageSize: 5,
@@ -296,11 +336,12 @@
 			}
 			else {
 				data.lists.forEach((obj, i)=> {
-					console.log(obj.image);
 					reply__item += `<div class="reply__item">`;
 					reply__item += `<div class="reply__info--content">`;
 					reply__item += '<p>'+ obj.content +'</p>';
-					reply__item += '<img class="reply__image" src="/travel/resources/images/reply/' + obj.image + '"/>';
+					if(obj.image) {
+						reply__item += '<img class="reply__image" src="/travel/resources/images/reply/' + obj.image + '"/>';
+					}
 					reply__item += `</div>`;
 					reply__item += `<div class="reply__info--writer">`;
 					reply__item += `<span>` + obj.reg_date + `</span>`;
@@ -365,10 +406,13 @@
 				elem.remove();
 			})
 			defaults = {...defaults, pageNumber: 1};
+			
+			document.querySelector('.reply__form').style.display = "none";
+			
 			reply(window); 
 		}); 
-		return false;
 	}
+	
 	function deleteReply(rvnum) {
 
 		
@@ -401,6 +445,23 @@
 	            
 	            con[i].classList.toggle('on')
 	            e.target.classList.toggle('on');
+	            
+	            
+	            // 카카오 맵
+		    	container.style.width = '100%';
+		    	container.style.height = '400px';
+	            map.relayout();
+	            
+		       	let moveLatLon = new kakao.maps.LatLng('${accom.latitude }', '${accom.longitude }');
+		    	map.setCenter(moveLatLon);
+		    	addMarker(moveLatLon);
+		    	 
+		    	function addMarker(position) {
+		    		var marker = new kakao.maps.Marker({
+		    			position: position
+		    		});
+		    		marker.setMap(map);
+		    	}
 	        });
 	    });
 	}());
