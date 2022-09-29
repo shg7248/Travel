@@ -208,7 +208,18 @@
         	display: grid;
         	grid-template-columns: 2fr 1fr;
         	column-gap: 10px;
+        	height:500px;
         }
+        .accom__info {
+        	background: #FFE4E1;
+        	overflow-y: auto;
+        	padding: 20px;
+        	height: inherit;
+        	font-size: 14px;
+        	border-radius: 10px;
+        	color: 606c76;
+        }
+        
         .reply__starImage {
         	position: relative;
         	left: -20px;
