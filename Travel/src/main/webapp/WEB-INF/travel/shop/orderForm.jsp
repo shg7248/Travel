@@ -11,7 +11,11 @@
 	}
 	.order-wrap {
 		display: grid;
-		grid-template-columns: 7fr 3fr;
+		grid-template-columns: 6fr 4fr;
+		column-gap: 10px;
+	}
+	.contents {
+		
 	}
 	.info2__item {
 		font-size: 20px;
@@ -92,7 +96,7 @@ function checkAll(){
 	}
 }
 </script>
-<div class="all">
+<div class="order-wrap">
 	<div class="contents">
 		<form name="f" method="post" action="${contextPath }/shop/order.shop">
 			<input type="hidden" name="rnum" value="${rnum }">
@@ -149,7 +153,7 @@ function checkAll(){
 			<input type="submit" value="예약하기" onclick="return checkAll()">
 		</form>
 	</div>
-	<div class="sidebar">
+	<div class="info2__item">
 		<p class="info2__item info2__item--name">
 		<strong>숙박지이름</strong>
 		${rb.aname }
