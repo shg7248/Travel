@@ -4,6 +4,7 @@
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
+
 <div class="default">
 <%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
@@ -15,7 +16,7 @@
 		<td align="center" width="70px">번호</td>
 		<td align="center" width="300px">제목</td>
 		<td align="center" width="">작성자</td>
-		<td align="center" width="">작성일</td>
+		<td align="center" width="90px">작성일</td>
 		<td align="center" width="100px">답변상황</td>
 	</tr>
 	<c:if test="${empty lists }">
@@ -29,15 +30,15 @@
 				<td>${(pageInfo.totalCount-(pageInfo.pageNumber-1)*pageInfo.pageSize)-status.index }</td>
 				<td align="left">
 					<a href="inqdetail.brd?inum=${inquiry.inum }&pageNumber=${pageInfo.pageNumber}">
-						<c:if test="${fn:length(inquiry.subject)>=30 }">
-						${fn:substring(inquiry.subject,0,30)}...
+						<c:if test="${fn:length(inquiry.subject)>=20 }">
+						${fn:substring(inquiry.subject,0,20)}...
 						</c:if>
-						<c:if test="${fn:length(inquiry.subject)<30 }">
+						<c:if test="${fn:length(inquiry.subject)<20 }">
 						${inquiry.subject }
 						</c:if>
 					</a>
 				</td>
-				<td>
+				<td align="left">
 					<c:if test="${fn:length(inquiry.email)>=15 }">
 					${fn:substring(inquiry.email,0,15)}...
 					</c:if>
@@ -53,13 +54,7 @@
 			</tr>
 		</c:forEach>
 	</c:if>
-	<c:if test="${email ne 'admin' and email ne 'null'}">
-		<tr>
-			<td align="right" colspan="5">
-				<input type="button" value="문의하기" onclick="location.href='inqinsert.brd'">
-			</td>
-		</tr>
-	</c:if>
+	
 </c:if>
 
 <c:if test="${email eq 'null'}">
@@ -68,6 +63,11 @@
 	</tr>
 </c:if>
 </table>
+<c:if test="${email ne 'admin' and email ne 'null'}">
+	<div class="right_button">
+		<input type="button" value="문의하기" onclick="location.href='inqinsert.brd'">
+	</div>
+</c:if>
 ${pageInfo.pagingHtml }
 </div>
 </div>

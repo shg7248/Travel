@@ -13,10 +13,10 @@
 		<tr>
 			<td class="title_td">
 				<a class="title" href="noticedetail.brd?nnum=${board1.nnum }&pageNumber=${pageInfo.pageNumber}">
-					<c:if test="${fn:length(board1.subject)>=60 }">
-					${fn:substring(board1.subject,0,60)}...
+					<c:if test="${fn:length(board1.subject)>=30 }">
+					${fn:substring(board1.subject,0,30)}...
 					</c:if>
-					<c:if test="${fn:length(board1.subject)<60 }">
+					<c:if test="${fn:length(board1.subject)<30 }">
 					${board1.subject }
 					</c:if>
 				</a>
