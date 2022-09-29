@@ -21,9 +21,7 @@
 	</div>
 	</form>
    총 사업체 수 : ${pageInfo.totalCount }
-   
    	<table border="1">
-   		
    		<tr>
    			<th>사업자등록번호</th>
    			<th>사업자등록증</th>
@@ -33,11 +31,7 @@
    			<th>승인</th>
    			<th>삭제</th>
    		</tr>
-   		
-   		
    		<c:forEach items="${lists}" var="h">
-		   	
-		   		
    		<tr>
    			<td>${h.cnum }</td>
    			<td>${h.image }</td>
@@ -73,8 +67,6 @@
 	</td>
 	</tr>
 	</table>
-	
-	
 </div>
 </div>
 	
