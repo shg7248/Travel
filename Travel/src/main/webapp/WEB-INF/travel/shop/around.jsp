@@ -7,9 +7,9 @@
 <section class="section">
 	<nav class="cate-nav">
 		<ul class="cate-nav__list">
-			<li class="cate-nev__item"><a href="${contextPath }/shop/around/1.shop">모텔</a></li>
-			<li class="cate-nev__item"><a href="${contextPath }/shop/around/2.shop">호텔</a></li>
-			<li class="cate-nev__item"><a href="${contextPath }/shop/around/3.shop">펜션</a></li>
+			<c:forEach var="item" items="${cLists }">
+				<li class="cate-nev__item"><a href="${contextPath }${item.url }">${item.caname }</a></li>
+			</c:forEach>
 		</ul>
 		<a onclick="showMap()" style="position: absolute; right: 0; top: 0;"><img src="${contextPath }/resources/images/map.png"></a>
 	</nav>
@@ -110,7 +110,7 @@
 				</c:if>
 				<c:if test="${!empty sLists }">
 					<c:forEach var="search" items="${sLists }">
-						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
+						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/accom/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
 							<span class="room__info room__info--average">★&nbsp;${search.average }</span>
 							<span class="room__info room__info--name">${search.name }</span>
 							<span class="room__info room__info--region">${search.region }</span>

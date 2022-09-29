@@ -98,7 +98,7 @@
 				</c:if>
 				<c:if test="${!empty sLists }">
 					<c:forEach var="search" items="${sLists }">
-						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
+						<div class="result__room" style="background: center/100% 100% no-repeat url('${contextPath}/resources/images/accom/${search.image }');" onclick='location.href="${contextPath }/shop/detail.shop?anum=${search.anum }&start=${start }&end=${end }"'>
 							<span class="room__info room__info--average">★&nbsp;${search.average }</span>
 							<span class="room__info room__info--name">${search.name }</span>
 							<span class="room__info room__info--region">${search.region }</span>

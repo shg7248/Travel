@@ -63,6 +63,14 @@ private String namespace = "admin.model.Admin";
 		System.out.println(cnt);
 		return cnt;
 	}
+
+	public List<CateBean> getCateListTotal() {
+		return sqlSessionTemplate.selectList(namespace+".GetCateListTotal");
+	}
+
+	public List<CateBean> getAroundCateList() {
+		return sqlSessionTemplate.selectList(namespace+".GetAroundCateList");
+	}
 	
 }
 

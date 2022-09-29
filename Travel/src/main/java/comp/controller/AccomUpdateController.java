@@ -58,7 +58,7 @@ public class AccomUpdateController {
 		String cnum = tcb.getCnum();
 		accomBean.setCnum(cnum);
 		
-		String realPath = servletContext.getRealPath("/resources/images");
+		String realPath = servletContext.getRealPath("/resources/images/accom");
 		System.out.println("realPath :" + realPath);
 		
 		File file = new File(realPath);

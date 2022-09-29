@@ -13,10 +13,6 @@
 			<td><input type="text" name="price" value="${rb.price }"/></td>
 		</tr>
 		<tr>
-			<th>할인율</th>
-			<td><input type="text" name="sale" value="${rb.sale }"/></td>
-		</tr>
-		<tr>
 			<th>최대인원</th>
 			<td><input type="text" name="max" value="${rb.max }"/></td>
 		</tr>

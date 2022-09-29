@@ -59,7 +59,7 @@ public class AccomInsertController {
 		
 		compDao.insertAccom(accomBean);
 		
-		String realPath = servletContext.getRealPath("/resources/images");
+		String realPath = servletContext.getRealPath("/resources/images/accom");
 		
 		System.out.println("realPath : " + realPath);
 		

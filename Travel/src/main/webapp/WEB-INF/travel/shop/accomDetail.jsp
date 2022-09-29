@@ -225,7 +225,7 @@
 		<hr>
 		<div class="accom__content">
 			<div class="accom__images">
-				<img class="accom__image" src="${contextPath }/resources/images/${accom.image }"/>
+				<img class="accom__image" src="${contextPath }/resources/images/accom/${accom.image }"/>
 			</div>
 			<div class="accom__info">
 				<p class="accom__detail-info">${accom.info }</p>
@@ -262,9 +262,10 @@
 	    	<div class="reply">
 		    	<c:if test="${onum ne null}">
 	    			<div class="reply__form">
-				    	<form action="reviewWrite.shop" method="post" name="replyForm" enctype="multipart/form-data">
+				    	<form method="post" name="replyForm" enctype="multipart/form-data">
 				    		<div class="reply__rating-list">
 					    		<input type="hidden" name="onum" value="${onum }"/>
+					    		<input type="hidden" name="anum" value="${accom.anum }"/>
 						        <input type="radio" name="rating" id="1" value="1">
 					    		<label for="1">★☆☆☆☆</label>
 						        <input type="radio" name="rating" id="2" value="2">
@@ -278,7 +279,7 @@
 				    		</div>
 					        <textarea class="reply__textarea" rows="" cols="" style="width: 100%; height: 100px;" name="content"></textarea>
 					        <input class="reply__file" type="file" name="upload"/>
-					        <input class="reply__submit" type="submit" value="등록" onclick="return replySubmit()"/>
+					        <input class="reply__submit" type="button" value="등록" onclick="replySubmit()"/>
 				    	</form>
 	    			</div>
 		    	</c:if>
@@ -392,7 +393,7 @@
 		if(form.content.value.length == 0) {
 			alert("내용을 입력 하세요");
 			form.content.focus();
-			return false;
+			return;
 		}
 		
 		const formData = new FormData(form);

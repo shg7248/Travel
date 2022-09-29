@@ -49,15 +49,29 @@
 		<div class="search"></div>
 		<nav class="main-nav">
 			<div class="main-nav__inner">
-				<ul class="main-nav__list">
-					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/around/1.shop">주변검색</a></li>
-					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/1.shop">모텔</a></li>
-					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/2.shop">호텔</a></li>
-					<li class="main-nav__item"><a class="main-nav__link" href="${contextPath }/shop/search/3.shop">펜션</a></li>
-				</ul>
+				<ul class="main-nav__list"></ul>
 			</div>
 		</nav>
 	</div>
 </header>
+<script>
+	const list = document.querySelector('.main-nav__list');
+
+	const url = "/travel/CatelistTotal.admin";
+	fetch(url)
+	.then((data)=> data.json())
+	.then((result)=> {
+		for(let e in result) {
+ 			const li = document.createElement('li');
+			li.setAttribute('class', 'main-nev__item');
+			const a = document.createElement('a');
+			a.setAttribute('class', 'main-nav__link');
+			a.setAttribute('href', "${contextPath}" + result[e].url);
+			a.innerHTML = result[e].caname;
+			li.append(a);
+			list.append(li);
+		}
+	});
+</script>
 <main class="main">
 	<div class="main__inner">

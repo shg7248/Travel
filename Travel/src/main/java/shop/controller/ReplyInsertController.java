@@ -39,7 +39,7 @@ public class ReplyInsertController {
 				
 		String realPath = servletContext.getRealPath("/resources/images/reply");
 		File realPathFile = new File(realPath);
-		if(realPathFile.exists()) {
+		if(!realPathFile.exists()) {
 			realPathFile.mkdir();
 		}
 		

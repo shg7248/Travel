@@ -12,10 +12,6 @@
 			<td><input type="text" name="price"/></td>
 		</tr>
 		<tr>
-			<th>할인율</th>
-			<td><input type="text" name="sale"/></td>
-		</tr>
-		<tr>
 			<th>최대인원</th>
 			<td><input type="text" name="max"/></td>
 		</tr>
