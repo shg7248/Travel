@@ -139,7 +139,7 @@ public class TravelRegisterController {
 		}
 		
 		//파일의 저장경로
-		String uploadPath = servletContext.getRealPath("/resources/company");
+		String uploadPath = servletContext.getRealPath("/resources/images/company");
 		System.out.println("uploadPath:"+uploadPath);
 		
 		File existsFile = new File(uploadPath);
