@@ -49,7 +49,7 @@
 					</div>
 					<div class="search__item search__count">
 						<div class="count">
-							<h2 class="title count__title">인원</h2>
+							<h2 class="title count__title">최대인원</h2>
 							<input class="count__btn count__btn--minus" type="button" value="-" onclick="calccount(-1)">
 							<input class="count__text" type="text" name="count" value="${searchBean.count }" readonly="readonly"/>
 							<input class="count__btn count__btn--plus" type="button" value="+" onclick="calccount(1)">

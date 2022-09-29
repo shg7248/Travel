@@ -18,6 +18,11 @@
 		        		<th>가입일자</th>
 		        		<td>${loginInfo.reg_date }</td>
 		        	</tr>
+		        	<tr>
+		        		<td colspan="2">
+		        			<img src="">
+		        		</td>
+		        	</tr>
 		        </table>
 	        </div> <!-- inner -->
         </section> <!-- section -->
