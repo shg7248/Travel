@@ -12,12 +12,20 @@
 	<input type="button" value="객실정보 수정" onclick="location.href='${contextPath}/comp/room/update.comp?rnum=${rb.rnum }'"/><br>
 	<table>
 		<tr>
-			<td>객실 이름</td>
-			<td>${rb.name }</td>
+			<th width="20%">객실 이름</th>
+			<td width="80%">${rb.name }</td>
 		</tr>
 		<tr>
-			<td>객실 가격</td>
+			<th>객실 가격</th>
 			<td>${rb.price }원</td>
+		</tr>
+		<tr>
+			<th>객실 인원수</th>
+			<td>${rb.max }명</td>
+		</tr>
+		<tr>
+			<th>설명</th>
+			<td>${rb.info }</td>
 		</tr>
 	</table>
 </section>

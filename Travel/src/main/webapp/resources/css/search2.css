@@ -194,3 +194,7 @@ input[type='text'] {
 	top: 50%;
 	transform: translateX(-50%) translateY(-50%); 		
 }
+
+.around__radio{
+	margin-bottom: 10px;
+}

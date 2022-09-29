@@ -21,8 +21,8 @@
 			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/accom/${requestScope.accom.image }"></td>
 			        	</tr>
 			        	<tr>
-			        		<th>사업자 등록번호</th>
-			        		<td>${requestScope.accom.cnum }</td>
+			        		<th width="20%">사업자 등록번호</th>
+			        		<td width="80%">${requestScope.accom.cnum }</td>
 			        	</tr>
 			        	<tr>
 			        		<th>숙박 지역</th>
@@ -45,10 +45,8 @@
 			        		<td>${requestScope.accom.endTime }시</td>
 			        	</tr> 
 			        	<tr>
-			        		<th colspan="2">숙박지 기본정보</th>
-			        	</tr> 
-			        	<tr>
-			        		<td colspan="2">${requestScope.accom.info }</td>
+			        		<th>숙박지 기본정보</th>
+			        		<td>${requestScope.accom.info }</td>
 			        	</tr>
 		        	</c:if>
 		        </table>
