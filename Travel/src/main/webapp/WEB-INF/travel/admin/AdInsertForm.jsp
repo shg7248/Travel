@@ -42,7 +42,7 @@ function check(){
 		</tr>
 		<tr>
 			<td>
-				이미지 파일 :
+				<label class="upd_ins_label">이미지 파일</label>
 				<input type="file" name="upload"><br><br>
 				<font id="uploadCheck" class="err" ></font>
 			</td>

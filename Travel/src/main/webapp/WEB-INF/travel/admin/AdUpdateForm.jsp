@@ -39,15 +39,15 @@ function check(){
 	<table>
 		<tr>
 			<td>
-				<input type="text" name="subject" placeholder="제목을 입력하세요." value=${ab.subject }><br>
+				<input type="text" name="subject" placeholder="제목을 입력하세요." value="${ab.subject }"><br>
 				<font id="subjectCheck" class="err" ></font>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				이미지 파일 :
+				<label class="upd_ins_label">기존 이미지 파일</label>
 				<img src="<%=application.getContextPath()%>/resources/images/advertisement/${ab.adimage}"><br>
-				수정할 파일 :
+				<label class="upd_ins_label">수정할 이미지 파일</label>
 				<input type="file" name="upload"><br><br>
 				<font id="uploadCheck" class="err" ></font>
 			</td>
