@@ -3,8 +3,8 @@
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 <table class="accom-detail__info">
 		        	<tr>
-		        		<th>사업자 등록번호</th>
-		        		<td>${loginInfo.cnum }</td>
+		        		<th width="20%">사업자 등록번호</th>
+		        		<td width="80%">${loginInfo.cnum }</td>
 		        	</tr>
 		        	<tr>
 		        		<th>이메일</th>
@@ -19,7 +19,8 @@
 		        		<td>${loginInfo.reg_date }</td>
 		        	</tr>
 		        	<tr>
-		        		<td colspan="2">
+		        		<th>사업자 등록증</th>
+		        		<td>
 		        			<img width="100%" src="${contextPath }/resources/images/company/${loginInfo.image }">
 		        		</td>
 		        	</tr>

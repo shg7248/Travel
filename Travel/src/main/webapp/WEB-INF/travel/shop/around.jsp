@@ -88,10 +88,10 @@
 						<div class="around">
 							<h2 class="title around__title">범위</h2>
 							<ul>
-								<li><input type="radio" name="around" value="30" <c:if test="${searchBean.around eq '30'}">checked</c:if>>30Km</li>
-								<li><input type="radio" name="around" value="40" <c:if test="${searchBean.around eq '40'}">checked</c:if>>40Km</li>
-								<li><input type="radio" name="around" value="50" <c:if test="${searchBean.around eq '50'}">checked</c:if>>50Km</li>
-								<li><input type="radio" name="around" value="60" <c:if test="${searchBean.around eq '60'}">checked</c:if>>60Km</li>
+								<li><input class="around__radio" type="radio" name="around" value="30" <c:if test="${searchBean.around eq '30'}">checked</c:if>>30Km</li>
+								<li><input class="around__radio" type="radio" name="around" value="40" <c:if test="${searchBean.around eq '40'}">checked</c:if>>40Km</li>
+								<li><input class="around__radio" type="radio" name="around" value="50" <c:if test="${searchBean.around eq '50'}">checked</c:if>>50Km</li>
+								<li><input class="around__radio" type="radio" name="around" value="60" <c:if test="${searchBean.around eq '60'}">checked</c:if>>60Km</li>
 							</ul>
 						</div>
 					</div>

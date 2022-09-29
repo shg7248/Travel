@@ -50,6 +50,16 @@ public class ShopOrderController {
 		
 		String contextPath = servletContext.getContextPath();
 		
+		Object obj2 = session.getAttribute("loginInfo");
+		if(obj2 != null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('사업자는 예약을 할 수 없습니다.'); window.history.back(-1);</script>");
+			out.flush();
+			out.close();
+			return null;			
+		}
+		
 		Object obj = session.getAttribute("mnum");
 		if(obj == null) {
 			response.setContentType("text/html; charset=utf-8");
@@ -59,6 +69,7 @@ public class ShopOrderController {
 			out.close();
 			return null;
 		}
+		
 		
 		int mnum = (Integer) obj;
 		

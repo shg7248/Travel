@@ -116,7 +116,7 @@ body {
 	height: 150px;
 }
 
-span.important {
+span.important, p.important {
 	color: red;
 	font-size: 11px;	
 }

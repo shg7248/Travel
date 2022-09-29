@@ -1,244 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
-<style>
-        .tab {
-            --height: 50px;
-            --border: 1px solid rgb(209 209 209);
-        }
-        .tab__list {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            border-left: var(--border);
-            border-top: 2px solid red;
-            border-bottom: var(--border);
-        }
-        .tab__item {
-            position: relative;
-            width: 100%;
-            text-align: center;
-            border-right: var(--border);
-        }
-        .tab__link {
-            position: relative;
-            height: var(--height);
-            line-height: var(--height);
-            display: inline-block;
-            background-color: white;
-            width: 100%;
-            font-size: 14px;
-        }
-        .tab__link.on {
-            color: red;
-            height: calc(100% + 1px);
-        }
-        .tab__content {
-        	margin-top: 20px;
-            display: none;
-        }
-
-        .tab__content.on {
-            display: block;
-        }
-        
-        img {
-        	width: 100%;
-        }
-        .reply__form {
-        	margin-bottom: 20px;
-        }
-        .reply__rating-list {
-        	margin-bottom: 10px;
-        }
-        .reply__textarea {
-        	resize: none;
-        	margin-bottom: 10px;
-        }
-        .reply__submit {
-        	float: right;
-        	padding: 5px 10px;
-        	background: black;
-        	color: white;
-        }
-        .reply__list {
-        	padding: 10px;
-        	background: #9bbbd4;
-        }
-        .reply__list::after{
-        	content: '';
-        	display: block;
-        	clear: both;
-        }
-        .reply__item, .reply__accom-item {
-        	display: grid;
-        	width: 70%;
-        	min-height: 100px;
-        	grid-template-columns: 8fr 2fr;
-        	column-gap: 10px;
-        	padding: 10px;
-        }
-        .reply__item {
-        	position: relative;
-        	background: white;
-        	margin-bottom: 10px;
-        	border-radius: 10px;
-        	clear: both;
-        }
-        .reply__item::after {
-			border-top: 10px solid white;
-		    border-left: 10px solid transparent;
-		    border-right: 10px solid transparent;
-		    border-bottom: 0px solid transparent;
-		    content: "";
-		    position: absolute;
-		    top: 50%;
-		    transform: translateY(-50%);
-		    left: calc(100% - 5px);
-        	transform: rotate(-90deg);
-        }
-        .reply__accom-item {
-        	position: relative;
-        	background: #fef01b;
-        	margin-bottom: 10px;
-        	border-radius: 10px;    
-        	float: right;    	
-        }
-        .reply__accom-item::after {
-			border-top: 10px solid #fef01b;
-		    border-left: 10px solid transparent;
-		    border-right: 10px solid transparent;
-		    border-bottom: 0px solid transparent;
-		    content: "";
-		    position: absolute;
-		    top: 50%;
-		    transform: translateY(-50%);
-		    left: -15px;
-        	transform: rotate(90deg);
-        }
-        
-        .reply__accom-item {
-        	border: 0px 1px 1px 1px solid black;
-        }
-        
-        .reply__info--content {
-        	overflow: hidden;
-        }
-        
-        .reply__info--writer {
-        	display: flex;
-        	flex-direction: column;
-        	font-size: 11px;
-        }
-        
-        .reply__info--addInfo {
-        	width: 100%;
-        	text-align: center;
-        	border: 1px solid blue;
-        	cursor: pointer;
-        }
-        
-        .reply__order {
-        	cursor: pointer;
-        }
-        
-        .reply__image {
-        	width: 30%;
-        }
-        
-        /* room */
-        
-        .room__list {
-        	display: grid;
-        	grid-template-columns: 1fr 1fr;
-        	column-gap: 20px;
-        	row-gap: 20px;
-        	z-index: 999;
-        }
-        .room__item {
-        	position: relative;
-        	display: flex;
-        	height: 200px;
-        	padding: 10px;
-        	color: white;
-        	flex-direction: column;
-        	justify-content: flex-end;
-        	align-items: flex-end;
-        }
-        .room__item::before {
-        	content: '';
-        	position: absolute;
-        	bottom: 0px;
-        	right: 0px;
-        	width: 100%;
-        	height: 100%;
-        	background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 10%,
-            rgba(20, 20, 20, 0.25) 25%,
-            rgba(20, 20, 20, 0.5) 50%,
-            rgba(20, 20, 20, 0.75) 75%,
-            rgba(20, 20, 20, 1) 100% );
-            z-index: 800;
-        }
-        .room__name, .room__price {
-        	position: relative;
-        	z-index: 900;
-        	font-size: 16px;
-        }
-        .room-res__btn {
-        	background: #B22222;
-        	color: white;
-        	text-align: center;
-        	border-radius: 10px;
-        	padding: 10px 20px;
-        	z-index: 900;
-        }
-        
-        .room-res__btn--yes {
-			background: #708090;    
-        }        
-        .room-res__btn--no {
-			background: #A9A9A9; 
-        }
-        
-        /* accom */
-        .accom {
-        	margin-bottom: 30px;
-        }
-        .accom__content {
-        	display: grid;
-        	grid-template-columns: 2fr 1fr;
-        	column-gap: 10px;
-        	height:500px;
-        }
-        .accom__info {
-        	background: #FFE4E1;
-        	overflow-y: auto;
-        	padding: 20px;
-        	height: inherit;
-        	font-size: 14px;
-        	border-radius: 10px;
-        	color: 606c76;
-        }
-        
-        .reply__starImage {
-        	position: relative;
-        	left: -20px;
-        	transform:scale(0.7);
-        }
-        .reply__remove {
-        	cursor: pointer;
-        }
-</style>
+<link rel="stylesheet" href="${contextPath }/resources/css/accomDetail.css">
 <article>
 	<div class="accom">
 		<h2 class="accom__name">${accom.name }</h2>
-		<p>${accom.sido }&nbsp;${accom.sigungu }&nbsp;${accom.etcAddr }</p>
+		<p class="accom__address">${accom.sido }&nbsp;${accom.sigungu }&nbsp;${accom.etcAddr }</p>
+		<p class="accom__time">${accom.startTime }시 체크인 ~ ${accom.endTime }시 체크아웃 (시간은 각 객실마다 똑같이 적용 됩니다)</p>
 		<hr>
 		<div class="accom__content">
 			<div class="accom__images">
 				<img class="accom__image" src="${contextPath }/resources/images/accom/${accom.image }"/>
 			</div>
 			<div class="accom__info">
+				<h2 class="accom__mainPoint">매력 포인트</h2>
 				<p class="accom__detail-info">${accom.info }</p>
 			</div>
 		</div>
@@ -258,12 +33,18 @@
 			        	<div class="room__item" style="background: url('${contextPath}/resources/images/room/${room.image }') center no-repeat;">
 							<p class="room__name">${room.name }</p>
 							<p class="room__price"><fmt:formatNumber value="${room.price }"></fmt:formatNumber>원</p>
-							<c:if test="${room.orders > 0 }">
-								<a class="room-res__btn room-res__btn--no">예약불가</a>
-							</c:if>
-							<c:if test="${room.orders == 0 }">
-								<a class="room-res__btn room-res__btn-yes" href="${contextPath }/shop/order.shop?rnum=${room.rnum }&startDate=${start }&endDate=${end }">예약하기</a>
-							</c:if>
+							<div class="room__btns">
+								<c:if test="${room.orders > 0 }">
+									<a class="room-res__btn room-res__btn--no">예약불가</a>
+								</c:if>
+								<c:if test="${room.orders == 0 }">
+									<a class="room-res__btn room-res__btn-yes" href="${contextPath }/shop/order.shop?rnum=${room.rnum }&startDate=${start }&endDate=${end }">예약하기</a>
+								</c:if>
+							</div>
+			        	</div>
+			        	<div class="room__detailInfo">
+			        		<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">객실 정보</h3>
+							${room.info }
 			        	</div>
 					</c:forEach>
 				</div>
@@ -336,10 +117,13 @@
 		.then((data)=> data.json())
 		.then((data)=> {
 			defaults.addPageNumber();
+			
+			// 더보기가 있으면 지운다
 			const addInfo = document.querySelector('.reply__info--addInfo');
 			if(addInfo) {
 				document.querySelector('.reply__info--addInfo').remove();
 			}
+			
 			const reply__list = document.createElement('div');
 			reply__list.classList.add('reply__list');
 			let reply__item = ``;
@@ -347,6 +131,9 @@
 				
 			}
 			else {
+				
+				
+				
 				data.lists.forEach((obj, i)=> {
 					reply__item += `<div class="reply__item">`;
 					reply__item += `<div class="reply__info--content">`;
@@ -426,8 +213,6 @@
 	}
 	
 	function deleteReply(rvnum) {
-
-		
 		fetch("${contextPath}/deleteReply.shop", {
 			method: 'post',
 			headers: {
@@ -444,7 +229,6 @@
 			reply(window);
 		});
 	}
-	
 	(function() {
 	    const link = document.querySelectorAll('.tab__link');
 	    const con = document.querySelectorAll('.tab__content')

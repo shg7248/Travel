@@ -12,6 +12,7 @@
 </style>
 <div class="wrap">
 	<h2 class="wrap__message">결제가 완료되었습니다!!</h2>
+	<p class="important">예약 내역에서 리뷰를 등록하시면 50포인트를 추가로 드립니다!</p>
 	<a class="wrap__link" href="${contextPath }/bookingList.mem">예약내역 보기</a>
 	<a class="wrap__link" href="${contextPath }/">메인으로</a>
 </div>

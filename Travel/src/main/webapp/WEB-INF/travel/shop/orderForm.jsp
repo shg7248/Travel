@@ -1,24 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>  
-<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <style>
 	strong {
 		display: block;
-		font-size: 16px;
+		font-size: 18px;
 		font-weight: bold;
-		color: rgba(0,0,0,0.38);
 	}
-	.order-wrap {
+	font {
+		display: block;
+		color: red;
+		font-size: 11px;
+		width: 100%;
+		height: 20px;
+	}
+	.title {
+		color: #404040;
+	}
+	.order {
 		display: grid;
-		grid-template-columns: 6fr 4fr;
+		grid-template-columns: 7fr 3fr;
 		column-gap: 10px;
 	}
-	.contents {
+	.order__inner {
 		
 	}
-	.info2__item {
-		font-size: 20px;
+	.order__accomInfo {
+		display: grid;
+		grid-template-rows: auto 50px;
+		background: #EFEFEF;
+	}
+	.accomInfo__inner {
+		padding: 20px;
+		border-radius: 10px;
+	}
+	.res__radios {
+		margin-bottom: 10px;
+	}
+	.res__text, .account__text, .point-form__text {
+		width: 50%;
+		height: 40px;
+		border: 1px solid rgba(0,0,0,.08);
+		padding: 20px;
+	}
+	
+	.order__submit {
+		width: 100%;
+		height: 50px;
+		background: red;
+		color: white;
+		border: none;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+	.accomInfo__price {
+		
+	}
+	.price__text {
+		color: red;
+		font-size: 24px;
+		font-weight: bold;
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -94,98 +135,106 @@ function checkAll(){
 		$('#accnum').focus();
 		return false;
 	}
+	
+	f.submit();
 }
 </script>
-<div class="order-wrap">
-	<div class="contents">
+<div class="order">
+	<div class="order__userInfo">
 		<form name="f" method="post" action="${contextPath }/shop/order.shop">
 			<input type="hidden" name="rnum" value="${rnum }">
 			<input type="hidden" name="startDate" value="${startDate }">
 			<input type="hidden" name="endDate" value="${endDate }">
 			<input type="hidden" name="myPoint" value="${point }"/>
 			<input type="hidden" name="totalPrice" value="${rb.totalDate * rb.price }"/>
-			<div class="div">
-				<label>예약자 정보</label>
-				<div>
-				직접 쓰기<input type="radio" name="info" value="/">
-				가입한 정보<input type="radio" name="info" value="${userInfo.name }/${userInfo.phone }">
+			
+			<section class="user-info__res">
+				<h2 class="res__title">예약자 정보</h2>
+				<div class="res__radios">
+					<label for="info1">직접 쓰기</label>
+					<input class="res__radio" type="radio" id="info1" name="info" value="/">
+					<label for="info2">가입한 정보</label>
+					<input class="res__radio" type="radio" id="info2" name="info" value="${userInfo.name }/${userInfo.phone }">
 				</div>
-			</div>
-			
-			<div class="div">
-				<label for="resName">예약자 이름</label>
-				<input type="text" name="resName" id="resName"/>
-				<font></font>
-			</div>
-			
-			<div class="div">
-				<label for="resPhone">휴대폰 번호</label>
-				<input type="text" name="resPhone" id="resPhone"/>
-				<font></font>
-			</div>
-			
-			<div class="div">
-	 			<label>등록된 계좌번호</label>
-				<select name="acclist">
-					<option value="/">직접입력</option>
-				<c:forEach items="${lists }" var="list">
-					<option value="${list.bank }/${list.accnum }">${list.bank }${list.accnum }</option>
-					</c:forEach>
-				</select><br> 
-			</div>
-			
-			<div class="div">
-				<label for="bank">은행</label>
-				<input type="text" name="bank" id="bank">
-				<font></font>
-			</div>
-			<div class="div">
-				<label for="accnum">계좌번호</label>
-				<input type="text" name="accnum" id="accnum">
-				<font></font>
-			</div>
-			
-			<div class="point-form div">
-				<label for="point">사용 가능한 포인트 ${point }point</label>
-				<input class="point-form__text" type="text" name="point" id="point"/>
-			</div>
-			
-			<input type="submit" value="예약하기" onclick="return checkAll()">
+				<p>
+					<label for="resName">예약자 이름</label><br>
+					<input class="res__text" type="text" name="resName" id="resName" placeholder="체크인시 필요한 정보입니다"/>
+					<font></font>
+				</p>
+				<p>
+					<label for="resPhone">휴대폰 번호</label><br>
+					<input class="res__text" type="text" name="resPhone" id="resPhone" placeholder="체크인시 필요한 정보입니다"/>
+					<font></font>				
+				</p>
+			</section>
+			<hr>
+			<section class="user-info__account">
+				<h2 class="account__title">결제 수단</h2>
+				<p class="account__select-account">
+		 			<label>등록된 계좌번호</label>
+					<select name="acclist">
+						<option value="/">직접입력</option>
+						<c:forEach items="${lists }" var="list">
+							<option value="${list.bank }/${list.accnum }">${list.bank }${list.accnum }</option>
+						</c:forEach>
+					</select> 					
+				</p>
+				<p>
+					<label for="bank">은행</label><br>
+					<input class="account__text" type="text" name="bank" id="bank">
+					<font></font>				
+				</p>
+				<p>
+					<label for="accnum">계좌번호</label><br>
+					<input class="account__text" type="text" name="accnum" id="accnum">
+					<font></font>					
+				</p>
+				<hr>
+			</section>
+			<p class="point-form">
+				<label for="point">사용 가능한 포인트 ${point }point</label><br>
+				<input class="point-form__text" type="text" name="point" id="point" value="0"/>				
+			</p>
 		</form>
 	</div>
-	<div class="info2__item">
-		<p class="info2__item info2__item--name">
-		<strong>숙박지이름</strong>
-		${rb.aname }
-		</p>
-		<p class="info2__item info2__item--room">
-		<strong>객실이름</strong> 
-		${rb.rname }
-		</p>
-		<p class="info2__item info2__item--addr">
-		<strong>주소</strong> 
-		${rb.addr }
-		</p>
-		<p class="info2__item info2__item--date">
-		<strong>기간</strong> 
-		${rb.startDate } - ${rb.endDate }
-		</p>
-		<p class="info2__item info2__item--price">
-		<strong>가격</strong> 
-		<span class="sidebar__price"><fmt:formatNumber value="${rb.totalDate * rb.price }"></fmt:formatNumber></span>원
-	</p>
+	<div class="order__accomInfo">
+		<div class="accomInfo__inner">
+			<p class="accomInfo__accomName">
+				<strong class="accomName__title title">숙박지이름</strong>
+				<span class="accomName__text">${rb.aname }</span>
+			</p>
+			<p class="accomInfo__roomName">
+				<strong class="roomName__title title">객실이름</strong> 
+				<span class="roomName__text">${rb.rname }</span>
+			</p>
+			<p class="accomInfo__addr">
+				<strong class="addr__title title">주소</strong> 
+				<span class="addr__text">${rb.addr }</span>
+			</p>
+			<p class="accomInfo__date">
+				<strong class="date__title title">기간</strong> 
+				<span class="date__text">${rb.startDate } - ${rb.endDate }</span>
+			</p>
+			<p class="accomInfo__price">
+				<strong class="price__title title">총 결제 금액</strong> 
+				<span class="price__text"><fmt:formatNumber value="${rb.totalDate * rb.price }"/></span>원
+			</p>
+		</div>
+		<input class="order__submit" type="submit" value="결제하기" onclick="return checkAll()">
 	</div>
 </div>
 <script type="text/javascript">
 	const inputPoint = document.querySelector('.point-form__text');
 	const point = document.querySelector('input[name="myPoint"]');
-	let price = document.querySelector('.sidebar__price');
+	let price = document.querySelector('.price__text');
 	const value = String(price.innerHTML);
+	console.log(value);
 	inputPoint.addEventListener('keyup', (e)=> {
 		
 		let calcPrice = Number(value.replaceAll(',',''));
 
 		if(inputPoint.value === '') {
+			inputPoint.value = 0;
 			calcPoint();
 			return;
 		}
