@@ -14,7 +14,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>숙박지 종류${ab.canum }</th>
+				<th>숙박지 종류</th>
 				<td>
 					<select name="canum">
 						<option value="">종류를 선택하세요</option>

@@ -20,7 +20,7 @@
 		        	</tr>
 		        	<tr>
 		        		<td colspan="2">
-		        			<img src="">
+		        			<img width="100%" src="${contextPath }/resources/images/company/${loginInfo.image }">
 		        		</td>
 		        	</tr>
 		        </table>

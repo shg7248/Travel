@@ -13,12 +13,12 @@
 		        <table class="accom-detail__info">
 		            <c:if test="${empty requestScope.accom }">
 						<tr>
-							<td>등록된 숙박지가 없습니다.</td>
+							<td>숙박지를 등록해서 손님들을 맞이할 준비를 해보세요!</td>
 						</tr>
 		         	</c:if>
 		         	<c:if test="${!empty requestScope.accom }">
 			        	<tr>
-			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/${requestScope.accom.image }"></td>
+			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/accom/${requestScope.accom.image }"></td>
 			        	</tr>
 			        	<tr>
 			        		<th>사업자 등록번호</th>

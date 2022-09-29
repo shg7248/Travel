@@ -136,7 +136,9 @@
 	</select>
 	
 	<select id="GetCategoryList" resultType="CategoryBean">
-		select * from category order by 1
+		select * from category
+		where canum not in (1)
+		 order by to_number(canum)
 	</select>
 	
 	<select id="GetOrderListByRnum" resultType="OrdersBean">

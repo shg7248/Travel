@@ -177,6 +177,16 @@
   	<select id="GetAdvertisementFirst" resultType="admin.model.AdBean">
   		select * from (select * from advertisement order by rownum desc) where rownum=1
   	</select>	
+  	
+  	<select id="GetCateListTotal" resultType="admin.model.CateBean">
+  		select * from category order by to_number(canum)
+  	</select>
+  	
+  	<select id="GetAroundCateList" resultType="admin.model.CateBean">
+  		select canum, caname, '/shop/around/' || to_char(substr(url, 14, 1)) || '.shop' as url
+		from category
+		where canum not in (1)
+  	</select>
 </mapper>
 
 

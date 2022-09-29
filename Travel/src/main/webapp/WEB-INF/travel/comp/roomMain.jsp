@@ -54,6 +54,9 @@
 	.search-wrap__link:hover {
 		color: red;
 	}
+	.search-wrap__noLists {
+		font-size: 11px;
+	}
 </style>
 <section class="search-wrap">
 	<article class="search-wrap__search">
@@ -69,7 +72,7 @@
 	</article>
 	<article class="search-wrap__result">
 		<c:if test="${fn:length(lists) eq 0 }">
-			<div class="search-wrap__noLists">객실을 등록해 주세요</div>
+			<div class="search-wrap__noLists">숙박지의 객실을 등록해 보세요!</div>
 		</c:if>
 		<c:if test="${fn:length(lists) ne 0 }">
 			<c:forEach var="room" items="${lists }">
