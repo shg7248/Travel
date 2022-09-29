@@ -50,7 +50,7 @@
 					</div>
 					<div class="search__item search__count">
 						<div class="count">
-							<h2 class="title count__title">인원</h2>
+							<h2 class="title count__title">최대인원</h2>
 							<input class="count__btn count__btn--minus" type="button" value="-" onclick="calccount(-1)">
 							<input class="count__text" type="text" name="count" value="${searchBean.count }" readonly="readonly"/>
 							<input class="count__btn count__btn--plus" type="button" value="+" onclick="calccount(1)">
@@ -121,6 +121,7 @@
 			</div>
 		</article>
 	</div>
+	
 </section>
 <div class="map-modal">
 	<div id="map"></div>
@@ -132,76 +133,103 @@
 		modal.classList.toggle('on');
 	}
 	modal.addEventListener('click', function(e) {
-		modal.classList.toggle('on');
-	});
-
-	var container = document.getElementById('map'),
-	map = new kakao.maps.Map(container, { // 지도를 표시할 div
-	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
-	    level : 3 // 지도의 확대 레벨 
+		if(e.target == modal) modal.classList.toggle('on');
 	});
 	
-	var geocoder = new kakao.maps.services.Geocoder();
 	
-	var bounds = new kakao.maps.LatLngBounds();
-	
-	const mapinfo = [];
-
-	<c:forEach var="search" items="${sLists }" varStatus="s">
+	// 카카오맵
+	(function() {
+		
+		const container = document.getElementById('map'),
+		map = new kakao.maps.Map(container, { // 지도를 표시할 div
+		    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
+		    level : 8 // 지도의 확대 레벨 
+		});
+		
+		// 카카오맵 주소 좌표 변환 툴
+		const geocoder = new kakao.maps.services.Geocoder();
+		
+		// 카카오맵 범위 재설정
+		const bounds = new kakao.maps.LatLngBounds();
+		
+		const mapinfo = [];
+		
 		mapinfo.push({
-			name: "${search.name }",
-			lat: "${search.lat }",
-			lng: "${search.lng}"
-		});
-	</c:forEach>
-	
-	for(var i = 0; i < mapinfo.length; i++) {
+			name: "내위치",
+			lat: cookieManager.get('lat'),
+			lng: cookieManager.get('lng'),
+			imageSrc: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', 
+			imageSize: new kakao.maps.Size(24, 35),
+			imageOption: {offset: new kakao.maps.Point(12, 69)},
+		})
 		
-		var position = new kakao.maps.LatLng(mapinfo[i].lat, mapinfo[i].lng);
+		map.setCenter(new kakao.maps.LatLng(cookieManager.get('lat'), cookieManager.get('lng')));
 		
-		var marker = new kakao.maps.Marker({
-			map: map,
-			position: position
-		});
+		<c:forEach var="search" items="${sLists }" varStatus="s">
+			mapinfo.push({
+				name: "${search.name }",
+				lat: "${search.lat }",
+				lng: "${search.lng}",
+				imageSrc: 'http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png',
+				imageSize: new kakao.maps.Size(24, 35),
+				imageOption: {offset: new kakao.maps.Point(12, 69)}
+			});
+		</c:forEach>
 		
-		var infowindow = new kakao.maps.InfoWindow({
-	        content: mapinfo[i].name 
-	    });
-		
-	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-		
-		bounds.extend(position);
-	}
-	
-	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, marker, infowindow) {
-	    return function() {
-	        infowindow.open(map, marker);
-	    };
-	}
-
-	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(infowindow) {
-	    return function() {
-	        infowindow.close();
-	    };
-	}
-	
-	map.setBounds(bounds);
-	
-	searchDetailAddrFromCoords(function(result, status) {
-		if (status === kakao.maps.services.Status.OK) {
-			const region = document.querySelector('.region__name');
-			region.append( result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
+		for(let i = 0; i < mapinfo.length; i++) {
+			
+			const position = new kakao.maps.LatLng(mapinfo[i].lat, mapinfo[i].lng);
+			const markerImage = new kakao.maps.MarkerImage(mapinfo[i].imageSrc, mapinfo[i].imageSize, mapinfo[i].imageOption)
+			
+			const marker = new kakao.maps.Marker({
+				map: map,
+				position: position,
+				image: markerImage,
+			});
+			
+			const infowindow = new kakao.maps.InfoWindow({
+		        content: mapinfo[i].name 
+		    });
+			
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+			
+		 	// LatLngBounds 객체에 좌표를 추가합니다
+			/* bounds.extend(position); */
 		}
-	});
+		
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marker, infowindow) {
+		    return function() {
+		        infowindow.open(map, marker);
+		    };
+		}
 	
-	function searchDetailAddrFromCoords(callback) {
-	    latLng((lat, lng)=> {
-		    geocoder.coord2Address(lng, lat, callback);
-	    });
-	}
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+		    return function() {
+		        infowindow.close();
+		    };
+		}
+		
+		// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+		/* map.setBounds(bounds); */
+		
+		searchDetailAddrFromCoords(function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				const region = document.querySelector('.region__name');
+				region.append( result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
+			}
+		});
+		
+		function searchDetailAddrFromCoords(callback) {
+		    latLng((lat, lng)=> {
+			    geocoder.coord2Address(lng, lat, callback);
+		    });
+		}
+	}());
+
 </script>
 <script src="${contextPath }/resources/js/shop/shop.js"></script>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

@@ -115,3 +115,8 @@ body {
 	background: #747474;
 	height: 150px;
 }
+
+span.important {
+	color: red;
+	font-size: 11px;	
+}
