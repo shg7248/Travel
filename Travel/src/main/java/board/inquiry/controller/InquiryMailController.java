@@ -46,13 +46,33 @@ public class InquiryMailController {
 
 			messageHelper.setFrom("admin","admin");
 			messageHelper.setTo(ib.getEmail());
-			messageHelper.setSubject("문의하신 "+ib.getSubject()+"에 관한 답변입니다." );
+			messageHelper.setSubject("문의하신 \""+ib.getSubject()+"\" 에 관한 답변입니다." );
 
 			messageHelper.setText(
 					"text/html",
-					"문의 하신 내용인<br><hr><br><pre>"+ib.getQuestion()+"</pre><br><hr><br>"
-							+ "에 대한 답변은 다음과 같습니다.<br><hr><br><pre>"+ib.getAnswer()+"</pre><br><hr><br>"
-							+ " <a href=http://localhost:8080/travel/boardstart.jsp>홈페이지로</a><br><br>");
+					"<div style=\"width: 940px;\">\r\n"
+					+ "	<div style=\"display: inline-block;\r\n"
+					+ "	width: 940px;\r\n"
+					+ "	background-color: #656D78;\r\n"
+					+ "	color: white;\r\n"
+					+ "	border-radius: 5px 5px 0px 0px;\r\n"
+					+ "	padding: 20px;\r\n"
+					+ "	font-size: 16px;\">\r\n"
+					+ "		<pre style=\"word-wrap: break-word;\r\n"
+					+ "	white-space: pre-wrap;\">[질문]<br>"
+					+ib.getQuestion()+"</pre>\r\n"
+					+ "	</div>\r\n"
+					+ "	<div style=\"display: inline-block;\r\n"
+					+ "	width: 940px;\r\n"
+					+ "	background-color: rgb(233, 233, 233);\r\n"
+					+ "	border-radius: 5px;\r\n"
+					+ "	padding: 20px;\r\n"
+					+ "	font-size: 16px;\">\r\n"
+					+ "	<pre style=\"word-wrap: break-word;\r\n"
+					+ "	white-space: pre-wrap;\">[답변]<br>"
+					+ib.getAnswer()+"</pre>\r\n"
+					+ "	</div>\r\n"
+					+ "</div>");
 
 			//메일보내기
 			mailSender.send(mimeMessage);

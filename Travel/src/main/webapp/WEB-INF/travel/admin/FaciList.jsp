@@ -40,3 +40,4 @@
 <input type="button" value="추가" onclick="location.href='Faciinsert.admin'">
 </div>
 </div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

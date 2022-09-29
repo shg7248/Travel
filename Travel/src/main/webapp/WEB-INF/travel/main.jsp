@@ -18,7 +18,7 @@
 }
 .carousel-inner img{
 	width: 100%;
-	height: 300px;
+	height: 400px;
 	margin: 0 auto;
 }
 .inner{
@@ -73,6 +73,9 @@ body, html{
 a:hover{
 	color: white;
 }
+.inner_atag:hover{
+	color: black;
+}
 </style>
 	<c:if test="${ab ne null }">
 	<section class="default-section">
@@ -125,11 +128,11 @@ a:hover{
 		<c:forEach var="nlists" items="${nlists }" varStatus="status" end="2">
 		<div class="notice-default">
 				<div class="noticesubjectlist">
-					<a href="noticedetail.brd?nnum=${nlists.nnum }">
-						<c:if test="${fn:length(nlists.subject)>=60 }">
-						${fn:substring(nlists.subject,0,60)}...
+					<a class="inner_atag" href="noticedetail.brd?nnum=${nlists.nnum }">
+						<c:if test="${fn:length(nlists.subject)>=30 }">
+						${fn:substring(nlists.subject,0,30)}...
 						</c:if>
-						<c:if test="${fn:length(nlists.subject)<60 }">
+						<c:if test="${fn:length(nlists.subject)<30 }">
 						${nlists.subject }
 						</c:if>
 					</a>

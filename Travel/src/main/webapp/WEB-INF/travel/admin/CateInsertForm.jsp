@@ -62,3 +62,4 @@ function checkAdmin(){
 </form>
 	
 </div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>
