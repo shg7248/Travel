@@ -12,13 +12,13 @@
 <input type="hidden" name="pageNumber" value="${pageNumber }">
 	<table class="inquirytable">
 		<tr>
-			<td align="center" width="12%">제목</td>
+			<td align="center" width="12%" class="inquiry_color">제목</td>
 			<td width="90%" colspan="5">${ib.subject }</td>
 		</tr>
 		<tr>
-			<td align="center" width="8%">작성자</td>
+			<td align="center" width="8%" class="inquiry_color">작성자</td>
 			<td align="center" width="10%">${ib.email }</td>
-			<td align="center" width="20%">작성일</td>
+			<td align="center" width="20%" >작성일</td>
 			<td align="center" width="20%">
 				<fmt:parseDate var="date1" value="${ib.reg_date1 }" pattern="yyyy-MM-dd" />
 				<fmt:formatDate var="reg_date1" value="${date1 }" pattern="yyyy-MM-dd" /> ${reg_date1 }
@@ -30,11 +30,11 @@
 			</td>
 		</tr>
 		<tr height="300">
-			<td align="center" width="10%">내용</td>
+			<td align="center" width="10%" class="inquiry_color">내용</td>
 			<td width="90%" colspan="5"><pre class="pre_content">${ib.question }</pre></td>
 		</tr>
 		<tr height="300">
-			<td align="center" width="10%" style="vertical-align:top; padding-top: 30px">답변</td>
+			<td align="center" width="10%" style="vertical-align:top; padding-top: 30px" class="inquiry_color">답변</td>
 			<td width="90%" colspan="5">
 				<textarea name="answer" id="answer">${ib.answer }</textarea>
 			</td>

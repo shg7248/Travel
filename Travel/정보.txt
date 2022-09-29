@@ -409,7 +409,7 @@ insert into board1(nnum, subject, content, thumbnail, type)
 values(board1_seq.nextval, '대한민국 숙박대전2022','event4_content.jpg','event4_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, thumbnail, type)
-values(board1_seq.nextval, '농협카드 이벤트','event2_content.jpg','event2_thumb.jpg','event');
+values(board1_seq.nextval, '농협카드 이벤트','event2_content.png','event2_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, thumbnail, type)
 values(board1_seq.nextval, '우리카드 이벤트','event3_content.jpg','event3_thumb.jpg','event');
@@ -443,10 +443,26 @@ create sequence inquiry_seq
   
 --1대1 문의사항 데이터 --------------------------------------------------
 insert into inquiry(inum, mnum, subject, question, reg_date1)
-values(inquiry_seq.nextval, '1', '제목', '문의합니다', '2022-09-12');
+values(inquiry_seq.nextval, '2', '궁금한 점이 있습니다.', '1대1 문의사항에서 문의를 남기면은 얼마쯤 뒤에 답변이 오는 건가요?<br>
+궁금해서 문의해봅니다.', '2022-09-01');
 
 insert into inquiry(inum, mnum, subject, question, reg_date1)
-values(inquiry_seq.nextval, '2', '제목', '문의합니다', '2022-09-13');
+values(inquiry_seq.nextval, '1', '1인당 만들 수 있는 아이디는 몇개인가요?', '1인당 만들 수 있는 아이디가 몇개까지인지 궁금합니다 ', '2022-09-12');
+
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '2', '문의를 남겼는데 언제 답변하시나요?', '저번에 문의사항을 남겼었습니다. 한참 지났는데도 답변이 오지 않았습니다.<br>
+도대체 답변이 언제 오는지 궁금합니다 이번 답변은 빠르게 답해 주세요', '2022-09-13');
+
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '1', '안녕하세요 계정 연동에 관해서 여쭤봅니다.', '현재 SNS계정 연동을 하고 싶은데 카카오로그인 밖에 존재하지 않네요<br>
+기타 sns계정 연동 서비스를 준비하실 계획이 있습니까?', '2022-09-15');
+
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '4', '결제수단을 바꾸려면 어떻게 하나요? 정말 알고싶습니다.', '결제수단을 바꾸고 싶은데 어디서 바꿀수 있나요?', '2022-09-20');
+
+insert into inquiry(inum, mnum, subject, question, reg_date1)
+values(inquiry_seq.nextval, '3', '고객센터는 공휴일이나 대체휴일 등에 운영을 하나요?', '고객센터 이용에 관해서 궁금한 사항이 있어서 문의드립니다.<br>
+개인 사정이 있어서 고객센터에 대체휴일에 연락하게 되는 사람들도 분명히 있을겁니다. 그래서 그런데 고객센터 운용여부에 대해 정확히 알고 싶습니다. 꼭 답변 바랍니다.', '2022-09-22');
 
 commit;
 -------------------------------------------------------------------
@@ -525,9 +541,23 @@ start with 1
 nocache;
 
 commit;
+--advertisement더미-------------------------------------
+
+insert into advertisement(adnum, subject, adimage)
+values(advertisement_seq.nextval,'travel maker에서 숙소를 찾아보세요','advertisement1.png');
+
+insert into advertisement(adnum, subject, adimage)
+values(advertisement_seq.nextval,'사업자 회원가입 후 숙소등록하세요','advertisement3.png');
+
+insert into advertisement(adnum, subject, adimage)
+values(advertisement_seq.nextval,'어디에서나 묵을 곳은 곁에 있습니다','advertisement4.png');
+
+insert into advertisement(adnum, subject, adimage)
+values(advertisement_seq.nextval,'대한민국 숙박대전2022','advertisement5.jpg');
+
+insert into advertisement(adnum, subject, adimage)
+values(advertisement_seq.nextval,'with travel maker','advertisement2.jpg');
 
 
-
-
-
+commit;
 

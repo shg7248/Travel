@@ -9,11 +9,11 @@
 <h2>1:1 문의사항</h2>
 <table class="inquirytable">
 	<tr>
-		<td align="center" width="12%">제목</td>
+		<td align="center" width="12%" class="inquiry_color">제목</td>
 		<td width="90%" colspan="5">${ib.subject }</td>
 	</tr>
 	<tr>
-		<td align="center" width="8%">작성자</td>
+		<td align="center" width="8%" class="inquiry_color">작성자</td>
 		<td align="center" width="10%">${ib.email }</td>
 		<td align="center" width="20%">작성일</td>
 		<td align="center" width="20%">
@@ -27,11 +27,11 @@
 		</td>
 	</tr>
 	<tr height="300">
-		<td align="center" width="10%">내용</td>
+		<td align="center" width="10%" class="inquiry_color">내용</td>
 		<td width="90%" colspan="5"><pre class="pre_content">${ib.question }</pre></td>
 	</tr>
 	<tr height="300">
-		<td align="center" width="10%">답변</td>
+		<td align="center" width="10%" class="inquiry_color">답변</td>
 		<td width="90%" colspan="5"><pre class="pre_content">${ib.answer }</pre></td>
 	</tr>
 </table>

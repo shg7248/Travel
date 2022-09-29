@@ -14,6 +14,12 @@ table{
 }
 .inquiry_title td{
 	padding: 10px;
+	background-color:#ff8080;
+	color: white;
+}
+.inquirytable .inquiry_color{
+	background-color:#ff8080;
+	color: white;
 }
 textarea{
 	width:100%; 
@@ -113,3 +119,27 @@ pre{
 	height: 200px;
 	padding: 3px 0px;
 }
+/* 
+<div style="width: 940px;">
+	<div style="display: inline-block;
+	width: 940px;
+	background-color: #656D78;
+	color: white;
+	border-radius: 5px 5px 0px 0px;
+	padding: 15px;
+	font-size: 16px;">
+		<pre style="word-wrap: break-word;
+	white-space: pre-wrap;">"+ib.getQuestion()+"</pre>
+	</div>
+	<div style="display: inline-block;
+	width: 940px;
+	height: 400px;
+	background-color: rgb(233, 233, 233);
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 16px;">
+	<pre style="word-wrap: break-word;
+	white-space: pre-wrap;">"+ib.getAnswer()+"</pre>
+	</div>
+</div>
+ */
