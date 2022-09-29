@@ -51,6 +51,7 @@
 		inner join orders o
 		on b.onum = o.onum
 		where mnum = #{mnum}
+		order by reviewCount, resStatus desc
 	</select>
 	
 	<delete id="DeleteMember">

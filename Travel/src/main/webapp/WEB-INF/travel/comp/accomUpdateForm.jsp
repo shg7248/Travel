@@ -42,7 +42,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div id="map" style="width:500px;height:400px;"></div></td>
+				<td colspan="2"><div id="map"></div></td>
 			</tr>
 			<tr>
 				<th>숙박지 주변 편의시설</th>

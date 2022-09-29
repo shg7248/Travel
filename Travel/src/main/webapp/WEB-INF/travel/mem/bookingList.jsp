@@ -9,10 +9,6 @@ function check(onum){
 		location.href='bookingCancel.mem?onum='+onum;
 	}
 }
-
-function sub(){
-	f.submit();
-}
 </script>
 
 <div class="all">
@@ -20,7 +16,8 @@ function sub(){
 <div class="contents">
 <label>예약 내역</label>
 <br>
-<table border="1" >
+<span class="important">※ 리뷰작성 시 50포인트를 드립니다.</span>
+<table class="res-grid">
 	<tr>
 		<th>숙소명</th>
 		<th>객실명</th>
@@ -45,13 +42,13 @@ function sub(){
 			<td>
 				<c:choose>
 					<c:when test="${list.resStatus eq 0}">
-						예약중
+						<font color="red">예약중</font>
 					</c:when>
 					<c:when test="${list.resStatus eq 1}">
-						숙박중
+						<span>숙박중</span>
 					</c:when>
 					<c:when test="${list.resStatus eq 2}">
-						숙박완료
+						<font color="blue">숙박완료</font>
 					</c:when>
 				</c:choose>
 			</td>
@@ -61,10 +58,10 @@ function sub(){
 						리뷰작성 완료
 					</c:when>
 					<c:when test="${list.reviewCount == 0 && list.resStatus == 2}">
-						<form action="${contextPath}/shop/detail.shop" method="post" name="f">
+						<form  action="${contextPath}/shop/detail.shop" method="post" name="f">
 							<input type="hidden" name="onum" value="${list.onum }"/>
 							<input type="hidden" name="anum" value="${list.anum }"/>
-							<a href="#" onclick="sub()">리뷰쓰기</a>
+							<a href="javascript:document.forms[0].submit()"><font>리뷰작성</font></a>
 						</form>						
 					</c:when>
 					<c:otherwise>
