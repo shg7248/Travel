@@ -23,6 +23,23 @@ textarea{
 
 td input[type=text],input[type=text]{
 	width: 100%;
+	height: 32px;
+	border: 0px;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 15px 0px;
+	background-color: rgb(233, 233, 233);
+}
+.upd_ins_label{
+	display: block;
+	height: 32px;
+	border: 0px;
+	border-radius: 5px 5px 0px 0px;
+	padding: 5px;
+	margin-top : 15px;
+	background-color: #656D78;
+	color: white;
+
 }
 h2{
 	font-size:20pt;
@@ -94,5 +111,5 @@ pre{
 .eventthumbimg{
 	width: 100%;
 	height: 200px;
-	padding: 3px 0px;;
+	padding: 3px 0px;
 }
