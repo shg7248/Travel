@@ -91,12 +91,12 @@ function checkAll(){
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
 <input type="text" name="email" id="login_email" placeholder="Email">
-</div>
 <font id="checkEmail" class="err"></font>
+</div>
 <div class="div password">
 <input type="password" name="pwd" id="login_pwd" placeholder="PassWord">
-</div>
 <font id="checkPwd" class="err"></font>
+</div>
 <div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
 </div>
