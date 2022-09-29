@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import login.model.TravelUserBean;
 import reply.model.ReplyBean;
 import reply.model.ReplyDao;
+import shop.model.PointBean;
+import shop.model.ShopDao;
 
 @Controller
 public class ReplyInsertController {
@@ -26,6 +28,9 @@ public class ReplyInsertController {
 	@Autowired
 	private ReplyDao replyDao;
 	
+	@Autowired
+	private ShopDao shopDao;
+	
 	private final String command = "/insertReply.shop";
 	
 	@ResponseBody
@@ -34,20 +39,29 @@ public class ReplyInsertController {
 				
 		String realPath = servletContext.getRealPath("/resources/images/reply");
 		File realPathFile = new File(realPath);
-		if(!realPathFile.exists()) {
+		if(realPathFile.exists()) {
 			realPathFile.mkdir();
 		}
 		
 		MultipartFile mf = replyBean.getUpload();
-		String originalFilename = mf.getOriginalFilename();
-		File uploadFile = new File(realPath, originalFilename);
-		mf.transferTo(uploadFile);
-		
-		replyBean.setImage(originalFilename);
-		System.out.println(realPath);
+		if(!mf.isEmpty()) {
+			String originalFilename = mf.getOriginalFilename();
+			File uploadFile = new File(realPath, originalFilename);
+			mf.transferTo(uploadFile);
+			
+			replyBean.setImage(originalFilename);
+		}
 		
 		TravelUserBean tub = (TravelUserBean)session.getAttribute("userInfo");
 		replyBean.setMnum(tub.getMnum());
 		replyDao.insertReply(replyBean);
+		
+		// 리뷰작성 포인트
+		PointBean pointBean = new PointBean();
+		pointBean.setChargeType("리뷰 작성");
+		pointBean.setMnum(tub.getMnum());
+		pointBean.setPoint(50);
+		
+		shopDao.insertPoint(pointBean);
 	}
 }
