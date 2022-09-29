@@ -12,8 +12,9 @@
 	justify-content: center;
 	
 }
-.footer__logo {
-	width: 100px;
+.footer__logo img {
+	width: 150px;
+	height: 70px;
 	margin: 10px;
 	display: flex;
 }
@@ -41,5 +42,4 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin: 5px;
 }

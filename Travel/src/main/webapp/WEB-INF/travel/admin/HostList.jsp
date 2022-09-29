@@ -69,8 +69,4 @@
 	</table>
 </div>
 </div>
-	
-	
-	
-	
-	
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

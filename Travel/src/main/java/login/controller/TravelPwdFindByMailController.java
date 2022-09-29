@@ -65,10 +65,18 @@ public class TravelPwdFindByMailController {
 					
 					messageHelper.setFrom("admin","admin");
 					messageHelper.setTo(tub.getEmail());
-					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );
+					messageHelper.setSubject("본인 확인을 위한 인증번호 입니다." );
 					messageHelper.setText(
-							"text/html","비밀번호 찾기에 관한 인증 번호는 다음과 같습니다.<br><hr>"
-									+ "<br>"+vcode+"<br><hr><br>");
+							"text/html",
+							"	<div style=\"display: block;\r\n"
+							+ "	background-color: rgb(233, 233, 233);\r\n"
+							+ "	border-radius: 5px;\r\n"
+							+ "	padding: 20px;\r\n"
+							+ "	font-size: 16px;\">\r\n"
+							+ "인증번호입니다.<br>"
+							+"["+vcode+"]"
+							+ "	</div>\r\n"
+							+ "</div>");
 					//메일보내기
 					mailSender.send(mimeMessage);
 					writer.println("<script type='text/javascript'>");
