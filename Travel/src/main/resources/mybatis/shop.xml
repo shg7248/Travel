@@ -96,7 +96,7 @@
 			order by price
 		</if>
 		<if test="sort eq 'HIT'">
-			order by av.average desc
+			order by nvl(av.average, 0) desc
 		</if>
 	</select>
 	
