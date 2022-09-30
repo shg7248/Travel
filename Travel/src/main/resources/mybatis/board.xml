@@ -7,6 +7,10 @@
 		insert into board1(nnum,subject,content,type,thumbnail)
 		values(board1_seq.nextval, #{subject}, #{content}, #{type},#{thumbnail})
 	</insert>
+	<insert id="InsertNotice">
+		insert into board1(nnum,subject,content,type)
+		values(board1_seq.nextval, #{subject}, #{content}, #{type})
+	</insert>
 	
 	<select id="GetBoard1NoticeList" resultType="board.board1.model.Board1Bean">
 		select * from board1
@@ -32,6 +36,10 @@
 	
 	<update id="UpdateBoard1ByNnum">
 		update board1 set subject = #{subject}, content = #{content}, thumbnail = #{thumbnail}
+		where nnum = #{nnum}
+	</update>
+	<update id="UpdateBoard1NoticeByNnum">
+		update board1 set subject = #{subject}, content = #{content}
 		where nnum = #{nnum}
 	</update>
 	

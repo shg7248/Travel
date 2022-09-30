@@ -53,7 +53,7 @@ public class Board1UpdateController {
 			model.addAttribute("pageNumber",pageNumber);
 			return getPage1;
 		}
-		bdao.updateBoard1ByNnum(bb);
+		bdao.updateBoard1NoticeByNnum(bb);
 		model.addAttribute("pageNumber",pageNumber);
 		return gotoPage1;
 	}

@@ -13,7 +13,6 @@ public class Board1Bean {
 	@NotEmpty(message = "내용/파일을 입력하세요")
 	private String content;
 	
-	@NotEmpty(message = "섬네일 이미지를 입력하세요")
 	private String thumbnail;
 	private String reg_date;
 
