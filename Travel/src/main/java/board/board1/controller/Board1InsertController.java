@@ -50,7 +50,7 @@ public class Board1InsertController {
 		if(result.hasErrors()) {
 			return getPage1;
 		}
-		bdao.insert(bb);
+		bdao.insertNotice(bb);
 		
 		return gotoPage1;
 	}

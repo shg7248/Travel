@@ -20,6 +20,9 @@ public class Board1Dao {
 	public void insert(Board1Bean bb) {
 		sqlSessionTemplate.insert(namespace+".Insert", bb);
 	}
+	public void insertNotice(Board1Bean bb) {
+		sqlSessionTemplate.insert(namespace+".InsertNotice", bb);
+	}
 
 	public List<Board1Bean> getBoard1NoticeList(Paging pageInfo) {
 		List<Board1Bean> list= new ArrayList<Board1Bean>();
@@ -46,6 +49,9 @@ public class Board1Dao {
 
 	public void updateBoard1ByNnum(Board1Bean bb) {
 		sqlSessionTemplate.selectOne(namespace+".UpdateBoard1ByNnum",bb);
+	}
+	public void updateBoard1NoticeByNnum(Board1Bean bb) {
+		sqlSessionTemplate.selectOne(namespace+".UpdateBoard1NoticeByNnum",bb);
 	}
 
 	public int getTotalNoticeCount() {
