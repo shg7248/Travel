@@ -14,10 +14,10 @@
 				</td>
 			</tr>
 			<tr>
-				<th>숙박지 종류${ab.canum }</th>
+				<th>숙박지 종류</th>
 				<td>
 					<select name="canum">
-						<option>종류를 선택하세요</option>
+						<option value="">종류를 선택하세요</option>
 						<c:forEach var="cate" items="${caLists }">
 							<option value="${cate.canum }" <c:if test="${cate.canum eq ab.canum }">selected</c:if>>${cate.caname }</option>
 						</c:forEach>
@@ -42,7 +42,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div id="map" style="width:500px;height:400px;"></div></td>
+				<td colspan="2"><div id="map"></div></td>
 			</tr>
 			<tr>
 				<th>숙박지 주변 편의시설</th>
@@ -83,21 +83,21 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<textarea rows="" cols="" name="info" id="ir1">${ab.info }</textarea>
+				<th>숙박지 정보</th>
+				<td>
+					<textarea rows="20" cols="20" name="info" id="ir1" class="ir1">${ab.info}</textarea>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type="submit" value="수정" onclick='oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", [])'>
+				<td colspan="2" align="right">
+					<input type="submit" value="수정" onclick='return submitAccom()'/>
 				</td>
 			</tr>
 		</table>
 		</form>
 	</section>
 </main>
-
-<script>
+<script>	
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef : oEditors,
@@ -108,22 +108,22 @@
 			fOnBeforeUnload : function() {}
 		}
 	});
-	
+
 	var container = document.getElementById('map'),
 	map = new kakao.maps.Map(container, { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
 	    level : 3 // 지도의 확대 레벨 
 	});
-	
+
 	const markers = [];
-	
+
 	 map.setDraggable(false);
 	 map.setZoomable(false);
 	 
 	 let moveLatLon = new kakao.maps.LatLng('${ab.latitude }', '${ab.longitude }');
 	 map.setCenter(moveLatLon);
 	 addMarker(moveLatLon);
-	
+
 	container.style.width = '100%';
 	container.style.height = '200px';
 	map.relayout();
@@ -131,7 +131,7 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 	map.setCenter(moveLatLon);
 
-	
+
 	// 수정에선 분리
 	//
 	function findAddress() {
@@ -164,7 +164,7 @@
 		    }
 		}).open();
 	}
-	
+
 	function addMarker(position) {
 		
 		var marker = new kakao.maps.Marker({
@@ -178,3 +178,4 @@
 		marker.setMap(map);
 	}
 </script>
+<script type="text/javascript" src="${contextPath }/resources/js/comp/auth.js"></script>

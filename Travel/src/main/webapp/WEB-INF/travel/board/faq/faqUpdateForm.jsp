@@ -27,12 +27,12 @@
 		<td colspan="2">
 			<textarea name="answer" id="answer">${faq.answer }</textarea><br>
 			<form:errors cssClass="err" path="answer"/><br>
-			<div align="right">
-			<input type="submit" id="submit" value="수정하기">
-			</div>
 		</td>
 	</tr>
 </table>
+<div class="right_button">
+<input type="submit" id="submit" value="수정하기">
+</div>
 </form:form>
 </div>
 </div>
@@ -55,6 +55,11 @@ var oEditors = [];
    
    $("#submit").click(function() {
 	   oEditors.getById["answer"].exec("UPDATE_CONTENTS_FIELD", []);
+	   var answer = $("#answer").val();
+	   if( answer == ""  || answer == null || answer == '&nbsp;' || answer == '<p>&nbsp;</p>' || answer =='<br>')  {
+           alert("내용을 입력하세요.");
+           return false;
+      }
 	});
 });
 </script>

@@ -21,6 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<context:component-scan base-package="admin" />
 	<context:component-scan base-package="login" />
-	
+	<context:component-scan base-package="mem" />
+	<context:component-scan base-package="shop" />
+	<context:component-scan base-package="comp" />
+	<context:component-scan base-package="reply" />
+	<context:component-scan base-package="board" />
+	<context:component-scan base-package="travel" />
 </beans:beans>

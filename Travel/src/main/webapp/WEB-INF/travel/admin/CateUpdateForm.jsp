@@ -1,33 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ include file="/WEB-INF/travel/common/layout/shop/header.jsp" %> 
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
 <%@ include file ="../common/common.jsp" %>
-CateUpdateForm.jsp<br>
-   
+<link href="<%= request.getContextPath() %>/resources/css/login.css" rel="stylesheet">
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
 
-<form:form commandName="cate" method="post" action="Cateupdate.admin" enctype="multipart/form-data">
-	<h1><span>카테고리 수정 화면</span></h1>
+function checkAdmin(){
+ 	if($('input[name="caname"]').val()==""){
+ 		$('#checkCname').text('카테고리 이름을 입력해 주세요.');
+		c.caname.focus();
+		return false;
+	} 
+ 	if($('input[name="url"]').val()==""){
+ 		$('#checkUrl').text('URL을 입력해 주세요.');
+		c.url.focus();
+		return false;
+	} 
+ 	if($('input[name="cagroup"]').val()==""){
+ 		$('#checkCagroup').text('카테고리 그룹을 입력해 주세요.');
+		c.cagroup.focus();
+		return false;
+	} 
+};
+
+</script>
+
+<style>
+.err{
+ font-size:10px;
+ color: red;
+ font-weight: bold;
+}
+</style>
+
+<div class="all">
+<%@ include file ="Main.jsp" %>
+<div class="one height">
+<form name="c"  method="post" action="Cateupdate.admin" enctype="multipart/form-data">
+	<h2>카테고리 수정 화면</h2>
 	<input type="hidden" name="canum" value="${cate.canum }">
 	<input type="hidden" name="pageNumber" value="${pageNumber }">
 	
-	<p>
+	
+	<div class="div">
 		<label for="caname">카테고리 이름</label>
 		<input type="text" name="caname" id="caname" value="${cate.caname }">
-	</p>
+		<font id="checkCname" class="err" ></font>
+	</div>
 	
-	<p>
+	<div class="div">
 	<label for="url">URL</label>
 	<input type="text" name="url" id="url" value="${cate.url}">
-	</p>
+	<font id="checkUrl" class="err" ></font>
+	</div>
 		
-	<p>
+	<div class="div">
 		<label for="cagroup">카테고리 그룹</label>
 		<input type="text" name="cagroup" id="cagroup" value="${cate.cagroup}">
-	</p>
+		<font id="checkCagroup" class="err" ></font>
+	</div>
 		
 	<p>
-		<input type="submit" value="수정하기" id="BtnSubmit">		
+		<input type="submit" value="수정하기" id="BtnSubmit" onclick="return checkAdmin()">		
 	</p>
-	
-</form:form>
-	
+
+</form>
+</div>
+</div>	
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

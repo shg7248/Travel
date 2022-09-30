@@ -26,19 +26,22 @@
 		</tr>
 		<tr>
 			<td>
-				이미지 파일 :
-				<input type="file" name="upload"><br><br>
-				<form:errors cssClass="err" path="content"/><br>
+				<label class="upd_ins_label">섬네일 이미지 파일</label>
+				<input type="file" name="uploadthumbnail"><br><br>
+				<form:errors cssClass="err" path="thumbnail"/><br>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div align="right">
-				<input type="submit" value="입력하기">
-				</div>
+				<label class="upd_ins_label">이미지 파일</label>
+				<input type="file" name="upload"><br><br>
+				<form:errors cssClass="err" path="content"/><br>
 			</td>
 		</tr>
 	</table>
+	<div class="right_button">
+	<input type="submit" value="입력하기">
+	</div>
 </form:form>
 </div>
 </div>

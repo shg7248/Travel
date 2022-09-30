@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    background: #E0E7E9;
 }
 
 .wrap {
@@ -9,7 +10,12 @@ html, body {
     padding-left: 200px;
     min-height: 100%;
 }
-
+.section {
+	background: white;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	min-height: 800px;
+}
 .header {
     position: absolute;
     left: 0;
@@ -19,19 +25,33 @@ html, body {
     background: #2e2e2e;
     color: white;
 }
+.logo {
+	text-align: center;
+	margin-top: 50px;
+}
+.bindclib {
+	position: absolute;
+	width: 40%;
+	left: 150px;
+	top: 0px;
+	transform: rotate(-45deg);
+}
 .nav__inner {
     margin-top: 20px;
 }
+
 .nav__item {
     text-align: center;
 }
 .nav__link {
     display: inline-block;
     font-weight: bold;
-    width: 95%;
+    width: 100%;
     height: 60px;
     line-height: 60px;
     color: white;
+    border-bottom: 2px solid #222222;
+
 }
 .nav__link:hover {
     background: white;
@@ -43,17 +63,18 @@ html, body {
 }
 
 .nav-2dept__link {
+	background: #3e3c3e;
     display: inline-block;
     font-size: 14px;
     font-weight: normal;
-    width: 95%;
+    width: 90%;
     height: 30px;
     line-height: 30px;
-    color: white;	
+    color: white;
 }
 
 .main {
-	padding-top: 50px;
+	padding: 50px 0px 100px 0px;
 }
 
 .section__inner {
@@ -90,19 +111,51 @@ table tr:not(tr:last-child) {
 	border-bottom: 1px solid #ebebeb;
 }
 
+table th, table td {
+	padding: 10px;
+}
+
 table th {
 	font-weight: bold;
+	vertical-align: middle;
+	font-size: 13px;
 }
 
 table td {
-	padding: 20px 0px 5px 0px;
+	vertical-align: middle;
+	font-size: 11px;
 }
 
 table.accom-insert__form th {
-	width: 30%;
+	width: 20%;
 }
 
 table input[type='text'] {
 	width: 200px;
 	border: 1px solid #ebebeb;
+}
+
+input[type='button'], input[type='submit'], button {
+	background: #2e2e2e;
+	color: white;
+	border-radius: 5px;
+	border: 0px;
+	padding: 2px 10px;
+	cursor: pointer;
+	margin: 10px 2px;
+	font-size: 16px;
+	
+}
+
+select, 
+input[type='text'],
+input[type='button'],
+input[type='submit'],
+button {
+	height: 30px;
+}
+
+.msg--import {
+	color: red;
+	font-size: 11px;
 }

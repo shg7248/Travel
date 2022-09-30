@@ -36,8 +36,14 @@
 	</select>
 	
 	<insert id="InsertAccom">
-		insert into accom (anum, cnum, canum, rcode, etcaddr, zip, name, info, fac1, fac2, starttime, endtime, latitude, longitude, image, reg_date)
-		values (ACCOM_SEQ.nextval, #{cnum}, #{canum}, #{rcode}, #{etcAddr}, #{zip}, #{name}, #{info}, #{fac1}, #{fac2}, #{startTime}, #{endTime}, #{latitude}, #{longitude}, #{image}, sysdate)
+		insert into accom (anum, cnum, canum, rcode, etcaddr, zip, name, info, 
+		<if test="fac1 neq null">fac1,</if>
+		<if test="fac2 neq null">fac2,</if>
+		starttime, endtime, latitude, longitude, image, reg_date)
+		values (ACCOM_SEQ.nextval, #{cnum}, #{canum}, #{rcode}, #{etcAddr}, #{zip}, #{name}, #{info}, 
+		<if test="fac1 neq null">#{fac1},</if>
+		<if test="fac2 neq null">#{fac2},</if>
+		#{startTime}, #{endTime}, #{latitude}, #{longitude}, #{image}, sysdate)
 	</insert>
 	
 	<select id="GetAccomByAnum" resultType="AccomBean">
@@ -65,7 +71,14 @@
 	</select>
 	
 	<update id="UpdateAccomByCnum">
-		update accom set canum = #{canum}, name = #{name}, zip = #{zip}, rcode = #{rcode}, etcaddr = #{etcAddr}, info = #{info}, fac1 = #{fac1}, fac2 = #{fac2}, starttime = #{startTime}, endtime = #{endTime}, latitude = #{latitude}, longitude = #{longitude} 
+		update accom set canum = #{canum}, name = #{name}, zip = #{zip}, rcode = #{rcode}, etcaddr = #{etcAddr}, info = #{info}, 
+		<if test="fac1 eq null">
+			fac1 = null,
+		</if>
+		<if test="fac2 eq null">
+			fac2 = null,
+		</if>
+		 starttime = #{startTime}, endtime = #{endTime}, latitude = #{latitude}, longitude = #{longitude} 
 		<if test="image != null">
 			, image = #{image}
 		</if>
@@ -91,7 +104,7 @@
 		on a.anum = r.anum
         and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
-			 and name like #{keyword}
+			 and r.name like #{keyword}
 		</if>
 	</select>
 	
@@ -114,7 +127,7 @@
 		on a.anum = r.anum
         and a.cnum = #{cnum}
 		<if test="whatColumn == 'name'">
-			 and name like #{keyword}
+			 and r.name like #{keyword}
 		</if>
 	</select>
 	
@@ -123,7 +136,9 @@
 	</select>
 	
 	<select id="GetCategoryList" resultType="CategoryBean">
-		select * from category order by 1
+		select * from category
+		where canum not in (1)
+		 order by to_number(canum)
 	</select>
 	
 	<select id="GetOrderListByRnum" resultType="OrdersBean">

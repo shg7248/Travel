@@ -6,14 +6,14 @@
 
 <div class="default">
 <div class="contents">
-<h2>1:1 문의사항 답변하기</h2>
-<table>
+<h2>1:1 문의사항</h2>
+<table class="inquirytable">
 	<tr>
-		<td align="center" width="10%">제목</td>
-		<td align="center" width="90%" colspan="5">${ib.subject }</td>
+		<td align="center" width="12%" class="inquiry_color">제목</td>
+		<td width="90%" colspan="5">${ib.subject }</td>
 	</tr>
 	<tr>
-		<td align="center" width="10%">작성자</td>
+		<td align="center" width="8%" class="inquiry_color">작성자</td>
 		<td align="center" width="10%">${ib.email }</td>
 		<td align="center" width="20%">작성일</td>
 		<td align="center" width="20%">
@@ -27,26 +27,24 @@
 		</td>
 	</tr>
 	<tr height="300">
-		<td align="center" width="10%">내용</td>
-		<td width="90%" colspan="5">${ib.question }</td>
+		<td align="center" width="10%" class="inquiry_color">내용</td>
+		<td width="90%" colspan="5"><pre class="pre_content">${ib.question }</pre></td>
 	</tr>
 	<tr height="300">
-		<td align="center" width="10%">답변</td>
-		<td width="90%" colspan="5"><pre>${ib.answer }</pre></td>
-	</tr>
-	<tr>
-		<td align="right" colspan="6">
-			<c:set var="email1" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
-			<c:if test="${email1 eq 'admin' }">
-				<input type="button" value="답변하기" onclick="location.href='inqanswer.brd?inum=${ib.inum }&pageNumber=${pageNumber}'">
-			</c:if>
-			<c:if test="${email1 eq 'admin' || email1 eq ib.email}">
-				<input type="button" value="삭제" onclick="location.href='inqdelete.brd?inum=${ib.inum }'">
-			</c:if>
-			<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageNumber}'">
-		</td>
+		<td align="center" width="10%" class="inquiry_color">답변</td>
+		<td width="90%" colspan="5"><pre class="pre_content">${ib.answer }</pre></td>
 	</tr>
 </table>
+<div class="right_button">
+	<c:set var="email1" value='<%= String.valueOf(session.getAttribute("email")) %>'/>
+	<c:if test="${email1 eq 'admin' }">
+		<input type="button" value="답변하기" onclick="location.href='inqanswer.brd?inum=${ib.inum }&pageNumber=${pageNumber}'">
+	</c:if>
+	<c:if test="${email1 eq 'admin' || email1 eq ib.email}">
+		<input type="button" value="삭제" onclick="location.href='inqdelete.brd?inum=${ib.inum }'">
+	</c:if>
+	<input type="button" value="목록보기" onclick="location.href='inqlist.brd?pageNumber=${pageNumber}'">
+</div>
 </div>
 </div>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

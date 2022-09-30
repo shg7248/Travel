@@ -87,16 +87,16 @@ function checkAll(){
 	}
 </script>
 <div class="all">
-<div class="one"> 
+<div class="one height"> 
 <form method="post" name="f" action="userLoginForm.log" >
 <div class="div email">
-<input type="text" name="email" placeholder="Email">
-</div>
+<input type="text" name="email" id="login_email" placeholder="Email">
 <font id="checkEmail" class="err"></font>
-<div class="div password">
-<input type="text" name="pwd" placeholder="PassWord">
 </div>
+<div class="div password">
+<input type="password" name="pwd" id="login_pwd" placeholder="PassWord">
 <font id="checkPwd" class="err"></font>
+</div>
 <div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
 </div>
@@ -108,9 +108,10 @@ function checkAll(){
 </div>
 
 <a href="javascript:kakaoLogin();"> <img alt=""
-		src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png">
+		src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg" width="300px" height="60">
 	</a>
 	<Br>
-	<a href="javascript:kakaoLogout();"> 로그아웃 </a><Br>
+	<a href="javascript:kakaoLogout();">카카오 연동끊기</a><Br>
 </div>
 </div>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

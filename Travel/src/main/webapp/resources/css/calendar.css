@@ -1,22 +1,22 @@
 .calendar {
+	width: 100%;
     background: white;
-    --s: 30px;
 }
 .calendar__title {
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 .calendar__view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
 .calendar__view div {
-    width: var(--s);
-    height: var(--s);
+    height: 30px;
     font-size: 11px;
     cursor: pointer;
     text-align: center;
-    line-height: var(--s);
+    line-height: 30px;
 }
 .calendar__view div:nth-child(7n + 1) {
     color: red;

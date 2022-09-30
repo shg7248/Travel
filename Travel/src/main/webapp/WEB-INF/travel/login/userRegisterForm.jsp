@@ -184,14 +184,14 @@ function allCk(){
 <c:if test="${param.flatform eq '' }">
 <div class="div">
 <label for="pwd">비밀번호</label>  
-<input type="text" name="pwd" id="pwd" value="${param.pwd }" placeholder="비밀번호를 입력해주세요.">
+<input type="password" name="pwd" id="pwd" value="${param.pwd }" placeholder="비밀번호를 입력해주세요.">
 <font id="pwdMsg" ></font>
 </div>
 
 
 <div class="div">
 <label for="pwd2">비밀번호 확인</label> 
-<input type="text" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
+<input type="password" name="pwd2" id="pwd2" value="${param.pwd2 }" placeholder="비밀번호를 입력해주세요.">
 <font id="pwd2Msg" ></font>
 </div>
 </c:if>
@@ -201,3 +201,4 @@ function allCk(){
 </form>
 </div>
 </body>
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

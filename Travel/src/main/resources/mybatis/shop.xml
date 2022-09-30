@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.model.Shop">
 	<select id="Search" resultType="SearchBean">
-		select a.anum, a.name, r.price, a.image, re.sido || ' ' || re.sigungu || ' ' || re.bname || ' ' || re.bname2 as region from(
+		select a.anum, a.name, r.price, a.image, re.sido || ' ' || re.sigungu || ' ' || re.bname || ' ' || re.bname2 as region, av.average, a.latitude as lat, a.longitude as lng from(
 			select a.anum, min(r.price) as price
 			from accom a
 			inner join room r
@@ -66,7 +66,7 @@
 						AS DISTANCE
 						FROM accom a2
 						where a2.anum = a.anum
-						<![CDATA[) <= 5]]>
+						<![CDATA[) <= #{around}]]>
 			</if>
 			group by a.anum
 		) z
@@ -77,11 +77,26 @@
 		on z.anum = a.anum
 		inner join region re
 		on a.rcode = re.rcode
+		left outer join (
+			select a.anum, avg(rating) average
+			from review rev
+			inner join orders o
+			on rev.onum = o.onum
+			inner join room r
+			on o.rnum = r.rnum
+			inner join accom a
+			on r.anum = a.anum
+			group by a.anum	
+		) av
+		on a.anum = av.anum
 		<if test="sort eq 'HIGHPRICE'">
 			order by price desc
 		</if>
 		<if test="sort eq 'LOWPRICE'">
 			order by price
+		</if>
+		<if test="sort eq 'HIT'">
+			order by nvl(av.average, 0) desc
 		</if>
 	</select>
 	
@@ -128,5 +143,17 @@
 		from a
 		inner join room r
 		on a.rnum = r.rnum
+	</select>
+	
+	<insert id="InsertPoint">
+		insert into point values (point_seq.nextval, #{mnum}, #{point}, #{chargeType}, sysdate)
+	</insert>
+	
+	<select id="GetTotalPointByMnum" resultType="int">
+		select nvl(sum(p.point), 0) as point
+		from member m
+		inner join point p
+		on m.mnum = p.mnum
+		where m.mnum = #{mnum}
 	</select>
 </mapper>

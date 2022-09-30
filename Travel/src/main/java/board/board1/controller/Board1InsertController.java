@@ -67,14 +67,17 @@ public class Board1InsertController {
 		
 		//이미지file처리
 		MultipartFile multi = bb.getUpload();
+		MultipartFile multi1 = bb.getUploadthumbnail();
 		bdao.insert(bb);
 		
-		String uploadPath = servletContext.getRealPath("/resources/board1");
+		String uploadPath = servletContext.getRealPath("/resources/images/event");
 		System.out.println("uploadPath: "+uploadPath);
 		
 		File file = new File(uploadPath+"/"+multi.getOriginalFilename());
+		File file1 = new File(uploadPath+"/"+multi1.getOriginalFilename());
 		try {
 			multi.transferTo(file);
+			multi1.transferTo(file1);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import login.model.TravelUserDao;
 import login.model.TravelCompanyBean;
 import login.model.TravelCompanyDao;
 import login.model.TravelUserBean;
+import login.model.TravelUserDao;
+import shop.model.PointBean;
+import shop.model.ShopDao;
 
 @Controller
 public class TravelRegisterController {
@@ -37,6 +38,8 @@ public class TravelRegisterController {
 	
 	private final String command3 = "/ajax.log";
 	private final String command4 = "/ajax2.log";
+	@Autowired
+	ShopDao shopDao;
 	@Autowired
 	TravelUserDao tudao;
 	@Autowired
@@ -87,8 +90,21 @@ public class TravelRegisterController {
 		//user회원가입
 		tudao.insert(tubean);
 		
+		System.out.println("mnum : " + tubean.getMnum());
+		
+		PointBean pointBean = new PointBean();
+		pointBean.setMnum(tubean.getMnum());
+		pointBean.setChargeType("회원가입");
+		pointBean.setPoint(200);
+		
+		shopDao.insertPoint(pointBean);
+		
 		mav.setViewName(gotoPage);
 
+//		PointBean pointBean = new PointBean();
+//		pointBean.set
+//		shopDao.insertPoint(pointBean);
+		
 		return mav;
 	}
 
@@ -123,7 +139,7 @@ public class TravelRegisterController {
 		}
 		
 		//파일의 저장경로
-		String uploadPath = servletContext.getRealPath("/resources/company");
+		String uploadPath = servletContext.getRealPath("/resources/images/company");
 		System.out.println("uploadPath:"+uploadPath);
 		
 		File existsFile = new File(uploadPath);

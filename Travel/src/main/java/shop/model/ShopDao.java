@@ -32,4 +32,12 @@ public class ShopDao {
 	public List<RoomBean> getRoomListByAnum(Map<String, String> map) {
 		return sqlSessionTemplate.selectList(namespace + ".GetRoomListByAnum", map);
 	}
+
+	public void insertPoint(PointBean pointBean) {
+		sqlSessionTemplate.insert(namespace + ".InsertPoint", pointBean);
+	}
+
+	public int getTotalPointByMnum(int mnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".GetTotalPointByMnum", mnum);
+	}
 }

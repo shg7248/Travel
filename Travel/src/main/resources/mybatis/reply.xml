@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply.model.Reply">
 	<insert id="InsertReply">
-		insert into review (rvnum, mnum, onum, content<if test="image neq null">, image</if>, rating, reg_date)
-		values (review_seq.nextval, #{mnum}, #{onum}, #{content}<if test="image neq null">, #{image}</if>, #{rating}, sysdate)
+		insert into review (rvnum, mnum, onum, content <if test="image != null">, image</if>, rating, reg_date)
+		values (review_seq.nextval, #{mnum}, #{onum}, #{content} <if test="image != null">, #{image}</if>, #{rating}, sysdate)
 	</insert>
 	
 	<select id="GetReplyListByRnum" parameterType="java.util.Map" resultType="ReplyBean">
@@ -18,7 +18,7 @@
 			<if test="order == 1">
 				desc
 			</if>
-			) as l, rpad(substr(m.email, 1, 3), 6, '*') as email, o.onum, content, reply, r.image, rating, ro.name as rname, to_char(r.reg_date, 'yyyy.MM.dd') as reg_date
+			) as l, r.rvnum, rpad(substr(m.email, 1, 3), 6, '*') as email, o.onum, content, reply, r.image, rating, ro.name as rname, to_char(r.reg_date, 'yyyy.MM.dd') as reg_date
 			from review r
 			inner join orders o
 			on o.onum = r.onum
@@ -40,4 +40,60 @@
 			on ro.rnum = o.rnum
 			where ro.anum = #{anum}
 	</select>
+	
+	<select id="GetReplyTotalCountByCnum" parameterType="hashmap" resultType="int">
+		select count(*)
+		from review r
+		inner join orders o
+		on o.onum = r.onum
+		inner join room ro
+		on ro.rnum = o.rnum
+		inner join accom a
+		on ro.anum = a.anum
+		where a.cnum = ${cnum}
+		<if test="whatColumn eq 'room'">
+			and ro.name like '%'||#{keyword}||'%'
+		</if>
+	</select>
+	
+	<select id="GetReplyListByCnum" parameterType="hashmap" resultType="ReplyBean">
+		select rvnum, ro.name as rname, r.content, r.rating, rpad(substr(m.email, 1, 5), 8, '*') as email, to_char(r.reg_date, 'yyyy.MM.dd') as reg_date, reply
+		from review r
+		inner join orders o
+		on o.onum = r.onum
+		inner join room ro
+		on ro.rnum = o.rnum
+		inner join accom a
+		on ro.anum = a.anum
+		inner join member m
+		on r.mnum = m.mnum
+		where a.cnum = ${cnum}
+		<if test="whatColumn eq 'room'">
+			and ro.name like '%'||#{keyword}||'%'
+		</if>
+		order by reg_date desc
+	</select>
+	
+	<select id="GetReplyByRvnum" resultType="ReplyBean">
+		select rvnum, ro.name as rname, r.content, r.rating, rpad(substr(m.email, 1, 5), 8, '*') as email, to_char(r.reg_date, 'yyyy.MM.dd') as reg_date, reply, r.image
+		from review r
+		inner join orders o
+		on o.onum = r.onum
+		inner join room ro
+		on ro.rnum = o.rnum
+		inner join accom a
+		on ro.anum = a.anum
+		inner join member m
+		on r.mnum = m.mnum
+		where r.rvnum = #{rvnum}
+	</select>
+	
+	<update id="UpdateReplyByRvnum">
+		update review set reply = #{reply} where rvnum = #{rvnum}
+	</update>
+	
+	<delete id="DeleteReplyByRvnum">
+		delete from review
+		where rvnum = #{rvnum}
+	</delete>
 </mapper>

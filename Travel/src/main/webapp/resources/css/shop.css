@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+html, body {
+	background: #E0E7E9;
+}
+
 body {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
@@ -9,6 +13,7 @@ body {
 	box-sizing: border-box;
 	width: inherit;	
 	background: red;
+	margin-bottom: 20px;
 }
 
 .logo {
@@ -102,9 +107,16 @@ body {
 
 .main__inner {
 	padding: 35px 10px;
+	background: white;
+	border-radius: 10px;
 }
 
 .footer {
 	background: #747474;
 	height: 150px;
+}
+
+span.important, p.important {
+	color: red;
+	font-size: 11px;	
 }

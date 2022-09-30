@@ -9,26 +9,29 @@ a:hover{
     left: 0;
     height: 100%;
     transition: all 0.5s ease;
-    width: 200px;
+    width: 150px;
     text-align: center;
 }
 
 .sidebar ul li a{
     display: block;
-    border-top: 1px solid #ff0000;
-    font-size: 16px;
+    padding: 5px 0px;
+    border-top: 1px solid #d5d5d5;
+    font-size: 12px;
     position: relative;
-    line-height: 100px;
-    font-weight: bolder;
 }
 
 .sidebar ul li:last-child{
-    border-bottom: 1px solid #ff0000;
+    border-bottom: 1px solid #d5d5d5;
 }
 
 .sidebar ul li a:hover,
 .sidebar ul li a.active{
-	color:white;
+	color: white!important;
     background:#ff0000;
-    
+}
+
+.sidebar h2 a{
+	font-size: 18px;
+	font-weight: bolder;
 }

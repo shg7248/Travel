@@ -27,21 +27,30 @@
 	</select>
 	
 	<select id="GetComTotalCount" resultType="int">
-		select count(*) from company
+		select count(*) from company 
 		<if test="whatColumn=='cnum'">
 			where cnum like #{keyword}
 		</if>
-	</select>
-	
-	<select id="GetCompanyList" resultType="admin.model.CompanyBean">
-		select * from company order by approyn
-		<if test="whatColumn == 'cnum'">
-		where cnum like #{keyword}
+		<if test="whatColumn=='email'">
+			where email like #{keyword}
 		</if>
 	</select>
 	
+	
+	<select id="GetCompanyList" resultType="admin.model.CompanyBean">
+		select * from company 
+		
+		<if test="whatColumn == 'cnum'">
+			where cnum like #{keyword}
+		</if>
+		<if test="whatColumn=='email'">
+			where email like #{keyword}
+		</if>
+		order by approyn
+	</select>
+	
 	<select id="GetAppr" resultType="admin.model.CompanyBean">
-		select * from company
+		select * from company 
 		where cnum = #{cnum}
 	</select>
 	
@@ -60,7 +69,7 @@
 	</select>
 	
 	<select id="GetCate" resultType="admin.model.CateBean">
-		select * from category
+		select * from category 
 		where CANUM = #{CANUM}
 	</select>
 	
@@ -80,6 +89,7 @@
 		<if test="whatColumn == 'fnum'">
 		where fnum like #{keyword}
 		</if>
+		order by fno
 	</select>
 	
   	<select id="GetFaci" resultType="admin.model.FaciBean">
@@ -104,7 +114,7 @@
 	
 	<insert id="InsertFaci" parameterType="admin.model.FaciBean">
 		insert into facility
-		values(faci_SEQ.nextval,#{fnum},#{name},#{fgroup,jdbcType=VARCHAR}
+		values(faci_SEQ.nextval,#{fgroup,jdbcType=VARCHAR},#{fnum},#{name}
 		)
 	</insert>
 	
@@ -132,6 +142,51 @@
 	<select id="GetFacGroupList" resultType="admin.model.FaciBean">
 		select fnum, name from facility where fgroup is null
 	</select>
+	
+	
+	
+	<insert id="InsertAdvertisement" parameterType="admin.model.AdBean">
+		insert into advertisement(adnum,subject,adimage)
+		values(advertisement_seq.nextval,#{subject},#{adimage})
+	</insert>
+	
+	<select id="GetTotalAdvertisementCount" resultType="int">
+		select count(*) from advertisement
+	</select>
+	
+	<select id="GetAdvertisementList" resultType="admin.model.AdBean">
+		select * from advertisement
+		order by adnum desc
+	</select>
+	
+	<select id="GetAdvertisementByAdnum" resultType="admin.model.AdBean">
+		select * from advertisement
+		where adnum = #{adnum}
+	</select>
+	
+	<delete id="DeleteAdvertisementByNnum">
+  		delete advertisement
+  		where adnum=#{adnum}
+  	</delete>
+  	
+  	<update id="UpdateAdvertisementByNnum">
+  		update advertisement set subject = #{subject}, adimage = #{adimage}
+  		where adnum=#{adnum}
+  	</update>
+  	
+  	<select id="GetAdvertisementFirst" resultType="admin.model.AdBean">
+  		select * from (select * from advertisement order by rownum desc) where rownum=1
+  	</select>	
+  	
+  	<select id="GetCateListTotal" resultType="admin.model.CateBean">
+  		select * from category order by to_number(canum)
+  	</select>
+  	
+  	<select id="GetAroundCateList" resultType="admin.model.CateBean">
+  		select canum, caname, '/shop/around/' || to_char(substr(url, 14, 1)) || '.shop' as url
+		from category
+		where canum not in (1)
+  	</select>
 </mapper>
 
 

@@ -2,12 +2,15 @@ package mem.model;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import login.model.TravelUserBean;
 import shop.model.OrdersBean;
+import shop.model.PointBean;
+import util.Paging;
 
 
 @Component
@@ -49,9 +52,9 @@ public class TravelMemberDao {
 		return cnt;
 	}
 
-	public void deleteMember(TravelUserBean userInfo) {
+	public void deleteMember(int mnum) {
 		int cnt = -1;
-		cnt = sst.delete(namespace+".DeleteMember", userInfo);
+		cnt = sst.delete(namespace+".DeleteMember", mnum);
 		System.out.println("cnt: "+cnt);
 	}
 
@@ -59,6 +62,26 @@ public class TravelMemberDao {
 		int cnt = -1;
 		cnt = sst.delete(namespace+".DeleteAccnum", accnum);
 		System.out.println("cnt: "+cnt);
+	}
+
+	public void deleteOrder(String onum) {
+		int cnt = -1;
+		cnt = sst.delete(namespace+".DeleteOrder", onum);
+		System.out.println("cnt: "+cnt);
+	}
+
+	public int getMemberPointTotalCountByMnum(int mnum) {
+		System.out.println(mnum);
+		return sst.selectOne(namespace + ".GetMemberPointTotalCountByMnum", mnum);
+	}
+
+	public List<PointBean> getMemberPointListByMnum(Paging pageInfo, int mnum) {
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sst.selectList(namespace + ".GetMemberPointListByMnum", mnum, rowBounds);
+	}
+
+	public TravelUserBean getUserInfoByMnum(int mnum) {
+		return sst.selectOne(namespace + ".GetUserInfoByMnum", mnum);
 	}
 	
 	

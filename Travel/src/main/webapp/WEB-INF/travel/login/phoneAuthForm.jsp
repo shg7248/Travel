@@ -13,7 +13,7 @@ $(document).ready(function(){
 });
 function subNum(){
 	//정규표현식
-	var rex = /^\d+$/;
+	var rex = /^010\d{4}\d{4}$/;
 	
 	//휴대폰 null확인
 	if($('#phone').val() == ""){
@@ -26,7 +26,7 @@ function subNum(){
 	//휴대폰 숫자검증 정규화
 	if(!rex.test($('#phone').val())){
 		$('.checkPhone').show();
-		$('.checkPhone').text("숫자만 입력하세요.");
+		$('.checkPhone').text("번호 형식에 맞춰 입력해 주세요.");
 		$('#phone').focus();
 		return false;
 	}
@@ -35,24 +35,37 @@ function subNum(){
 	$('.display').show();
 	
 	//휴대폰인증 api
-	
 	const formData = new FormData(myform);
-	console.log(myform);
-	console.log(formData);
 	
 	fetch('phoneAuth.tra', {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		},
 		body: formData
-	})
-	.then(()=> {
-		console.log("ffsddfsdsfdfs");
-	})
+	});
+	
+	alert("인증번호가 전송되었습니다.");
+}
+
+async function subAuthNumber() {
+	
+	const formData = new FormData(myform);
+	
+	let response = await fetch('phoneAuthConfirm.tra', {
+		method: 'POST',
+		body: formData
+	});
+	
+	let result = await response.text();
+	
+	if(result === 'true') {
+		alert("인증에 성공 했습니다.");
+		myform.submit();
+	}
+	else {
+		alert("인증에 실패 했습니다.");
+	}
 }
 </script>
-<div class="all">
+<div class="all height">
 <form method="post" action="phoneAuthForm.log" name="myform">
 	<input type="hidden" name="email" value="${param.email }">
 	<input type="hidden" name="flatform" value="${param.flatform }">
@@ -65,7 +78,9 @@ function subNum(){
 	<div class="div display" >
 	<label for="phoneCheck">인증번호</label> 
 	<input type="text" name="phoneCheck" id="phoneCheck" placeholder="숫자 6자리를 입력해주세요.">
-	<input type="submit" value="확인" class="display">
+	<input type="button" value="확인" class="display" onclick="subAuthNumber()">
 	</div>
 </form>
 </div>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

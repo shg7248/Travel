@@ -22,22 +22,23 @@ function checkAll(){
 }
 </script>    
 <div class="all">
-<div class="one">
+<div class="one height">
 <form method="post" name="f" action="ownerLoginForm.log">
 <div class="div email">
-<input type="text" name="email" placeholder="Email">
+<input type="text" name="email" id="login_email" placeholder="Email">
 <font id="checkEmail"></font>
 </div>
 <div class="div password">
-<input type="text" name="pwd" placeholder="PassWord">
+<input type="password" name="pwd" id="login_pwd" placeholder="PassWord">
 <font id="checkPwd"></font>
 </div>
 <input type="submit" name="" value="로그인" onclick="return checkAll()">
 </form>
 <div class="edit">
-<a href="ownerFindPwdForm.log">비밀번호 찾기</a>|
+<a href="ownerFindPwdForm.log">비밀번호 찾기</a> | 
 <a href="phoneAuthForm2.log" >회원가입</a>
 </div>
 </div>
 </div>
-   
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

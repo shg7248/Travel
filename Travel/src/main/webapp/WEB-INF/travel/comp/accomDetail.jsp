@@ -2,61 +2,51 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
 				<div class="accom-detail__btns">
-			    	<%-- <c:if test="${empty requestScope.accom }"> --%>
+			    	<c:if test="${empty requestScope.accom }">
 			        	<input type="button" value="등록하기" class="accom-detail__btn accom-detail__btn--insert" onclick="location.href='${contextPath }/comp/accom/insert.comp'">
-			        <%-- </c:if> --%>
-			        <%-- <c:if test="${!empty requestScope.accom }"> --%>
+			        </c:if>
+			        <c:if test="${!empty requestScope.accom }">
 			        	<input type="button" value="수정하기" class="accom-detail__btn accom-detail__btn--update" onclick="location.href='${contextPath }/comp/accom/update.comp?anum=${requestScope.accom.anum }'">
-					<%-- </c:if> --%>
+					</c:if>
 				</div>
 		        
 		        <table class="accom-detail__info">
 		            <c:if test="${empty requestScope.accom }">
 						<tr>
-							<td>등록된 숙박지가 없습니다.</td>
+							<td>숙박지를 등록해서 손님들을 맞이할 준비를 해보세요!</td>
 						</tr>
 		         	</c:if>
 		         	<c:if test="${!empty requestScope.accom }">
 			        	<tr>
-			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/${requestScope.accom.image }"></td>
+			        		<td colspan="2"><img class="accom-detail__img"src="${contextPath }/resources/images/accom/${requestScope.accom.image }"></td>
 			        	</tr>
 			        	<tr>
-			        		<td>사업자 등록번호</td>
-			        		<td>${requestScope.accom.cnum }</td>
+			        		<th width="20%">사업자 등록번호</th>
+			        		<td width="80%">${requestScope.accom.cnum }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박 지역</td>
+			        		<th>숙박 지역</th>
 			        		<td>${requestScope.accom.sido } ${requestScope.accom.sigungu }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박지 상세주소</td>
+			        		<th>숙박지 상세주소</th>
 			        		<td>${requestScope.accom.etcAddr }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박지 이름</td>
+			        		<th>숙박지 이름</th>
 			        		<td>${requestScope.accom.name }</td>
 			        	</tr>
 			        	<tr>
-			        		<td>숙박지 주변 편의시설</td>
-			        		<td>${requestScope.accom.fac1 }</td>
-			        	</tr>
-			        	<tr>
-			        		<td>객실 편의시설</td>
-			        		<td>${requestScope.accom.fac2 }</td>
-			        	</tr>
-			        	<tr>
-			        		<td>입실시간</td>
+			        		<th>입실시간</th>
 			        		<td>${requestScope.accom.startTime }시</td>
 			        	</tr> 
 			        	<tr>
-			        		<td>퇴실시간</td>
+			        		<th>퇴실시간</th>
 			        		<td>${requestScope.accom.endTime }시</td>
 			        	</tr> 
 			        	<tr>
-			        		<td colspan="2">숙박지 기본정보</td>
-			        	</tr> 
-			        	<tr>
-			        		<td colspan="2">${requestScope.accom.info }</td>
+			        		<th>숙박지 기본정보</th>
+			        		<td>${requestScope.accom.info }</td>
 			        	</tr>
 		        	</c:if>
 		        </table>

@@ -4,56 +4,36 @@
 <%@include file="/WEB-INF/travel/common/layout/shop/header.jsp" %>
 <link rel="stylesheet" href="${contextPath }/resources/css/board.css">
 
-<style>
-.notice_title{
-	cursor : pointer;
-}
-.notice_contents{
-	display : none;
-}
-</style>
-
-<script>
-$(document).ready(function(){
-	$('.notice_title').click(function(){
-		$(this).next().toggle();
-	});
-});
-</script>
-
 <div class="default">
 <%@include file="/WEB-INF/travel/board/board1/boardList.jsp" %>
 <div class="contents">
 	<h2>공지사항</h2>
-	<form>
 	<table>
-		<c:if test="${email eq 'admin' }">
+		<c:forEach items="${list }" var="board1">
 		<tr>
-			<td align="right">
-				<input type="button" value="추가하기" onclick="location.href='insertnotice.brd'">
+			<td class="title_td">
+				<a class="title" href="noticedetail.brd?nnum=${board1.nnum }&pageNumber=${pageInfo.pageNumber}">
+					<c:if test="${fn:length(board1.subject)>=30 }">
+					${fn:substring(board1.subject,0,30)}...
+					</c:if>
+					<c:if test="${fn:length(board1.subject)<30 }">
+					${board1.subject }
+					</c:if>
+				</a>
+				<span class="written-date">
+					<fmt:parseDate var="date" value="${board1.reg_date }" pattern="yyyy-MM-dd" />
+					<fmt:formatDate var="reg_date" value="${date }" pattern="yyyy.MM.dd" /> ${reg_date }
+				</span>
 			</td>
 		</tr>
-		</c:if>
-	<c:forEach items="${list }" var="board1">
-		<tr class="notice_title">
-			<td class="title_td title">${board1.subject }</td>
-		</tr>
-		<tr class="notice_contents">
-			<td width="800" class="inner_td">
-				<pre style="word-wrap: break-word; white-space: pre-wrap;">${board1.content}</pre>
-				<c:set var="email" value='<%=(String)session.getAttribute("email") %>'/>
-				<c:if test="${email eq 'admin' }">
-				<div align="right">
-				<input type="button" value="수정" onclick="location.href='noticeupdate.brd?nnum=${board1.nnum}&pageNumber=${pageInfo.pageNumber }'">
-				<input type="button" value="삭제" onclick="location.href='noticedelete.brd?nnum=${board1.nnum}'">
-				</div>
-				</c:if>
-			</td>
-		</tr>
-	</c:forEach>
+		</c:forEach>
 	</table>
-	</form>
 ${pageInfo.pagingHtml }
+<div class="right_button">
+<c:if test="${email eq 'admin' }">
+		<input type="button" value="추가하기" onclick="location.href='insertnotice.brd'">
+</c:if>
+</div>
 </div>
 </div>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

@@ -1,20 +1,53 @@
+erd cloud : https://www.erdcloud.com/d/zrNsp8TXaZwth7znr
 
-시도명	코드
-전국	00
-서울특별시	11
-부산광역시	21
-대구광역시	22
-인천광역시	23
-광주광역시	24
-대전광역시	25
-울산광역시	26
-세종특별자치시	29
-경기도	31
-강원도	32
-충청북도	33
-충청남도	34
-전라북도	35
-전라남도	36
-경상북도	37
-경상남도	38
-제주특별자치도	39
+웹서버주소 : http://localhost:8080
+카카오 로그인 클라이언트 키 : eef86418370a5e2c2a0e972cd708b587
+시크릿키 : 
+카카오 로그인요청 콜백 주소 : http://localhost:8080/travel/kakaoLogin.log
+카카오 로그아웃요청 콜백 주소 : http://localhost:8080/travel/kakao/logout
+
+OAuth -> Open Auth : 인증 처리를 대신 해준다.
+1. 인증하기 완료 - code
+2. 권한 부여 - Access Token
+
+로그인 요청
+GET /oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code HTTP/1.1
+Host: kauth.kakao.com
+kauth.kakao.com/oauth/authorize?client_id=eef86418370a5e2c2a0e972cd708b587&redirect_uri=http://localhost:8080/travel/kakao/callback&response_type=code
+
+토큰발급 요청 주소 (POST) - http body에 데이터를 전달 (5가지 데이터를 담아라) 
+POST /oauth/token
+kauth.kakao.com
+MIME : application/x-www-form-urlencoded;charset=utf-8
+http://kauth.kakao.com/oauth/token
+
+grant_type=authorization_code
+client_id=eef86418370a5e2c2a0e972cd708b587
+redirect_uri=http://localhost:8080/travel/kakaoLogin.log
+code={동적임}
+client_secret=
+
+-------------------------------------------
+
+// "https://hianna.tistory.com/325?category=764998"
+window.location.href 
+
+// "https:"
+window.location.protocol 
+
+// "hianna.tistory.com"
+window.location.host 
+
+// "hianna.tistory.com"
+window.location.hostname 
+
+// ""
+window.location.port 
+
+// "/325"
+window.location.pathname 
+
+// ?category=764998"
+window.location.search
+
+-------------------------------------------

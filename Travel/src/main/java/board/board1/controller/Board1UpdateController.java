@@ -70,6 +70,7 @@ public class Board1UpdateController {
 	@RequestMapping(value=command2,method = RequestMethod.POST)
 	public String eventupdate(Model model,@RequestParam("nnum") String nnum,
 			@RequestParam("originalContent") String originalContent,
+			@RequestParam("originalThumbnail") String originalThumbnail,
 			@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result,@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		if(result.hasErrors()) {
 			model.addAttribute("pageNumber",pageNumber);
@@ -77,17 +78,24 @@ public class Board1UpdateController {
 		}
 		
 		//기존 이미지 삭제
-		String originalPath = servletContext.getRealPath("/resources/board1")+"/"+originalContent;
-		File file1 = new File(originalPath);
+		String originalPath1 = servletContext.getRealPath("/resources/images/event")+"/"+originalContent;
+		String originalPath3 = servletContext.getRealPath("/resources/images/event")+"/"+originalThumbnail;
+		File file1 = new File(originalPath1);
+		File file3 = new File(originalPath3);
 		file1.delete();
+		file3.delete();
 		
 		//새로운 이미지 등록
 		MultipartFile multi = bb.getUpload();
-		String newPath = servletContext.getRealPath("/resources/board1")+"/"+bb.getContent(); //업로드 위치 설정
+		MultipartFile multi4 = bb.getUploadthumbnail();
+		String newPath = servletContext.getRealPath("/resources/images/event")+"/"+bb.getContent(); //업로드 위치 설정
+		String newPath4 = servletContext.getRealPath("/resources/images/event")+"/"+bb.getThumbnail(); //업로드 위치 설정
 		File file2 = new File(newPath);
+		File file4 = new File(newPath4);
 		
 		try {
 			multi.transferTo(file2);
+			multi4.transferTo(file4);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

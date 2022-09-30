@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/travel/common/layout/comp/header.jsp" %>
-		
 		<form method="post" action="${contextPath }/comp/accom/insert.comp" enctype="multipart/form-data" name="accomForm">
 		<input type="hidden" name="latitude" value="">
 		<input type="hidden" name="longitude" value="">
@@ -17,7 +16,7 @@
 				<th>숙박지 종류</th>
 				<td>
 					<select name="canum">
-						<option>종류를 선택하세요</option>
+						<option value="">종류를 선택하세요</option>
 						<c:forEach var="cate" items="${caLists }">
 							<option value="${cate.canum }">${cate.caname }</option>
 						</c:forEach>
@@ -33,7 +32,7 @@
 			<tr>
 				<th>숙박지 주소</th>
 				<td>
-					<p class="table__msg--import">※ 주소 입력 버튼을 눌러 숙박지를 선택하면 자동으로 입력됩니다.</p>
+					<p class="msg--import">※ 주소 입력 버튼을 눌러 숙박지를 선택하면 자동으로 입력됩니다.</p>
 					<input type="button" value="주소 입력" onclick="findAddress()"><br><br>
 					우편번호<br><input type="text" name="zip" readonly="readonly"><br>
 					시/도<br><input type="text" name="sido" readonly="readonly"><br>
@@ -68,12 +67,14 @@
 				<th>입실시간</th>
 				<td>
 					<input type="text" name="startTime">
+					<p class="msg--import">※ 01 ~ 24까지의 숫자만 입력이 가능합니다.</p>
 				</td>
 			</tr>
 			<tr>
 				<th>퇴실시간</th>
 				<td>
 					<input type="text" name="endTime">
+					<p class="msg--import">※ 01 ~ 24까지의 숫자만 입력이 가능합니다.</p>
 				</td>
 			</tr>
 			<tr>
@@ -83,13 +84,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<th>숙박지 정보</th>
+				<td>
 					<textarea rows="20" cols="20" name="info" id="ir1" class="ir1"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type="submit" value="등록" onclick='oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", [])'>
+				<td colspan="2" align="right">
+					<input type="submit" value="등록" onclick='return submitAccom()'>
 				</td>
 			</tr>
 		</table>
@@ -97,6 +99,7 @@
 	</section>
 </main>
 <script>
+
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef : oEditors,
@@ -107,7 +110,7 @@
 			fOnBeforeUnload : function() {}
 		}
 	});
-	
+
 	var container = document.getElementById('map'),
 	map = new kakao.maps.Map(container, { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(37.556490249006615, 126.94520635682696), // 지도의 중심좌표 
@@ -169,3 +172,4 @@
 		marker.setMap(map);
 	}
 </script>
+<script type="text/javascript" src="${contextPath }/resources/js/comp/auth.js"></script>

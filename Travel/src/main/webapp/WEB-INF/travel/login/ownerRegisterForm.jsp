@@ -12,9 +12,9 @@ $(document).ready(function(){
 	//비번일치체크
 	checkPwd = false;
 	//사업자번호일치체크
-	cnumMsg = false;
+	checkCnum = false;
 	//정규표현식(숫자만)
-	var rex = /^\d{2,10}$/;
+	var rex = /^\d{2,12}$/;
 
 $("input[name='confirm']").click(function(){
 	$.ajax({
@@ -62,7 +62,7 @@ $("input[name='confirm2']").click(function(){
 		$("#cnumMsg").css("color","red");
 		$("#cnumMsg").show();
 		$("input[name='cnum']").focus();
-		cnumMsg = false;
+		checkCnum = false;
 		return;
 	}
 	$.ajax({
@@ -76,22 +76,22 @@ $("input[name='confirm2']").click(function(){
         		$("#cnumMsg").text("사용가능한 번호입니다.");
         		$("#cnumMsg").css("color","green");
         		$("#cnumMsg").show();
-        		cnumMsg = true;
+        		checkCnum = true;
         	}else if(data == "fail"){
         		$("#cnumMsg").text("중복된 번호입니다.");
         		$("#cnumMsg").css("color","red");
         		$("#cnumMsg").show();
-        		cnumMsg = false;
+        		checkCnum = false;
         	}else if(data == "leng") {
         		$("#cnumMsg").text(" 12자리 이하로 입력해주세요.");
         		$("#cnumMsg").css("color","red");
         		$("#cnumMsg").show();
-        		cnumMsg = false;
+        		checkCnum = false;
         	}else {
         		$("#cnumMsg").text(" 사업자 번호를 입력하세요.");
         		$("#cnumMsg").css("color","red");
         		$("#cnumMsg").show();
-        		cnumMsg = false;
+        		checkCnum = false;
         	}
         },
         error: function(jqxhr, textStatus, errorThrown){
@@ -111,7 +111,7 @@ $('input[name="email"]').keydown(function(){
 //cnum 입력시 err 사라짐
 $('input[name="cnum"]').keydown(function(){
 	$("#cnumMsg").hide();
-	checkEmail = false;
+	checkCnum = false;
 });
 
 $('input[name="pwd"]').add('input[name="pwd2"]').on({
@@ -202,6 +202,13 @@ function allCk(){
 		return false;
 	}
 	
+	//사업자 중복체크
+	if(!checkCnum){
+		alert("사업자번호를 확인하세요.");
+		f.cnum.focus();
+		return false;
+	}
+	
 	//비밀번호 다름
 	if(!checkPwd){
 		alert("비밀번호를 확인하세요.");
@@ -255,7 +262,7 @@ function allCk(){
 
 
 <div class="div">
-<label for="upload">사업자 이미지</label> 
+<label for="upload">사업자등록증 이미지</label> 
 <input type="file" name="upload" id="upload" value="">
 <font id="imgMsg"></font>
 </div>
@@ -265,3 +272,5 @@ function allCk(){
 </form:form>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

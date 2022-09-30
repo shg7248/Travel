@@ -21,6 +21,7 @@ public class CompanyDao {
 	
 	public int getTotalCount(Map<String, String> map) {
 		int result = sqlSessionTemplate.selectOne(namespace+".GetComTotalCount", map);
+		System.out.println("total result:"+result);
 		return result;
 
 	}

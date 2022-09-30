@@ -70,3 +70,13 @@ button, input, optgroup, select, textarea {
     font: inherit;
     color: inherit;
 }
+
+input[type='button'], input[type='submit'] {
+	cursor: pointer;
+}
+
+h2 {
+	font-size: 26px;
+	font-weight: bold;
+	margin: 0 0 15px;
+}

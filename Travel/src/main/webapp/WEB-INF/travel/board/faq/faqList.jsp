@@ -10,6 +10,7 @@
 }
 .fa{
 	display : none;
+	border: 0px;
 }
 .search{
 	display: flex;
@@ -40,23 +41,28 @@ $(document).ready(function(){
 	<input type="submit" value="검색">
 </div>
 </form><br>
+	<c:if test="${email eq 'admin' }">
+		<div class="right_button">
+			<input type="button" value="추가하기" onclick="location.href='faqinsert.brd'">
+		</div>
+	</c:if>
 	<table>
-		<c:if test="${email eq 'admin' }">
-		<tr>
-			<td align="right">
-				<input type="button" value="추가하기" onclick="location.href='faqinsert.brd'">
-			</td>
-		</tr>
-		</c:if>
 		<c:forEach var="faq" items="${lists }">
 		<tr height="50" class="fq">
-			<td class="title_td">${faq.question }</td>
+			<td class="title_td title">
+			<c:if test="${fn:length(faq.question)>=60 }">
+					${fn:substring(faq.question,0,60)}...
+					</c:if>
+					<c:if test="${fn:length(faq.question)<60 }">
+					${faq.question }
+			</c:if>
+			</td>
 		</tr>
 		<tr class="fa">
 			<td width="800" class="inner_td">
-			<pre style="word-wrap: break-word; white-space: pre-wrap;">${faq.answer }</pre><br>
+			<pre class="pre_content" style="word-wrap: break-word; white-space: pre-wrap;">${faq.answer }</pre><br>
 			<c:if test="${email eq 'admin' }">
-			<div align="right">
+			<div class="right_button">
 			<input type="button" value="수정하기" onclick="location.href='faqupdate.brd?fnum=${faq.fnum}'">
 			<input type="button" value="삭제하기" onclick="location.href='faqdelete.brd?fnum=${faq.fnum}'">
 			</div>

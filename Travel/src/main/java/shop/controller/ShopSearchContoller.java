@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import admin.model.CateBean;
+import admin.model.CateDao;
 import comp.model.CompDao;
 import comp.model.FacBean;
 import comp.model.ResionBean;
@@ -28,6 +30,9 @@ public class ShopSearchContoller {
 	
 	@Autowired
 	private ShopDao shopDao;
+	
+	@Autowired
+	private CateDao cateDao;
 	
 	private String getPage = "search";
 	private String getPage2 = "around";
@@ -131,6 +136,9 @@ public class ShopSearchContoller {
 		
 		List<SearchBean> sLists = shopDao.search(searchBean);
 		model.addAttribute("sLists", sLists);
+		
+		List<CateBean> cLists = cateDao.getAroundCateList();
+		model.addAttribute("cLists", cLists);
 		
 		return getPage2;
 	}	

@@ -38,15 +38,24 @@ $(document).ready(function(){
 <div class="all">
 <%@ include file="/WEB-INF/travel/common/layout/mem/memberList.jsp" %>  
 <div class="contents">
-<h2>회원 탈퇴</h2>
-	<form action="confirm.mem" method="post" name="f">
-		<div class="div">
-			<label for="">비밀번호 확인</label>
-			<input type="text" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
-			<font class="checkMsg"></font>
-		</div>
-		<input type="button" value="확인" onclick="checkPwd()">
+	<form action="confirm.mem" method="post" name="f" class="center">
+		<!-- 소셜로그인이 아니면 -->
+		<c:if test="${userInfo.flatform eq 'home' }">
+			<div class="div">
+			<h2>회원 탈퇴</h2>
+				<label for="pwd">비밀번호 확인</label>
+				<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요">
+				<font class="checkMsg"></font>
+			</div>
+			<input type="button" value="확인" onclick="checkPwd()">
+		</c:if>
+		<!-- 소셜로그인이면 -->
+		<c:if test="${userInfo.flatform ne 'home' }">
+			<input type="submit" value="탈퇴하기">
+		</c:if>
 	</form>
 </div>
 </div>
 </body>
+
+<%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

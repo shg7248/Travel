@@ -1,5 +1,7 @@
 package admin.controller.Facility;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class FaciUpdateController {
 		return getPage;
 		
 	}
+	
 	
 	// 수정form에서 submit update.ab post요청
 		

@@ -12,21 +12,37 @@ public class Board1Bean {
 
 	@NotEmpty(message = "내용/파일을 입력하세요")
 	private String content;
+	
+	@NotEmpty(message = "섬네일 이미지를 입력하세요")
+	private String thumbnail;
 	private String reg_date;
 
 	private String type;
 	private MultipartFile upload;
+	private MultipartFile uploadthumbnail;
 
 	public MultipartFile getUpload() {
 		return upload;
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
-//		if(content.equals(null)) {
-			this.content = upload.getOriginalFilename();
-//		}
+		this.content = upload.getOriginalFilename();
 	}
+	public MultipartFile getUploadthumbnail() {
+		return uploadthumbnail;
+	}
+	public void setUploadthumbnail(MultipartFile uploadthumbnail) {
+		this.uploadthumbnail = uploadthumbnail;
+		this.thumbnail = uploadthumbnail.getOriginalFilename();
+	}
+	
 
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public int getNnum() {
 		return nnum;
 	}

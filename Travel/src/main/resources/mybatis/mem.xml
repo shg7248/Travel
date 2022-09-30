@@ -22,6 +22,7 @@
 	<select id="selectOrder" resultType="OrdersBean">
 		with a as (
 			select  onum, 
+					a.anum,
 					ro.rnum, 
 					to_date(startdate || '' || a.starttime, 'yyyyMMddhh24') as startDate, 
 					to_date(enddate|| '' || a.endtime, 'yyyyMMddhh24') as endDate,
@@ -40,7 +41,7 @@
 			on ro.anum = a.anum
 		),
 		b as(
-			<![CDATA[select onum, rname, aname, reviewCount, price, case when sysdate < startDate then 0]]>
+			<![CDATA[select onum, anum, rname, aname, reviewCount, price, case when sysdate < startDate then 0]]>
 						<![CDATA[when sysdate >= startDate  and sysdate < endDate then 1]]>
 						else 2 end as resStatus
 			from a
@@ -49,6 +50,8 @@
 		from b
 		inner join orders o
 		on b.onum = o.onum
+		where mnum = #{mnum}
+		order by reviewCount, resStatus desc
 	</select>
 	
 	<delete id="DeleteMember">
@@ -66,4 +69,32 @@
 		delete account 
 		where accnum = #{accnum}
 	</delete>
+	
+	<delete id="DeleteOrder">
+		delete orders
+		where onum = #{onum}
+	</delete>
+	
+	<select id="GetMemberPointTotalCountByMnum" resultType="int">
+		select count(*) from point
+		where mnum = #{mnum}
+	</select>
+	
+	<select id="GetMemberPointListByMnum" resultType="PointBean">
+		select * from point
+		where mnum = #{mnum}
+		order by pnum desc
+	</select>
+	
+	<select id="GetUserInfoByMnum" resultType="MyMember">
+		select m.mnum, email, name, pwd, phone, flatform, reg_date, p.point
+		from member m
+		left outer join (
+			select mnum, sum(point) point
+			from point
+			group by mnum
+		) p
+		on m.mnum = p.mnum
+		where m.mnum = #{mnum}
+	</select>
 </mapper>

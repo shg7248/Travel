@@ -27,7 +27,8 @@ import login.model.TravelUserDao;
 public class TravelPwdFindByMailController {
 	private final String command1="userFindPwd.log";
 	private final String command2="ownerFindPwd.log";
-	private String getPage="/ownerFindPwdForm";
+	private String getPage1="/userFindPwdForm";
+	private String getPage2="/ownerFindPwdForm";
 	private String gotoPage="redirect:/checkVcode.log";
 	
 	@Autowired
@@ -64,12 +65,25 @@ public class TravelPwdFindByMailController {
 					
 					messageHelper.setFrom("admin","admin");
 					messageHelper.setTo(tub.getEmail());
-					messageHelper.setSubject("비밀번호 찾기를 위한 인증번호를 발송했습니다." );
+					messageHelper.setSubject("본인 확인을 위한 인증번호 입니다." );
 					messageHelper.setText(
-							"text/html","비밀번호 찾기에 관한 인증 번호는 다음과 같습니다.<br><hr>"
-									+ "<br>"+vcode+"<br><hr><br>");
+							"text/html",
+							"	<div style=\"display: block;\r\n"
+							+ "	background-color: rgb(233, 233, 233);\r\n"
+							+ "	border-radius: 5px;\r\n"
+							+ "	padding: 20px;\r\n"
+							+ "	font-size: 16px;\">\r\n"
+							+ "인증번호입니다.<br>"
+							+"["+vcode+"]"
+							+ "	</div>\r\n"
+							+ "</div>");
 					//메일보내기
 					mailSender.send(mimeMessage);
+					writer.println("<script type='text/javascript'>");
+					writer.println("alert('인증번호를 발송하였습니다.'); ");
+					writer.println("location.href='checkVcode.log'");
+					writer.println("</script>");
+					writer.flush();
 				} catch (MessagingException e) {
 					System.out.println("메일 발송 실패");
 				}
@@ -84,7 +98,7 @@ public class TravelPwdFindByMailController {
 		writer.println("alert('해당하는 이메일의 회원이 없습니다.'); ");
 		writer.println("</script>");
 		writer.flush();
-		return getPage;
+		return getPage1;
 	}
 	
 	//ownerPwdForm.jsp > codeCheck.jsp
@@ -119,6 +133,11 @@ public class TravelPwdFindByMailController {
 									+ "<br>"+vcode+"<br><hr><br>");
 					//메일보내기
 					mailSender.send(mimeMessage);
+					writer.println("<script type='text/javascript'>");
+					writer.println("alert('인증번호를 발송하였습니다.'); ");
+					writer.println("location.href='checkVcode.log'");
+					writer.println("</script>");
+					writer.flush();
 				} catch (MessagingException e) {
 					System.out.println("메일 발송 실패");
 				}
@@ -133,6 +152,6 @@ public class TravelPwdFindByMailController {
 		writer.println("alert('해당하는 이메일의 회원이 없습니다.'); ");
 		writer.println("</script>");
 		writer.flush();
-		return getPage;
+		return getPage2;
 	}
 }
