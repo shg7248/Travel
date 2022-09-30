@@ -55,23 +55,26 @@
 	</div>
 </header>
 <script>
-	const list = document.querySelector('.main-nav__list');
-
-	const url = "/travel/CatelistTotal.admin";
-	fetch(url)
-	.then((data)=> data.json())
-	.then((result)=> {
-		for(let e in result) {
- 			const li = document.createElement('li');
-			li.setAttribute('class', 'main-nev__item');
-			const a = document.createElement('a');
-			a.setAttribute('class', 'main-nav__link');
-			a.setAttribute('href', "${contextPath}" + result[e].url);
-			a.innerHTML = result[e].caname;
-			li.append(a);
-			list.append(li);
-		}
-	});
+	
+	(function() {
+		const list = document.querySelector('.main-nav__list');
+	
+		const url = "/travel/CatelistTotal.admin";
+		fetch(url)
+		.then((data)=> data.json())
+		.then((result)=> {
+			for(let e in result) {
+	 			const li = document.createElement('li');
+				li.setAttribute('class', 'main-nav__item');
+				const a = document.createElement('a');
+				a.setAttribute('class', 'main-nav__link');
+				a.setAttribute('href', "${contextPath}" + result[e].url);
+				a.innerHTML = result[e].caname;
+				li.append(a);
+				list.append(li);
+			}
+		});
+	}())
 </script>
 <main class="main">
 	<div class="main__inner">
