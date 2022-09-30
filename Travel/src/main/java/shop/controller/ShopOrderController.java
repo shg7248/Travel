@@ -61,10 +61,10 @@ public class ShopOrderController {
 		}
 		
 		Object obj = session.getAttribute("mnum");
-		if(obj == null) {
+		if(obj == null || (Integer) obj == 0) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert('로그인이 필요합니다'); location.href='" + contextPath + "/userLoginForm.log'</script>");
+			out.print("<script>alert('회원만 이용 가능합니다'); location.href='" + contextPath + "/userLoginForm.log'</script>");
 			out.flush();
 			out.close();
 			return null;
