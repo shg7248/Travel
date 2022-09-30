@@ -105,5 +105,5 @@
 	    });
 	}
 </script>
-<%-- <script src="${contextPath }/resources/js/shop/shop.js"></script> --%>
+<script src="${contextPath }/resources/js/shop/shop.js"></script>
 <%@ include file="/WEB-INF/travel/common/layout/footer.jsp" %>

@@ -92,6 +92,7 @@
         
         .room_item {
         	border: 1px solid black;
+        	height: 250px;
         }
 </style>
 <article>
