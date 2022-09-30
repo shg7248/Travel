@@ -183,11 +183,11 @@ Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('31012
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1138621886','sa03.png','cde@gmail.com','1234','01034567890',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('2128173385','sa04.png','def@gmail.com','1234','01045678901',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('4568601480','sa05.png','efg@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
-Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('4568601480','sa05.png','efg@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('4568601481','sa05.png','efg@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('3188107091','sa06.png','abcd@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('6658801099','sa07.jpg','bcde@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
-Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1138621886','sa08.jpg','bcdef@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
-Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('2018155198','sa09.jpg','abcddd@gmail.com','1234','01056789012',0,to_date('22/09/26','RR/MM/DD')); -- 관리자 승인 안남
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1138621887','sa08.jpg','bcdef@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('2018155198','sa09.jpg','abcddd@gmail.com','1234','01056789012',0,to_date('22/09/26','RR/MM/DD'));
 
 select * from company;
 commit;
