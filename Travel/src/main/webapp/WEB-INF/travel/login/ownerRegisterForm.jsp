@@ -262,7 +262,7 @@ function allCk(){
 
 
 <div class="div">
-<label for="upload">사업자 이미지</label> 
+<label for="upload">사업자등록증 이미지</label> 
 <input type="file" name="upload" id="upload" value="">
 <font id="imgMsg"></font>
 </div>
