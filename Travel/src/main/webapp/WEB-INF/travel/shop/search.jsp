@@ -71,7 +71,7 @@
 					</div>
 					<div class="search__item search__facility">
 						<div class="facility">
-							<h2 class="title facility__title">공용시설</h2>
+							<h2 class="title facility__title">객실 내 시설</h2>
 							<div class="facility__list">
 							<c:forEach var="fac" items="${facLists }">
 								<c:if test="${fac.fgroup eq 'F2' }">
