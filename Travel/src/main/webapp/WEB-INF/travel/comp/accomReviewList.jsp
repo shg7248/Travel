@@ -64,10 +64,10 @@
 							<td>${item.rating }</td>
 							<td>${item.reg_date }</td>
 							<c:if test="${item.reply eq null }">
-								<td>답변대기</td>
+								<td><font color="#FF8C00">답변대기</font></td>
 							</c:if>
 							<c:if test="${item.reply ne null }">
-								<td>답변완료</td>
+								<td><font color="#DC143C">답변완료</font></td>
 							</c:if>
 						</tr>
 						</c:forEach>

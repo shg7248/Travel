@@ -26,7 +26,7 @@
 	<td>${f.fnum }</td>
 	<td>${f.name}</td>
 	<td><a href="Faciupdate.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">수정</a></td>
-	<td><a href="Facidele.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+	<td><a href="Facidele.admin?fno=${f.fno }&pageNumber=${pageInfo.pageNumber}"><font color="#DC143C">삭제</font></a></td>
 </tr>
 </c:forEach>
 <tr>

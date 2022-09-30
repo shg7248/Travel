@@ -46,18 +46,18 @@
    				<c:choose>
    					<c:when test="${h.approyn==0 }">
    						<%-- <input type="button" value="승인확인" onclick="location.href='Comapprove.admin?cnum=${h.cnum}'"> --%>
-   						<a href="Comapprove.admin?cnum=${h.cnum}">승인확인</a>
+   						<a href="Comapprove.admin?cnum=${h.cnum}"><font color="#4169E1">승인확인</font></a>
    					</c:when>
    				</c:choose>
    				
    				<c:choose>
    					<c:when test="${h.approyn==1 }">
-   						승인완료
+   						<font color="#DC143C">승인완료</font>
    					</c:when>
    				</c:choose>
    				
    				</td>
-   				<td><a href="Hdele.admin?cnum=${h.cnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+   				<td><a href="Hdele.admin?cnum=${h.cnum }&pageNumber=${pageInfo.pageNumber}"><font color="#DC143C">삭제</font></a></td>
    			</tr>
    	
 	</c:forEach>

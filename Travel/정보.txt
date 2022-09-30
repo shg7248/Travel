@@ -186,6 +186,8 @@ Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('45686
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('4568601480','sa05.png','efg@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('3188107091','sa06.png','abcd@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
 Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('6658801099','sa07.jpg','bcde@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('1138621886','sa08.jpg','bcdef@gmail.com','1234','01056789012',1,to_date('22/09/26','RR/MM/DD'));
+Insert into COMPANY (CNUM,IMAGE,EMAIL,PWD,PHONE,APPROYN,REG_DATE) values ('2018155198','sa09.jpg','abcddd@gmail.com','1234','01056789012',0,to_date('22/09/26','RR/MM/DD')); -- 관리자 승인 안남
 
 select * from company;
 commit;
@@ -419,7 +421,7 @@ insert into board1(nnum, subject, content, thumbnail, type)
 values(board1_seq.nextval, '대한민국 숙박대전2022','event4_content.jpg','event4_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, thumbnail, type)
-values(board1_seq.nextval, '농협카드 이벤트','event2_content.png','event2_thumb.jpg','event');
+values(board1_seq.nextval, '농협카드 이벤트','event2_content.jpg','event2_thumb.jpg','event');
 
 insert into board1(nnum, subject, content, thumbnail, type)
 values(board1_seq.nextval, '우리카드 이벤트','event3_content.jpg','event3_thumb.jpg','event');

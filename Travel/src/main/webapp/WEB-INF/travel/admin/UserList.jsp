@@ -48,7 +48,7 @@
 				${newformattedDay }
 	   			
 	   			</td>
-	   			<td><a href="Udele.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+	   			<td><a href="Udele.admin?mnum=${u.mnum }&pageNumber=${pageInfo.pageNumber}"><font color="#DC143C">삭제</font></a></td>
 	   		</tr>
 		</c:forEach>
 <tr>

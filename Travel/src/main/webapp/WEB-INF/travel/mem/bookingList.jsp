@@ -42,30 +42,30 @@ function check(onum){
 			<td>
 				<c:choose>
 					<c:when test="${list.resStatus eq 0}">
-						<font color="red">예약중</font>
+						<font color="#DC143C">예약중</font>
 					</c:when>
 					<c:when test="${list.resStatus eq 1}">
-						<span>숙박중</span>
+						<font color="#FF8C00">숙박중</font>
 					</c:when>
 					<c:when test="${list.resStatus eq 2}">
-						<font color="blue">숙박완료</font>
+						<font color="#DC143C">숙박완료</font>
 					</c:when>
 				</c:choose>
 			</td>
 			<td>
 				<c:choose>
 					<c:when test="${list.reviewCount > 0}">
-						리뷰작성 완료
+						<font color="#DC143C">리뷰작성 완료</font>
 					</c:when>
 					<c:when test="${list.reviewCount == 0 && list.resStatus == 2}">
 						<form  action="${contextPath}/shop/detail.shop" method="post" name="f">
 							<input type="hidden" name="onum" value="${list.onum }"/>
 							<input type="hidden" name="anum" value="${list.anum }"/>
-							<a href="javascript:document.forms[0].submit()"><font>리뷰작성</font></a>
+							<a href="javascript:document.forms[0].submit()"><font color="#4169E1">리뷰작성</font></a>
 						</form>						
 					</c:when>
 					<c:otherwise>
-						비활성화
+						<font color="#DC143C">비활성화</font>
 					</c:otherwise>
 				</c:choose>
 			</td>
@@ -75,7 +75,7 @@ function check(onum){
 						<a href="#" onclick="return check(${list.onum})">취소하기</a>
 					</c:when>
 					<c:when test="${list.resStatus ne 0}">
-						취소불가
+						<font color="#DC143C">취소불가</font>
 					</c:when>
 				</c:choose>
 			</td>

@@ -26,7 +26,7 @@
 	<td>${c.cagroup }</td>
 	<td>${c.url }</td>
 	<td><a href="Cateupdate.admin?canum=${c.canum }&pageNumber=${pageInfo.pageNumber}">수정</a></td>
-	<td><a href="catedele.admin?canum=${c.canum }&pageNumber=${pageInfo.pageNumber}">삭제</a></td>
+	<td><a href="catedele.admin?canum=${c.canum }&pageNumber=${pageInfo.pageNumber}"><font color="#DC143C">삭제</font></a></td>
 </tr>
 
 </c:forEach>
