@@ -127,6 +127,7 @@
 	<div id="map"></div>
 </div>
 <script>
+
 	// 모달
 	const modal = document.querySelector('.map-modal');
 	function showMap() {
@@ -139,6 +140,19 @@
 	
 	// 카카오맵
 	(function() {
+		
+		searchDetailAddrFromCoords(function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				const region = document.querySelector('.region__name');
+				region.append( result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
+			}
+		});
+		
+		function searchDetailAddrFromCoords(callback) {
+		    latLng((lat, lng)=> {
+			    geocoder.coord2Address(lng, lat, callback);
+		    });
+		}
 		
 		const container = document.getElementById('map'),
 		map = new kakao.maps.Map(container, { // 지도를 표시할 div
@@ -215,19 +229,6 @@
 		// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
 	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
 		/* map.setBounds(bounds); */
-		
-		searchDetailAddrFromCoords(function(result, status) {
-			if (status === kakao.maps.services.Status.OK) {
-				const region = document.querySelector('.region__name');
-				region.append( result[0].address.address_name.match(/[^\s]+\s[^\s]+/)[0]);
-			}
-		});
-		
-		function searchDetailAddrFromCoords(callback) {
-		    latLng((lat, lng)=> {
-			    geocoder.coord2Address(lng, lat, callback);
-		    });
-		}
 	}());
 
 </script>
