@@ -10,7 +10,7 @@ public class Board1Bean {
 	@NotEmpty(message = "제목을 입력하세요")
 	private String subject;
 
-	@NotEmpty(message = "내용/파일을 입력하세요")
+	@NotEmpty(message = "파일을 입력하세요")
 	private String content;
 	
 	private String thumbnail;

@@ -175,7 +175,7 @@
   	</update>
   	
   	<select id="GetAdvertisementFirst" resultType="admin.model.AdBean">
-  		select * from (select * from advertisement order by rownum desc) where rownum=1
+  		select * from (select * from advertisement order by adnum desc) where rownum=1
   	</select>	
   	
   	<select id="GetCateListTotal" resultType="admin.model.CateBean">

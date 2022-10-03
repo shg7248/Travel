@@ -72,6 +72,7 @@ var oEditors = [];
 	   var answer = $("#answer").val();
 	   if( answer == ""  || answer == null || answer == '&nbsp;' || answer == '<p>&nbsp;</p>' || answer =='<br>')  {
            alert("내용을 입력하세요.");
+           oEditors.getById["answer"].exec("FOCUS");
            return false;
       }
 	});

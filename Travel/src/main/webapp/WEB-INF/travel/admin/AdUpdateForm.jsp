@@ -10,15 +10,20 @@ $(document).ready(function(){
 });
 
 function check(){
+	$('#subjectCheck').hide();
+	$('#uploadCheck').hide();
+	
  	if($('input[name="subject"]').val()==""){
  		$('#subjectCheck').text('제목을 입력해주세요');
+ 		$("#subjectCheck").show();
 		f.subject.focus();
 		return false;
-	} 
+	}
  	if($('input[name="upload"]').val()==""){
  		$('#uploadCheck').text('이미지파일을 삽입해주세요');
+ 		$("#uploadCheck").show();
 		return false;
-	} 
+	}
 };
 </script>
 

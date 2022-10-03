@@ -47,12 +47,9 @@ public class Board1UpdateController {
 	}
 	
 	@RequestMapping(value=command1,method = RequestMethod.POST)
-	public String noticeupdate(Model model,@RequestParam("nnum") String nnum,@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result,
+	public String noticeupdate(Model model,@RequestParam("nnum") String nnum,@ModelAttribute("board1") Board1Bean bb,
 			@RequestParam(value="pageNumber",required = false) String pageNumber) {
-		if(result.hasErrors()) {
-			model.addAttribute("pageNumber",pageNumber);
-			return getPage1;
-		}
+
 		bdao.updateBoard1NoticeByNnum(bb);
 		model.addAttribute("pageNumber",pageNumber);
 		return gotoPage1;
@@ -71,11 +68,7 @@ public class Board1UpdateController {
 	public String eventupdate(Model model,@RequestParam("nnum") String nnum,
 			@RequestParam("originalContent") String originalContent,
 			@RequestParam("originalThumbnail") String originalThumbnail,
-			@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result,@RequestParam(value="pageNumber",required = false) String pageNumber) {
-		if(result.hasErrors()) {
-			model.addAttribute("pageNumber",pageNumber);
-			return getPage2;
-		}
+			@ModelAttribute("board1") Board1Bean bb,@RequestParam(value="pageNumber",required = false) String pageNumber) {
 		
 		//기존 이미지 삭제
 		String originalPath1 = servletContext.getRealPath("/resources/images/event")+"/"+originalContent;

@@ -12,21 +12,21 @@
 </style>
 
 <div class="default">
-<div class="contents">
-<form:form commandName="board1" method="post" action="noticeupdate.brd" enctype="multipart/form-data">
+<div class="contentsnotcenter">
+<form name="f" method="post" action="noticeupdate.brd" enctype="multipart/form-data">
 <input type="hidden" name="pageNumber" value="${pageNumber }">
 	<h2 align="center">공지사항 수정</h2>
 	<input type="hidden" name="nnum" value="${board1.nnum }">
 	
 	<input type="text" name="subject" placeholder="제목을 입력하세요." value="${board1.subject }">
-	<form:errors cssClass="err" path="subject"/><br>
+	<font id="subjectCheck" class="err" ></font>
 	
 	<textarea name="content" id="content"><c:out value="${board1.content}" /></textarea><br>
-	<form:errors cssClass="err" path="content"/><br>
+	<font id="contentCheck" class="err" ></font>
 	<div class="right_button">
 	<input type="submit" id="submit" value="수정하기">
 	</div>
-</form:form>
+</form>
 </div>
 </div>
 <script type="text/javascript">
@@ -46,12 +46,24 @@ var oEditors = [];
       });
    
    $("#submit").click(function() {
+	   $("#subjectCheck").hide();
+	   $("#contentCheck").hide();
+	   
+	   if($('input[name="subject"]').val()==""){
+    	   $('#subjectCheck').text('제목을 입력해주세요');
+    	   $("#subjectCheck").show();
+    	   f.subject.focus();
+    	   return false;
+       }
+	   $("#subjectCheck").hide();
 	   oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 	   var content = $("#content").val();
 	   if( content == ""  || content == null || content == '&nbsp;' || content == '<p>&nbsp;</p>' || content =='<br>')  {
-           alert("내용을 입력하세요.");
+           $('#contentCheck').text('내용을 입력해주세요');
+           $("#contentCheck").show();
+           f.content.focus();
            return false;
-      }
+	   }
 	});
 });
 </script>

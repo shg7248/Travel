@@ -13,7 +13,7 @@
 
 <div class="default">
 <div class="contents">
-<form:form commandName="faq" method="post" action="faqupdate.brd">
+<form:form commandName="faq" name="f" method="post" action="faqupdate.brd">
 <input type="hidden" name="fnum" value="${faq.fnum }">
 <h2 align="center">FAQ 수정하기</h2>
 <table>
@@ -54,10 +54,16 @@ var oEditors = [];
       });
    
    $("#submit").click(function() {
+	   if($('input[name="question"]').val()==""){
+		   alert('질문을 입력해주세요');
+		   f.question.focus();
+			return false;
+		} 
 	   oEditors.getById["answer"].exec("UPDATE_CONTENTS_FIELD", []);
 	   var answer = $("#answer").val();
 	   if( answer == ""  || answer == null || answer == '&nbsp;' || answer == '<p>&nbsp;</p>' || answer =='<br>')  {
            alert("내용을 입력하세요.");
+           oEditors.getById["answer"].exec("FOCUS");
            return false;
       }
 	});

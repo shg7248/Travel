@@ -44,26 +44,13 @@ public class Board1InsertController {
 	}
 	
 	@RequestMapping(value=command1,method = RequestMethod.POST)
-	public String insertnotice(@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result) {
-		System.out.println(bb.getContent());
-		System.out.println(bb.getSubject());
-		if(result.hasErrors()) {
-			return getPage1;
-		}
+	public String insertnotice(@ModelAttribute("board1") Board1Bean bb) {
 		bdao.insertNotice(bb);
-		
 		return gotoPage1;
 	}
 	
 	@RequestMapping(value=command2,method = RequestMethod.POST)
-	public String insertevent(@ModelAttribute("board1") @Valid Board1Bean bb,BindingResult result) {
-		System.out.println(bb.getContent());
-		System.out.println(bb.getSubject());
-		
-		//유효성검사이후 통과시 file처리,db입력등 진행
-		if(result.hasErrors()) {
-			return getPage2;
-		}
+	public String insertevent(@ModelAttribute("board1") Board1Bean bb) {
 		
 		//이미지file처리
 		MultipartFile multi = bb.getUpload();

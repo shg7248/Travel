@@ -14,7 +14,7 @@
 <div class="default">
 <div class="contents">
 <h2>1:1 문의사항</h2>
-<form:form commandName="inquiry" method="post" action="inqinsert.brd">
+<form:form commandName="inquiry" name="f" method="post" action="inqinsert.brd">
 <table>
 	<tr>
 		<td>
@@ -49,10 +49,16 @@ var oEditors = [];
       });
    
    $("#submit").click(function() {
+	   if($('input[name="subject"]').val()==""){
+		   alert('제목을 입력해주세요');
+		   f.subject.focus();
+			return false;
+		} 
 	   oEditors.getById["question"].exec("UPDATE_CONTENTS_FIELD", []);
 	   var question = $("#question").val();
 	   if( question == ""  || question == null || question == '&nbsp;' || question == '<p>&nbsp;</p>' || question =='<br>')  {
            alert("내용을 입력하세요.");
+           oEditors.getById["question"].exec("FOCUS");
            return false;
       }
 	});
