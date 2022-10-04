@@ -1,0 +1,6 @@
+<if test='rcode != null and rcode.substring(2,5) neq "000".toString() '>
+	and substr(re.rcode, 0, 5) = #{rcode}
+</if>
+<if test='rcode != null and rcode.substring(2,5) eq "000".toString() '>
+	and substr(re.rcode, 1, 2) = substr(#{rcode}, 1, 2)
+</if>

@@ -573,3 +573,42 @@ values(advertisement_seq.nextval,'with travel maker','advertisement2.jpg');
 
 commit;
 
+------------------------------------------------------------------
+
+create or replace function replaceFac(vcolumn varchar2, cnum varchar2)
+return varchar2
+is
+vfac varchar2(100);
+begin
+	with a as (
+	    select regexp_substr(vcolumn, '[^,]+', 1, level) as fac
+		from dual
+		connect by level <= length(regexp_substr(vcolumn, '[^,]+', 1, level)) + 1
+	),
+	b as (
+	    select fnum, name, fgroup 
+	    from FACILITY f
+	    inner join a
+	    on f.fnum = a.fac
+	)
+	select listagg(name, ',') within group(order by name) into vfac
+	from b
+	group by fgroup;
+	
+	DBMS_OUTPUT.PUT_LINE(vfac);
+	
+	return vfac;
+end;
+--------------------
+
+CREATE OR REPLACE FUNCTION RADIANS(VNUM VARCHAR2)
+RETURN VARCHAR2
+AS
+  RENUM VARCHAR2(50);
+BEGIN
+SELECT ASIN(1) * 2 / 180 * VNUM INTO RENUM FROM DUAL;
+RETURN RENUM;
+END;
+
+--------------------	
+
