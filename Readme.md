@@ -10,7 +10,7 @@ Legacy Spring를 이용한 숙박시설 예약 플랫폼
 
 2022.09 ~ 2022.10
 
-### 👦멤버구성
+### 👦멤버 구성
 
 - **김찬우** - 관리자 페이지, PPT제작
 - **장현세** - 공지사항, 1:1질문, 자주묻는질문, 이벤트 페이지
@@ -25,7 +25,7 @@ Legacy Spring를 이용한 숙박시설 예약 플랫폼
 - **Database** : Oracle DB(12c)
 - **ORM** : Mybatis
 
-### 관련 자료
+### 📎관련 자료
 
 - **Google Drive** : [*프로젝트 PPT*](https://drive.google.com/file/d/1e12GLs5kvlUjJ40B3ziOAQK5wQo67OrF/view?usp=share_link)
 
