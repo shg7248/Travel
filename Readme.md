@@ -19,9 +19,9 @@ Legacy Spring를 이용한 숙박시설 예약 플랫폼
 
 ### 🏢개발 환경
 
-- **Language** JAVA11
-- **IDE** : eclipse
-- **Framework** : spring
+- **Language** : JAVA11
+- **IDE** : Eclipse
+- **Framework** : Spring
 - **Database** : Oracle DB(12c)
-- **ORM** : Bybatis
+- **ORM** : Mybatis
 
