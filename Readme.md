@@ -27,5 +27,5 @@ Legacy Spring를 이용한 숙박시설 예약 플랫폼
 
 ### 관련 자료
 
-구글드라이브 : [프로젝트 PPT](https://drive.google.com/file/d/1e12GLs5kvlUjJ40B3ziOAQK5wQo67OrF/view?usp=share_link)
+- **Google Drive** : [*프로젝트 PPT*](https://drive.google.com/file/d/1e12GLs5kvlUjJ40B3ziOAQK5wQo67OrF/view?usp=share_link)
 
