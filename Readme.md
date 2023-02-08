@@ -30,5 +30,5 @@
 - **프로젝트 PPT** : [*구글드라이브*](https://drive.google.com/file/d/1e12GLs5kvlUjJ40B3ziOAQK5wQo67OrF/view?usp=share_link)
 - **프로젝트 시연** : 
 
-[![Video Label](http://img.youtube.com/vi/dsCCXT264WQ/0.jpg)](https://youtu.be/dsCCXT264WQ)
+[![Video Label](http://img.youtube.com/vi/BIqVNSoVocY/0.jpg)](https://youtu.be/BIqVNSoVocY)
 
